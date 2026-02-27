@@ -30,6 +30,7 @@
         ::-webkit-scrollbar-thumb { background: rgba(212, 175, 55, 0.5); border-radius: 10px; }
         ::-webkit-scrollbar-thumb:hover { background: #D4AF37; }
         .ui-transition { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        [x-cloak] { display: none !important; }
     </style>
 </head>
 <body class="bg-navy text-white antialiased selection:bg-gold selection:text-navy pb-48 relative min-h-screen">
@@ -54,7 +55,7 @@
         </div>
     </nav>
 
-    <main class="relative z-10 pt-10 px-4 sm:px-6 max-w-4xl mx-auto" x-data="bookingForm">
+    <main class="relative z-10 pt-10 px-4 sm:px-6 max-w-4xl mx-auto" x-data="bookingForm" x-cloak>
         
         <div class="text-center mb-12">
             <h1 class="font-serif text-4xl md:text-5xl font-bold mb-6">Demande de devis</h1>
@@ -116,26 +117,19 @@
                 </div>
 
                 <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
-                    <template x-for="type in ['citadine', 'berline', 'suv', 'mono5', 'mono7', 'util']">
-                        <button @click="vehicule = type" 
+                    <template x-for="type in getVehiculeTypesArray()" :key="type.key">
+                        <button @click="vehicule = type.key" 
                                 class="relative p-5 rounded-3xl text-left ui-transition flex flex-col items-center md:items-start overflow-hidden group border"
-                                :class="vehicule === type ? 'bg-gold/10 border-gold shadow-[0_0_20px_rgba(212,175,55,0.15)]' : 'bg-navylight border-white/5 hover:border-white/20 hover:bg-white/5'">
+                                :class="vehicule === type.key ? 'bg-gold/10 border-gold shadow-[0_0_20px_rgba(212,175,55,0.15)]' : 'bg-navylight border-white/5 hover:border-white/20 hover:bg-white/5'">
                             
                             <div class="h-12 w-12 rounded-full flex items-center justify-center mb-4 ui-transition"
-                                 :class="vehicule === type ? 'bg-gold text-navy' : 'bg-white/5 text-gray-400 group-hover:text-white'">
-                                <i class="fa-solid text-xl" 
-                                   :class="{
-                                       'fa-car-side': type === 'citadine',
-                                       'fa-car': type === 'berline',
-                                       'fa-truck-pickup': type === 'suv',
-                                       'fa-van-shuttle': type === 'mono5' || type === 'mono7',
-                                       'fa-truck': type === 'util'
-                                   }"></i>
+                                 :class="vehicule === type.key ? 'bg-gold text-navy' : 'bg-white/5 text-gray-400 group-hover:text-white'">
+                                <i class="fa-solid text-xl" :class="type.icon"></i>
                             </div>
                             <div class="font-semibold text-sm md:text-base text-center md:text-left w-full" 
-                                 :class="vehicule === type ? 'text-gold' : 'text-gray-200'" 
-                                 x-text="type === 'util' ? 'Utilitaire' : tarifs[type].nom"></div>
-                            <div x-show="type === 'util'" class="text-[10px] text-gray-500 mt-1 text-center md:text-left w-full">Sur devis uniquement</div>
+                                 :class="vehicule === type.key ? 'text-gold' : 'text-gray-200'" 
+                                 x-text="type.nom"></div>
+                            <div x-show="type.key === 'util'" class="text-[10px] text-gray-500 mt-1 text-center md:text-left w-full">Sur devis uniquement</div>
                         </button>
                     </template>
                 </div>
@@ -161,33 +155,30 @@
                         <span class="text-gold text-sm font-sans">02.</span> Prestation
                     </h2>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                        <button @click="formule = 'ext'" class="p-6 rounded-3xl text-left ui-transition flex flex-col justify-between" 
-                                :class="formule === 'ext' ? 'bg-gold/10 border border-gold shadow-[0_0_20px_rgba(212,175,55,0.15)]' : 'bg-navylight border border-white/5 hover:border-white/20 hover:bg-white/5'">
-                            <div>
-                                <div class="font-bold text-lg mb-1" :class="formule === 'ext' ? 'text-gold' : 'text-white'">Extérieur</div>
-                                <div class="text-xs text-gray-400 mb-6">Prélavage mousse, jantes, séchage, brillance pneus.</div>
-                            </div>
-                            <div class="text-2xl font-bold" :class="formule === 'ext' ? 'text-gold' : 'text-white'"><span x-text="tarifs[vehicule]?.ext"></span>€</div>
-                        </button>
-
-                        <button @click="formule = 'complet'" class="p-6 rounded-3xl text-left ui-transition flex flex-col justify-between relative" 
-                                :class="formule === 'complet' ? 'bg-gold-gradient border-transparent shadow-[0_10px_30px_rgba(212,175,55,0.3)] scale-[1.02]' : 'bg-navylight border border-gold/30 hover:border-gold'">
-                            <div class="absolute -top-3 right-6 bg-navy text-gold text-[10px] font-bold px-3 py-1 rounded-full border border-gold tracking-widest uppercase">Best-Seller</div>
-                            <div>
-                                <div class="font-bold text-xl mb-1" :class="formule === 'complet' ? 'text-navy' : 'text-white'">Pack Complet</div>
-                                <div class="text-xs mb-6" :class="formule === 'complet' ? 'text-navy/80' : 'text-gray-400'">Remise à neuf : nettoyage intérieur/extérieur avec pressing inclus.</div>
-                            </div>
-                            <div class="text-3xl font-bold" :class="formule === 'complet' ? 'text-navy' : 'text-gold'"><span x-text="tarifs[vehicule]?.complet"></span>€</div>
-                        </button>
-
-                        <button @click="formule = 'int'" class="p-6 rounded-3xl text-left ui-transition flex flex-col justify-between" 
-                                :class="formule === 'int' ? 'bg-gold/10 border border-gold shadow-[0_0_20px_rgba(212,175,55,0.15)]' : 'bg-navylight border border-white/5 hover:border-white/20 hover:bg-white/5'">
-                            <div>
-                                <div class="font-bold text-lg mb-1" :class="formule === 'int' ? 'text-gold' : 'text-white'">Intérieur</div>
-                                <div class="text-xs text-gray-400 mb-6">Aspiration, pressing des sièges, plastiques et vitres.</div>
-                            </div>
-                            <div class="text-2xl font-bold" :class="formule === 'int' ? 'text-gold' : 'text-white'"><span x-text="tarifs[vehicule]?.int"></span>€</div>
-                        </button>
+                        <template x-for="formuleItem in getFormuleTypesArray()" :key="formuleItem.key">
+                            <button @click="formule = formuleItem.key" 
+                                    class="p-6 rounded-3xl text-left ui-transition flex flex-col justify-between relative"
+                                    :class="{
+                                        'bg-gold/10 border border-gold shadow-[0_0_20px_rgba(212,175,55,0.15)]': formule === formuleItem.key && !formuleItem.bestseller,
+                                        'bg-gold-gradient border-transparent shadow-[0_10px_30px_rgba(212,175,55,0.3)] scale-[1.02]': formule === formuleItem.key && formuleItem.bestseller,
+                                        'bg-navylight border border-white/5 hover:border-white/20 hover:bg-white/5': formule !== formuleItem.key && !formuleItem.bestseller,
+                                        'bg-navylight border border-gold/30 hover:border-gold': formule !== formuleItem.key && formuleItem.bestseller
+                                    }">
+                                <div x-show="formuleItem.bestseller" class="absolute -top-3 right-6 bg-navy text-gold text-[10px] font-bold px-3 py-1 rounded-full border border-gold tracking-widest uppercase">Best-Seller</div>
+                                <div>
+                                    <div class="font-bold text-lg mb-1" 
+                                         :class="(formule === formuleItem.key && formuleItem.bestseller) ? 'text-navy' : (formule === formuleItem.key ? 'text-gold' : 'text-white')" 
+                                         x-text="formuleItem.nom"></div>
+                                    <div class="text-xs mb-6" 
+                                         :class="(formule === formuleItem.key && formuleItem.bestseller) ? 'text-navy/80' : 'text-gray-400'" 
+                                         x-text="formuleItem.desc"></div>
+                                </div>
+                                <div class="text-2xl font-bold" 
+                                     :class="(formule === formuleItem.key && formuleItem.bestseller) ? 'text-navy' : (formule === formuleItem.key ? 'text-gold' : 'text-white')">
+                                     <span x-text="vehiculeTypes[vehicule]?.tarifs?.[formuleItem.key]"></span>€
+                                </div>
+                            </button>
+                        </template>
                     </div>
                 </section>
 
@@ -196,52 +187,26 @@
                         <span class="text-gold text-sm font-sans">03.</span> Suppléments
                     </h2>
                     <div class="space-y-3">
-                        <label class="group flex items-center justify-between p-5 rounded-3xl cursor-pointer ui-transition" 
-                               :class="options.poils ? 'bg-gold/5 border border-gold/50' : 'bg-navylight border border-white/5 hover:bg-white/5'">
-                            <div class="flex items-center gap-5">
-                                <div class="relative w-6 h-6 rounded-full border-2 ui-transition flex items-center justify-center flex-shrink-0"
-                                     :class="options.poils ? 'border-gold bg-gold' : 'border-gray-500 group-hover:border-gold/50'">
-                                     <i class="fa-solid fa-check text-navy text-xs" x-show="options.poils"></i>
-                                </div>
-                                <input type="checkbox" x-model="options.poils" class="hidden">
-                                <div><div class="font-semibold text-white" :class="options.poils ? 'text-gold' : ''">Poils d'animaux, Véhicule très sale, Sable</div></div>
-                            </div>
-                            <div class="font-bold text-lg" :class="options.poils ? 'text-gold' : 'text-gray-400'">20€</div>
-                        </label>
-
-                        <label class="group flex items-center justify-between p-5 rounded-3xl cursor-pointer ui-transition" 
-                               :class="options.non_videe ? 'bg-gold/5 border border-gold/50' : 'bg-navylight border border-white/5 hover:bg-white/5'">
-                            <div class="flex items-center gap-5">
-                                <div class="relative w-6 h-6 rounded-full border-2 ui-transition flex items-center justify-center flex-shrink-0"
-                                     :class="options.non_videe ? 'border-gold bg-gold' : 'border-gray-500 group-hover:border-gold/50'">
-                                     <i class="fa-solid fa-check text-navy text-xs" x-show="options.non_videe"></i>
-                                </div>
-                                <input type="checkbox" x-model="options.non_videe" class="hidden">
-                                <div>
-                                    <div class="font-semibold text-white flex items-center gap-2" :class="options.non_videe ? 'text-gold' : ''">
-                                        Véhicule pas vidé
-                                        <i class="fa-solid fa-circle-info text-gray-500 text-xs" title="Merci de vider vos effets personnels."></i>
+                        <template x-for="optionItem in optionTypes" :key="optionItem.key">
+                            <label class="group flex items-center justify-between p-5 rounded-3xl cursor-pointer ui-transition"
+                                   :class="options[optionItem.key] ? 'bg-gold/5 border border-gold/50' : 'bg-navylight border border-white/5 hover:bg-white/5'">
+                                <div class="flex items-center gap-5">
+                                    <div class="relative w-6 h-6 rounded-full border-2 ui-transition flex items-center justify-center flex-shrink-0"
+                                         :class="options[optionItem.key] ? 'border-gold bg-gold' : 'border-gray-500 group-hover:border-gold/50'">
+                                         <i class="fa-solid fa-check text-navy text-xs" x-show="options[optionItem.key]"></i>
+                                    </div>
+                                    <input type="checkbox" x-model="options[optionItem.key]" class="hidden">
+                                    <div>
+                                        <div class="font-semibold text-white flex items-center gap-2" :class="options[optionItem.key] ? 'text-gold' : ''">
+                                            <span x-text="optionItem.text"></span>
+                                            <i x-show="optionItem.tooltip" class="fa-solid fa-circle-info text-gray-500 text-xs" :title="optionItem.tooltip"></i>
+                                        </div>
+                                        <div x-show="optionItem.subtext" class="text-xs text-gray-400 mt-1" x-text="optionItem.subtext"></div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="font-bold text-lg" :class="options.non_videe ? 'text-gold' : 'text-gray-400'">10€</div>
-                        </label>
-
-                        <label class="group flex items-center justify-between p-5 rounded-3xl cursor-pointer ui-transition" 
-                               :class="options.cire ? 'bg-gold/5 border border-gold/50' : 'bg-navylight border border-white/5 hover:bg-white/5'">
-                            <div class="flex items-center gap-5">
-                                <div class="relative w-6 h-6 rounded-full border-2 ui-transition flex items-center justify-center flex-shrink-0"
-                                     :class="options.cire ? 'border-gold bg-gold' : 'border-gray-500 group-hover:border-gold/50'">
-                                     <i class="fa-solid fa-check text-navy text-xs" x-show="options.cire"></i>
-                                </div>
-                                <input type="checkbox" x-model="options.cire" class="hidden">
-                                <div>
-                                    <div class="font-semibold text-white" :class="options.cire ? 'text-gold' : ''">Cire Céramique Express</div>
-                                    <div class="text-xs text-gray-400 mt-1">Brillance extrême (3 mois)</div>
-                                </div>
-                            </div>
-                            <div class="font-bold text-lg" :class="options.cire ? 'text-gold' : 'text-gray-400'">30€</div>
-                        </label>
+                                <div class="font-bold text-lg" :class="options[optionItem.key] ? 'text-gold' : 'text-gray-400'" x-text="`+${optionItem.price}€`"></div>
+                            </label>
+                        </template>
                     </div>
                 </section>
 
@@ -250,24 +215,14 @@
                         <span class="text-gold text-sm font-sans">04.</span> Règlement
                     </h2>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                        <button @click="paiement = 'cb'" class="p-5 rounded-3xl text-center ui-transition border" 
-                                :class="paiement === 'cb' ? 'bg-gold/10 border-gold shadow-[0_0_15px_rgba(212,175,55,0.15)]' : 'bg-navylight border-white/5 hover:border-white/20 hover:bg-white/5'">
-                            <i class="fa-solid fa-credit-card text-2xl mb-2" :class="paiement === 'cb' ? 'text-gold' : 'text-gray-400'"></i>
-                            <div class="font-semibold text-sm" :class="paiement === 'cb' ? 'text-gold' : 'text-white'">Carte Bancaire</div>
-                            <div class="text-[10px] text-gray-500 mt-1">Sur place contact/sans-contact</div>
-                        </button>
-                        <button @click="paiement = 'especes'" class="p-5 rounded-3xl text-center ui-transition border" 
-                                :class="paiement === 'especes' ? 'bg-gold/10 border-gold shadow-[0_0_15px_rgba(212,175,55,0.15)]' : 'bg-navylight border-white/5 hover:border-white/20 hover:bg-white/5'">
-                            <i class="fa-solid fa-money-bill-wave text-2xl mb-2" :class="paiement === 'especes' ? 'text-gold' : 'text-gray-400'"></i>
-                            <div class="font-semibold text-sm" :class="paiement === 'especes' ? 'text-gold' : 'text-white'">Espèces</div>
-                            <div class="text-[10px] text-gray-500 mt-1">L'appoint est recommandé</div>
-                        </button>
-                        <button @click="paiement = 'ligne'" class="p-5 rounded-3xl text-center ui-transition border" 
-                                :class="paiement === 'ligne' ? 'bg-gold/10 border-gold shadow-[0_0_15px_rgba(212,175,55,0.15)]' : 'bg-navylight border-white/5 hover:border-white/20 hover:bg-white/5'">
-                            <i class="fa-solid fa-link text-2xl mb-2" :class="paiement === 'ligne' ? 'text-gold' : 'text-gray-400'"></i>
-                            <div class="font-semibold text-sm" :class="paiement === 'ligne' ? 'text-gold' : 'text-white'">En ligne (Lien)</div>
-                            <div class="text-[10px] text-gray-500 mt-1">Lien sécurisé avant RDV</div>
-                        </button>
+                         <template x-for="paiementItem in getPaiementTypesArray()" :key="paiementItem.key">
+                            <button @click="paiement = paiementItem.key" class="p-5 rounded-3xl text-center ui-transition border" 
+                                    :class="paiement === paiementItem.key ? 'bg-gold/10 border-gold shadow-[0_0_15px_rgba(212,175,55,0.15)]' : 'bg-navylight border-white/5 hover:border-white/20 hover:bg-white/5'">
+                                <i class="fa-solid text-2xl mb-2" :class="[paiementItem.icon, paiement === paiementItem.key ? 'text-gold' : 'text-gray-400']"></i>
+                                <div class="font-semibold text-sm" :class="paiement === paiementItem.key ? 'text-gold' : 'text-white'" x-text="paiementItem.nom"></div>
+                                <div class="text-[10px] text-gray-500 mt-1" x-text="paiementItem.desc"></div>
+                            </button>
+                        </template>
                     </div>
                 </section>
             </div>
@@ -306,22 +261,18 @@
                 <h2 class="text-2xl font-serif font-bold text-white mb-2">Guide des véhicules</h2>
                 <p class="text-gray-400 text-sm mb-8">Trouvez votre modèle ci-dessous pour choisir la bonne catégorie.</p>
                 <div class="space-y-6">
-                    <div class="bg-white/5 rounded-2xl p-5 border border-white/5">
-                        <h3 class="text-lg font-bold text-gold mb-2"><i class="fa-solid fa-car-side mr-2"></i>Citadines</h3>
-                        <p class="text-xs text-gray-400 mb-3">Exemples : Renault Clio, Peugeot 208, VW Polo, Toyota Yaris, Citroën C3, Dacia Sandero...</p>
-                    </div>
-                    <div class="bg-white/5 rounded-2xl p-5 border border-white/5">
-                        <h3 class="text-lg font-bold text-gold mb-2"><i class="fa-solid fa-car mr-2"></i>Berlines</h3>
-                        <p class="text-xs text-gray-400 mb-3">Exemples : BMW Série 3, Mercedes Classe C, Audi A4, Peugeot 508, VW Golf, Audi A3...</p>
-                    </div>
-                    <div class="bg-white/5 rounded-2xl p-5 border border-white/5">
-                        <h3 class="text-lg font-bold text-gold mb-2"><i class="fa-solid fa-truck-pickup mr-2"></i>SUV</h3>
-                        <p class="text-xs text-gray-400 mb-3">Exemples : Peugeot 3008, Nissan Qashqai, Toyota RAV4, VW Tiguan, Kia Sportage...</p>
-                    </div>
-                    <div class="bg-white/5 rounded-2xl p-5 border border-white/5">
-                        <h3 class="text-lg font-bold text-gold mb-2"><i class="fa-solid fa-van-shuttle mr-2"></i>Monospaces</h3>
-                        <p class="text-xs text-gray-400 mb-3">Exemples : Renault Scénic, Citroën C4 SpaceTourer, VW Touran, Renault Espace...</p>
-                    </div>
+                    <template x-for="type in getVehiculeTypesArray().filter(t => t.key !== 'util')" :key="type.key">
+                        <div class="bg-white/5 rounded-2xl p-5 border border-white/5">
+                            <h3 class="text-lg font-bold text-gold mb-2"><i class="fa-solid mr-2" :class="type.icon"></i><span x-text="type.nom.replace(' 5pl', '').replace(' 7pl', '')"></span></h3>
+                            <p class="text-xs text-gray-400 mb-3">Exemples : <span x-text="{
+                                citadine: 'Renault Clio, Peugeot 208, VW Polo, Toyota Yaris, Citroën C3, Dacia Sandero...',
+                                berline: 'BMW Série 3, Mercedes Classe C, Audi A4, Peugeot 508, VW Golf, Audi A3...',
+                                suv: 'Peugeot 3008, Nissan Qashqai, Toyota RAV4, VW Tiguan, Kia Sportage...',
+                                mono5: 'Renault Scénic, Citroën C4 SpaceTourer, VW Touran, Renault Espace...',
+                                mono7: 'Renault Scénic, Citroën C4 SpaceTourer, VW Touran, Renault Espace...'
+                            }[type.key]"></span></p>
+                        </div>
+                    </template>
                 </div>
             </div>
         </div>
