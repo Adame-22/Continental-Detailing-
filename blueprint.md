@@ -12,6 +12,7 @@ The project consists of the following files:
 - `index.html`: The main landing page of the website.
 - `services.html`: A dynamic page for both quotes and service booking.
 - `style.css`: A file for custom CSS (though most styling is done via Tailwind CSS).
+- `main.js`: A JavaScript file containing the logic for the `services.html` page.
 - `blueprint.md`: This document.
 
 ## 3. Design and Features
@@ -61,17 +62,13 @@ This page has been redesigned to cater to two distinct client types: **Particuli
   - For **Entreprise** or **Utilitaire** selections, the bar shows "Sur Devis" and the button says "Demander devis".
   - For standard **Particulier** selections, it displays the total price and the button says "Réserver".
 
-## 4. Current Task: Implement Particulier/Pro Segmentation
+## 4. Current Task: Fix `services.html` Page
 
-The user provided a major update for `services.html` to create a clear distinction between individual and business clients and to handle utility vehicles as a special case.
+The user reported that the `services.html` page was not working correctly when opened in a new window. This was likely due to an unstable version of a third-party library (Alpine.js).
 
 - **Actions Taken:**
-  1.  **`services.html` Overhauled:** The file was completely replaced with the new code, implementing the following features:
-      - A `clientType` toggle for 'particulier' and 'pro'.
-      - A dedicated, informative section for corporate clients.
-      - Conditional logic to show/hide the standard booking form based on the client type.
-      - Special handling for 'utilitaire' vehicles, directing users to request a custom quote.
-      - A dynamic booking bar that adapts its text and function based on the user's selection.
-  2.  **`blueprint.md` Updated:** This document was updated to reflect the new, segmented structure of the `services.html` page.
+  1.  **`main.js` Created:** The JavaScript logic from `services.html` was moved to a new `main.js` file for better organization.
+  2.  **`services.html` Updated:** The page was updated to use a specific, stable version of Alpine.js (`3.13.3`) and to include the new `main.js` script.
+  3.  **`blueprint.md` Updated:** This document was updated to reflect the changes to the project structure and the fix that was implemented.
 
-- **Result:** The booking page is now a much more powerful and user-friendly tool, providing a tailored experience for different types of customers and clarifying the process for non-standard vehicles.
+- **Result:** The `services.html` page should now be stable and work correctly in all browsing contexts. The code is also better organized, which will make future updates easier.
