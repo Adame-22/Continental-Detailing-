@@ -1,0 +1,15 @@
+{
+  "projects": {
+    "default": "continental-site-6833128-febca"
+  },
+  "targets": {
+    "continental-site-6833128-febca": {
+      "hosting": {
+        "continental-detailing": [
+          "continental-detailing"
+        ]
+      }
+    }
+  },
+  "etags": {}
+}
