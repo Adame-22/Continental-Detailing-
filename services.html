@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com/"></script>
     <script>
         tailwind.config = {
             theme: {
@@ -29,6 +29,7 @@
         ::-webkit-scrollbar-thumb { background: rgba(212, 175, 55, 0.5); border-radius: 10px; }
         ::-webkit-scrollbar-thumb:hover { background: #D4AF37; }
         .ui-transition { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        [x-cloak] { display: none !important; }
     </style>
 </head>
 <body class="bg-navy text-white antialiased selection:bg-gold selection:text-navy pb-48 relative min-h-screen">
@@ -53,7 +54,7 @@
         </div>
     </nav>
 
-    <main class="relative z-10 pt-10 px-4 sm:px-6 max-w-4xl mx-auto"
+    <main class="relative z-10 pt-10 px-4 sm:px-6 max-w-4xl mx-auto" x-cloak 
           x-data="{ 
             clientType: 'particulier',
             vehicule: 'citadine',
@@ -62,182 +63,331 @@
             paiement: 'cb', 
             showGuide: false, 
             numeroContact: '33750875964', 
+            compteInsta: 'continental_detailing', 
             
             tarifs: {
                 citadine: { ext: 49, int: 79, complet: 119, nom: 'Citadine' },
                 berline: { ext: 59, int: 89, complet: 129, nom: 'Berline' },
                 suv: { ext: 69, int: 99, complet: 139, nom: 'SUV' },
                 mono5: { ext: 79, int: 109, complet: 149, nom: 'Monospace 5pl' },
-                mono7: { ext: 89, int: 119, complet: 159, nom: 'Monospace 7pl' }
+                mono7: { ext: 89, int: 119, complet: 159, nom: 'Monospace 7pl' },
+                util: { nom: 'Utilitaire' }
             },
+
+            vehiculeTypes: [
+                { key: 'citadine', nom: 'Citadine', icon: 'fa-car-side' },
+                { key: 'berline', nom: 'Berline', icon: 'fa-car' },
+                { key: 'suv', nom: 'SUV', icon: 'fa-truck-pickup' },
+                { key: 'mono5', nom: 'Monospace 5pl', icon: 'fa-van-shuttle' },
+                { key: 'mono7', nom: 'Monospace 7pl', icon: 'fa-van-shuttle' },
+                { key: 'util', nom: 'Utilitaire', icon: 'fa-truck' }
+            ],
+
+            formuleTypes: [
+                { key: 'ext', nom: 'Extérieur', desc: 'Prélavage mousse, jantes, séchage, brillance pneus.', bestseller: false },
+                { key: 'complet', nom: 'Pack Complet', desc: 'Remise à neuf : nettoyage intérieur/extérieur avec pressing inclus.', bestseller: true },
+                { key: 'int', nom: 'Intérieur', desc: 'Aspiration, pressing des sièges, plastiques et vitres.', bestseller: false }
+            ],
+
+            optionTypes: [
+                { key: 'poils', text: 'Poils d\'animaux, Véhicule très sale, Sable', price: 20, tooltip: null, subtext: 'Supplément état très encrassé' },
+                { key: 'non_videe', text: 'Véhicule pas vidé', price: 10, tooltip: 'Si le véhicule n\'est pas vidé de vos effets personnels avant notre arrivée, ce supplément sera facturé automatiquement sur place.', subtext: 'Appliqué d\'office sur place si non vidé' },
+                { key: 'cire', text: 'Cire Céramique Express', price: 30, tooltip: null, subtext: 'Brillance extrême (3 mois)' }
+            ],
+
+            paiementTypes: [
+                { key: 'cb', nom: 'Carte Bancaire', desc: 'Sur place contact/sans-contact', icon: 'fa-credit-card' },
+                { key: 'especes', nom: 'Espèces', desc: 'L\'appoint est recommandé', icon: 'fa-money-bill-wave' },
+                { key: 'ligne', nom: 'En ligne (Lien)', desc: 'Lien sécurisé avant RDV', icon: 'fa-link' }
+            ],
+
+            get isUtilitaire() { return this.vehicule === 'util'; },
             
             get totalPrix() {
-                if (this.vehicule === 'util' || this.clientType === 'pro') return 0;
+                if (this.isUtilitaire || this.clientType === 'pro') return 0;
                 let t = this.tarifs[this.vehicule][this.formule];
                 if (this.options.poils) t += 20;
                 if (this.options.non_videe) t += 10;
                 if (this.options.cire) t += 30;
                 return t;
-            }
+            },
+
+            get texteMessage() {
+                if (this.clientType === 'pro') {
+                    return encodeURIComponent('Bonjour Continental Detailing, je représente une entreprise et je souhaiterais obtenir un devis pour l\'entretien de nos véhicules professionnels.\n\nPouvons-nous en discuter ?');
+                }
+                if (this.isUtilitaire) {
+                    return encodeURIComponent('Bonjour Continental Detailing, je souhaite obtenir un devis sur-mesure pour mon véhicule utilitaire.\n\nType d\'utilitaire (ex: L1H1, Benne, etc) : \nÉtat général : \n\nQuelles sont vos disponibilités ?');
+                }
+                let msg = 'Bonjour Continental Detailing, je souhaite planifier une intervention :\n\n';
+                msg += '🚗 Véhicule : ' + this.tarifs[this.vehicule].nom + '\n';
+                let nomF = this.formuleTypes.find(f => f.key === this.formule).nom;
+                msg += '✨ Formule : ' + nomF + ' (' + this.tarifs[this.vehicule][this.formule] + '€)\n';
+                
+                let optsSelectionnees = [];
+                if(this.options.poils) optsSelectionnees.push('Poils/Très sale (+20€)');
+                if(this.options.non_videe) optsSelectionnees.push('Véhicule pas vidé (+10€)');
+                if(this.options.cire) optsSelectionnees.push('Cire Express (+30€)');
+                if(optsSelectionnees.length > 0) msg += '➕ Options : ' + optsSelectionnees.join(', ') + '\n';
+                
+                msg += '\n⚠️ J\'ai bien pris note des conditions d\'intervention (Prise d\'eau/élec et véhicule vidé sous peine de supplément).\n';
+                
+                msg += '\n💰 TOTAL ESTIMÉ : ' + this.totalPrix + ' €\n';
+                let nomP = this.paiementTypes.find(p => p.key === this.paiement).nom;
+                msg += '💳 Règlement souhaité : ' + nomP + '\n';
+                if(this.paiement === 'ligne') msg += '(Merci de m\'envoyer un lien de paiement sécurisé pour bloquer le RDV).\n';
+                
+                msg += '\nQuelles sont vos disponibilités ?';
+                return encodeURIComponent(msg);
+            },
+            
+            get lienWhatsApp() { return 'https://wa.me/' + this.numeroContact + '?text=' + this.texteMessage; },
+            get lienSMS() { return 'sms:+' + this.numeroContact + '?body=' + this.texteMessage; },
+            get lienInsta() { return 'https://instagram.com/' + this.compteInsta; }
           }">
         
         <div class="text-center mb-12">
             <h1 class="font-serif text-4xl md:text-5xl font-bold mb-6">Demande de devis</h1>
+            
             <div class="inline-flex bg-navylight border border-white/10 p-1.5 rounded-full relative">
-                <button @click="clientType = 'particulier'" class="px-6 py-2.5 rounded-full text-sm font-semibold ui-transition z-10" :class="clientType === 'particulier' ? 'text-navy bg-gold-gradient shadow-lg' : 'text-gray-400 hover:text-white'">Particulier</button>
-                <button @click="clientType = 'pro'" class="px-6 py-2.5 rounded-full text-sm font-semibold ui-transition z-10" :class="clientType === 'pro' ? 'text-navy bg-gold-gradient shadow-lg' : 'text-gray-400 hover:text-white'"><i class="fa-solid fa-briefcase mr-2"></i>Entreprise</button>
+                <button @click="clientType = 'particulier'" 
+                        class="px-6 py-2.5 rounded-full text-sm font-semibold ui-transition z-10"
+                        :class="clientType === 'particulier' ? 'text-navy bg-gold-gradient shadow-lg' : 'text-gray-400 hover:text-white'">
+                    Particulier
+                </button>
+                <button @click="clientType = 'pro'" 
+                        class="px-6 py-2.5 rounded-full text-sm font-semibold ui-transition z-10"
+                        :class="clientType === 'pro' ? 'text-navy bg-gold-gradient shadow-lg' : 'text-gray-400 hover:text-white'">
+                    <i class="fa-solid fa-briefcase mr-2"></i>Entreprise
+                </button>
             </div>
         </div>
 
-        <div x-show="clientType === 'pro'" style="display: none;">
-            <div class="bg-navylight border border-gold/30 rounded-3xl p-8 md:p-12 text-center shadow-[0_0_30px_rgba(212,175,55,0.1)] mb-12">
-                <h2 class="text-3xl font-serif text-white mb-4">L'image de votre entreprise passe par votre flotte.</h2>
-                <p class="text-gray-400 max-w-2xl mx-auto mb-8">Nous proposons des solutions sur-mesure pour les professionnels : lavage sur votre parc de stationnement, contrats d'entretien réguliers.</p>
-                <a :href="'https://wa.me/' + numeroContact" target="_blank" class="inline-flex bg-gold-gradient text-navy px-8 py-4 rounded-full font-bold text-lg hover:scale-105 ui-transition items-center gap-3">
-                    <i class="fa-solid fa-envelope-open-text"></i> Demander un devis B2B
+        <div x-show="clientType === 'pro'" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 translate-y-4" x-transition:enter-end="opacity-100 translate-y-0" style="display: none;">
+            <div class="bg-navylight border border-gold/30 rounded-3xl p-8 md:p-12 text-center shadow-[0_0_30px_rgba(212,175,55,0.1)] mb-12 relative overflow-hidden">
+                <div class="absolute -right-10 -top-10 text-gold/5 text-9xl"><i class="fa-solid fa-building"></i></div>
+                <h2 class="text-3xl font-serif text-white mb-4 relative z-10">L'image de votre entreprise passe par votre flotte.</h2>
+                <p class="text-gray-400 max-w-2xl mx-auto mb-8 relative z-10 leading-relaxed">
+                    Nous proposons des solutions sur-mesure pour les professionnels : lavage sur votre parc de stationnement, contrats d\'entretien réguliers, préparation de véhicules de fonction ou de courtoisie. 
+                </p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10 relative z-10">
+                    <div class="bg-navy/50 p-6 rounded-2xl border border-white/5">
+                        <i class="fa-solid fa-location-dot text-gold text-2xl mb-3"></i>
+                        <h3 class="font-bold mb-1">Intervention sur site</h3>
+                        <p class="text-xs text-gray-500">Zéro déplacement pour vos collaborateurs.</p>
+                    </div>
+                    <div class="bg-navy/50 p-6 rounded-2xl border border-white/5">
+                        <i class="fa-solid fa-chart-line text-gold text-2xl mb-3"></i>
+                        <h3 class="font-bold mb-1">Tarifs dégressifs</h3>
+                        <p class="text-xs text-gray-500">Prix adaptés au volume de votre flotte.</p>
+                    </div>
+                </div>
+
+                <a :href="lienWhatsApp" target="_blank" class="inline-flex bg-gold-gradient text-navy px-8 py-4 rounded-full font-bold text-lg hover:scale-105 ui-transition items-center gap-3 relative z-10 shadow-[0_0_20px_rgba(212,175,55,0.3)]">
+                    <i class="fa-solid fa-envelope-open-text"></i>
+                    Demander un devis B2B
                 </a>
             </div>
         </div>
 
-        <div x-show="clientType === 'particulier'">
+        <div x-show="clientType === 'particulier'" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 translate-y-4" x-transition:enter-end="opacity-100 translate-y-0">
             
             <section class="mb-16">
                 <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-6">
-                    <h2 class="text-2xl font-serif text-white flex items-center gap-3"><span class="text-gold text-sm font-sans">01.</span> Véhicule</h2>
-                    <button @click="showGuide = true" class="text-xs text-gray-400 hover:text-gold ui-transition flex items-center gap-2"><i class="fa-regular fa-circle-question"></i> Guide des tailles</button>
+                    <div>
+                        <h2 class="text-2xl font-serif text-white flex items-center gap-3">
+                            <span class="text-gold text-sm font-sans">01.</span> Véhicule
+                        </h2>
+                    </div>
+                    <button @click="showGuide = true" class="text-xs text-gray-400 hover:text-gold ui-transition flex items-center gap-2">
+                        <i class="fa-regular fa-circle-question"></i> Guide des tailles
+                    </button>
                 </div>
 
                 <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
-                    <button @click="vehicule = 'citadine'" class="p-5 rounded-3xl text-left ui-transition border" :class="vehicule === 'citadine' ? 'bg-gold/10 border-gold shadow-[0_0_20px_rgba(212,175,55,0.15)]' : 'bg-navylight border-white/5'">
-                        <i class="fa-solid fa-car-side text-2xl mb-4 block" :class="vehicule === 'citadine' ? 'text-gold' : 'text-gray-400'"></i>
-                        <div class="font-semibold" :class="vehicule === 'citadine' ? 'text-gold' : 'text-gray-200'">Citadine</div>
-                    </button>
-                    <button @click="vehicule = 'berline'" class="p-5 rounded-3xl text-left ui-transition border" :class="vehicule === 'berline' ? 'bg-gold/10 border-gold shadow-[0_0_20px_rgba(212,175,55,0.15)]' : 'bg-navylight border-white/5'">
-                        <i class="fa-solid fa-car text-2xl mb-4 block" :class="vehicule === 'berline' ? 'text-gold' : 'text-gray-400'"></i>
-                        <div class="font-semibold" :class="vehicule === 'berline' ? 'text-gold' : 'text-gray-200'">Berline</div>
-                    </button>
-                    <button @click="vehicule = 'suv'" class="p-5 rounded-3xl text-left ui-transition border" :class="vehicule === 'suv' ? 'bg-gold/10 border-gold shadow-[0_0_20px_rgba(212,175,55,0.15)]' : 'bg-navylight border-white/5'">
-                        <i class="fa-solid fa-truck-pickup text-2xl mb-4 block" :class="vehicule === 'suv' ? 'text-gold' : 'text-gray-400'"></i>
-                        <div class="font-semibold" :class="vehicule === 'suv' ? 'text-gold' : 'text-gray-200'">SUV</div>
-                    </button>
-                    <button @click="vehicule = 'mono5'" class="p-5 rounded-3xl text-left ui-transition border" :class="vehicule === 'mono5' ? 'bg-gold/10 border-gold shadow-[0_0_20px_rgba(212,175,55,0.15)]' : 'bg-navylight border-white/5'">
-                        <i class="fa-solid fa-van-shuttle text-2xl mb-4 block" :class="vehicule === 'mono5' ? 'text-gold' : 'text-gray-400'"></i>
-                        <div class="font-semibold" :class="vehicule === 'mono5' ? 'text-gold' : 'text-gray-200'">Monospace 5pl</div>
-                    </button>
-                    <button @click="vehicule = 'mono7'" class="p-5 rounded-3xl text-left ui-transition border" :class="vehicule === 'mono7' ? 'bg-gold/10 border-gold shadow-[0_0_20px_rgba(212,175,55,0.15)]' : 'bg-navylight border-white/5'">
-                        <i class="fa-solid fa-van-shuttle text-2xl mb-4 block" :class="vehicule === 'mono7' ? 'text-gold' : 'text-gray-400'"></i>
-                        <div class="font-semibold" :class="vehicule === 'mono7' ? 'text-gold' : 'text-gray-200'">Monospace 7pl</div>
-                    </button>
-                    <button @click="vehicule = 'util'" class="p-5 rounded-3xl text-left ui-transition border" :class="vehicule === 'util' ? 'bg-gold/10 border-gold shadow-[0_0_20px_rgba(212,175,55,0.15)]' : 'bg-navylight border-white/5'">
-                        <i class="fa-solid fa-truck text-2xl mb-4 block" :class="vehicule === 'util' ? 'text-gold' : 'text-gray-400'"></i>
-                        <div class="font-semibold" :class="vehicule === 'util' ? 'text-gold' : 'text-gray-200'">Utilitaire</div>
-                        <div class="text-[10px] text-gray-500 mt-1">Sur devis uniquement</div>
-                    </button>
+                    <template x-for="type in vehiculeTypes" :key="type.key">
+                        <button @click="vehicule = type.key" 
+                                class="relative p-5 rounded-3xl text-left ui-transition flex flex-col items-center md:items-start overflow-hidden group border"
+                                :class="vehicule === type.key ? 'bg-gold/10 border-gold shadow-[0_0_20px_rgba(212,175,55,0.15)]' : 'bg-navylight border-white/5 hover:border-white/20 hover:bg-white/5'">
+                            
+                            <div class="h-12 w-12 rounded-full flex items-center justify-center mb-4 ui-transition"
+                                 :class="vehicule === type.key ? 'bg-gold text-navy' : 'bg-white/5 text-gray-400 group-hover:text-white'">
+                                <i class="fa-solid text-xl" :class="type.icon"></i>
+                            </div>
+                            <div class="font-semibold text-sm md:text-base text-center md:text-left w-full" 
+                                 :class="vehicule === type.key ? 'text-gold' : 'text-gray-200'" 
+                                 x-text="type.nom"></div>
+                            <div x-show="type.key === 'util'" class="text-[10px] text-gray-500 mt-1 text-center md:text-left w-full">Sur devis uniquement</div>
+                        </button>
+                    </template>
                 </div>
             </section>
 
-            <div x-show="vehicule === 'util'" style="display: none;">
+            <div x-show="isUtilitaire" style="display: none;" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100">
                 <div class="bg-navylight border border-gold/30 rounded-3xl p-8 text-center shadow-[0_0_20px_rgba(212,175,55,0.1)] mb-12">
                     <i class="fa-solid fa-truck-ramp-box text-5xl text-gold mb-4"></i>
                     <h3 class="text-2xl font-serif text-white mb-3">Devis sur-mesure requis</h3>
-                    <p class="text-gray-400 text-sm max-w-xl mx-auto mb-6">Les véhicules utilitaires possèdent des dimensions très variées. Contactez-nous pour un devis personnalisé.</p>
+                    <p class="text-gray-400 text-sm max-w-xl mx-auto mb-6 leading-relaxed">
+                        Les véhicules utilitaires possèdent des dimensions très variées (de L1H1 à L3H3) et des usages spécifiques (chantier, livraison) qui nécessitent une évaluation personnalisée.
+                    </p>
+                    <a :href="lienWhatsApp" target="_blank" class="inline-flex bg-gold-gradient text-navy px-8 py-3 rounded-full font-bold hover:scale-105 ui-transition items-center gap-2">
+                        <i class="fa-brands fa-whatsapp text-xl"></i> Demander mon devis Utilitaire
+                    </a>
                 </div>
             </div>
 
-            <div x-show="vehicule !== 'util'">
+            <div x-show="!isUtilitaire" x-transition:enter="transition ease-in duration-200" x-transition:enter-start="opacity-0">
+                
                 <section class="mb-16">
-                    <h2 class="text-2xl font-serif text-white flex items-center gap-3 mb-6"><span class="text-gold text-sm font-sans">02.</span> Prestation</h2>
+                    <h2 class="text-2xl font-serif text-white flex items-center gap-3 mb-6">
+                        <span class="text-gold text-sm font-sans">02.</span> Prestation
+                    </h2>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                        <button @click="formule = 'ext'" class="p-6 rounded-3xl text-left ui-transition border flex flex-col justify-between" :class="formule === 'ext' ? 'bg-gold/10 border-gold' : 'bg-navylight border-white/5'">
-                            <div>
-                                <div class="font-bold text-lg mb-1" :class="formule === 'ext' ? 'text-gold' : 'text-white'">Extérieur</div>
-                                <div class="text-xs text-gray-400 mb-6">Prélavage mousse, jantes, brillance pneus.</div>
-                            </div>
-                            <div class="text-2xl font-bold" :class="formule === 'ext' ? 'text-gold' : 'text-white'"><span x-text="tarifs[vehicule].ext"></span>€</div>
-                        </button>
-
-                        <button @click="formule = 'complet'" class="p-6 rounded-3xl text-left ui-transition border flex flex-col justify-between relative" :class="formule === 'complet' ? 'bg-gold-gradient border-transparent' : 'bg-navylight border-gold/30'">
-                            <div class="absolute -top-3 right-6 bg-navy text-gold text-[10px] font-bold px-3 py-1 rounded-full border border-gold">BEST-SELLER</div>
-                            <div>
-                                <div class="font-bold text-xl mb-1" :class="formule === 'complet' ? 'text-navy' : 'text-white'">Pack Complet</div>
-                                <div class="text-xs mb-6" :class="formule === 'complet' ? 'text-navy/80' : 'text-gray-400'">Nettoyage intérieur/extérieur.</div>
-                            </div>
-                            <div class="text-3xl font-bold" :class="formule === 'complet' ? 'text-navy' : 'text-gold'"><span x-text="tarifs[vehicule].complet"></span>€</div>
-                        </button>
-
-                        <button @click="formule = 'int'" class="p-6 rounded-3xl text-left ui-transition border flex flex-col justify-between" :class="formule === 'int' ? 'bg-gold/10 border-gold' : 'bg-navylight border-white/5'">
-                            <div>
-                                <div class="font-bold text-lg mb-1" :class="formule === 'int' ? 'text-gold' : 'text-white'">Intérieur</div>
-                                <div class="text-xs text-gray-400 mb-6">Aspiration, plastiques, vitres.</div>
-                            </div>
-                            <div class="text-2xl font-bold" :class="formule === 'int' ? 'text-gold' : 'text-white'"><span x-text="tarifs[vehicule].int"></span>€</div>
-                        </button>
+                        <template x-for="formuleItem in formuleTypes" :key="formuleItem.key">
+                            <button @click="formule = formuleItem.key" 
+                                    class="p-6 rounded-3xl text-left ui-transition flex flex-col justify-between relative"
+                                    :class="{
+                                        'bg-gold/10 border border-gold shadow-[0_0_20px_rgba(212,175,55,0.15)]': formule === formuleItem.key && !formuleItem.bestseller,
+                                        'bg-gold-gradient border-transparent shadow-[0_10px_30px_rgba(212,175,55,0.3)] scale-[1.02]': formule === formuleItem.key && formuleItem.bestseller,
+                                        'bg-navylight border border-white/5 hover:border-white/20 hover:bg-white/5': formule !== formuleItem.key && !formuleItem.bestseller,
+                                        'bg-navylight border border-gold/30 hover:border-gold': formule !== formuleItem.key && formuleItem.bestseller
+                                    }">
+                                <div x-show="formuleItem.bestseller" class="absolute -top-3 right-6 bg-navy text-gold text-[10px] font-bold px-3 py-1 rounded-full border border-gold tracking-widest uppercase">Best-Seller</div>
+                                <div>
+                                    <div class="font-bold text-lg mb-1" 
+                                         :class="(formule === formuleItem.key && formuleItem.bestseller) ? 'text-navy' : (formule === formuleItem.key ? 'text-gold' : 'text-white')" 
+                                         x-text="formuleItem.nom"></div>
+                                    <div class="text-xs mb-6" 
+                                         :class="(formule === formuleItem.key && formuleItem.bestseller) ? 'text-navy/80' : 'text-gray-400'" 
+                                         x-text="formuleItem.desc"></div>
+                                </div>
+                                <div class="text-2xl font-bold" 
+                                     :class="(formule === formuleItem.key && formuleItem.bestseller) ? 'text-navy' : (formule === formuleItem.key ? 'text-gold' : 'text-white')">
+                                     <span x-text="tarifs[vehicule][formuleItem.key]"></span>€
+                                </div>
+                            </button>
+                        </template>
                     </div>
                 </section>
 
                 <section class="mb-16">
-                    <h2 class="text-2xl font-serif text-white flex items-center gap-3 mb-6"><span class="text-gold text-sm font-sans">03.</span> Suppléments</h2>
+                    <h2 class="text-2xl font-serif text-white flex items-center gap-3 mb-6">
+                        <span class="text-gold text-sm font-sans">03.</span> Suppléments
+                    </h2>
                     <div class="space-y-3">
-                        <label class="flex items-center justify-between p-5 rounded-3xl cursor-pointer ui-transition border" :class="options.poils ? 'bg-gold/5 border-gold/50' : 'bg-navylight border-white/5'">
-                            <div class="flex items-center gap-5">
-                                <input type="checkbox" x-model="options.poils" class="w-5 h-5 accent-gold">
-                                <div class="font-semibold text-white">Poils d'animaux, très sale, sable</div>
+                        <template x-for="optionItem in optionTypes" :key="optionItem.key">
+                            <label class="group flex items-center justify-between p-5 rounded-3xl cursor-pointer ui-transition"
+                                   :class="options[optionItem.key] ? 'bg-gold/5 border border-gold/50' : 'bg-navylight border border-white/5 hover:bg-white/5'">
+                                <div class="flex items-center gap-5">
+                                    <div class="relative w-6 h-6 rounded-full border-2 ui-transition flex items-center justify-center flex-shrink-0"
+                                         :class="options[optionItem.key] ? 'border-gold bg-gold' : 'border-gray-500 group-hover:border-gold/50'">
+                                         <i class="fa-solid fa-check text-navy text-xs" x-show="options[optionItem.key]"></i>
+                                    </div>
+                                    <input type="checkbox" x-model="options[optionItem.key]" class="hidden">
+                                    <div>
+                                        <div class="font-semibold text-white flex items-center gap-2" :class="options[optionItem.key] ? 'text-gold' : ''">
+                                            <span x-text="optionItem.text"></span>
+                                            <i x-show="optionItem.tooltip" class="fa-solid fa-circle-info text-gray-500 text-xs" :title="optionItem.tooltip"></i>
+                                        </div>
+                                        <div x-show="optionItem.subtext" class="text-xs text-gray-400 mt-1" x-text="optionItem.subtext"></div>
+                                    </div>
+                                </div>
+                                <div class="font-bold text-lg" :class="options[optionItem.key] ? 'text-gold' : 'text-gray-400'" x-text="`+${optionItem.price}€`"></div>
+                            </label>
+                        </template>
+                    </div>
+                </section>
+
+                <section class="mb-12">
+                    <h2 class="text-2xl font-serif text-white flex items-center gap-3 mb-6">
+                        <span class="text-gold text-sm font-sans">04.</span> Conditions
+                    </h2>
+                    <div class="bg-navylight border border-gold/30 rounded-2xl p-6 shadow-[0_0_15px_rgba(212,175,55,0.05)]">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="flex gap-4">
+                                <div class="w-12 h-12 rounded-full bg-navy border border-white/10 flex items-center justify-center flex-shrink-0 text-gold"><i class="fa-solid fa-plug"></i></div>
+                                <div>
+                                    <h3 class="font-bold text-white mb-1">Eau & Électricité</h3>
+                                    <p class="text-sm text-gray-400">Pour alimenter notre matériel professionnel et garantir un résultat parfait, un point d'eau et une prise électrique sont nécessaires sur place.</p>
+                                </div>
                             </div>
-                            <div class="font-bold text-lg text-gold">+20€</div>
-                        </label>
-                        <label class="flex items-center justify-between p-5 rounded-3xl cursor-pointer ui-transition border" :class="options.non_videe ? 'bg-gold/5 border-gold/50' : 'bg-navylight border-white/5'">
-                            <div class="flex items-center gap-5">
-                                <input type="checkbox" x-model="options.non_videe" class="w-5 h-5 accent-gold">
-                                <div class="font-semibold text-white">Véhicule pas vidé</div>
+                            <div class="flex gap-4">
+                                <div class="w-12 h-12 rounded-full bg-navy border border-white/10 flex items-center justify-center flex-shrink-0 text-gold"><i class="fa-solid fa-box-open"></i></div>
+                                <div>
+                                    <h3 class="font-bold text-white mb-1">Véhicule vidé</h3>
+                                    <p class="text-sm text-gray-400">Merci de vider les vide-poches, le coffre et l'habitacle avant notre arrivée.<br>
+                                    <span class="text-gold mt-1 inline-block"><i class="fa-solid fa-circle-exclamation mr-1"></i> Appliqué d'office si non respecté (+10€).</span></p>
+                                </div>
                             </div>
-                            <div class="font-bold text-lg text-gold">+10€</div>
-                        </label>
-                        <label class="flex items-center justify-between p-5 rounded-3xl cursor-pointer ui-transition border" :class="options.cire ? 'bg-gold/5 border-gold/50' : 'bg-navylight border-white/5'">
-                            <div class="flex items-center gap-5">
-                                <input type="checkbox" x-model="options.cire" class="w-5 h-5 accent-gold">
-                                <div class="font-semibold text-white">Cire Céramique Express</div>
-                            </div>
-                            <div class="font-bold text-lg text-gold">+30€</div>
-                        </label>
+                        </div>
                     </div>
                 </section>
 
                 <section class="mb-8">
-                    <h2 class="text-2xl font-serif text-white flex items-center gap-3 mb-6"><span class="text-gold text-sm font-sans">04.</span> Règlement</h2>
+                    <h2 class="text-2xl font-serif text-white flex items-center gap-3 mb-6">
+                        <span class="text-gold text-sm font-sans">05.</span> Règlement
+                    </h2>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                        <button @click="paiement = 'cb'" class="p-5 rounded-3xl text-center ui-transition border" :class="paiement === 'cb' ? 'bg-gold/10 border-gold' : 'bg-navylight border-white/5'"><div class="font-semibold text-white">Carte Bancaire</div></button>
-                        <button @click="paiement = 'especes'" class="p-5 rounded-3xl text-center ui-transition border" :class="paiement === 'especes' ? 'bg-gold/10 border-gold' : 'bg-navylight border-white/5'"><div class="font-semibold text-white">Espèces</div></button>
-                        <button @click="paiement = 'ligne'" class="p-5 rounded-3xl text-center ui-transition border" :class="paiement === 'ligne' ? 'bg-gold/10 border-gold' : 'bg-navylight border-white/5'"><div class="font-semibold text-white">En Ligne (Lien)</div></button>
+                         <template x-for="paiementItem in paiementTypes" :key="paiementItem.key">
+                            <button @click="paiement = paiementItem.key" class="p-5 rounded-3xl text-center ui-transition border" 
+                                    :class="paiement === paiementItem.key ? 'bg-gold/10 border-gold shadow-[0_0_15px_rgba(212,175,55,0.15)]' : 'bg-navylight border-white/5 hover:border-white/20 hover:bg-white/5'">
+                                <i class="fa-solid text-2xl mb-2" :class="[paiementItem.icon, paiement === paiementItem.key ? 'text-gold' : 'text-gray-400']"></i>
+                                <div class="font-semibold text-sm" :class="paiement === paiementItem.key ? 'text-gold' : 'text-white'" x-text="paiementItem.nom"></div>
+                                <div class="text-[10px] text-gray-500 mt-1" x-text="paiementItem.desc"></div>
+                            </button>
+                        </template>
                     </div>
                 </section>
             </div>
         </div>
 
-        <div class="fixed bottom-6 left-4 right-4 md:left-1/2 md:-translate-x-1/2 md:w-full md:max-w-3xl bg-[#0a1128]/95 backdrop-blur-2xl border border-white/10 p-3 rounded-[2rem] shadow-2xl z-50 flex items-center justify-between gap-4">
+        <div class="fixed bottom-6 left-4 right-4 md:left-1/2 md:-translate-x-1/2 md:w-full md:max-w-3xl bg-[#0a1128]/95 backdrop-blur-2xl border border-white/10 p-3 rounded-[2rem] shadow-[0_20px_40px_rgba(0,0,0,0.8)] z-50 flex items-center justify-between gap-4">
+            
             <div class="pl-4 hidden sm:block">
-                <div class="text-[10px] uppercase text-gray-400 font-semibold mb-0.5">Total estimé</div>
+                <div class="text-[10px] uppercase tracking-wider text-gray-400 font-semibold mb-0.5" x-text="(isUtilitaire || clientType === 'pro') ? 'Action' : 'Total estimé'"></div>
                 <div class="text-2xl font-bold text-white">
-                    <span x-show="vehicule !== 'util' && clientType === 'particulier'"><span x-text="totalPrix"></span> €</span>
-                    <span x-show="vehicule === 'util' || clientType === 'pro'" class="text-gold text-lg">Sur Devis</span>
+                    <span x-show="!isUtilitaire && clientType === 'particulier'"><span x-text="totalPrix"></span> €</span>
+                    <span x-show="isUtilitaire || clientType === 'pro'" class="text-gold text-lg">Sur Devis</span>
                 </div>
             </div>
             
-            <a :href="'https://wa.me/' + numeroContact" target="_blank" class="flex-1 sm:flex-none bg-gold-gradient text-navy px-6 py-3 rounded-full font-bold text-base hover:scale-105 ui-transition flex items-center justify-center gap-2">
-                <i class="fa-brands fa-whatsapp text-xl"></i>
-                <span x-text="(vehicule === 'util' || clientType === 'pro') ? 'Demander devis' : 'Réserver'"></span>
-            </a>
+            <div class="flex w-full sm:w-auto gap-2">
+                <a :href="lienInsta" target="_blank" class="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-300 hover:text-gold hover:border-gold/50 ui-transition flex-shrink-0">
+                    <i class="fa-brands fa-instagram text-xl"></i>
+                </a>
+                <a :href="lienSMS" class="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-300 hover:text-gold hover:border-gold/50 ui-transition flex-shrink-0">
+                    <i class="fa-solid fa-message text-xl"></i>
+                </a>
+                <a :href="lienWhatsApp" target="_blank" class="flex-1 sm:flex-none bg-gold-gradient text-navy px-6 py-0 rounded-full font-bold text-base hover:scale-105 ui-transition flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(212,175,55,0.2)]">
+                    <i class="fa-brands fa-whatsapp text-xl"></i>
+                    <span x-text="(isUtilitaire || clientType === 'pro') ? 'Demander devis' : 'Réserver'"></span>
+                    <span class="sm:hidden" x-show="!isUtilitaire && clientType === 'particulier'"> - <span x-text="totalPrix"></span>€</span>
+                </a>
+            </div>
         </div>
 
-        <div x-show="showGuide" class="fixed inset-0 z-[100] flex items-center justify-center bg-[#050B14]/90 backdrop-blur-sm p-4" style="display: none;">
-            <div @click.away="showGuide = false" class="bg-navylight border border-white/10 w-full max-w-2xl max-h-[80vh] overflow-y-auto rounded-[2rem] p-8 relative">
-                <button @click="showGuide = false" class="absolute top-6 right-6 w-8 h-8 rounded-full bg-white/5 text-gray-400 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
-                <h2 class="text-2xl font-bold text-white mb-6">Guide des véhicules</h2>
-                <ul class="space-y-4 text-sm text-gray-300">
-                    <li><strong class="text-gold">Citadines :</strong> Renault Clio, Peugeot 208, VW Polo, Fiat 500...</li>
-                    <li><strong class="text-gold">Berlines :</strong> BMW Série 3, Mercedes Classe C, Peugeot 308, VW Golf...</li>
-                    <li><strong class="text-gold">SUV :</strong> Peugeot 3008, Nissan Qashqai, VW Tiguan, Porsche Macan...</li>
-                    <li><strong class="text-gold">Monospaces :</strong> Renault Scénic, Citroën Picasso...</li>
-                </ul>
+        <div x-show="showGuide" class="fixed inset-0 z-[100] flex items-center justify-center bg-[#050B14]/90 backdrop-blur-sm p-4" style="display: none;" x-transition>
+            <div @click.away="showGuide = false" class="bg-navylight border border-white/10 w-full max-w-2xl max-h-[80vh] overflow-y-auto rounded-[2rem] p-8 relative shadow-2xl">
+                <button @click="showGuide = false" class="absolute top-6 right-6 w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/10 ui-transition">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+                <h2 class="text-2xl font-serif font-bold text-white mb-2">Guide des véhicules</h2>
+                <p class="text-gray-400 text-sm mb-8">Trouvez votre modèle ci-dessous pour choisir la bonne catégorie.</p>
+                <div class="space-y-6">
+                    <template x-for="type in vehiculeTypes.filter(t => t.key !== 'util')" :key="type.key">
+                        <div class="bg-white/5 rounded-2xl p-5 border border-white/5">
+                            <h3 class="text-lg font-bold text-gold mb-2"><i class="fa-solid mr-2" :class="type.icon"></i><span x-text="type.nom.replace(' 5pl', '').replace(' 7pl', '')"></span></h3>
+                            <p class="text-xs text-gray-400 mb-3">Exemples : <span x-text="{
+                                citadine: 'Renault Clio, Peugeot 208, VW Polo, Toyota Yaris, Citroën C3, Dacia Sandero...',
+                                berline: 'BMW Série 3, Mercedes Classe C, Audi A4, Peugeot 508, VW Golf, Audi A3...',
+                                suv: 'Peugeot 3008, Nissan Qashqai, Toyota RAV4, VW Tiguan, Kia Sportage...',
+                                mono5: 'Renault Scénic, Citroën C4 SpaceTourer, VW Touran, Renault Espace...',
+                                mono7: 'Renault Grand Scénic, Peugeot 5008, VW Sharan, Renault Espace...'
+                            }[type.key]"></span></p>
+                        </div>
+                    </template>
+                </div>
             </div>
         </div>
 
