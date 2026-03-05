@@ -1,118 +1,89 @@
 <!DOCTYPE html>
-<html lang="fr" class="scroll-smooth">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Continental Detailing | Nettoyage Auto Premium</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: { navy: '#050B14', navylight: '#0A1128', gold: '#D4AF37', goldlight: '#F3E5AB' },
-                    fontFamily: { sans: ['Inter', 'sans-serif'], serif: ['Playfair Display', 'serif'] },
-                    backgroundImage: { 'gold-gradient': 'linear-gradient(135deg, #F3E5AB 0%, #D4AF37 100%)' }
-                }
-            }
-        }
-    </script>
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Welcome to Firebase Hosting</title>
 
-    <style>
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: rgba(212, 175, 55, 0.5); border-radius: 10px; }
-        ::-webkit-scrollbar-thumb:hover { background: #D4AF37; }
-        .ui-transition { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+    <!-- update the version number as needed -->
+    <script defer src="/__/firebase/12.10.0/firebase-app-compat.js"></script>
+    <!-- include only the Firebase features as you need -->
+    <script defer src="/__/firebase/12.10.0/firebase-auth-compat.js"></script>
+    <script defer src="/__/firebase/12.10.0/firebase-database-compat.js"></script>
+    <script defer src="/__/firebase/12.10.0/firebase-firestore-compat.js"></script>
+    <script defer src="/__/firebase/12.10.0/firebase-functions-compat.js"></script>
+    <script defer src="/__/firebase/12.10.0/firebase-messaging-compat.js"></script>
+    <script defer src="/__/firebase/12.10.0/firebase-storage-compat.js"></script>
+    <script defer src="/__/firebase/12.10.0/firebase-analytics-compat.js"></script>
+    <script defer src="/__/firebase/12.10.0/firebase-remote-config-compat.js"></script>
+    <script defer src="/__/firebase/12.10.0/firebase-performance-compat.js"></script>
+    <!-- 
+      initialize the SDK after all desired features are loaded, set useEmulator to false
+      to avoid connecting the SDK to running emulators.
+    -->
+    <script defer src="/__/firebase/init.js?useEmulator=true"></script>
+
+    <style media="screen">
+      body { background: #ECEFF1; color: rgba(0,0,0,0.87); font-family: Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; }
+      #message { background: white; max-width: 360px; margin: 100px auto 16px; padding: 32px 24px; border-radius: 3px; }
+      #message h2 { color: #ffa100; font-weight: bold; font-size: 16px; margin: 0 0 8px; }
+      #message h1 { font-size: 22px; font-weight: 300; color: rgba(0,0,0,0.6); margin: 0 0 16px;}
+      #message p { line-height: 140%; margin: 16px 0 24px; font-size: 14px; }
+      #message a { display: block; text-align: center; background: #039be5; text-transform: uppercase; text-decoration: none; color: white; padding: 16px; border-radius: 4px; }
+      #message, #message a { box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); }
+      #load { color: rgba(0,0,0,0.4); text-align: center; font-size: 13px; }
+      @media (max-width: 600px) {
+        body, #message { margin-top: 0; background: white; box-shadow: none; }
+        body { border-top: 16px solid #ffa100; }
+      }
     </style>
-</head>
-<body class="bg-navy text-white antialiased selection:bg-gold selection:text-navy relative min-h-screen">
-
-    <div class="fixed inset-0 z-0 pointer-events-none overflow-hidden">
-        <div class="absolute top-[-20%] left-[50%] -translate-x-1/2 w-[800px] h-[800px] bg-gold rounded-full blur-[150px] opacity-[0.03]"></div>
+  </head>
+  <body>
+    <div id="message">
+      <h2>Welcome</h2>
+      <h1>Firebase Hosting Setup Complete</h1>
+      <p>You're seeing this because you've successfully setup Firebase Hosting. Now it's time to go build something extraordinary!</p>
+      <a target="_blank" href="https://firebase.google.com/docs/hosting/">Open Hosting Documentation</a>
     </div>
+    <p id="load">Firebase SDK Loading&hellip;</p>
 
-    <nav class="w-full z-50 bg-navy/80 backdrop-blur-xl border-b border-white/5 sticky top-0">
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
-                <a href="index.html" class="flex items-center gap-2 hover:opacity-80 ui-transition">
-                    <div class="w-10 h-12 border border-gold rounded-b-full rounded-t-xl flex items-center justify-center shadow-[0_0_15px_rgba(212,175,55,0.2)] bg-navylight">
-                        <span class="font-serif text-2xl font-bold text-transparent bg-clip-text bg-gold-gradient">C</span>
-                    </div>
-                    <span class="font-serif text-xl font-bold tracking-wide text-white">Continental Detailing</span>
-                </a>
-                <div class="hidden md:flex gap-6 items-center">
-                    <a href="index.html" class="text-sm font-medium text-gold border-b border-gold pb-1">Accueil</a>
-                    <a href="services.html" class="text-sm font-medium text-gray-400 hover:text-white ui-transition">Tarifs & Devis</a>
-                </div>
-            </div>
-        </div>
-    </nav>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const loadEl = document.querySelector('#load');
+        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+        // // The Firebase SDK is initialized and available here!
+        //
+        // firebase.auth().onAuthStateChanged(user => { });
+        // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
+        // firebase.firestore().doc('/foo/bar').get().then(() => { });
+        // firebase.functions().httpsCallable('yourFunction')().then(() => { });
+        // firebase.messaging().requestPermission().then(() => { });
+        // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
+        // firebase.analytics(); // call to activate
+        // firebase.analytics().logEvent('tutorial_completed');
+        // firebase.performance(); // call to activate
+        //
+        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
 
-    <section class="relative z-10 pt-20 pb-16 lg:pt-32 lg:pb-24 text-center px-4">
-        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-navylight border border-white/10 text-sm text-goldlight mb-8 shadow-lg">
-            <i class="fa-solid fa-star text-gold"></i><i class="fa-solid fa-star text-gold"></i><i class="fa-solid fa-star text-gold"></i><i class="fa-solid fa-star text-gold"></i><i class="fa-solid fa-star text-gold"></i>
-            <span class="ml-2 font-medium text-white">L'Expertise Premium</span>
-        </div>
-        
-        <h1 class="font-serif text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
-            L'art du détail pour<br>
-            <span class="text-transparent bg-clip-text bg-gold-gradient">votre automobile.</span>
-        </h1>
-        
-        <p class="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
-            Service de nettoyage et detailing sur-mesure pour particuliers et professionnels. Remise à neuf intérieure et extérieure.
-        </p>
-        
-        <a href="services.html" class="inline-flex bg-gold-gradient text-navy px-8 py-4 rounded-full font-bold text-lg hover:scale-105 ui-transition items-center gap-3 shadow-[0_0_20px_rgba(212,175,55,0.3)]">
-            <i class="fa-solid fa-wand-magic-sparkles"></i>
-            Simuler mon tarif
-        </a>
-    </section>
-
-    <section class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 mb-24">
-        <div class="bg-navylight border border-white/5 rounded-3xl p-6 md:p-8 grid grid-cols-1 md:grid-cols-3 gap-6 text-center divide-y md:divide-y-0 md:divide-x divide-white/5 shadow-2xl">
-            <div class="p-4">
-                <i class="fa-solid fa-medal text-gold text-3xl mb-4"></i>
-                <h3 class="font-bold text-lg mb-2">Qualité Premium</h3>
-                <p class="text-sm text-gray-400">Des produits haut de gamme et des techniques respectueuses de votre carrosserie.</p>
-            </div>
-            <div class="p-4">
-                <i class="fa-solid fa-briefcase text-gold text-3xl mb-4"></i>
-                <h3 class="font-bold text-lg mb-2">Pros & Particuliers</h3>
-                <p class="text-sm text-gray-400">Flotte d'entreprise, utilitaires ou voiture du quotidien, nous avons la formule.</p>
-            </div>
-            <div class="p-4">
-                <i class="fa-solid fa-clock text-gold text-3xl mb-4"></i>
-                <h3 class="font-bold text-lg mb-2">Intervention Rapide</h3>
-                <p class="text-sm text-gray-400">Réservation simple et devis immédiat directement en ligne.</p>
-            </div>
-        </div>
-    </section>
-
-    <footer class="relative z-10 border-t border-white/5 mt-10 bg-navylight/50">
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col md:flex-row justify-between items-center gap-4">
-            <div class="text-gray-500 text-sm">
-                &copy; 2026 Continental Detailing. Tous droits réservés.
-            </div>
-            <div class="flex gap-4">
-                <a href="https://instagram.com/continental.detailing.idf" target="_blank" class="text-gray-500 hover:text-gold ui-transition text-xl">
-                    <i class="fa-brands fa-instagram"></i>
-                </a>
-            </div>
-        </div>
-    </footer>
-
-    <div class="md:hidden fixed bottom-6 left-4 right-4 z-50">
-        <a href="services.html" class="flex items-center justify-center gap-2 w-full bg-gold-gradient text-navy text-center py-4 rounded-full font-bold shadow-[0_10px_30px_rgba(0,0,0,0.8)]">
-            <i class="fa-solid fa-calculator text-lg"></i> Faire un devis
-        </a>
-    </div>
-
-</body>
+        try {
+          let app = firebase.app();
+          let features = [
+            'auth', 
+            'database', 
+            'firestore',
+            'functions',
+            'messaging', 
+            'storage', 
+            'analytics', 
+            'remoteConfig',
+            'performance',
+          ].filter(feature => typeof app[feature] === 'function');
+          loadEl.textContent = `Firebase SDK loaded with ${features.join(', ')}`;
+        } catch (e) {
+          console.error(e);
+          loadEl.textContent = 'Error loading the Firebase SDK, check the console.';
+        }
+      });
+    </script>
+  </body>
 </html>
