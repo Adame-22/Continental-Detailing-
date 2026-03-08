@@ -1,1 +1,1 @@
-console.log("Project Restructured!");
+console.log("Fresh start!");
