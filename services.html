@@ -77,7 +77,11 @@
                 mono5: { ext: 79, int: 109, complet: 149, nom: 'Monospace 5pl' },
                 mono7: { ext: 89, int: 119, complet: 159, nom: 'Monospace 7pl' }
             },
-            nomsFormules: { ext: 'Lavage Extérieur', int: 'Lavage Intérieur', complet: 'Pack Complet' },
+            nomsFormules: { 
+                ext: 'Formule Extérieur (Décontamination & Brillance)', 
+                int: 'Formule Intérieur (Rénovation Haute Précision)', 
+                complet: 'Le Signature (Pack Complet)' 
+            },
             nomsPaiement: { especes: 'Espèces', cb: 'Carte Bancaire', ligne: 'Paiement en ligne' },
             
             get isUtilitaire() { return this.vehicule === 'util'; },
@@ -207,32 +211,41 @@
             <section x-show="!isUtilitaire" class="mb-14">
                 <h2 class="text-2xl font-bold flex items-center gap-3 mb-8">
                     <span class="w-10 h-10 rounded-xl bg-action/10 text-action flex items-center justify-center text-lg font-bold border border-action/20">02</span>
-                    Prestation
+                    Votre prestation
                 </h2>
+                
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Extérieur -->
                     <button @click="formule = 'ext'" 
                             :class="formule === 'ext' ? 'bg-action border-action shadow-[0_10px_25px_-5px_rgba(56,189,248,0.4)]' : 'bg-secondary/40 border-secondary'"
-                            class="flex flex-col p-6 rounded-xl border-2 ui-transition text-left">
+                            class="flex flex-col p-6 rounded-xl border-2 ui-transition text-left group">
                         <i class="fa-solid fa-spray-can text-3xl mb-4" :class="formule === 'ext' ? 'text-primary' : 'text-action'"></i>
-                        <h3 class="font-bold text-lg mb-2" :class="formule === 'ext' ? 'text-primary' : 'text-white'">Lavage Extérieur</h3>
-                        <p class="text-xs mb-6 grow" :class="formule === 'ext' ? 'text-primary/70' : 'text-slate-400'">Carrosserie, jantes, vitres & pneus.</p>
+                        <h3 class="font-bold text-lg mb-1" :class="formule === 'ext' ? 'text-primary' : 'text-white'">Lavage Extérieur</h3>
+                        <p class="text-[10px] font-bold uppercase tracking-wider mb-2" :class="formule === 'ext' ? 'text-primary/70' : 'text-action'">Décontamination & Brillance</p>
+                        <p class="text-xs mb-6 grow" :class="formule === 'ext' ? 'text-primary/70' : 'text-slate-400'">Prélavage Snow Foam, lavage manuel technique, jantes et dressing pneus.</p>
                         <span class="text-3xl font-bold" :class="formule === 'ext' ? 'text-primary' : 'text-white'"><span x-text="tarifs[vehicule]?.ext"></span>€</span>
                     </button>
+
+                    <!-- Complet -->
                     <button @click="formule = 'complet'" 
                             :class="formule === 'complet' ? 'bg-action-gradient border-action shadow-[0_10px_25px_-5px_rgba(56,189,248,0.4)]' : 'bg-secondary/40 border-secondary'"
-                            class="flex flex-col p-6 rounded-xl border-2 ui-transition relative text-left">
-                        <span class="absolute -top-3 left-6 px-2 py-1 bg-primary text-[9px] font-bold text-action rounded border border-action uppercase">Best-Seller</span>
+                            class="flex flex-col p-6 rounded-xl border-2 ui-transition relative text-left group">
+                        <span class="absolute -top-3 left-6 px-2 py-1 bg-primary text-[9px] font-bold text-action rounded border border-action uppercase">Prestation Signature</span>
                         <i class="fa-solid fa-gem text-3xl mb-4" :class="formule === 'complet' ? 'text-primary' : 'text-action'"></i>
-                        <h3 class="font-bold text-lg mb-2" :class="formule === 'complet' ? 'text-primary' : 'text-white'">Pack Complet</h3>
-                        <p class="text-xs mb-6 grow" :class="formule === 'complet' ? 'text-primary/70' : 'text-slate-400'">Remise à neuf totale avec pressing inclus.</p>
+                        <h3 class="font-bold text-lg mb-1" :class="formule === 'complet' ? 'text-primary' : 'text-white'">Pack Complet</h3>
+                        <p class="text-[10px] font-bold uppercase tracking-wider mb-2" :class="formule === 'complet' ? 'text-primary/70' : 'text-action'">Rénovation Totale</p>
+                        <p class="text-xs mb-6 grow" :class="formule === 'complet' ? 'text-primary/70' : 'text-slate-400'">Combinaison des soins intérieur & extérieur pour un véhicule comme neuf.</p>
                         <span class="text-3xl font-bold" :class="formule === 'complet' ? 'text-primary' : 'text-white'"><span x-text="tarifs[vehicule]?.complet"></span>€</span>
                     </button>
+
+                    <!-- Intérieur -->
                     <button @click="formule = 'int'" 
                             :class="formule === 'int' ? 'bg-action border-action shadow-[0_10px_25px_-5px_rgba(56,189,248,0.4)]' : 'bg-secondary/40 border-secondary'"
-                            class="flex flex-col p-6 rounded-xl border-2 ui-transition text-left">
+                            class="flex flex-col p-6 rounded-xl border-2 ui-transition text-left group">
                         <i class="fa-solid fa-couch text-3xl mb-4" :class="formule === 'int' ? 'text-primary' : 'text-action'"></i>
-                        <h3 class="font-bold text-lg mb-2" :class="formule === 'int' ? 'text-primary' : 'text-white'">Lavage Intérieur</h3>
-                        <p class="text-xs mb-6 grow" :class="formule === 'int' ? 'text-primary/70' : 'text-slate-400'">Habitacle, aspiration & pressing sièges.</p>
+                        <h3 class="font-bold text-lg mb-1" :class="formule === 'int' ? 'text-primary' : 'text-white'">Lavage Intérieur</h3>
+                        <p class="text-[10px] font-bold uppercase tracking-wider mb-2" :class="formule === 'int' ? 'text-primary/70' : 'text-action'">Rénovation Haute Précision</p>
+                        <p class="text-xs mb-6 grow" :class="formule === 'int' ? 'text-primary/70' : 'text-slate-400'">Pressing injecteur/extracteur, dégraissage au pinceau et soin des cuirs.</p>
                         <span class="text-3xl font-bold" :class="formule === 'int' ? 'text-primary' : 'text-white'"><span x-text="tarifs[vehicule]?.int"></span>€</span>
                     </button>
                 </div>
