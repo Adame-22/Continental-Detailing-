@@ -230,7 +230,12 @@
                     <button @click="formule = 'complet'" 
                             :class="formule === 'complet' ? 'bg-action-gradient border-action shadow-[0_10px_25px_-5px_rgba(56,189,248,0.4)]' : 'bg-secondary/40 border-secondary'"
                             class="flex flex-col p-6 rounded-xl border-2 ui-transition relative text-left group">
-                        <span class="absolute -top-3 left-6 px-2 py-1 bg-primary text-[9px] font-bold text-action rounded border border-action uppercase">Prestation Signature</span>
+                        <div class="absolute -top-3 left-6 flex items-center gap-2">
+                            <span class="px-2 py-1 bg-primary text-[9px] font-bold text-action rounded border border-action uppercase">Prestation Signature</span>
+                            <span class="px-2 py-1 bg-green-500 text-[9px] font-bold text-white rounded shadow-lg animate-pulse" x-show="!isUtilitaire">
+                                -<span x-text="(tarifs[vehicule].ext + tarifs[vehicule].int) - tarifs[vehicule].complet"></span>€ d'économie
+                            </span>
+                        </div>
                         <i class="fa-solid fa-gem text-3xl mb-4" :class="formule === 'complet' ? 'text-primary' : 'text-action'"></i>
                         <h3 class="font-bold text-lg mb-1" :class="formule === 'complet' ? 'text-primary' : 'text-white'">Pack Complet</h3>
                         <p class="text-[10px] font-bold uppercase tracking-wider mb-2" :class="formule === 'complet' ? 'text-primary/70' : 'text-action'">Rénovation Totale</p>
