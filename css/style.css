@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+    --bg-primary: #0F172A;
+    --bg-secondary: #1E293B;
+    --color-action: #38BDF8;
+    --color-action-hover: #0EA5E9;
+    --text-primary: #F8FAFC;
+    --text-secondary: #94A3B8;
+    --border-color: #1E293B;
+}
+
+body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+}
+
+.card-detailing {
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-primary {
+    background-color: var(--color-action);
+    color: var(--bg-primary);
+    border-radius: 9999px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: var(--color-action-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px -5px rgba(56, 189, 248, 0.4);
+}
+
+.img-car {
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+}
+
+/* Custom transitions */
+.ui-transition {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
