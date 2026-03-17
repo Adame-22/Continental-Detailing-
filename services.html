@@ -123,7 +123,11 @@
         
         <!-- Header -->
         <div class="text-center mb-12">
-            <h1 class="text-3xl md:text-5xl font-bold mb-8 text-white">Estimation & Réservation</h1>
+            <h1 class="text-3xl md:text-5xl font-bold mb-6 text-white">Estimation & Réservation</h1>
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-green-500/10 text-green-400 text-[10px] md:text-xs font-bold border border-green-500/20 mb-8">
+                <i class="fa-solid fa-leaf"></i>
+                <span>MATÉRIEL 100% ÉLECTRIQUE & SILENCIEUX (ACCÈS EAU/PRISES REQUIS)</span>
+            </div>
             <div class="flex p-1 bg-secondary rounded-xl border border-secondary max-w-sm mx-auto overflow-hidden">
                 <button @click="clientType = 'particulier'" 
                         :class="clientType === 'particulier' ? 'bg-action text-primary shadow-lg' : 'text-slate-400 hover:text-white'"
