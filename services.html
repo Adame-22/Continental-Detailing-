@@ -66,6 +66,7 @@
             options: { poils: false, non_videe: false, cire: false },
             paiement: 'cb', 
             showGuide: false, 
+            showContactModal: false,
             
             numeroContact: '33750875964', 
             compteInsta: 'continental.detailing.idf', 
@@ -153,14 +154,9 @@
                 <p class="text-slate-400 max-w-xl mx-auto mb-10 leading-relaxed">
                     Gestion de flotte, préparation VO/VN, conciergerie mobile. Nous intervenons sur votre parc pour maintenir l'image de marque de votre société.
                 </p>
-                <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-                    <a :href="lienWhatsApp" target="_blank" class="inline-flex bg-action-gradient text-primary px-8 py-4 rounded-xl font-bold text-lg hover:scale-105 ui-transition items-center gap-3 shadow-[0_10px_30px_rgba(56,189,248,0.2)]">
-                        <i class="fa-brands fa-whatsapp text-2xl"></i>WhatsApp
-                    </a>
-                    <a :href="lienEmail" class="inline-flex bg-secondary border border-action/30 text-white px-8 py-4 rounded-xl font-bold text-lg hover:border-action ui-transition items-center gap-3">
-                        <i class="fa-regular fa-envelope text-2xl text-action"></i>Par Email
-                    </a>
-                </div>
+                <button @click="showContactModal = true" class="inline-flex bg-action-gradient text-primary px-10 py-4 rounded-xl font-bold text-lg hover:scale-105 ui-transition items-center gap-3 shadow-[0_10px_30px_rgba(56,189,248,0.2)]">
+                    <i class="fa-solid fa-paper-plane text-2xl"></i>Demander un devis B2B
+                </button>
             </div>
         </div>
 
@@ -212,14 +208,9 @@
                 <div class="bg-secondary border border-action/30 rounded-xl p-8 text-center">
                     <h3 class="text-xl font-bold mb-4">Véhicule spécifique</h3>
                     <p class="text-slate-400 text-sm mb-6">Les utilitaires (fourgons, bennes, vans) nécessitent une étude selon leur volume (L1, L2, H1...) et leur état.</p>
-                    <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-                        <a :href="lienWhatsApp" target="_blank" class="inline-flex bg-action-gradient text-primary px-6 py-3 rounded-lg font-bold items-center gap-2 hover:scale-105 ui-transition">
-                            <i class="fa-brands fa-whatsapp text-xl"></i> WhatsApp
-                        </a>
-                        <a :href="lienEmail" class="inline-flex bg-secondary/80 border border-action/30 text-white px-6 py-3 rounded-lg font-bold items-center gap-2 hover:border-action ui-transition">
-                            <i class="fa-regular fa-envelope text-xl text-action"></i> Email
-                        </a>
-                    </div>
+                    <button @click="showContactModal = true" class="inline-flex bg-action-gradient text-primary px-8 py-3 rounded-lg font-bold items-center gap-2 hover:scale-105 ui-transition">
+                        <i class="fa-solid fa-paper-plane text-xl"></i> Demander un devis personnalisé
+                    </button>
                 </div>
             </div>
 
@@ -347,18 +338,14 @@
                         <span x-show="!isUtilitaire && clientType === 'particulier'"><span x-text="totalPrix"></span>€</span>
                     </div>
                 </div>
-                <div class="flex gap-2 sm:gap-3 w-full sm:w-auto">
-                    <a :href="'https://instagram.com/' + compteInsta" target="_blank" class="hidden sm:flex w-12 h-12 flex items-center justify-center bg-secondary text-slate-400 rounded-xl hover:text-action hover:border-action border border-transparent ui-transition shrink-0">
-                        <i class="fa-brands fa-instagram text-xl"></i>
+                <div class="flex gap-3 w-full sm:w-auto">
+                    <a :href="'https://instagram.com/' + compteInsta" target="_blank" class="hidden md:flex w-14 h-14 items-center justify-center bg-secondary text-slate-400 rounded-xl hover:text-action hover:border-action border border-transparent ui-transition shrink-0 shadow-lg">
+                        <i class="fa-brands fa-instagram text-2xl"></i>
                     </a>
-                    <a :href="lienEmail" class="flex-1 sm:flex-none inline-flex flex-col items-center justify-center bg-secondary border border-action/20 text-white px-2 sm:px-6 py-2 sm:py-3 rounded-xl hover:border-action hover:text-action ui-transition shrink-0">
-                        <i class="fa-regular fa-envelope text-lg md:text-xl"></i>
-                        <span class="text-[10px] font-bold uppercase tracking-wider hidden md:block mt-1">Email</span>
-                    </a>
-                    <a :href="lienWhatsApp" target="_blank" class="flex-[2] sm:flex-none inline-flex items-center justify-center gap-2 sm:gap-3 bg-action-gradient text-primary px-4 sm:px-8 py-3 rounded-xl font-bold text-sm sm:text-base hover:scale-[1.02] ui-transition shadow-lg">
-                        <i class="fa-brands fa-whatsapp text-xl sm:text-2xl"></i>
-                        <span x-text="(isUtilitaire || clientType === 'pro') ? 'Demander devis' : 'Réserver (' + totalPrix + '€)'"></span>
-                    </a>
+                    <button @click="showContactModal = true" class="flex-1 sm:flex-none inline-flex items-center justify-center gap-3 bg-action-gradient text-primary px-6 sm:px-10 py-3 sm:py-4 rounded-xl font-bold text-base sm:text-lg hover:scale-[1.02] ui-transition shadow-[0_10px_30px_rgba(56,189,248,0.25)]">
+                        <i class="fa-solid fa-paper-plane text-xl sm:text-2xl"></i>
+                        <span x-text="(isUtilitaire || clientType === 'pro') ? 'Demander mon devis' : 'Réserver (' + totalPrix + '€)'"></span>
+                    </button>
                 </div>
             </div>
         </div>
@@ -386,6 +373,41 @@
                     <div class="p-4 bg-primary/30 rounded-lg border border-secondary">
                         <h4 class="font-bold text-action mb-1">Monospace / 7 places</h4>
                         <p class="text-xs text-slate-400">Scénic, Touran, Espace, Classe V, Multipla, SUV 7 places...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Contact -->
+        <div x-show="showContactModal" class="fixed inset-0 z-[100] flex items-center justify-center bg-primary/95 backdrop-blur-md p-4" style="display: none;" x-transition>
+            <div @click.away="showContactModal = false" class="bg-secondary border border-action/20 w-full max-w-md rounded-2xl p-8 relative shadow-2xl text-center">
+                <button @click="showContactModal = false" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-primary/50 text-slate-400 flex items-center justify-center hover:text-white ui-transition">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+                <div class="w-16 h-16 bg-action/10 text-action rounded-full flex items-center justify-center text-3xl mx-auto mb-6 border border-action/20">
+                    <i class="fa-solid fa-paper-plane"></i>
+                </div>
+                <h2 class="text-2xl font-bold mb-2">Envoyer la demande</h2>
+                <p class="text-slate-400 text-sm mb-8">Choisissez par quel moyen vous souhaitez transférer votre estimation.</p>
+                
+                <div class="space-y-4">
+                    <a :href="lienWhatsApp" target="_blank" class="flex w-full items-center justify-center gap-3 bg-[#25D366] text-white px-6 py-4 rounded-xl font-bold text-lg hover:bg-[#1ebd5a] ui-transition shadow-lg">
+                        <i class="fa-brands fa-whatsapp text-2xl"></i> Via WhatsApp
+                    </a>
+                    
+                    <a :href="lienEmail" target="_blank" class="flex w-full items-center justify-center gap-3 bg-secondary/80 text-white px-6 py-4 rounded-xl font-bold text-lg hover:bg-slate-700 ui-transition shadow-lg border border-slate-600 hover:border-action">
+                        <i class="fa-regular fa-envelope text-2xl"></i> Via E-mail
+                    </a>
+                </div>
+                
+                <div class="mt-8 p-4 bg-primary/50 rounded-lg text-left border border-slate-700">
+                    <div class="flex items-start gap-3">
+                        <i class="fa-solid fa-circle-info text-action mt-0.5"></i>
+                        <div>
+                            <p class="text-[10px] text-slate-400 uppercase font-bold tracking-wider mb-1">Un problème avec l'E-mail ?</p>
+                            <p class="text-xs text-slate-300">Si le bouton Email ne fonctionne pas sur votre appareil, copiez simplement l'adresse ci-dessous :</p>
+                            <p class="text-sm font-semibold text-action mt-2 select-all">continental.detailing.idf@gmail.com</p>
+                        </div>
                     </div>
                 </div>
             </div>
