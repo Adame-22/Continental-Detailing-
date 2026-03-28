@@ -118,7 +118,8 @@
                 return encodeURIComponent(msg);
             },
             
-            get lienWhatsApp() { return 'https://wa.me/' + this.numeroContact + '?text=' + this.texteMessage; }
+            get lienWhatsApp() { return 'https://wa.me/' + this.numeroContact + '?text=' + this.texteMessage; },
+            get lienEmail() { return 'mailto:continental.detailing.idf@gmail.com?subject=Demande%20de%20devis%20-%20Continental%20Detailing&body=' + this.texteMessage; }
           }">
         
         <!-- Header -->
@@ -152,9 +153,14 @@
                 <p class="text-slate-400 max-w-xl mx-auto mb-10 leading-relaxed">
                     Gestion de flotte, préparation VO/VN, conciergerie mobile. Nous intervenons sur votre parc pour maintenir l'image de marque de votre société.
                 </p>
-                <a :href="lienWhatsApp" target="_blank" class="inline-flex bg-action-gradient text-primary px-10 py-4 rounded-xl font-bold text-lg hover:scale-105 ui-transition items-center gap-3 shadow-[0_10px_30px_rgba(56,189,248,0.2)]">
-                    <i class="fa-brands fa-whatsapp text-2xl"></i>Demander un devis B2B
-                </a>
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                    <a :href="lienWhatsApp" target="_blank" class="inline-flex bg-action-gradient text-primary px-8 py-4 rounded-xl font-bold text-lg hover:scale-105 ui-transition items-center gap-3 shadow-[0_10px_30px_rgba(56,189,248,0.2)]">
+                        <i class="fa-brands fa-whatsapp text-2xl"></i>WhatsApp
+                    </a>
+                    <a :href="lienEmail" class="inline-flex bg-secondary border border-action/30 text-white px-8 py-4 rounded-xl font-bold text-lg hover:border-action ui-transition items-center gap-3">
+                        <i class="fa-regular fa-envelope text-2xl text-action"></i>Par Email
+                    </a>
+                </div>
             </div>
         </div>
 
@@ -206,9 +212,14 @@
                 <div class="bg-secondary border border-action/30 rounded-xl p-8 text-center">
                     <h3 class="text-xl font-bold mb-4">Véhicule spécifique</h3>
                     <p class="text-slate-400 text-sm mb-6">Les utilitaires (fourgons, bennes, vans) nécessitent une étude selon leur volume (L1, L2, H1...) et leur état.</p>
-                    <a :href="lienWhatsApp" target="_blank" class="inline-flex bg-action-gradient text-primary px-8 py-3 rounded-lg font-bold items-center gap-2">
-                        <i class="fa-brands fa-whatsapp"></i> Demander un devis personnalisé
-                    </a>
+                    <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                        <a :href="lienWhatsApp" target="_blank" class="inline-flex bg-action-gradient text-primary px-6 py-3 rounded-lg font-bold items-center gap-2 hover:scale-105 ui-transition">
+                            <i class="fa-brands fa-whatsapp text-xl"></i> WhatsApp
+                        </a>
+                        <a :href="lienEmail" class="inline-flex bg-secondary/80 border border-action/30 text-white px-6 py-3 rounded-lg font-bold items-center gap-2 hover:border-action ui-transition">
+                            <i class="fa-regular fa-envelope text-xl text-action"></i> Email
+                        </a>
+                    </div>
                 </div>
             </div>
 
@@ -336,13 +347,17 @@
                         <span x-show="!isUtilitaire && clientType === 'particulier'"><span x-text="totalPrix"></span>€</span>
                     </div>
                 </div>
-                <div class="flex gap-3 w-full sm:w-auto">
-                    <a :href="'https://instagram.com/' + compteInsta" target="_blank" class="w-12 h-12 flex items-center justify-center bg-secondary text-slate-400 rounded-xl hover:text-action hover:border-action border border-transparent ui-transition shrink-0">
+                <div class="flex gap-2 sm:gap-3 w-full sm:w-auto">
+                    <a :href="'https://instagram.com/' + compteInsta" target="_blank" class="hidden sm:flex w-12 h-12 flex items-center justify-center bg-secondary text-slate-400 rounded-xl hover:text-action hover:border-action border border-transparent ui-transition shrink-0">
                         <i class="fa-brands fa-instagram text-xl"></i>
                     </a>
-                    <a :href="lienWhatsApp" target="_blank" class="flex-1 sm:flex-none inline-flex items-center justify-center gap-3 bg-action-gradient text-primary px-8 py-3 rounded-xl font-bold text-base hover:scale-[1.02] ui-transition shadow-lg">
-                        <i class="fa-brands fa-whatsapp text-2xl"></i>
-                        <span x-text="(isUtilitaire || clientType === 'pro') ? 'Demander mon devis' : 'Réserver (' + totalPrix + '€)'"></span>
+                    <a :href="lienEmail" class="flex-1 sm:flex-none inline-flex flex-col items-center justify-center bg-secondary border border-action/20 text-white px-2 sm:px-6 py-2 sm:py-3 rounded-xl hover:border-action hover:text-action ui-transition shrink-0">
+                        <i class="fa-regular fa-envelope text-lg md:text-xl"></i>
+                        <span class="text-[10px] font-bold uppercase tracking-wider hidden md:block mt-1">Email</span>
+                    </a>
+                    <a :href="lienWhatsApp" target="_blank" class="flex-[2] sm:flex-none inline-flex items-center justify-center gap-2 sm:gap-3 bg-action-gradient text-primary px-4 sm:px-8 py-3 rounded-xl font-bold text-sm sm:text-base hover:scale-[1.02] ui-transition shadow-lg">
+                        <i class="fa-brands fa-whatsapp text-xl sm:text-2xl"></i>
+                        <span x-text="(isUtilitaire || clientType === 'pro') ? 'Demander devis' : 'Réserver (' + totalPrix + '€)'"></span>
                     </a>
                 </div>
             </div>
