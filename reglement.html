@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Caisse Virtuelle | Continental Detailing</title>
+    <!-- Tailwind CSS (via CDN pour la démo, en production utilisez le build tool) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Alpine.js -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Custom Style Injection -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0B0F19',
+                        secondary: '#1A2235',
+                        action: '#38BDF8',
+                        'action-hover': '#0EA5E9',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body class="bg-primary text-white font-sans min-h-screen flex flex-col antialiased selection:bg-action selection:text-white" x-data="{ copiedItem: null }">
+
+    <!-- Header (Simplifié pour le Checkout) -->
+    <header class="fixed w-full top-0 z-50 bg-primary/80 backdrop-blur-md border-b border-white/5">
+        <nav class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-center">
+            <!-- Logo centré -->
+            <a href="index.html" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-xl bg-action-gradient flex items-center justify-center shadow-[0_0_15px_rgba(56,189,248,0.3)] group-hover:scale-105 ui-transition">
+                    <i class="fa-solid fa-car-sparkles text-primary text-xl"></i>
+                </div>
+                <span class="text-xl font-bold tracking-tight">Continental Detailing</span>
+            </a>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow flex items-center justify-center px-4 pt-24 pb-12">
+        <div class="w-full max-w-lg">
+            
+            <div class="text-center mb-8">
+                <h1 class="text-3xl font-bold mb-2">Règlement du Solde</h1>
+                <p class="text-slate-400 text-sm">Merci pour votre confiance. Préparez votre application bancaire.</p>
+            </div>
+
+            <div class="space-y-6">
+                
+                <!-- OPTION 1 : Wero / Virement (Privilégiée car 0 frais) -->
+                <div class="bg-secondary rounded-2xl border-2 border-action/30 shadow-[0_0_40px_rgba(56,189,248,0.1)] overflow-hidden relative">
+                    <!-- Badge Recommandé -->
+                    <div class="absolute top-0 right-0 bg-action text-primary text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-bl-lg">
+                        0 frais (Recommandé)
+                    </div>
+                    
+                    <div class="p-6 sm:p-8">
+                        <div class="flex items-center gap-4 mb-6">
+                            <div class="w-12 h-12 bg-action/10 text-action rounded-full flex items-center justify-center text-xl shrink-0">
+                                <i class="fa-solid fa-bolt"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold text-white mb-1">Virement Instantané</h3>
+                                <p class="text-xs text-slate-400">Via Wero, Paylib ou Virement SEPA Instantané.</p>
+                            </div>
+                        </div>
+
+                        <div class="space-y-4">
+                            <!-- Copier Wero -->
+                            <div class="bg-primary/50 border border-white/5 rounded-xl p-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+                                <div>
+                                    <p class="text-[10px] uppercase font-bold text-slate-500 tracking-wider mb-1">Numéro Wero (Paylib)</p>
+                                    <p class="font-mono text-sm tracking-widest text-white">06 XX XX XX XX</p>
+                                </div>
+                                <button @click="navigator.clipboard.writeText('06 00 00 00 00'); copiedItem = 'wero'; setTimeout(() => copiedItem = null, 3000)" 
+                                        :class="copiedItem === 'wero' ? 'bg-green-500/20 text-green-400 border-green-500/50' : 'bg-action/10 text-action border-action/20 hover:bg-action/20'"
+                                        class="w-full sm:w-auto px-4 py-2 rounded-lg font-semibold text-sm border ui-transition flex items-center justify-center gap-2">
+                                    <span x-text="copiedItem === 'wero' ? 'Copié !' : 'Copier'"></span>
+                                    <i :class="copiedItem === 'wero' ? 'fa-solid fa-check' : 'fa-regular fa-copy'"></i>
+                                </button>
+                            </div>
+
+                            <!-- Copier IBAN -->
+                            <div class="bg-primary/50 border border-white/5 rounded-xl p-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+                                <div class="w-full overflow-hidden">
+                                    <p class="text-[10px] uppercase font-bold text-slate-500 tracking-wider mb-1">IBAN Continental Detailing</p>
+                                    <p class="font-mono text-[11px] sm:text-xs tracking-wider text-white truncate">FR76 XXXX XXXX XXXX XXXX XXXX</p>
+                                </div>
+                                <button @click="navigator.clipboard.writeText('FR76XXXXXXXXXXXXXXXXXXXXX'); copiedItem = 'iban'; setTimeout(() => copiedItem = null, 3000)" 
+                                        :class="copiedItem === 'iban' ? 'bg-green-500/20 text-green-400 border-green-500/50' : 'bg-white/5 text-slate-300 border-white/10 hover:bg-white/10'"
+                                        class="w-full sm:w-auto px-4 py-2 rounded-lg font-semibold text-sm border ui-transition flex items-center justify-center gap-2 shrink-0">
+                                    <span x-text="copiedItem === 'iban' ? 'Copié !' : 'Copier'"></span>
+                                    <i :class="copiedItem === 'iban' ? 'fa-solid fa-check' : 'fa-regular fa-copy'"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex items-center justify-center gap-4 text-slate-500 px-8">
+                    <div class="h-px bg-slate-700 flex-1"></div>
+                    <span class="text-xs uppercase font-bold tracking-wider">OU</span>
+                    <div class="h-px bg-slate-700 flex-1"></div>
+                </div>
+
+                <!-- OPTION 2 : Stripe (Secours) -->
+                <div class="bg-secondary/50 rounded-2xl border border-white/5 overflow-hidden">
+                    <div class="p-6">
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="w-10 h-10 bg-white/5 text-slate-300 rounded-full flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-credit-card"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-base font-bold text-white mb-0.5">Carte Bancaire / Apple Pay</h3>
+                                <p class="text-xs text-slate-400">Paiement en ligne sécurisé (Stripe)</p>
+                            </div>
+                        </div>
+                        
+                        <!-- TODO: Remplacer le # par le lien Stripe à "Montant libre défini par le client" -->
+                        <a href="#" target="_blank" onclick="alert('Reliez ce bouton à votre futur lien Stripe à montant libre.')" class="w-full flex items-center justify-center gap-3 bg-white/5 border border-white/10 hover:bg-action/10 focus:border-action/50 text-white px-6 py-3 rounded-xl font-medium text-sm ui-transition group">
+                            Payer par Carte <i class="fa-solid fa-arrow-right text-xs opacity-50 group-hover:opacity-100 group-hover:translate-x-1 ui-transition"></i>
+                        </a>
+                        
+                        <div class="flex items-center justify-center gap-3 text-slate-500 text-lg mt-4">
+                            <i class="fa-brands fa-cc-visa"></i>
+                            <i class="fa-brands fa-cc-mastercard"></i>
+                            <i class="fa-brands fa-cc-apple-pay"></i>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            
+        </div>
+    </main>
+
+</body>
+</html>
