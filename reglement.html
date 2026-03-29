@@ -82,9 +82,9 @@
                             <div class="bg-primary/50 border border-white/5 rounded-xl p-4 flex flex-col sm:flex-row items-center justify-between gap-4">
                                 <div>
                                     <p class="text-[10px] uppercase font-bold text-slate-500 tracking-wider mb-1">Numéro Wero (Paylib)</p>
-                                    <p class="font-mono text-sm tracking-widest text-white">06 XX XX XX XX</p>
+                                    <p class="font-mono text-sm tracking-widest text-white">07 50 87 59 64</p>
                                 </div>
-                                <button @click="navigator.clipboard.writeText('06 00 00 00 00'); copiedItem = 'wero'; setTimeout(() => copiedItem = null, 3000)" 
+                                <button @click="navigator.clipboard.writeText('0750875964'); copiedItem = 'wero'; setTimeout(() => copiedItem = null, 3000)" 
                                         :class="copiedItem === 'wero' ? 'bg-green-500/20 text-green-400 border-green-500/50' : 'bg-action/10 text-action border-action/20 hover:bg-action/20'"
                                         class="w-full sm:w-auto px-4 py-2 rounded-lg font-semibold text-sm border ui-transition flex items-center justify-center gap-2">
                                     <span x-text="copiedItem === 'wero' ? 'Copié !' : 'Copier'"></span>
@@ -96,9 +96,9 @@
                             <div class="bg-primary/50 border border-white/5 rounded-xl p-4 flex flex-col sm:flex-row items-center justify-between gap-4">
                                 <div class="w-full overflow-hidden">
                                     <p class="text-[10px] uppercase font-bold text-slate-500 tracking-wider mb-1">IBAN Continental Detailing</p>
-                                    <p class="font-mono text-[11px] sm:text-xs tracking-wider text-white truncate">FR76 XXXX XXXX XXXX XXXX XXXX</p>
+                                    <p class="font-mono text-[11px] sm:text-xs tracking-wider text-white truncate">FR76 2823 3000 0144 4023 7522 741</p>
                                 </div>
-                                <button @click="navigator.clipboard.writeText('FR76XXXXXXXXXXXXXXXXXXXXX'); copiedItem = 'iban'; setTimeout(() => copiedItem = null, 3000)" 
+                                <button @click="navigator.clipboard.writeText('FR7628233000014440237522741'); copiedItem = 'iban'; setTimeout(() => copiedItem = null, 3000)" 
                                         :class="copiedItem === 'iban' ? 'bg-green-500/20 text-green-400 border-green-500/50' : 'bg-white/5 text-slate-300 border-white/10 hover:bg-white/10'"
                                         class="w-full sm:w-auto px-4 py-2 rounded-lg font-semibold text-sm border ui-transition flex items-center justify-center gap-2 shrink-0">
                                     <span x-text="copiedItem === 'iban' ? 'Copié !' : 'Copier'"></span>
