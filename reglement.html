@@ -92,18 +92,36 @@
                                 </button>
                             </div>
 
-                            <!-- Copier IBAN -->
-                            <div class="bg-primary/50 border border-white/5 rounded-xl p-4 flex flex-col sm:flex-row items-center justify-between gap-4">
-                                <div class="w-full overflow-hidden">
-                                    <p class="text-[10px] uppercase font-bold text-slate-500 tracking-wider mb-1">IBAN Continental Detailing</p>
-                                    <p class="font-mono text-[11px] sm:text-xs tracking-wider text-white truncate">FR76 2823 3000 0144 4023 7522 741</p>
+                            <!-- Coordonnées Bancaires (IBAN + BIC) -->
+                            <div class="bg-primary/50 border border-white/5 rounded-xl flex flex-col overflow-hidden">
+                                <!-- IBAN -->
+                                <div class="p-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+                                    <div class="w-full overflow-hidden">
+                                        <p class="text-[10px] uppercase font-bold text-slate-500 tracking-wider mb-1">IBAN Continental Detailing</p>
+                                        <p class="font-mono text-[11px] sm:text-xs tracking-wider text-white truncate">FR76 2823 3000 0144 4023 7522 741</p>
+                                    </div>
+                                    <button @click="navigator.clipboard.writeText('FR7628233000014440237522741'); copiedItem = 'iban'; setTimeout(() => copiedItem = null, 3000)" 
+                                            :class="copiedItem === 'iban' ? 'bg-green-500/20 text-green-400 border-green-500/50' : 'bg-white/5 text-slate-300 border-white/10 hover:bg-white/10'"
+                                            class="w-full sm:w-auto px-4 py-2 rounded-lg font-semibold text-sm border ui-transition flex items-center justify-center gap-2 shrink-0">
+                                        <span x-text="copiedItem === 'iban' ? 'Copié !' : 'Copier'"></span>
+                                        <i :class="copiedItem === 'iban' ? 'fa-solid fa-check' : 'fa-regular fa-copy'"></i>
+                                    </button>
                                 </div>
-                                <button @click="navigator.clipboard.writeText('FR7628233000014440237522741'); copiedItem = 'iban'; setTimeout(() => copiedItem = null, 3000)" 
-                                        :class="copiedItem === 'iban' ? 'bg-green-500/20 text-green-400 border-green-500/50' : 'bg-white/5 text-slate-300 border-white/10 hover:bg-white/10'"
-                                        class="w-full sm:w-auto px-4 py-2 rounded-lg font-semibold text-sm border ui-transition flex items-center justify-center gap-2 shrink-0">
-                                    <span x-text="copiedItem === 'iban' ? 'Copié !' : 'Copier'"></span>
-                                    <i :class="copiedItem === 'iban' ? 'fa-solid fa-check' : 'fa-regular fa-copy'"></i>
-                                </button>
+                                <!-- Séparateur -->
+                                <div class="h-px w-full bg-white/5"></div>
+                                <!-- BIC -->
+                                <div class="p-4 flex flex-col sm:flex-row items-center justify-between gap-4 bg-white/[0.02]">
+                                    <div class="w-full overflow-hidden">
+                                        <p class="text-[10px] uppercase font-bold text-slate-500 tracking-wider mb-1">Code BIC / SWIFT</p>
+                                        <p class="font-mono text-sm tracking-widest text-white">REVOFRP2</p>
+                                    </div>
+                                    <button @click="navigator.clipboard.writeText('REVOFRP2'); copiedItem = 'bic'; setTimeout(() => copiedItem = null, 3000)" 
+                                            :class="copiedItem === 'bic' ? 'bg-green-500/20 text-green-400 border-green-500/50' : 'bg-white/5 text-slate-300 border-white/10 hover:bg-white/10'"
+                                            class="w-full sm:w-auto px-4 py-2 rounded-lg font-semibold text-sm border ui-transition flex items-center justify-center gap-2 shrink-0">
+                                        <span x-text="copiedItem === 'bic' ? 'Copié !' : 'Copier'"></span>
+                                        <i :class="copiedItem === 'bic' ? 'fa-solid fa-check' : 'fa-regular fa-copy'"></i>
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
