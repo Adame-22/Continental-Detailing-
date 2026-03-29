@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paiement Acompte | Continental Detailing</title>
+    <!-- Tailwind CSS (via CDN pour la démo, en production utilisez le build tool) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Alpine.js -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Custom Style Injection -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0B0F19',
+                        secondary: '#1A2235',
+                        action: '#38BDF8',
+                        'action-hover': '#0EA5E9',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body class="bg-primary text-white font-sans min-h-screen flex flex-col antialiased selection:bg-action selection:text-white">
+
+    <!-- Header (Simplifié pour le Checkout) -->
+    <header class="fixed w-full top-0 z-50 bg-primary/80 backdrop-blur-md border-b border-white/5">
+        <nav class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-center">
+            <!-- Logo centré -->
+            <a href="index.html" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-xl bg-action-gradient flex items-center justify-center shadow-[0_0_15px_rgba(56,189,248,0.3)] group-hover:scale-105 ui-transition">
+                    <i class="fa-solid fa-car-sparkles text-primary text-xl"></i>
+                </div>
+                <span class="text-xl font-bold tracking-tight">Continental Detailing</span>
+            </a>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow flex items-center justify-center px-4 pt-24 pb-12">
+        <div class="w-full max-w-md">
+            
+            <!-- Icone de sécurité -->
+            <div class="text-center mb-6">
+                <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-green-500/10 text-green-400 mb-4 border border-green-500/20 shadow-[0_0_30px_rgba(34,197,94,0.15)]">
+                    <i class="fa-solid fa-lock text-2xl"></i>
+                </div>
+                <h1 class="text-3xl font-bold mb-2">Sécurisez votre RDV</h1>
+                <p class="text-slate-400 text-sm">Règlement de l'acompte de réservation pour bloquer définitivement votre créneau.</p>
+            </div>
+
+            <!-- Carte de paiement -->
+            <div class="bg-secondary rounded-2xl border border-white/10 shadow-2xl overflow-hidden relative">
+                <!-- Bandeau supérieur -->
+                <div class="bg-primary/50 px-6 py-4 border-b border-white/5 flex items-center justify-between">
+                    <span class="text-slate-400 text-sm font-medium">Référence</span>
+                    <span class="text-white text-sm font-bold tracking-wider">ACOMPTE-CD</span>
+                </div>
+                
+                <div class="p-6 sm:p-8">
+                    <!-- Détails -->
+                    <div class="flex items-center justify-between mb-8 pb-8 border-b border-slate-700/50">
+                        <div>
+                            <h3 class="text-lg font-bold text-white mb-1">Acompte fixe</h3>
+                            <p class="text-xs text-slate-400">Nettoyage / Detailing auto</p>
+                        </div>
+                        <div class="text-right">
+                            <span class="text-3xl font-extrabold text-action">40€</span>
+                            <span class="text-xs text-slate-500 block">TTC</span>
+                        </div>
+                    </div>
+
+                    <!-- Infos -->
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-circle-check text-green-400 mt-0.5 text-sm"></i>
+                            <p class="text-sm text-slate-300">Votre date est protégée contre toute autre demande.</p>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-circle-check text-green-400 mt-0.5 text-sm"></i>
+                            <p class="text-sm text-slate-300">Les 40€ seront déduits du montant total à régler le jour J.</p>
+                        </li>
+                    </ul>
+
+                    <!-- Call To Action (Bouton de paiement) -->
+                    <!-- TODO: À remplacer (LINK_ACOMPTE) par ton futur lien Stripe ou SumUp -->
+                    <a href="#" target="_blank" onclick="alert('Ce bouton redirigera vers Stripe ou SumUp une fois le compte créé !')" class="w-full flex items-center justify-center gap-3 bg-action-gradient text-primary px-6 py-4 rounded-xl font-bold text-lg hover:scale-[1.02] ui-transition shadow-[0_10px_30px_rgba(56,189,248,0.25)] relative overflow-hidden group">
+                        <i class="fa-solid fa-credit-card text-xl relative z-10 block transition-transform group-hover:-translate-y-1"></i>
+                        <span class="relative z-10 transition-transform group-hover:translate-x-1">Régler 40€ par CB</span>
+                        <div class="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out z-0"></div>
+                    </a>
+                </div>
+                
+                <!-- Bandeau inférieur - Confiance -->
+                <div class="bg-primary/30 p-4 text-center">
+                    <div class="flex items-center justify-center gap-4 text-slate-500 text-2xl mb-2">
+                        <i class="fa-brands fa-cc-visa hover:text-white transition-colors"></i>
+                        <i class="fa-brands fa-cc-mastercard hover:text-white transition-colors"></i>
+                        <i class="fa-brands fa-cc-amex hover:text-white transition-colors"></i>
+                        <i class="fa-brands fa-cc-apple-pay hover:text-white transition-colors"></i>
+                    </div>
+                    <p class="text-[10px] text-slate-500 font-medium">
+                        Paiement 100% sécurisé géré par notre partenaire agréé.<br>Vos données bancaires ne sont ni lues, ni stockées sur ce site.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="text-center mt-8">
+                <a href="index.html" class="text-sm text-slate-500 hover:text-white transition-colors">
+                    <i class="fa-solid fa-arrow-left mr-2"></i>Retour à l'accueil
+                </a>
+            </div>
+            
+        </div>
+    </main>
+
+</body>
+</html>
