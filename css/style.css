@@ -56,8 +56,9 @@ body {
 }
 
 .main-logo {
+    height: 60px;
+    width: auto;
     max-width: 200px;
-    height: auto;
     object-fit: contain;
     transition: all 0.3s ease;
 }
