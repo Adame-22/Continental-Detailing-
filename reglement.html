@@ -3,119 +3,120 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Caisse Virtuelle | Continental Detailing</title>
-    <!-- Tailwind CSS (via CDN pour la démo, en production utilisez le build tool) -->
+    <title>Règlement du Solde | Continental Detailing</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Alpine.js -->
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
-    <!-- Custom Style Injection -->
     <link rel="stylesheet" href="css/style.css">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        primary: '#0B0F19',
-                        secondary: '#1A2235',
-                        action: '#C9A84C',
-                        'action-hover': '#DFC068',
+                        primary:   '#09090B',
+                        secondary: '#111117',
+                        card:      '#16161C',
+                        action:    '#A8884A',
+                        'action-lt': '#C4A55D',
                     },
                     fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
+                        sans:  ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif']
                     }
                 }
             }
         }
     </script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
-<body class="bg-primary text-white font-sans min-h-screen flex flex-col antialiased selection:bg-action selection:text-white" x-data="{ copiedItem: null }">
+<body class="bg-primary text-white font-sans min-h-screen flex flex-col antialiased" style="font-family:'Inter',sans-serif;" x-data="{ copiedItem: null }">
 
-    <!-- Header (Simplifié pour le Checkout) -->
-    <header class="fixed w-full top-0 z-50 bg-primary/80 backdrop-blur-md border-b border-white/5">
-        <nav class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-center">
-            <!-- Logo centré -->
-            <a href="index.html" class="logo-link hover:opacity-80 ui-transition">
-                <img src="images/logo_continental.png" alt="Continental Detailing - Retour à l'accueil" class="main-logo">
+    <div class="ambient-spot-right" aria-hidden="true"></div>
+
+    <!-- Header -->
+    <header class="fixed w-full top-0 z-50" style="background:rgba(9,9,11,0.92);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.05);">
+        <nav class="max-w-xl mx-auto px-6 py-4 flex items-center justify-between">
+            <a href="services.html" class="flex items-center gap-2 text-xs font-semibold tracking-widest uppercase ui-transition" style="color:#57534E;" onmouseover="this.style.color='#A8884A'" onmouseout="this.style.color='#57534E'">
+                <i class="fa-solid fa-arrow-left text-xs"></i> Retour
             </a>
+            <a href="index.html" class="logo-link">
+                <img src="images/logo_continental.png" alt="Continental Detailing" class="main-logo" style="height:48px;">
+            </a>
+            <div style="width:80px;"></div>
         </nav>
     </header>
 
-    <!-- Main Content -->
-    <main class="flex-grow flex items-center justify-center px-4 pt-24 pb-12">
-        <div class="w-full max-w-lg">
-            
-            <div class="text-center mb-8">
-                <h1 class="text-3xl font-bold mb-2">Règlement du Solde</h1>
-                <p class="text-slate-400 text-sm">Merci pour votre confiance. Préparez votre application bancaire.</p>
+    <!-- Main -->
+    <main class="flex-grow flex items-center justify-center px-4 pt-28 pb-16">
+        <div class="w-full max-w-md">
+
+            <!-- Title -->
+            <div class="text-center mb-10">
+                <p class="text-xs font-semibold tracking-[0.2em] uppercase mb-3" style="color:#A8884A;">Caisse Virtuelle</p>
+                <h1 class="font-serif text-3xl font-semibold text-white mb-2">Règlement du Solde</h1>
+                <p class="text-sm" style="color:#57534E;">Merci pour votre confiance. Choisissez votre mode de paiement.</p>
             </div>
 
-            <div class="space-y-6">
-                
-                <!-- OPTION 1 : Wero / Virement (Privilégiée car 0 frais) -->
-                <div class="bg-secondary rounded-2xl border-2 border-action/30 shadow-[0_0_40px_rgba(201,168,76,0.1)] overflow-hidden relative">
-                    <!-- Badge Recommandé -->
-                    <div class="absolute top-0 right-0 bg-action text-primary text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-bl-lg">
-                        0 frais (Recommandé)
+            <div class="space-y-4">
+
+                <!-- Option 1 : Virement Instantané (0 frais) -->
+                <div class="relative overflow-hidden" style="background:#111117;border:1px solid rgba(168,136,74,0.25);border-radius:4px;">
+                    <!-- Badge -->
+                    <div class="absolute top-0 right-0 px-3 py-1 text-[9px] font-bold tracking-widest uppercase" style="background:#A8884A;color:#09090B;border-bottom-left-radius:4px;">
+                        0 frais · Recommandé
                     </div>
-                    
-                    <div class="p-6 sm:p-8">
+
+                    <div class="p-6 sm:p-7">
                         <div class="flex items-center gap-4 mb-6">
-                            <div class="w-12 h-12 bg-action/10 text-action rounded-full flex items-center justify-center text-xl shrink-0">
-                                <i class="fa-solid fa-bolt"></i>
+                            <div class="w-10 h-10 flex items-center justify-center flex-shrink-0" style="border:1px solid rgba(168,136,74,0.25);border-radius:2px;">
+                                <i class="fa-solid fa-bolt text-sm" style="color:#A8884A;"></i>
                             </div>
                             <div>
-                                <h3 class="text-lg font-bold text-white mb-1">Virement Instantané</h3>
-                                <p class="text-xs text-slate-400">Via Wero, Paylib ou Virement SEPA Instantané.</p>
+                                <h3 class="font-semibold text-white">Virement Instantané</h3>
+                                <p class="text-xs mt-0.5" style="color:#57534E;">Via Wero, Paylib ou SEPA Instantané</p>
                             </div>
                         </div>
 
-                        <div class="space-y-4">
-                            <!-- Copier Wero -->
-                            <div class="bg-primary/50 border border-white/5 rounded-xl p-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+                        <div class="space-y-3">
+                            <!-- Wero -->
+                            <div class="flex items-center justify-between p-4 gap-4" style="background:rgba(9,9,11,0.6);border:1px solid rgba(255,255,255,0.04);border-radius:2px;">
                                 <div>
-                                    <p class="text-[10px] uppercase font-bold text-slate-500 tracking-wider mb-1">Numéro Wero (Paylib)</p>
+                                    <p class="text-[10px] uppercase font-semibold tracking-widest mb-1" style="color:#57534E;">Numéro Wero (Paylib)</p>
                                     <p class="font-mono text-sm tracking-widest text-white">07 50 87 59 64</p>
                                 </div>
-                                <button @click="navigator.clipboard.writeText('0750875964'); copiedItem = 'wero'; setTimeout(() => copiedItem = null, 3000)" 
-                                        :class="copiedItem === 'wero' ? 'bg-green-500/20 text-green-400 border-green-500/50' : 'bg-action/10 text-action border-action/20 hover:bg-action/20'"
-                                        class="w-full sm:w-auto px-4 py-2 rounded-lg font-semibold text-sm border ui-transition flex items-center justify-center gap-2">
-                                    <span x-text="copiedItem === 'wero' ? 'Copié !' : 'Copier'"></span>
+                                <button @click="navigator.clipboard.writeText('0750875964'); copiedItem = 'wero'; setTimeout(() => copiedItem = null, 3000)"
+                                        class="px-4 py-2 text-xs font-semibold tracking-wider uppercase ui-transition flex-shrink-0 flex items-center gap-2"
+                                        :style="copiedItem === 'wero' ? 'background:rgba(34,197,94,0.1);color:#4ade80;border:1px solid rgba(34,197,94,0.3);border-radius:2px;' : 'background:rgba(168,136,74,0.08);color:#A8884A;border:1px solid rgba(168,136,74,0.2);border-radius:2px;'">
+                                    <span x-text="copiedItem === 'wero' ? 'Copié' : 'Copier'"></span>
                                     <i :class="copiedItem === 'wero' ? 'fa-solid fa-check' : 'fa-regular fa-copy'"></i>
                                 </button>
                             </div>
 
-                            <!-- Coordonnées Bancaires (IBAN + BIC) -->
-                            <div class="bg-primary/50 border border-white/5 rounded-xl flex flex-col overflow-hidden">
-                                <!-- IBAN -->
-                                <div class="p-4 flex flex-col sm:flex-row items-center justify-between gap-4">
-                                    <div class="w-full overflow-hidden">
-                                        <p class="text-[10px] uppercase font-bold text-slate-500 tracking-wider mb-1">IBAN Continental Detailing</p>
+                            <!-- IBAN -->
+                            <div style="background:rgba(9,9,11,0.6);border:1px solid rgba(255,255,255,0.04);border-radius:2px;">
+                                <div class="flex items-center justify-between p-4 gap-4">
+                                    <div class="overflow-hidden">
+                                        <p class="text-[10px] uppercase font-semibold tracking-widest mb-1" style="color:#57534E;">IBAN Continental Detailing</p>
                                         <p class="font-mono text-[11px] sm:text-xs tracking-wider text-white truncate">FR76 2823 3000 0144 4023 7522 741</p>
                                     </div>
-                                    <button @click="navigator.clipboard.writeText('FR7628233000014440237522741'); copiedItem = 'iban'; setTimeout(() => copiedItem = null, 3000)" 
-                                            :class="copiedItem === 'iban' ? 'bg-green-500/20 text-green-400 border-green-500/50' : 'bg-white/5 text-slate-300 border-white/10 hover:bg-white/10'"
-                                            class="w-full sm:w-auto px-4 py-2 rounded-lg font-semibold text-sm border ui-transition flex items-center justify-center gap-2 shrink-0">
-                                        <span x-text="copiedItem === 'iban' ? 'Copié !' : 'Copier'"></span>
+                                    <button @click="navigator.clipboard.writeText('FR7628233000014440237522741'); copiedItem = 'iban'; setTimeout(() => copiedItem = null, 3000)"
+                                            class="px-4 py-2 text-xs font-semibold tracking-wider uppercase ui-transition flex-shrink-0 flex items-center gap-2"
+                                            :style="copiedItem === 'iban' ? 'background:rgba(34,197,94,0.1);color:#4ade80;border:1px solid rgba(34,197,94,0.3);border-radius:2px;' : 'background:rgba(255,255,255,0.04);color:#6B7280;border:1px solid rgba(255,255,255,0.06);border-radius:2px;'">
+                                        <span x-text="copiedItem === 'iban' ? 'Copié' : 'Copier'"></span>
                                         <i :class="copiedItem === 'iban' ? 'fa-solid fa-check' : 'fa-regular fa-copy'"></i>
                                     </button>
                                 </div>
-                                <!-- Séparateur -->
-                                <div class="h-px w-full bg-white/5"></div>
+                                <div style="height:1px;background:rgba(255,255,255,0.04);"></div>
                                 <!-- BIC -->
-                                <div class="p-4 flex flex-col sm:flex-row items-center justify-between gap-4 bg-white/[0.02]">
-                                    <div class="w-full overflow-hidden">
-                                        <p class="text-[10px] uppercase font-bold text-slate-500 tracking-wider mb-1">Code BIC / SWIFT</p>
+                                <div class="flex items-center justify-between p-4 gap-4">
+                                    <div>
+                                        <p class="text-[10px] uppercase font-semibold tracking-widest mb-1" style="color:#57534E;">Code BIC / SWIFT</p>
                                         <p class="font-mono text-sm tracking-widest text-white">REVOFRP2</p>
                                     </div>
-                                    <button @click="navigator.clipboard.writeText('REVOFRP2'); copiedItem = 'bic'; setTimeout(() => copiedItem = null, 3000)" 
-                                            :class="copiedItem === 'bic' ? 'bg-green-500/20 text-green-400 border-green-500/50' : 'bg-white/5 text-slate-300 border-white/10 hover:bg-white/10'"
-                                            class="w-full sm:w-auto px-4 py-2 rounded-lg font-semibold text-sm border ui-transition flex items-center justify-center gap-2 shrink-0">
-                                        <span x-text="copiedItem === 'bic' ? 'Copié !' : 'Copier'"></span>
+                                    <button @click="navigator.clipboard.writeText('REVOFRP2'); copiedItem = 'bic'; setTimeout(() => copiedItem = null, 3000)"
+                                            class="px-4 py-2 text-xs font-semibold tracking-wider uppercase ui-transition flex-shrink-0 flex items-center gap-2"
+                                            :style="copiedItem === 'bic' ? 'background:rgba(34,197,94,0.1);color:#4ade80;border:1px solid rgba(34,197,94,0.3);border-radius:2px;' : 'background:rgba(255,255,255,0.04);color:#6B7280;border:1px solid rgba(255,255,255,0.06);border-radius:2px;'">
+                                        <span x-text="copiedItem === 'bic' ? 'Copié' : 'Copier'"></span>
                                         <i :class="copiedItem === 'bic' ? 'fa-solid fa-check' : 'fa-regular fa-copy'"></i>
                                     </button>
                                 </div>
@@ -125,7 +126,13 @@
                 </div>
 
             </div>
-            
+
+            <div class="text-center mt-8">
+                <a href="index.html" class="text-xs tracking-widest uppercase ui-transition" style="color:#3F3F46;" onmouseover="this.style.color='#A8884A'" onmouseout="this.style.color='#3F3F46'">
+                    <i class="fa-solid fa-arrow-left mr-2 text-xs"></i>Retour à l'accueil
+                </a>
+            </div>
+
         </div>
     </main>
 

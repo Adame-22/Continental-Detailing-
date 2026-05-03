@@ -7,7 +7,7 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/showcase.css">
@@ -16,40 +16,41 @@
         tailwind.config = {
             theme: {
                 extend: {
-                    colors: { 
-                        primary: '#0F172A', 
-                        secondary: '#1E293B', 
-                        action: '#C9A84C', 
-                        'action-hover': '#DFC068',
-                        slate: {
-                            50: '#F8FAFC',
-                            400: '#94A3B8'
-                        }
+                    colors: {
+                        primary:   '#09090B',
+                        secondary: '#111117',
+                        card:      '#16161C',
+                        action:    '#A8884A',
+                        'action-lt': '#C4A55D',
+                        stone: { 400: '#A8A29E', 600: '#57534E' }
                     },
-                    fontFamily: { sans: ['Inter', 'sans-serif'] },
-                    backgroundImage: { 'action-gradient': 'linear-gradient(135deg, #DFC068 0%, #C9A84C 100%)' }
+                    fontFamily: {
+                        sans:  ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif']
+                    },
+                    backgroundImage: {
+                        'gold-gradient': 'linear-gradient(135deg, #C4A55D 0%, #A8884A 50%, #8B6F37 100%)'
+                    }
                 }
             }
         }
     </script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
-<body class="bg-primary text-slate-50 antialiased selection:bg-action selection:text-primary pb-48 relative min-h-screen">
+<body class="bg-primary text-stone-200 antialiased pb-48 relative min-h-screen" style="font-family:'Inter',sans-serif;">
 
-    <!-- Background Decorative Elements -->
-    <div class="fixed inset-0 z-0 pointer-events-none overflow-hidden">
-        <div class="absolute top-[-20%] left-[50%] -translate-x-1/2 w-[800px] h-[800px] bg-action rounded-full blur-[150px] opacity-[0.05]"></div>
-    </div>
+    <div class="ambient-spot-right" aria-hidden="true"></div>
+    <div class="ambient-spot-left" aria-hidden="true"></div>
 
     <!-- Navigation Bar -->
-    <nav class="w-full z-50 bg-primary/80 backdrop-blur-xl border-b border-secondary sticky top-0">
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+    <nav class="w-full z-50 sticky top-0" style="background:rgba(9,9,11,0.90);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.05);">
+        <div class="max-w-5xl mx-auto px-6">
             <div class="flex justify-between items-center h-20">
-                <a href="index.html" class="logo-link hover:opacity-80 ui-transition">
-                    <img src="images/logo_continental.png" alt="Continental Detailing - Retour à l'accueil" class="main-logo">
+                <a href="index.html" class="logo-link">
+                    <img src="images/logo_continental.png" alt="Continental Detailing" class="main-logo">
                 </a>
-                <a href="index.html" class="text-sm font-medium text-slate-400 hover:text-action ui-transition flex items-center gap-2">
-                    <i class="fa-solid fa-arrow-left"></i> <span class="hidden md:inline">Retour</span>
+                <a href="index.html" class="flex items-center gap-2 text-xs font-semibold tracking-widest uppercase ui-transition" style="color:#57534E;" onmouseover="this.style.color='#A8884A'" onmouseout="this.style.color='#57534E'">
+                    <i class="fa-solid fa-arrow-left text-xs"></i> Retour
                 </a>
             </div>
         </div>
@@ -156,20 +157,22 @@
         
         <!-- Header -->
         <div class="text-center mb-12">
-            <h1 class="text-3xl md:text-5xl font-bold mb-6 text-white">Estimation & Réservation</h1>
-            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-green-500/10 text-green-400 text-[10px] md:text-xs font-bold border border-green-500/20 mb-8">
+            <p class="text-xs font-semibold tracking-[0.2em] uppercase mb-4" style="color:#A8884A;">Simulateur & Réservation</p>
+            <h1 class="font-serif text-4xl md:text-5xl font-semibold text-white mb-6">Votre Prestation</h1>
+            <div class="h-px w-12 mx-auto mb-8" style="background:#A8884A;"></div>
+            <div class="inline-flex items-center gap-2 px-4 py-2 text-[10px] md:text-xs font-medium tracking-wider" style="background:rgba(34,197,94,0.05);border:1px solid rgba(34,197,94,0.15);border-radius:2px;color:#4ade80;">
                 <i class="fa-solid fa-leaf"></i>
                 <span>MATÉRIEL 100% ÉLECTRIQUE & SILENCIEUX (ACCÈS EAU/PRISES REQUIS)</span>
             </div>
-            <div class="flex p-1 bg-secondary rounded-xl border border-secondary max-w-sm mx-auto overflow-hidden">
-                <button @click="clientType = 'particulier'" 
-                        :class="clientType === 'particulier' ? 'bg-action text-primary shadow-lg' : 'text-slate-400 hover:text-white'"
-                        class="flex-1 py-3 text-sm font-bold rounded-lg ui-transition">
+            <div class="flex max-w-sm mx-auto" style="background:#111117;border:1px solid rgba(255,255,255,0.05);border-radius:2px;padding:4px;">
+                <button @click="clientType = 'particulier'"
+                        :style="clientType === 'particulier' ? 'background:#A8884A;color:#09090B;' : 'background:transparent;color:#57534E;'"
+                        class="flex-1 py-3 text-xs font-bold tracking-wider uppercase ui-transition" style="border-radius:1px;">
                     <i class="fa-solid fa-user mr-2"></i>Particulier
                 </button>
-                <button @click="clientType = 'pro'" 
-                        :class="clientType === 'pro' ? 'bg-action text-primary shadow-lg' : 'text-slate-400 hover:text-white'"
-                        class="flex-1 py-3 text-sm font-bold rounded-lg ui-transition">
+                <button @click="clientType = 'pro'"
+                        :style="clientType === 'pro' ? 'background:#A8884A;color:#09090B;' : 'background:transparent;color:#57534E;'"
+                        class="flex-1 py-3 text-xs font-bold tracking-wider uppercase ui-transition" style="border-radius:1px;">
                     <i class="fa-solid fa-building mr-2"></i>Entreprise
                 </button>
             </div>
