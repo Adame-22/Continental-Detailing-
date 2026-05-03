@@ -4,15 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Continental Detailing | Nettoyage Auto Premium 91 & 77</title>
-    <meta name="description" content="Service de nettoyage et detailing automobile Premium en Essonne (91) & Seine-et-Marne (77). Intervention à domicile, matériel professionnel, produits haut de gamme. Réservez en ligne.">
+    <meta name="description" content="Service de nettoyage et detailing automobile Premium en Essonne (91) & Seine-et-Marne (77). Intervention à domicile, matériel professionnel, produits haut de gamme.">
     <meta property="og:title" content="Continental Detailing | Nettoyage Auto Premium">
     <meta property="og:description" content="L'art du détail pour votre automobile. Detailing premium à domicile en Essonne et Seine-et-Marne.">
     <meta property="og:image" content="images/hero-bg.png">
     <meta property="og:type" content="website">
-    
+
     <link rel="preconnect" href="https://fonts.googleapis.com/">
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -20,252 +20,291 @@
         tailwind.config = {
             theme: {
                 extend: {
-                    colors: { 
-                        primary: '#0F172A', 
-                        secondary: '#1E293B', 
-                        action: '#C9A84C', 
-                        'action-hover': '#DFC068',
-                        slate: {
-                            50: '#F8FAFC',
-                            400: '#94A3B8'
-                        }
+                    colors: {
+                        primary:   '#09090B',
+                        secondary: '#111117',
+                        card:      '#16161C',
+                        action:    '#A8884A',
+                        'action-lt': '#C4A55D',
+                        stone: { 400: '#A8A29E', 600: '#57534E' }
                     },
-                    fontFamily: { sans: ['Inter', 'sans-serif'] },
-                    backgroundImage: { 'action-gradient': 'linear-gradient(135deg, #DFC068 0%, #C9A84C 100%)' }
+                    fontFamily: {
+                        sans:  ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif']
+                    },
+                    backgroundImage: {
+                        'gold-gradient': 'linear-gradient(135deg, #C4A55D 0%, #A8884A 50%, #8B6F37 100%)'
+                    }
                 }
             }
         }
     </script>
 </head>
-<body class="bg-primary text-slate-50 antialiased selection:bg-action selection:text-primary">
+<body class="bg-primary text-stone-100 antialiased">
 
-    <div class="fixed inset-0 z-0 pointer-events-none overflow-hidden">
-        <div class="absolute top-[-20%] left-[50%] -translate-x-1/2 w-[800px] h-[800px] bg-action rounded-full blur-[150px] opacity-[0.05]"></div>
-    </div>
+    <!-- Ambient lighting — showroom spots -->
+    <div class="ambient-spot-right" aria-hidden="true"></div>
+    <div class="ambient-spot-left" aria-hidden="true"></div>
 
     <!-- Navigation -->
-    <nav class="w-full z-50 bg-primary/80 backdrop-blur-xl border-b border-secondary sticky top-0">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <nav class="w-full z-50 sticky top-0" style="background:rgba(9,9,11,0.88); backdrop-filter:blur(20px); border-bottom:1px solid rgba(255,255,255,0.05);">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
-                <a href="index.html" class="logo-link hover:opacity-80 ui-transition">
-                    <img src="images/logo_continental.png" alt="Continental Detailing - Retour à l'accueil" class="main-logo">                
+                <a href="index.html" class="logo-link">
+                    <img src="images/logo_continental.png" alt="Continental Detailing" class="main-logo">
                 </a>
-                <div class="hidden md:flex gap-6 items-center">
-                    <a href="index.html" class="text-sm font-medium text-action border-b border-action/80 pb-1">Accueil</a>
-                    <a href="services.html" class="text-sm font-medium text-slate-400 hover:text-action ui-transition">Tarifs &amp; Réservation</a>
+                <div class="hidden md:flex gap-8 items-center">
+                    <a href="index.html" class="text-xs font-semibold tracking-[0.12em] uppercase text-action">Accueil</a>
+                    <a href="services.html" class="text-xs font-semibold tracking-[0.12em] uppercase text-stone-400 hover:text-action ui-transition">Tarifs & Réservation</a>
                     <div class="flex items-center gap-3 ml-4">
-                        <a href="mailto:continental.detailing.idf@gmail.com?subject=Devis%20Continental%20Detailing" class="w-10 h-10 rounded-full flex items-center justify-center bg-secondary border border-secondary text-slate-400 hover:border-action hover:text-action ui-transition">
-                            <i class="fa-regular fa-envelope"></i>
+                        <a href="mailto:continental.detailing.idf@gmail.com?subject=Devis%20Continental%20Detailing"
+                           class="w-9 h-9 rounded-full flex items-center justify-center text-stone-500 hover:text-action ui-transition"
+                           style="border:1px solid rgba(255,255,255,0.07);">
+                            <i class="fa-regular fa-envelope text-sm"></i>
                         </a>
-                        <a href="https://wa.me/33750875964?text=Bonjour,%20je%20souhaite%20un%20devis" target="_blank" class="bg-action-gradient text-primary px-5 py-2 rounded-full font-semibold hover:scale-105 ui-transition shadow-[0_5px_20px_rgba(201,168,76,0.2)] glow-pulse">
-                            <i class="fa-brands fa-whatsapp mr-2"></i>WhatsApp
+                        <a href="https://wa.me/33750875964?text=Bonjour,%20je%20souhaite%20un%20devis" target="_blank"
+                           class="flex items-center gap-2 px-5 py-2 rounded-sm text-xs font-bold tracking-[0.1em] uppercase ui-transition"
+                           style="background:rgba(168,136,74,0.12); border:1px solid rgba(168,136,74,0.35); color:#C4A55D;">
+                            <i class="fa-brands fa-whatsapp"></i> WhatsApp
                         </a>
                     </div>
                 </div>
-                 <a href="services.html" class="md:hidden text-sm font-medium bg-action-gradient text-primary px-4 py-2 rounded-full font-semibold">
+                <a href="services.html" class="md:hidden text-xs font-bold tracking-widest uppercase px-4 py-2 rounded-sm"
+                   style="border:1px solid rgba(168,136,74,0.4); color:#C4A55D;">
                     Réserver
                 </a>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <header class="relative pt-28 pb-24 lg:pt-40 lg:pb-32 overflow-hidden">
+    <!-- Hero -->
+    <header class="relative overflow-hidden" style="padding-top:clamp(5rem,12vw,10rem); padding-bottom:clamp(4rem,10vw,8rem);">
         <div class="absolute inset-0 z-0">
-            <img src="images/hero-bg.png" alt="Continental Detailing" class="w-full h-full object-cover opacity-80 parallax-bg">
-            <div class="absolute inset-0 bg-gradient-to-t from-primary via-primary/50 to-transparent"></div>
+            <img src="images/hero-bg.png" alt="" role="presentation"
+                 class="w-full h-full object-cover parallax-bg"
+                 style="opacity:0.55;">
+            <div class="absolute inset-0" style="background:linear-gradient(to top, #09090B 0%, rgba(9,9,11,0.55) 50%, rgba(9,9,11,0.2) 100%);"></div>
+            <!-- Subtle horizontal vignette -->
+            <div class="absolute inset-0" style="background:linear-gradient(to right, rgba(9,9,11,0.4) 0%, transparent 40%, transparent 60%, rgba(9,9,11,0.4) 100%);"></div>
         </div>
 
-        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-action/10 text-sm text-action mb-8 border border-action/20 hero-badge">
-                <i class="fa-solid fa-star text-action"></i>
-                <span class="font-medium text-slate-50/90">La référence du detailing à domicile</span>
+        <div class="relative z-10 max-w-5xl mx-auto px-6 text-center">
+            <!-- Eyebrow -->
+            <div class="hero-badge inline-flex items-center gap-2 mb-8">
+                <span style="display:inline-block; width:28px; height:1px; background:#A8884A;"></span>
+                <span class="text-[11px] font-semibold tracking-[0.2em] uppercase" style="color:#A8884A;">Detailing Premium — Essonne & Seine-et-Marne</span>
+                <span style="display:inline-block; width:28px; height:1px; background:#A8884A;"></span>
             </div>
-            
-            <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight text-white hero-title">
-                L'art du détail pour<br>
-                <span class="text-transparent bg-clip-text bg-action-gradient shimmer-text" style="background-image: linear-gradient(90deg, #C9A84C, #DFC068, #C9A84C, #DFC068);">votre automobile.</span>
+
+            <!-- Title -->
+            <h1 class="hero-title font-serif text-5xl md:text-7xl lg:text-8xl font-semibold leading-[1.05] mb-6 text-white">
+                L'art du détail<br>
+                <em class="not-italic shimmer-text" style="background-image:linear-gradient(90deg, #A8884A, #DFC47A, #C4A55D, #8B6F37, #C4A55D); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">pour votre voiture.</em>
             </h1>
-            
-            <p class="text-slate-400 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed hero-subtitle">
-                Service de nettoyage et detailing Premium en Essonne (91) &amp; Seine-et-Marne (77). Intervention à domicile ou sur le lieu de votre choix.
+
+            <!-- Subtitle -->
+            <p class="hero-subtitle text-base md:text-lg max-w-xl mx-auto mb-10 leading-relaxed" style="color:#8B8680;">
+                Service mobile de detailing haut de gamme. Nous venons à vous — domicile, bureau, parking.
             </p>
-            
-            <a href="services.html" class="inline-block bg-action-gradient text-primary px-8 py-4 rounded-full font-bold text-lg hover:scale-105 ui-transition shadow-[0_10px_30px_rgba(201,168,76,0.25)] hero-cta glow-pulse">
-                Découvrir nos prestations
-            </a>
+
+            <!-- CTA row -->
+            <div class="hero-cta flex flex-col sm:flex-row gap-4 items-center justify-center">
+                <a href="services.html"
+                   class="inline-flex items-center gap-3 px-8 py-3.5 text-sm font-bold tracking-[0.08em] uppercase ui-transition"
+                   style="background:#A8884A; color:#09090B; border-radius:2px; letter-spacing:0.1em;">
+                    Voir les prestations
+                    <i class="fa-solid fa-arrow-right text-xs"></i>
+                </a>
+                <a href="https://wa.me/33750875964" target="_blank"
+                   class="inline-flex items-center gap-3 px-8 py-3.5 text-sm font-medium tracking-wider uppercase ui-transition"
+                   style="border:1px solid rgba(255,255,255,0.12); border-radius:2px; color:#A8A29E;">
+                    <i class="fa-brands fa-whatsapp"></i> Contact direct
+                </a>
+            </div>
         </div>
     </header>
 
-    <!-- Trust Badges -->
-    <section class="relative z-10 -mt-16 max-w-6xl mx-auto px-4 sm:px-6">
-        <div class="bg-secondary/60 backdrop-blur-xl border border-secondary rounded-xl p-6 md:p-8 grid grid-cols-1 md:grid-cols-3 gap-6 text-center divide-y md:divide-y-0 md:divide-x divide-secondary reveal-scale border-glow-anim">
-            <div class="p-4 flex flex-col items-center cursor-pointer hover:shadow-[0_10px_30px_rgba(201,168,76,0.15)] transform hover:-translate-y-1 ui-transition icon-hover-spin">
-                <i class="fa-solid fa-location-dot text-action text-2xl mb-4 icon-target float-slow"></i>
-                <h3 class="font-semibold text-base text-white">À Domicile ou Enlèvement</h3>
-                <p class="text-xs text-slate-400 mt-2">Zéro contrainte, on s'occupe de tout.</p>
+    <!-- Stats bar -->
+    <section class="relative z-10 max-w-5xl mx-auto px-6" style="margin-top:-2rem;">
+        <div class="reveal-scale grid grid-cols-1 md:grid-cols-3"
+             style="background:rgba(22,22,28,0.9); backdrop-filter:blur(20px); border:1px solid rgba(255,255,255,0.05); border-radius:4px;">
+            <div class="p-7 flex items-center gap-5 border-b md:border-b-0 border-r-0 md:border-r" style="border-color:rgba(255,255,255,0.04);">
+                <i class="fa-solid fa-location-dot text-xl flex-shrink-0" style="color:#A8884A;"></i>
+                <div>
+                    <div class="text-sm font-semibold text-white">À domicile</div>
+                    <div class="text-xs mt-0.5" style="color:#57534E;">Nous venons jusqu'à vous</div>
+                </div>
             </div>
-            <div class="p-4 flex flex-col items-center cursor-pointer hover:shadow-[0_10px_30px_rgba(201,168,76,0.15)] transform hover:-translate-y-1 ui-transition icon-hover-spin">
-                <i class="fa-solid fa-hand-sparkles text-action text-2xl mb-4 icon-target float-slow" style="animation-delay: 0.5s;"></i>
-                <h3 class="font-semibold text-base text-white">Technique Anti-Micro-rayures</h3>
-                <p class="text-xs text-slate-400 mt-2">Lavage manuel respectueux de la carrosserie.</p>
+            <div class="p-7 flex items-center gap-5 border-b md:border-b-0 border-r-0 md:border-r" style="border-color:rgba(255,255,255,0.04);">
+                <i class="fa-solid fa-hand-sparkles text-xl flex-shrink-0" style="color:#A8884A;"></i>
+                <div>
+                    <div class="text-sm font-semibold text-white">Zéro micro-rayures</div>
+                    <div class="text-xs mt-0.5" style="color:#57534E;">Méthode 2 seaux + Snow Foam</div>
+                </div>
             </div>
-            <div class="p-4 flex flex-col items-center cursor-pointer hover:shadow-[0_10px_30px_rgba(201,168,76,0.15)] transform hover:-translate-y-1 ui-transition icon-hover-spin">
-                <i class="fa-solid fa-spray-can-sparkles text-action text-2xl mb-4 icon-target float-slow" style="animation-delay: 1s;"></i>
-                <h3 class="font-semibold text-base text-white">Produits Haut de Gamme</h3>
-                <p class="text-xs text-slate-400 mt-2">Finitions parfaites et protection durable.</p>
+            <div class="p-7 flex items-center gap-5">
+                <i class="fa-solid fa-shield-halved text-xl flex-shrink-0" style="color:#A8884A;"></i>
+                <div>
+                    <div class="text-sm font-semibold text-white">Produits premium</div>
+                    <div class="text-xs mt-0.5" style="color:#57534E;">pH neutre, biodégradables</div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Formules Signature -->
-    <section class="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 bg-secondary/20 rounded-3xl border border-secondary/50">
+    <!-- Formules -->
+    <section class="py-28 max-w-5xl mx-auto px-6">
         <div class="text-center mb-16 reveal">
-            <h2 class="text-3xl md:text-5xl font-bold mb-4 text-white">Nos Formules Signature</h2>
-            <p class="text-slate-400">Le sens du détail, la passion de la perfection.</p>
-        </div>
-        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-green-500/10 text-green-400 text-[10px] md:text-xs font-bold border border-green-500/20 mb-8 mx-auto reveal stagger-1">
-            <i class="fa-solid fa-leaf"></i>
-            <span>MATÉRIEL 100% ÉLECTRIQUE & SILENCIEUX (ACCÈS EAU/PRISES REQUIS)</span>
+            <p class="text-xs font-semibold tracking-[0.2em] uppercase mb-4" style="color:#A8884A;">Nos Formules</p>
+            <h2 class="font-serif text-4xl md:text-5xl font-semibold text-white">Signature Services</h2>
+            <div class="line-grow h-px mx-auto mt-6" style="background:#A8884A;"></div>
         </div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            <!-- Formule Intérieur -->
-            <div class="bg-secondary/40 rounded-2xl p-8 border border-secondary hover:border-action/30 ui-transition card-hover-lift reveal-left">
-                <div class="flex items-center gap-4 mb-6">
-                    <div class="w-14 h-14 rounded-xl bg-action/10 flex items-center justify-center text-action text-2xl border border-action/20 float-medium">
-                        <i class="fa-solid fa-couch"></i>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <!-- Intérieur -->
+            <div class="p-8 card-hover-lift reveal-left"
+                 style="background:#111117; border:1px solid rgba(255,255,255,0.05); border-radius:4px;">
+                <div class="flex items-start gap-4 mb-6">
+                    <div class="w-10 h-10 flex items-center justify-center flex-shrink-0" style="border:1px solid rgba(168,136,74,0.25); border-radius:2px;">
+                        <i class="fa-solid fa-couch text-sm" style="color:#A8884A;"></i>
                     </div>
                     <div>
-                        <h3 class="text-xl font-bold text-white">Lavage Intérieur</h3>
-                        <p class="text-action text-sm font-semibold italic">"Rénovation Haute Précision"</p>
+                        <h3 class="font-semibold text-white text-lg">Lavage Intérieur</h3>
+                        <p class="text-xs tracking-wider uppercase mt-0.5" style="color:#A8884A;">Rénovation Haute Précision</p>
                     </div>
                 </div>
-                <ul class="space-y-4 text-slate-400 text-sm">
-                    <li class="flex gap-3"><i class="fa-solid fa-check text-action mt-1"></i> <span><strong>Aspiration chirurgicale :</strong> Habitacle, coffre, rails de sièges et recoins inaccessibles.</span></li>
-                    <li class="flex gap-3"><i class="fa-solid fa-check text-action mt-1"></i> <span><strong>Pressing par Injection/Extraction :</strong> Shampoing en profondeur des fibres pour extraire la saleté, les bactéries et les odeurs.</span></li>
-                    <li class="flex gap-3"><i class="fa-solid fa-check text-action mt-1"></i> <span><strong>Dégraissage au pinceau :</strong> Nettoyage minutieux des plastiques, grilles d'aération et commodos.</span></li>
-                    <li class="flex gap-3"><i class="fa-solid fa-check text-action mt-1"></i> <span><strong>Protection Anti-UV :</strong> Soin des plastiques fini mat d'origine (non gras) et effet antistatique.</span></li>
-                    <li class="flex gap-3"><i class="fa-solid fa-check text-action mt-1"></i> <span><strong>Finition Vitres :</strong> Dégraissage haute clarté, sans aucune trace.</span></li>
-                    <li class="flex gap-3"><i class="fa-solid fa-check text-action mt-1"></i> <span><strong>Soin des Cuirs :</strong> Nettoyage au pH neutre et hydratation pour redonner souplesse et aspect mat.</span></li>
+                <ul class="space-y-3">
+                    <li class="flex gap-3 text-sm" style="color:#A8A29E;"><span style="color:#A8884A; margin-top:2px;">—</span><span><strong class="text-white font-medium">Aspiration chirurgicale</strong> — habitacle, coffre, rails de sièges.</span></li>
+                    <li class="flex gap-3 text-sm" style="color:#A8A29E;"><span style="color:#A8884A; margin-top:2px;">—</span><span><strong class="text-white font-medium">Pressing injection/extraction</strong> — shampoing profond des fibres.</span></li>
+                    <li class="flex gap-3 text-sm" style="color:#A8A29E;"><span style="color:#A8884A; margin-top:2px;">—</span><span><strong class="text-white font-medium">Dégraissage au pinceau</strong> — plastiques, aérations, commodos.</span></li>
+                    <li class="flex gap-3 text-sm" style="color:#A8A29E;"><span style="color:#A8884A; margin-top:2px;">—</span><span><strong class="text-white font-medium">Protection Anti-UV</strong> — plastiques soignés, effet antistatique.</span></li>
+                    <li class="flex gap-3 text-sm" style="color:#A8A29E;"><span style="color:#A8884A; margin-top:2px;">—</span><span><strong class="text-white font-medium">Soin des cuirs</strong> — nettoyage pH neutre et hydratation.</span></li>
+                    <li class="flex gap-3 text-sm" style="color:#A8A29E;"><span style="color:#A8884A; margin-top:2px;">—</span><span><strong class="text-white font-medium">Finition vitres</strong> — dégraissage haute clarté, sans trace.</span></li>
                 </ul>
             </div>
 
-            <!-- Formule Extérieur -->
-            <div class="bg-secondary/40 rounded-2xl p-8 border border-secondary hover:border-action/30 ui-transition card-hover-lift reveal-right">
-                <div class="flex items-center gap-4 mb-6">
-                    <div class="w-14 h-14 rounded-xl bg-action/10 flex items-center justify-center text-action text-2xl border border-action/20 float-medium" style="animation-delay: 0.3s;">
-                        <i class="fa-solid fa-spray-can"></i>
+            <!-- Extérieur -->
+            <div class="p-8 card-hover-lift reveal-right"
+                 style="background:#111117; border:1px solid rgba(255,255,255,0.05); border-radius:4px;">
+                <div class="flex items-start gap-4 mb-6">
+                    <div class="w-10 h-10 flex items-center justify-center flex-shrink-0" style="border:1px solid rgba(168,136,74,0.25); border-radius:2px;">
+                        <i class="fa-solid fa-spray-can text-sm" style="color:#A8884A;"></i>
                     </div>
                     <div>
-                        <h3 class="text-xl font-bold text-white">Lavage Extérieur</h3>
-                        <p class="text-action text-sm font-semibold italic">"Décontamination & Brillance"</p>
+                        <h3 class="font-semibold text-white text-lg">Lavage Extérieur</h3>
+                        <p class="text-xs tracking-wider uppercase mt-0.5" style="color:#A8884A;">Décontamination & Brillance</p>
                     </div>
                 </div>
-                <ul class="space-y-4 text-slate-400 text-sm">
-                    <li class="flex gap-3"><i class="fa-solid fa-check text-action mt-1"></i> <span><strong>Prélavage "Snow Foam" :</strong> Mousse active qui décolle le voile routier sans action mécanique (zéro micro-rayures).</span></li>
-                    <li class="flex gap-3"><i class="fa-solid fa-check text-action mt-1"></i> <span><strong>Lavage Technique "2 Seaux" :</strong> Méthode sécurisée avec gant en microfibre premium.</span></li>
-                    <li class="flex gap-3"><i class="fa-solid fa-check text-action mt-1"></i> <span><strong>Décontamination des Jantes :</strong> Dissolution chimique des poussières de freins incrustées.</span></li>
-                    <li class="flex gap-3"><i class="fa-solid fa-check text-action mt-1"></i> <span><strong>Détails au pinceau :</strong> Détourage logos, calandres, joints et trappe à essence.</span></li>
-                    <li class="flex gap-3"><i class="fa-solid fa-check text-action mt-1"></i> <span><strong>Séchage Sécurisé :</strong> Utilisation de microfibres haute densité ou air pulsé.</span></li>
-                    <li class="flex gap-3"><i class="fa-solid fa-check text-action mt-1"></i> <span><strong>Dressing Pneus :</strong> Soin protecteur pour un effet noir satiné durable.</span></li>
+                <ul class="space-y-3">
+                    <li class="flex gap-3 text-sm" style="color:#A8A29E;"><span style="color:#A8884A; margin-top:2px;">—</span><span><strong class="text-white font-medium">Prélavage Snow Foam</strong> — mousse active, zéro contact mécanique.</span></li>
+                    <li class="flex gap-3 text-sm" style="color:#A8A29E;"><span style="color:#A8884A; margin-top:2px;">—</span><span><strong class="text-white font-medium">Lavage 2 seaux</strong> — gant microfibre premium, méthode sécurisée.</span></li>
+                    <li class="flex gap-3 text-sm" style="color:#A8A29E;"><span style="color:#A8884A; margin-top:2px;">—</span><span><strong class="text-white font-medium">Décontamination jantes</strong> — dissolution chimique poussières de freins.</span></li>
+                    <li class="flex gap-3 text-sm" style="color:#A8A29E;"><span style="color:#A8884A; margin-top:2px;">—</span><span><strong class="text-white font-medium">Détails au pinceau</strong> — logos, calandres, joints, trappe.</span></li>
+                    <li class="flex gap-3 text-sm" style="color:#A8A29E;"><span style="color:#A8884A; margin-top:2px;">—</span><span><strong class="text-white font-medium">Séchage sécurisé</strong> — microfibres haute densité ou air pulsé.</span></li>
+                    <li class="flex gap-3 text-sm" style="color:#A8A29E;"><span style="color:#A8884A; margin-top:2px;">—</span><span><strong class="text-white font-medium">Dressing pneus</strong> — effet noir satiné durable.</span></li>
                 </ul>
             </div>
+        </div>
+
+        <!-- Eco badge -->
+        <div class="mt-6 reveal stagger-2 flex items-center gap-3 px-5 py-3 w-fit mx-auto"
+             style="background:rgba(34,197,94,0.05); border:1px solid rgba(34,197,94,0.15); border-radius:2px;">
+            <i class="fa-solid fa-leaf text-xs" style="color:#4ade80;"></i>
+            <span class="text-xs font-medium tracking-wider uppercase" style="color:#4ade80;">Matériel 100 % électrique & silencieux — accès eau & prise requis</span>
         </div>
     </section>
 
     <!-- Pourquoi nous choisir -->
-    <section class="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-16 reveal">
-            <h2 class="text-2xl md:text-5xl font-bold mb-4 text-white uppercase tracking-tighter">Pourquoi nous choisir ?</h2>
-            <div class="h-1 w-20 bg-action mx-auto mb-6 rounded-full line-grow"></div>
-            <p class="text-slate-400">L'excellence du detailing au service de votre sérénité.</p>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div class="p-8 bg-secondary/30 rounded-2xl border border-secondary hover:border-action/20 ui-transition text-center group card-hover-lift reveal stagger-1 icon-hover-spin">
-                <div class="w-16 h-16 rounded-full bg-action/10 flex items-center justify-center text-action text-2xl mx-auto mb-6 group-hover:scale-110 ui-transition">
-                    <i class="fa-solid fa-toolbox"></i>
-                </div>
-                <h3 class="text-lg font-bold text-white mb-3">Matériel Professionnel</h3>
-                <p class="text-sm text-slate-400 leading-relaxed">Injecteur-extracteur HD, Snow Foam Gun et brosses spécifiques pour chaque surface.</p>
+    <section class="py-24" style="border-top:1px solid rgba(255,255,255,0.04);">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="text-center mb-16 reveal">
+                <p class="text-xs font-semibold tracking-[0.2em] uppercase mb-4" style="color:#A8884A;">Notre différence</p>
+                <h2 class="font-serif text-4xl md:text-5xl font-semibold text-white">Pourquoi nous choisir ?</h2>
+                <div class="line-grow h-px mx-auto mt-6" style="background:#A8884A;"></div>
             </div>
 
-            <div class="p-8 bg-secondary/30 rounded-2xl border border-secondary hover:border-action/20 ui-transition text-center group card-hover-lift reveal stagger-2 icon-hover-spin">
-                <div class="w-16 h-16 rounded-full bg-action/10 flex items-center justify-center text-action text-2xl mx-auto mb-6 group-hover:scale-110 ui-transition">
-                    <i class="fa-solid fa-leaf"></i>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px" style="background:rgba(255,255,255,0.04);">
+                <div class="p-8 card-hover-lift reveal stagger-1" style="background:#09090B;">
+                    <i class="fa-solid fa-toolbox mb-5 text-lg" style="color:#A8884A;"></i>
+                    <h3 class="font-semibold text-white mb-2">Matériel Professionnel</h3>
+                    <p class="text-sm leading-relaxed" style="color:#57534E;">Injecteur-extracteur HD, Snow Foam Gun et brosses spécifiques pour chaque surface.</p>
                 </div>
-                <h3 class="text-lg font-bold text-white mb-3">Eco-Responsable & Silencieux</h3>
-                <p class="text-sm text-slate-400 leading-relaxed">Matériel 100% électrique pour zéro pollution sonore ou thermique. (Accès prise & eau requis).</p>
-            </div>
-
-            <div class="p-8 bg-secondary/30 rounded-2xl border border-secondary hover:border-action/20 ui-transition text-center group card-hover-lift reveal stagger-3 icon-hover-spin">
-                <div class="w-16 h-16 rounded-full bg-action/10 flex items-center justify-center text-action text-2xl mx-auto mb-6 group-hover:scale-110 ui-transition">
-                    <i class="fa-solid fa-clock"></i>
+                <div class="p-8 card-hover-lift reveal stagger-2" style="background:#09090B;">
+                    <i class="fa-solid fa-leaf mb-5 text-lg" style="color:#A8884A;"></i>
+                    <h3 class="font-semibold text-white mb-2">Éco-Responsable</h3>
+                    <p class="text-sm leading-relaxed" style="color:#57534E;">Matériel 100 % électrique, zéro bruit, zéro pollution thermique.</p>
                 </div>
-                <h3 class="text-lg font-bold text-white mb-3">Gain de Temps Total</h3>
-                <p class="text-sm text-slate-400 leading-relaxed">Intervention à domicile ou sur votre lieu de travail. On s'adapte à votre emploi du temps.</p>
-            </div>
-
-            <div class="p-8 bg-secondary/30 rounded-2xl border border-secondary hover:border-action/20 ui-transition text-center group card-hover-lift reveal stagger-4 icon-hover-spin">
-                <div class="w-16 h-16 rounded-full bg-action/10 flex items-center justify-center text-action text-2xl mx-auto mb-6 group-hover:scale-110 ui-transition">
-                    <i class="fa-solid fa-shield-heart"></i>
+                <div class="p-8 card-hover-lift reveal stagger-3" style="background:#09090B;">
+                    <i class="fa-solid fa-clock mb-5 text-lg" style="color:#A8884A;"></i>
+                    <h3 class="font-semibold text-white mb-2">Gain de Temps</h3>
+                    <p class="text-sm leading-relaxed" style="color:#57534E;">Domicile, bureau ou parking. On s'adapte entièrement à votre agenda.</p>
                 </div>
-                <h3 class="text-lg font-bold text-white mb-3">Produits Sécurisés</h3>
-                <p class="text-sm text-slate-400 leading-relaxed">Utilisation exclusive de produits biodégradables et au pH neutre pour vos matériaux.</p>
-            </div>
-
-            <div class="p-8 bg-secondary/30 rounded-2xl border border-secondary hover:border-action/20 ui-transition text-center group card-hover-lift reveal stagger-5 icon-hover-spin lg:col-start-2 lg:col-span-2">
-                <div class="w-16 h-16 rounded-full bg-action/10 flex items-center justify-center text-action text-2xl mx-auto mb-6 group-hover:scale-110 ui-transition">
-                    <i class="fa-solid fa-eye"></i>
+                <div class="p-8 card-hover-lift reveal stagger-4" style="background:#09090B;">
+                    <i class="fa-solid fa-shield-heart mb-5 text-lg" style="color:#A8884A;"></i>
+                    <h3 class="font-semibold text-white mb-2">Produits Sécurisés</h3>
+                    <p class="text-sm leading-relaxed" style="color:#57534E;">Produits biodégradables et pH neutre, respectueux de vos matériaux.</p>
                 </div>
-                <h3 class="text-lg font-bold text-white mb-3">Rigueur & Discrétion</h3>
-                <p class="text-sm text-slate-400 leading-relaxed">Une attention absolue aux moindres détails dans le respect total de votre vie privée.</p>
+                <div class="p-8 card-hover-lift reveal stagger-5 md:col-span-2 lg:col-span-2" style="background:#09090B;">
+                    <i class="fa-solid fa-eye mb-5 text-lg" style="color:#A8884A;"></i>
+                    <h3 class="font-semibold text-white mb-2">Rigueur & Discrétion</h3>
+                    <p class="text-sm leading-relaxed" style="color:#57534E;">Attention absolue aux détails, dans le respect total de votre espace et de votre vie privée.</p>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Processus -->
-    <section class="py-28 max-w-5xl mx-auto px-4 sm:px-6 text-center">
-        <h2 class="text-3xl md:text-5xl font-bold mb-16 text-white reveal">Un processus simple et transparent</h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-            <div class="flex flex-col items-center reveal stagger-1">
-                <div class="w-16 h-16 rounded-full bg-action/10 text-action flex items-center justify-center text-xl mx-auto mb-5 font-bold border border-action/30 float-slow" data-count="1" data-suffix="">01</div>
-                <h4 class="text-lg font-bold mb-2 text-white">Sélectionnez</h4>
-                <p class="text-slate-400 text-sm">Choisissez votre prestation et la taille de votre véhicule sur notre simulateur.</p>
+    <section class="py-24 max-w-4xl mx-auto px-6 text-center">
+        <div class="reveal mb-16">
+            <p class="text-xs font-semibold tracking-[0.2em] uppercase mb-4" style="color:#A8884A;">Simple & transparent</p>
+            <h2 class="font-serif text-4xl md:text-5xl font-semibold text-white">En 3 étapes</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+            <div class="reveal stagger-1">
+                <div class="text-4xl font-serif font-semibold mb-4" style="color:rgba(168,136,74,0.25);">01</div>
+                <h4 class="font-semibold text-white mb-2">Sélectionnez</h4>
+                <p class="text-sm leading-relaxed" style="color:#57534E;">Estimez votre prestation en ligne selon votre véhicule.</p>
             </div>
-            <div class="flex flex-col items-center reveal stagger-2">
-                <div class="w-16 h-16 rounded-full bg-action/10 text-action flex items-center justify-center text-xl mx-auto mb-5 font-bold border border-action/30 float-slow" style="animation-delay: 0.4s;">02</div>
-                <h4 class="text-lg font-bold mb-2 text-white">Réservez</h4>
-                <p class="text-slate-400 text-sm">Envoyez-nous un message via WhatsApp en 1 clic pour fixer une date.</p>
+            <div class="reveal stagger-2">
+                <div class="text-4xl font-serif font-semibold mb-4" style="color:rgba(168,136,74,0.25);">02</div>
+                <h4 class="font-semibold text-white mb-2">Réservez</h4>
+                <p class="text-sm leading-relaxed" style="color:#57534E;">Contactez-nous via WhatsApp en un clic pour fixer la date.</p>
             </div>
-            <div class="flex flex-col items-center reveal stagger-3">
-                <div class="w-16 h-16 rounded-full bg-action/10 text-action flex items-center justify-center text-xl mx-auto mb-5 font-bold border border-action/30 float-slow" style="animation-delay: 0.8s;">03</div>
-                <h4 class="text-lg font-bold mb-2 text-white">Profitez</h4>
-                <p class="text-slate-400 text-sm">Retrouvez votre voiture dans un état irréprochable, comme neuve.</p>
+            <div class="reveal stagger-3">
+                <div class="text-4xl font-serif font-semibold mb-4" style="color:rgba(168,136,74,0.25);">03</div>
+                <h4 class="font-semibold text-white mb-2">Profitez</h4>
+                <p class="text-sm leading-relaxed" style="color:#57534E;">Votre voiture retrouve son éclat. Résultat garanti.</p>
             </div>
         </div>
-        <div class="mt-16 reveal stagger-4">
-            <a href="services.html" class="inline-block bg-secondary border border-action/50 text-action px-8 py-3 rounded-full font-bold ui-transition hover:bg-action hover:text-primary hover:border-action glow-pulse">
-                Démarrer la simulation
+
+        <div class="mt-14 reveal stagger-4">
+            <a href="services.html"
+               class="inline-flex items-center gap-3 px-8 py-3 text-xs font-bold tracking-[0.12em] uppercase ui-transition"
+               style="border:1px solid rgba(168,136,74,0.3); color:#A8884A; border-radius:2px;">
+                Démarrer l'estimation
+                <i class="fa-solid fa-arrow-right text-xs"></i>
             </a>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="border-t border-secondary mt-10 reveal">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col md:flex-row justify-between items-center gap-6">
-            <div class="text-slate-500 text-sm">
-                © <script>document.write(new Date().getFullYear())</script> Continental Detailing. Tous droits réservés.
+    <footer style="border-top:1px solid rgba(255,255,255,0.05);">
+        <div class="max-w-5xl mx-auto px-6 py-8 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="text-xs" style="color:#3F3F46;">
+                © <script>document.write(new Date().getFullYear())</script> Continental Detailing — Tous droits réservés.
             </div>
             <div class="flex gap-6 items-center">
-                <a href="mailto:continental.detailing.idf@gmail.com" class="text-slate-500 hover:text-action ui-transition text-xl"><i class="fa-regular fa-envelope"></i></a>
-                <a href="https://www.instagram.com/continental.detailing.idf/" target="_blank" class="text-slate-500 hover:text-action ui-transition text-xl"><i class="fa-brands fa-instagram"></i></a>
+                <a href="mailto:continental.detailing.idf@gmail.com" class="ui-transition text-lg" style="color:#3F3F46;" onmouseover="this.style.color='#A8884A'" onmouseout="this.style.color='#3F3F46'">
+                    <i class="fa-regular fa-envelope"></i>
+                </a>
+                <a href="https://www.instagram.com/continental.detailing.idf/" target="_blank" class="ui-transition text-lg" style="color:#3F3F46;" onmouseover="this.style.color='#A8884A'" onmouseout="this.style.color='#3F3F46'">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
             </div>
         </div>
     </footer>
 
-    <!-- Motion Design Engine -->
     <script src="js/motion.js"></script>
 
 </body>

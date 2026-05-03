@@ -1,54 +1,67 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600&display=swap');
 
 :root {
-    --bg-primary: #0F172A;
-    --bg-secondary: #1E293B;
-    --color-action: #C9A84C;
-    --color-action-hover: #DFC068;
-    --text-primary: #F8FAFC;
-    --text-secondary: #94A3B8;
-    --border-color: #1E293B;
+    /* Core palette — Luxury Showroom */
+    --bg-primary:       #09090B;   /* Noir pur */
+    --bg-secondary:     #111117;   /* Charcoal */
+    --bg-card:          #16161C;   /* Card surface */
+    --color-action:     #A8884A;   /* Or mat sophistiqué */
+    --color-action-lt:  #C4A55D;   /* Or hover */
+    --color-action-dim: rgba(168, 136, 74, 0.12);
+    --text-primary:     #EDE8DF;   /* Blanc chaud */
+    --text-secondary:   #6B7280;   /* Gris neutre */
+    --text-muted:       #3F3F46;   /* Gris très discret */
+    --border-subtle:    rgba(168, 136, 74, 0.10);
+    --border-card:      rgba(255, 255, 255, 0.05);
+    --gold-glow:        rgba(168, 136, 74, 0.15);
 }
+
+* { box-sizing: border-box; }
 
 body {
     background-color: var(--bg-primary);
     color: var(--text-primary);
     font-family: 'Inter', sans-serif;
     line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
 }
 
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--bg-primary); }
+::-webkit-scrollbar-thumb { background: var(--color-action); border-radius: 2px; }
+
+/* ── Cards ── */
 .card-detailing {
-    background-color: var(--bg-secondary);
-    border: 1px solid var(--border-color);
-    border-radius: 12px;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-card);
+    border-radius: 16px;
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* ── Buttons ── */
 .btn-primary {
-    background-color: var(--color-action);
-    color: var(--bg-primary);
-    border-radius: 9999px;
+    background: transparent;
+    color: var(--color-action);
+    border: 1px solid var(--color-action);
+    border-radius: 6px;
     font-weight: 600;
-    transition: all 0.3s ease;
+    letter-spacing: 0.04em;
+    transition: all 0.25s ease;
 }
 
 .btn-primary:hover {
-    background-color: var(--color-action-hover);
-    transform: translateY(-2px);
-    box-shadow: 0 10px 25px -5px rgba(201, 168, 76, 0.4);
+    background: var(--color-action);
+    color: var(--bg-primary);
+    box-shadow: 0 0 20px rgba(168, 136, 74, 0.25);
 }
 
-.img-car {
-    border: 1px solid var(--border-color);
-    border-radius: 12px;
-}
-
-/* Custom transitions */
+/* ── Transitions ── */
 .ui-transition {
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Logo navigation */
+/* ── Logo ── */
 .logo-link {
     text-decoration: none;
     display: inline-flex;
@@ -64,272 +77,161 @@ body {
 }
 
 .logo-link:hover .main-logo {
-    transform: scale(1.05);
-    filter: brightness(1.2);
+    transform: scale(1.03);
+    filter: brightness(1.15);
 }
 
-/* =========================================
-   MOTION DESIGN — Scroll Animations
-   ========================================= */
+/* ═══════════════════════════════════════
+   AMBIENT LIGHTING — Showroom style
+   ═══════════════════════════════════════ */
 
-/* --- Base: Hidden state before animation --- */
+/* Spot droit — chaud/or */
+.ambient-spot-right {
+    position: fixed;
+    top: -200px;
+    right: -100px;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(ellipse at center, rgba(168,136,74,0.06) 0%, transparent 65%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Spot gauche — très discret */
+.ambient-spot-left {
+    position: fixed;
+    top: 100px;
+    left: -150px;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(ellipse at center, rgba(255,255,255,0.02) 0%, transparent 65%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* ═══════════════════════════════════════
+   MOTION DESIGN — Scroll Animations
+   ═══════════════════════════════════════ */
+
 .reveal {
     opacity: 0;
-    transform: translateY(40px);
+    transform: translateY(32px);
     transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
                 transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
+.reveal.revealed { opacity: 1; transform: translateY(0); }
 
-.reveal.revealed {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* --- Direction variants --- */
 .reveal-left {
     opacity: 0;
-    transform: translateX(-60px);
+    transform: translateX(-50px);
     transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
                 transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
-
 .reveal-right {
     opacity: 0;
-    transform: translateX(60px);
+    transform: translateX(50px);
     transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
                 transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
+.reveal-left.revealed, .reveal-right.revealed { opacity: 1; transform: translateX(0); }
 
-.reveal-left.revealed,
-.reveal-right.revealed {
-    opacity: 1;
-    transform: translateX(0);
-}
-
-/* --- Scale variant --- */
 .reveal-scale {
     opacity: 0;
-    transform: scale(0.85);
+    transform: scale(0.92);
     transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
                 transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
 }
+.reveal-scale.revealed { opacity: 1; transform: scale(1); }
 
-.reveal-scale.revealed {
-    opacity: 1;
-    transform: scale(1);
-}
+.stagger-1 { transition-delay: 0.08s; }
+.stagger-2 { transition-delay: 0.16s; }
+.stagger-3 { transition-delay: 0.24s; }
+.stagger-4 { transition-delay: 0.32s; }
+.stagger-5 { transition-delay: 0.40s; }
+.stagger-6 { transition-delay: 0.48s; }
 
-/* --- Stagger delays for grouped elements --- */
-.stagger-1 { transition-delay: 0.1s; }
-.stagger-2 { transition-delay: 0.2s; }
-.stagger-3 { transition-delay: 0.3s; }
-.stagger-4 { transition-delay: 0.4s; }
-.stagger-5 { transition-delay: 0.5s; }
-.stagger-6 { transition-delay: 0.6s; }
-
-/* =========================================
-   MOTION DESIGN — Hero Entrance
-   ========================================= */
-
+/* ═══════════════════════════════════════
+   HERO entrance
+   ═══════════════════════════════════════ */
 .hero-badge {
     opacity: 0;
-    transform: translateY(20px) scale(0.9);
-    animation: heroFadeIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+    transform: translateY(16px);
+    animation: heroin 0.7s cubic-bezier(0.16,1,0.3,1) 0.3s forwards;
 }
-
 .hero-title {
     opacity: 0;
-    transform: translateY(30px);
-    animation: heroFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards;
+    transform: translateY(24px);
+    animation: heroin 0.8s cubic-bezier(0.16,1,0.3,1) 0.5s forwards;
 }
-
 .hero-subtitle {
     opacity: 0;
-    transform: translateY(30px);
-    animation: heroFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.7s forwards;
+    transform: translateY(24px);
+    animation: heroin 0.8s cubic-bezier(0.16,1,0.3,1) 0.7s forwards;
 }
-
 .hero-cta {
     opacity: 0;
-    transform: translateY(30px) scale(0.95);
-    animation: heroFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.9s forwards;
+    transform: translateY(24px);
+    animation: heroin 0.8s cubic-bezier(0.16,1,0.3,1) 0.9s forwards;
+}
+@keyframes heroin { to { opacity: 1; transform: translateY(0); } }
+
+/* ═══════════════════════════════════════
+   PARALLAX
+   ═══════════════════════════════════════ */
+.parallax-bg { will-change: transform; }
+
+/* ═══════════════════════════════════════
+   SHIMMER — Subtle gold shimmer on text
+   ═══════════════════════════════════════ */
+.shimmer-text {
+    background-size: 300% auto;
+    animation: shimmer 6s linear infinite;
+}
+@keyframes shimmer {
+    0%   { background-position: 0% center; }
+    100% { background-position: 300% center; }
 }
 
-@keyframes heroFadeIn {
-    to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
+/* ═══════════════════════════════════════
+   LINE GROW
+   ═══════════════════════════════════════ */
+.line-grow { width: 0; transition: width 1.2s cubic-bezier(0.16,1,0.3,1); }
+.line-grow.revealed { width: 48px; }
+
+/* ═══════════════════════════════════════
+   CARD HOVER
+   ═══════════════════════════════════════ */
+.card-hover-lift {
+    transition: transform 0.4s cubic-bezier(0.34,1.2,0.64,1),
+                box-shadow 0.4s ease,
+                border-color 0.35s ease;
+}
+.card-hover-lift:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 24px 48px -12px rgba(0,0,0,0.5), 0 0 0 1px rgba(168,136,74,0.15);
 }
 
-/* =========================================
-   MOTION DESIGN — Parallax
-   ========================================= */
+/* ═══════════════════════════════════════
+   NAV AUTO-HIDE
+   ═══════════════════════════════════════ */
+nav { transition: transform 0.35s cubic-bezier(0.4,0,0.2,1), background-color 0.35s ease; }
+.nav-hidden { transform: translateY(-100%); }
 
-.parallax-bg {
-    will-change: transform;
-    transition: transform 0.1s linear;
-}
-
-/* =========================================
-   MOTION DESIGN — Glow Pulse on CTA buttons
-   ========================================= */
-
-.glow-pulse {
-    position: relative;
-    overflow: visible;
-}
-
-.glow-pulse::after {
-    content: '';
-    position: absolute;
-    inset: -2px;
-    border-radius: inherit;
-    background: linear-gradient(135deg, #DFC068, #C9A84C);
-    z-index: -1;
-    opacity: 0;
-    filter: blur(15px);
-    animation: glowPulse 3s ease-in-out infinite;
-}
-
-@keyframes glowPulse {
-    0%, 100% { opacity: 0; }
-    50% { opacity: 0.5; }
-}
-
-/* =========================================
-   MOTION DESIGN — Floating elements
-   ========================================= */
-
-.float-slow {
-    animation: floatSlow 6s ease-in-out infinite;
-}
-
-.float-medium {
-    animation: floatMedium 4s ease-in-out infinite;
-}
-
+/* ═══════════════════════════════════════
+   FLOATING ICON
+   ═══════════════════════════════════════ */
+.float-slow { animation: floatSlow 7s ease-in-out infinite; }
 @keyframes floatSlow {
     0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-12px); }
+    50%       { transform: translateY(-8px); }
 }
 
-@keyframes floatMedium {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-8px); }
-}
-
-/* =========================================
-   MOTION DESIGN — Animated divider line
-   ========================================= */
-
-.line-grow {
-    width: 0;
-    transition: width 1s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.line-grow.revealed {
-    width: 80px;
-}
-
-/* =========================================
-   MOTION DESIGN — Shimmer effect on gradient text
-   ========================================= */
-
-.shimmer-text {
-    background-size: 200% auto;
-    animation: shimmer 4s linear infinite;
-}
-
-@keyframes shimmer {
-    0% { background-position: 0% center; }
-    100% { background-position: 200% center; }
-}
-
-/* =========================================
-   MOTION DESIGN — Counter animation
-   ========================================= */
-
-.counter-value {
-    display: inline-block;
-    font-variant-numeric: tabular-nums;
-}
-
-/* =========================================
-   MOTION DESIGN — Navbar hide/show on scroll
-   ========================================= */
-
-.nav-hidden {
-    transform: translateY(-100%);
-}
-
-.nav-visible {
-    transform: translateY(0);
-}
-
-nav {
-    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
-                background-color 0.35s ease;
-}
-
-/* =========================================
-   MOTION DESIGN — Card hover lift
-   ========================================= */
-
-.card-hover-lift {
-    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
-                box-shadow 0.4s ease,
-                border-color 0.4s ease;
-}
-
-.card-hover-lift:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 20px 40px -10px rgba(201, 168, 76, 0.15);
-}
-
-/* =========================================
-   MOTION DESIGN — Icon spin on hover
-   ========================================= */
-
-.icon-hover-spin:hover i,
-.icon-hover-spin:hover .icon-target {
-    animation: iconSpin 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-@keyframes iconSpin {
-    0% { transform: scale(1) rotate(0deg); }
-    50% { transform: scale(1.2) rotate(-10deg); }
-    100% { transform: scale(1) rotate(0deg); }
-}
-
-/* =========================================
-   MOTION DESIGN — Gradient border animation
-   ========================================= */
-
-@keyframes borderGlow {
-    0%, 100% { border-color: rgba(201, 168, 76, 0.15); }
-    50% { border-color: rgba(201, 168, 76, 0.4); }
-}
-
-.border-glow-anim {
-    animation: borderGlow 4s ease-in-out infinite;
-}
-
-/* =========================================
-   Smooth scroll for all
-   ========================================= */
-
-@media (prefers-reduced-motion: no-preference) {
-    html {
-        scroll-behavior: smooth;
-    }
-}
-
-/* Disable all animations for users who prefer reduced motion */
+/* ═══════════════════════════════════════
+   ACCESSIBILITY
+   ═══════════════════════════════════════ */
 @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
         animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
     }
     .reveal, .reveal-left, .reveal-right, .reveal-scale {
