@@ -10,6 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/showcase.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -192,6 +193,10 @@
 
         <!-- Simulator Particulier -->
         <div x-show="clientType === 'particulier'" x-transition>
+
+            <!-- 🚗 3D Car Showcase -->
+            <div id="car-showcase-container" class="mb-10" x-show="!isUtilitaire"></div>
+
             <!-- 01. Vehicule -->
             <section class="mb-14">
                 <div class="flex items-center justify-between mb-8">
@@ -206,7 +211,7 @@
                 
                 <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
                     <template x-for="(data, key) in tarifs" :key="key">
-                        <button @click="vehicule = key" 
+                        <button @click="vehicule = key; $nextTick(() => window.showcaseSwitchCar && window.showcaseSwitchCar(key))" 
                                 :class="vehicule === key ? 'bg-action border-action shadow-[0_10px_25px_-5px_rgba(201,168,76,0.4)]' : 'bg-secondary/40 border-secondary hover:border-action/30'"
                                 class="flex flex-col items-center p-5 rounded-xl border-2 ui-transition group">
                             <div :class="vehicule === key ? 'bg-primary/20 text-primary' : 'bg-action/10 text-action'"
@@ -220,7 +225,7 @@
                             <span class="font-bold text-xs" :class="vehicule === key ? 'text-primary' : 'text-white'" x-text="data.nom"></span>
                         </button>
                     </template>
-                    <button @click="vehicule = 'util'" 
+                    <button @click="vehicule = 'util'; $nextTick(() => window.showcaseSwitchCar && window.showcaseSwitchCar('util'))" 
                             :class="vehicule === 'util' ? 'bg-action border-action shadow-[0_10px_25px_-5px_rgba(201,168,76,0.4)]' : 'bg-secondary/40 border-secondary hover:border-action/30'"
                             class="flex flex-col items-center p-5 rounded-xl border-2 ui-transition text-center">
                         <div :class="vehicule === 'util' ? 'bg-primary/20 text-primary' : 'bg-action/10 text-action'"
@@ -492,6 +497,16 @@
         </div>
 
     </main>
+
+    <script src="js/showcase.js"></script>
+    <script>
+        // Auto-trigger citadine on load
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                if (window.showcaseSwitchCar) window.showcaseSwitchCar('citadine');
+            }, 400);
+        });
+    </script>
 
 </body>
 </html>
