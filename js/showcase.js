@@ -235,7 +235,7 @@
     function updatePrices(carKey) {
         const t = TARIFS[carKey];
         if (!t) return;
-        const fmt = (v) => v ? v + '€' : 'Devis';
+        const fmt = (v) => (v !== null && v !== undefined) ? v + '\u20ac' : 'Devis';
         document.getElementById('price-ext').textContent = fmt(t.ext);
         document.getElementById('price-int').textContent = fmt(t.int);
         document.getElementById('price-complet').textContent = fmt(t.complet);
@@ -247,8 +247,12 @@
         const t = TARIFS[carKey];
         const el = document.getElementById('price-display');
         if (!el) return;
-        if (!t || !t[formule]) { el.innerHTML = 'Devis <span></span>'; return; }
-        el.innerHTML = `${t[formule]} <span>€ TTC</span>`;
+        const val = t && t[formule];
+        if (val === null || val === undefined || !val) {
+            el.innerHTML = 'Sur devis';
+            return;
+        }
+        el.innerHTML = `${val} <span>\u20ac TTC</span>`;
     }
 
     function updateEconomy(carKey, formule) {
