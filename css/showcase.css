@@ -1,24 +1,108 @@
-/* ===== SHOWCASE 3D — Continental Detailing ===== */
+/* ═══════════════════════════════════════════════════
+   SHOWCASE — Continental Detailing  v3
+   Layout: stacked (vehicle nav top → stage → panel)
+   ═══════════════════════════════════════════════════ */
 
-/* Wrapper layout */
+/* ── Wrapper: full-width vertical layout ── */
 .showcase-wrapper {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0;
-    min-height: 500px;
-    border-radius: 24px;
+    width: 100%;
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 8px;
     overflow: hidden;
-    border: 1px solid rgba(168,136,74,0.2);
-    background: linear-gradient(135deg, #0a0b0e 0%, #09090B 50%, #0a0b0e 100%);
-    box-shadow: 0 40px 80px -20px rgba(0,0,0,0.7), 0 0 0 1px rgba(168,136,74,0.1);
-    margin-bottom: 2rem;
+    background: #0D0D10;
+    box-shadow: 0 32px 64px -16px rgba(0,0,0,0.6);
+    margin-bottom: 2.5rem;
+}
+
+/* ══════════════════════════════════════════
+   1. VEHICLE NAV BAR  (top strip)
+   ══════════════════════════════════════════ */
+.vehicle-nav {
+    display: flex;
+    align-items: stretch;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.vehicle-nav::-webkit-scrollbar { display: none; }
+
+.veh-tab {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    padding: 14px 20px;
+    border: none;
+    border-right: 1px solid rgba(255,255,255,0.05);
+    background: transparent;
+    color: #5A5650;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+    flex: 1;
+    min-width: 80px;
+    position: relative;
+}
+
+.veh-tab:last-child { border-right: none; }
+
+.veh-tab i {
+    font-size: 1.1rem;
+    color: #3F3D38;
+    transition: color 0.2s ease;
+}
+
+.veh-tab .veh-devis {
+    font-size: 0.55rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: #A8884A;
+    text-transform: uppercase;
+}
+
+.veh-tab:hover {
+    background: rgba(255,255,255,0.03);
+    color: #A8A29E;
+}
+.veh-tab:hover i { color: #7A7570; }
+
+/* Active tab */
+.veh-tab.active {
+    background: rgba(168,136,74,0.07);
+    color: #C4A55D;
+}
+.veh-tab.active i { color: #A8884A; }
+.veh-tab.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 10%;
+    right: 10%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #A8884A, transparent);
+    border-radius: 1px;
+}
+
+/* ══════════════════════════════════════════
+   2. STAGE + PANEL — two-column row
+   ══════════════════════════════════════════ */
+.showcase-body {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    min-height: 380px;
 }
 
 @media (max-width: 768px) {
-    .showcase-wrapper { grid-template-columns: 1fr; }
+    .showcase-body { grid-template-columns: 1fr; }
 }
 
-/* ---- LEFT: Car Stage ---- */
+/* ── LEFT: Car Stage ── */
 .car-stage {
     position: relative;
     display: flex;
@@ -27,54 +111,38 @@
     justify-content: center;
     padding: 2rem 1.5rem 1.5rem;
     overflow: hidden;
-    min-height: 420px;
-    background: radial-gradient(ellipse at 50% 60%, rgba(168,136,74,0.04) 0%, transparent 70%);
+    background: radial-gradient(ellipse at 50% 50%, rgba(168,136,74,0.05) 0%, transparent 70%);
+    border-right: 1px solid rgba(255,255,255,0.05);
 }
 
 .stage-bg {
     position: absolute;
     inset: 0;
     background:
-        radial-gradient(ellipse at 30% 20%, rgba(43,94,167,0.08) 0%, transparent 50%),
-        radial-gradient(ellipse at 70% 80%, rgba(168,136,74,0.06) 0%, transparent 50%);
-}
-
-/* Marble texture lines */
-.stage-bg::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image:
-        linear-gradient(135deg, transparent 40%, rgba(168,136,74,0.02) 50%, transparent 60%),
-        linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.01) 50%, transparent 70%);
-    background-size: 200px 200px, 300px 300px;
+        radial-gradient(ellipse at 30% 10%, rgba(100,80,200,0.04) 0%, transparent 55%),
+        radial-gradient(ellipse at 70% 90%, rgba(168,136,74,0.04) 0%, transparent 55%);
 }
 
 .spotlight {
     position: absolute;
-    width: 300px;
-    height: 300px;
+    width: 280px;
+    height: 280px;
     border-radius: 50%;
     pointer-events: none;
 }
-
 .spotlight-1 {
-    top: -100px;
-    left: 20%;
-    background: radial-gradient(ellipse, rgba(168,136,74,0.12) 0%, transparent 70%);
-    animation: spotPulse 4s ease-in-out infinite;
+    top: -100px; left: 15%;
+    background: radial-gradient(ellipse, rgba(168,136,74,0.1) 0%, transparent 65%);
+    animation: spotPulse 5s ease-in-out infinite;
 }
-
 .spotlight-2 {
-    top: -80px;
-    right: 10%;
-    background: radial-gradient(ellipse, rgba(43,94,167,0.08) 0%, transparent 70%);
-    animation: spotPulse 4s ease-in-out infinite 2s;
+    top: -80px; right: 10%;
+    background: radial-gradient(ellipse, rgba(100,80,200,0.05) 0%, transparent 65%);
+    animation: spotPulse 5s ease-in-out infinite 2.5s;
 }
-
 @keyframes spotPulse {
     0%, 100% { opacity: 0.5; transform: scale(1); }
-    50% { opacity: 1; transform: scale(1.15); }
+    50% { opacity: 1; transform: scale(1.1); }
 }
 
 .car-platform {
@@ -84,147 +152,77 @@
     align-items: center;
     justify-content: center;
     z-index: 2;
+    flex: 1;
 }
 
 .car-image-wrap {
     position: relative;
     width: 100%;
-    max-width: 420px;
-    transition: transform 0.4s cubic-bezier(0.16,1,0.3,1), opacity 0.35s ease;
+    max-width: 400px;
+    transition: transform 0.45s cubic-bezier(0.16,1,0.3,1), opacity 0.3s ease;
     transform-style: preserve-3d;
-    cursor: pointer;
-    filter: drop-shadow(0 20px 40px rgba(0,0,0,0.5));
+    filter: drop-shadow(0 16px 32px rgba(0,0,0,0.55));
 }
 
 .showcase-car-img {
     width: 100%;
     height: auto;
     display: block;
-    border-radius: 12px;
-    animation: carFloat 6s ease-in-out infinite;
+    border-radius: 8px;
+    animation: carFloat 7s ease-in-out infinite;
 }
 
 @keyframes carFloat {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-8px); }
 }
 
 .car-reflection {
     position: absolute;
-    bottom: -30px;
-    left: 10%;
-    right: 10%;
-    height: 30px;
-    background: radial-gradient(ellipse, rgba(168,136,74,0.2) 0%, transparent 70%);
-    filter: blur(8px);
+    bottom: -24px; left: 10%; right: 10%;
+    height: 24px;
+    background: radial-gradient(ellipse, rgba(168,136,74,0.18) 0%, transparent 70%);
+    filter: blur(6px);
     border-radius: 50%;
 }
 
 .car-glow {
     position: absolute;
-    bottom: -20px;
-    left: 20%;
-    right: 20%;
-    height: 2px;
-    border-radius: 50%;
+    bottom: -18px; left: 20%; right: 20%;
+    height: 1px;
     transition: box-shadow 0.5s ease;
 }
 
 .platform-ring {
     position: absolute;
-    bottom: -40px;
-    left: 50%;
+    bottom: -36px; left: 50%;
     transform: translateX(-50%);
-    width: 80%;
-    height: 20px;
-    background: transparent;
+    width: 70%; height: 16px;
     border-radius: 50%;
-    box-shadow: 0 0 40px 5px rgba(168,136,74,0.1);
+    box-shadow: 0 0 32px 4px rgba(168,136,74,0.08);
 }
 
 .car-label-wrap {
     text-align: center;
-    margin-top: 0.75rem;
+    padding-bottom: 0.5rem;
     z-index: 2;
-    transition: all 0.4s ease;
 }
 
 .car-label-name {
-    font-size: 1.25rem;
+    font-size: 1.1rem;
     font-weight: 700;
     color: #EDE8DF;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
+    font-family: 'Playfair Display', serif;
 }
 
 .car-label-sub {
     font-size: 0.7rem;
-    color: #8A8480;
-    margin-top: 0.2rem;
-    letter-spacing: 0.04em;
+    color: #7A7570;
+    margin-top: 2px;
+    letter-spacing: 0.05em;
 }
-
-/* ── VEHICLE SELECTOR ── */
-.vehicle-selector {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.4rem;
-    justify-content: center;
-    padding: 0.75rem 1rem 1rem;
-    z-index: 3;
-    width: 100%;
-}
-
-.veh-btn {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.3rem;
-    padding: 0.5rem 0.6rem;
-    border-radius: 6px;
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.08);
-    color: #8A8480;
-    font-size: 0.65rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.22s ease;
-    min-width: 56px;
-    flex: 1;
-    max-width: 80px;
-    letter-spacing: 0.03em;
-    text-transform: uppercase;
-}
-
-.veh-btn i {
-    font-size: 1rem;
-    color: #6B6560;
-    transition: color 0.22s ease;
-}
-
-.veh-btn em {
-    font-style: normal;
-    font-size: 0.55rem;
-    color: #A8884A;
-    margin-top: -2px;
-}
-
-.veh-btn:hover {
-    background: rgba(168,136,74,0.08);
-    border-color: rgba(168,136,74,0.3);
-    color: #C4A55D;
-}
-
-.veh-btn:hover i { color: #A8884A; }
-
-.veh-btn.active {
-    background: rgba(168,136,74,0.15);
-    border-color: rgba(168,136,74,0.6);
-    color: #C4A55D;
-    box-shadow: 0 0 12px rgba(168,136,74,0.15);
-}
-
-.veh-btn.active i { color: #A8884A; }
 
 .particle-canvas {
     position: absolute;
@@ -233,72 +231,85 @@
     z-index: 5;
 }
 
-/* ── SERVICES PANEL ── */
+/* ══════════════════════════════════════════
+   3. RIGHT: Services Panel
+   ══════════════════════════════════════════ */
 .services-panel {
     display: flex;
     flex-direction: column;
-    padding: 1.25rem 1.5rem;
-    border-left: 1px solid rgba(255,255,255,0.06);
-    background: rgba(20,20,26,0.5);
+    background: rgba(255,255,255,0.015);
 }
 
-.panel-eyebrow {
-    font-size: 0.65rem;
-    font-weight: 700;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: #A8884A;
-    margin-bottom: 0.75rem;
-}
-
-/* Formule tabs */
+/* Formule selector */
 .formule-tabs {
-    display: flex;
-    gap: 0.5rem;
-    margin-bottom: 1.25rem;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
 }
 
 .ftab {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 0.4rem;
-    padding: 0.5rem 0.85rem;
-    border-radius: 10px;
-    border: 1.5px solid rgba(168,136,74,0.2);
-    background: rgba(15,23,42,0.5);
-    color: #94A3B8;
-    font-size: 0.75rem;
-    font-weight: 700;
-    cursor: pointer;
-    transition: all 0.25s ease;
-    flex: 1;
     justify-content: center;
-    min-width: 80px;
+    gap: 4px;
+    padding: 14px 8px;
+    border: none;
+    border-right: 1px solid rgba(255,255,255,0.05);
+    background: transparent;
+    color: #5A5650;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+}
+.ftab:last-child { border-right: none; }
+
+.ftab i {
+    font-size: 1rem;
+    color: #3F3D38;
+    transition: color 0.2s ease;
 }
 
-.ftab:hover {
-    border-color: rgba(168,136,74,0.5);
-    color: #A8884A;
+.ftab-price {
+    font-size: 0.85rem;
+    font-weight: 800;
+    color: #7A7570;
+    font-family: 'Inter', sans-serif;
+    transition: color 0.2s ease;
 }
+
+.ftab:hover { background: rgba(255,255,255,0.02); color: #9A9490; }
+.ftab:hover i { color: #7A7570; }
+.ftab:hover .ftab-price { color: #9A9490; }
 
 .ftab.active {
-    background: linear-gradient(135deg, #C4A55D, #A8884A);
-    border-color: #A8884A;
-    color: #0F172A;
-    box-shadow: 0 4px 15px rgba(168,136,74,0.3);
+    background: rgba(168,136,74,0.08);
+    color: #C4A55D;
+}
+.ftab.active i { color: #A8884A; }
+.ftab.active .ftab-price { color: #C4A55D; }
+.ftab.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 10%; right: 10%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #A8884A, transparent);
 }
 
-.ftab-badge {
-    font-size: 0.7rem;
-    font-weight: 800;
-    padding: 0.1rem 0.4rem;
-    border-radius: 6px;
-    background: rgba(0,0,0,0.2);
-}
-
-.ftab.active .ftab-badge {
-    background: rgba(15,23,42,0.25);
+/* Badge "Recommandé" on formule complet */
+.ftab[data-f="complet"] .ftab-rec {
+    font-size: 0.5rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #A8884A;
+    border: 1px solid rgba(168,136,74,0.3);
+    padding: 1px 5px;
+    border-radius: 2px;
 }
 
 /* Services list */
@@ -306,10 +317,10 @@
     flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 2px;
+    padding: 0.75rem;
     overflow-y: auto;
-    padding-right: 0.25rem;
-    min-height: 250px;
+    min-height: 200px;
 }
 
 .services-empty {
@@ -318,71 +329,112 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    color: #475569;
+    color: #3F3D38;
     text-align: center;
     gap: 0.75rem;
+    padding: 2rem;
 }
-
-.services-empty i {
-    font-size: 2.5rem;
-    opacity: 0.3;
-}
-
-.services-empty p {
-    font-size: 0.875rem;
-    line-height: 1.6;
-}
+.services-empty i { font-size: 2rem; opacity: 0.4; }
+.services-empty p { font-size: 0.8rem; line-height: 1.6; }
 
 .service-item {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
-    padding: 0.6rem 0.85rem;
-    border-radius: 6px;
-    background: rgba(255,255,255,0.03);
-    border: 1px solid rgba(255,255,255,0.06);
-    color: #C8C4BE;
-    font-size: 0.8rem;
-    font-weight: 500;
+    gap: 0.6rem;
+    padding: 0.55rem 0.7rem;
+    border-radius: 4px;
+    color: #B8B4AE;
+    font-size: 0.78rem;
+    font-weight: 400;
     opacity: 0;
-    transform: translateX(16px);
-    transition: opacity 0.35s ease, transform 0.35s cubic-bezier(0.16,1,0.3,1), background 0.2s ease;
+    transform: translateX(12px);
+    transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.16,1,0.3,1), background 0.15s ease;
+    letter-spacing: 0.01em;
 }
 
-.service-item.visible {
-    opacity: 1;
-    transform: translateX(0);
-}
+.service-item.visible { opacity: 1; transform: translateX(0); }
 
 .service-item:hover {
-    background: rgba(168,136,74,0.08);
-    border-color: rgba(168,136,74,0.2);
-    color: #F8FAFC;
+    background: rgba(168,136,74,0.06);
+    color: #EDE8DF;
 }
 
 .service-item i {
     color: #A8884A;
-    font-size: 0.9rem;
+    font-size: 0.7rem;
     flex-shrink: 0;
+    opacity: 0.8;
 }
 
 /* Economy badge */
 .economy-badge {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 0.5rem;
-    margin-top: 1rem;
-    padding: 0.6rem 1rem;
-    border-radius: 10px;
-    background: rgba(34,197,94,0.08);
-    border: 1px solid rgba(34,197,94,0.2);
+    margin: 0 0.75rem 0.75rem;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    background: rgba(34,197,94,0.06);
+    border: 1px solid rgba(34,197,94,0.15);
     color: #4ade80;
-    font-size: 0.75rem;
-    font-weight: 700;
-    animation: economyPulse 3s ease-in-out infinite;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
 }
 
-@keyframes economyPulse {
-    0%, 100% { box-shadow: 0 0 0 0 rgba(34,197,94,0.1); }
-    50% { box-shadow: 0 0 0 4px rgba(34,197,94,0.05); }
+/* Panel price summary */
+.price-summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.85rem 0.75rem 0.75rem;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    margin-top: auto;
+}
+
+.price-label {
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #5A5650;
+}
+
+.price-value {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #EDE8DF;
+    font-family: 'Inter', sans-serif;
+    transition: all 0.3s ease;
+}
+
+.price-value span {
+    font-size: 0.85rem;
+    font-weight: 400;
+    color: #7A7570;
+    margin-left: 2px;
+}
+
+.price-cta {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1.2rem;
+    background: #A8884A;
+    color: #09090B;
+    border: none;
+    border-radius: 3px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-decoration: none;
+}
+.price-cta:hover {
+    background: #C4A55D;
+    transform: translateY(-1px);
+    box-shadow: 0 8px 20px rgba(168,136,74,0.25);
 }
