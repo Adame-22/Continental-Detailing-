@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
@@ -59,12 +59,13 @@
 
     <!-- Main Content -->
     <main class="relative z-10 pt-10 px-4 sm:px-6 max-w-4xl mx-auto pb-4"
-          @showcasecar.window="vehicule = $event.detail.key"
-          @showcaseformule.window="formule = $event.detail.f"
+          @showcasecar.window="vehicule = $event.detail.key; stepsDone = Math.max(stepsDone, 1)"
+          @showcaseformule.window="formule = $event.detail.f; stepsDone = Math.max(stepsDone, 2)"
           x-data="{ 
             clientType: 'particulier',
             vehicule: 'citadine',
             formule: 'complet',
+            stepsDone: 1,
             options: { poils: false, non_videe: false, cire: false },
             paiement: 'cb', 
             showGuide: false, 
@@ -193,27 +194,70 @@
             <!-- Barre de progression -->
             <div class="flex items-center justify-center mb-6 overflow-x-auto pb-1">
                 <div class="flex items-center gap-0 flex-shrink-0">
-                    <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-full" style="background:rgba(168,136,74,0.15);border:1px solid rgba(168,136,74,0.35);">
-                        <i class="fa-solid fa-car-side text-[9px]" style="color:#C4A55D;"></i>
-                        <span class="text-[9px] font-bold tracking-wider" style="color:#C4A55D;">VÉHICULE</span>
+
+                    <!-- Step 1: Véhicule -->
+                    <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-full transition-all duration-300"
+                         :style="stepsDone >= 1
+                             ? 'background:rgba(168,136,74,0.18);border:1px solid rgba(196,165,93,0.5);'
+                             : 'background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);'">
+                        <i class="text-[9px] transition-all duration-300"
+                           :class="stepsDone >= 1 ? 'fa-solid fa-check' : 'fa-solid fa-car-side'"
+                           :style="stepsDone >= 1 ? 'color:#C4A55D;' : 'color:#4a4a4a;'"></i>
+                        <span class="text-[9px] font-bold tracking-wider transition-all duration-300"
+                              :style="stepsDone >= 1 ? 'color:#C4A55D;' : 'color:#4a4a4a;'">VÉHICULE</span>
                     </div>
-                    <div class="w-5 h-px" style="background:rgba(168,136,74,0.35);"></div>
-                    <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-full" style="background:rgba(168,136,74,0.15);border:1px solid rgba(168,136,74,0.35);">
-                        <i class="fa-solid fa-gem text-[9px]" style="color:#C4A55D;"></i>
-                        <span class="text-[9px] font-bold tracking-wider" style="color:#C4A55D;">FORMULE</span>
+
+                    <!-- Connector 1→2 -->
+                    <div class="w-5 h-px transition-all duration-500"
+                         :style="stepsDone >= 2 ? 'background:rgba(168,136,74,0.5);' : 'background:rgba(255,255,255,0.08);'"></div>
+
+                    <!-- Step 2: Formule -->
+                    <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-full transition-all duration-300"
+                         :style="stepsDone >= 2
+                             ? 'background:rgba(168,136,74,0.18);border:1px solid rgba(196,165,93,0.5);'
+                             : 'background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);'">
+                        <i class="text-[9px] transition-all duration-300"
+                           :class="stepsDone >= 2 ? 'fa-solid fa-check' : 'fa-solid fa-gem'"
+                           :style="stepsDone >= 2 ? 'color:#C4A55D;' : 'color:#4a4a4a;'"></i>
+                        <span class="text-[9px] font-bold tracking-wider transition-all duration-300"
+                              :style="stepsDone >= 2 ? 'color:#C4A55D;' : 'color:#4a4a4a;'">FORMULE</span>
                     </div>
-                    <div class="w-5 h-px" style="background:rgba(255,255,255,0.10);"></div>
-                    <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-full" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.10);">
-                        <i class="fa-solid fa-plus text-[9px] text-slate-500"></i>
-                        <span class="text-[9px] font-bold tracking-wider text-slate-500">OPTIONS</span>
+
+                    <!-- Connector 2→3 -->
+                    <div class="w-5 h-px transition-all duration-500"
+                         :style="stepsDone >= 3 ? 'background:rgba(168,136,74,0.5);' : 'background:rgba(255,255,255,0.08);'"></div>
+
+                    <!-- Step 3: Options -->
+                    <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-full transition-all duration-300"
+                         :style="stepsDone >= 3
+                             ? 'background:rgba(168,136,74,0.18);border:1px solid rgba(196,165,93,0.5);'
+                             : 'background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);'">
+                        <i class="text-[9px] transition-all duration-300"
+                           :class="stepsDone >= 3 ? 'fa-solid fa-check' : 'fa-solid fa-sliders'"
+                           :style="stepsDone >= 3 ? 'color:#C4A55D;' : 'color:#4a4a4a;'"></i>
+                        <span class="text-[9px] font-bold tracking-wider transition-all duration-300"
+                              :style="stepsDone >= 3 ? 'color:#C4A55D;' : 'color:#4a4a4a;'">OPTIONS</span>
                     </div>
-                    <div class="w-5 h-px" style="background:rgba(255,255,255,0.10);"></div>
-                    <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-full" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.10);">
-                        <i class="fa-brands fa-whatsapp text-[9px] text-slate-500"></i>
-                        <span class="text-[9px] font-bold tracking-wider text-slate-500">RÉSERVER</span>
+
+                    <!-- Connector 3→4 -->
+                    <div class="w-5 h-px transition-all duration-500"
+                         :style="stepsDone >= 4 ? 'background:rgba(168,136,74,0.5);' : 'background:rgba(255,255,255,0.08);'"></div>
+
+                    <!-- Step 4: Réserver -->
+                    <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-full transition-all duration-300"
+                         :style="stepsDone >= 4
+                             ? 'background:rgba(168,136,74,0.18);border:1px solid rgba(196,165,93,0.5);'
+                             : 'background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);'">
+                        <i class="text-[9px] transition-all duration-300"
+                           :class="stepsDone >= 4 ? 'fa-solid fa-check' : 'fa-brands fa-whatsapp'"
+                           :style="stepsDone >= 4 ? 'color:#C4A55D;' : 'color:#4a4a4a;'"></i>
+                        <span class="text-[9px] font-bold tracking-wider transition-all duration-300"
+                              :style="stepsDone >= 4 ? 'color:#C4A55D;' : 'color:#4a4a4a;'">RÉSERVER</span>
                     </div>
+
                 </div>
             </div>
+
 
             <div class="inline-flex items-center gap-2 px-4 py-2 text-[10px] md:text-xs font-medium tracking-wider" style="background:rgba(34,197,94,0.05);border:1px solid rgba(34,197,94,0.15);border-radius:2px;color:#4ade80;">
                 <i class="fa-solid fa-leaf"></i>
@@ -244,7 +288,7 @@
                 <p class="text-slate-400 max-w-xl mx-auto mb-10 leading-relaxed">
                     Gestion de flotte, préparation VO/VN, conciergerie mobile. Nous intervenons sur votre parc pour maintenir l'image de marque de votre société.
                 </p>
-                <button @click="showContactModal = true" class="inline-flex bg-action-gradient text-primary px-10 py-4 rounded-xl font-bold text-lg hover:scale-105 ui-transition items-center gap-3 shadow-[0_10px_30px_rgba(201,168,76,0.2)]">
+                <button @click="showContactModal = true; stepsDone = 4" class="inline-flex bg-action-gradient text-primary px-10 py-4 rounded-xl font-bold text-lg hover:scale-105 ui-transition items-center gap-3 shadow-[0_10px_30px_rgba(201,168,76,0.2)]">
                     <i class="fa-solid fa-paper-plane text-2xl"></i>Demander un devis B2B
                 </button>
             </div>
@@ -263,7 +307,7 @@
                         <p class="text-xs font-bold uppercase tracking-widest text-action mb-1">Utilitaire — tarification sur mesure</p>
                         <p class="text-sm text-slate-400">Volume, état et accès : chaque utilitaire est unique. Nous établissons un devis rapide et gratuit.</p>
                     </div>
-                    <button @click="showContactModal = true" class="shrink-0 inline-flex items-center gap-2 bg-action-gradient text-primary px-6 py-3 rounded-lg font-bold text-sm hover:scale-105 ui-transition">
+                    <button @click="showContactModal = true; stepsDone = 4" class="shrink-0 inline-flex items-center gap-2 bg-action-gradient text-primary px-6 py-3 rounded-lg font-bold text-sm hover:scale-105 ui-transition">
                         <i class="fa-brands fa-whatsapp text-lg"></i> Demander mon devis
                     </button>
                 </div>
@@ -277,7 +321,7 @@
                     <span class="text-xs text-slate-500">Ajoutez selon l'état de votre véhicule</span>
                 </div>
                 <div class="border border-white/[0.07] rounded-lg overflow-hidden">
-                    <button @click="options.poils = !options.poils"
+                    <button @click="options.poils = !options.poils; stepsDone = Math.max(stepsDone, 3)"
                             :class="options.poils ? 'bg-action/10 border-l-2 border-l-action' : 'border-l-2 border-l-transparent'"
                             class="w-full flex items-center justify-between px-5 py-4 border-b border-white/[0.05] hover:bg-white/[0.03] ui-transition">
                         <div class="flex items-center gap-3">
@@ -294,7 +338,7 @@
                             </div>
                         </div>
                     </button>
-                    <button @click="options.non_videe = !options.non_videe"
+                    <button @click="options.non_videe = !options.non_videe; stepsDone = Math.max(stepsDone, 3)"
                             :class="options.non_videe ? 'bg-action/10 border-l-2 border-l-action' : 'border-l-2 border-l-transparent'"
                             class="w-full flex items-center justify-between px-5 py-4 border-b border-white/[0.05] hover:bg-white/[0.03] ui-transition">
                         <div class="flex items-center gap-3">
@@ -311,7 +355,7 @@
                             </div>
                         </div>
                     </button>
-                    <button @click="options.cire = !options.cire"
+                    <button @click="options.cire = !options.cire; stepsDone = Math.max(stepsDone, 3)"
                             :class="options.cire ? 'bg-action/10 border-l-2 border-l-action' : 'border-l-2 border-l-transparent'"
                             class="w-full flex items-center justify-between px-5 py-4 hover:bg-white/[0.03] ui-transition">
                         <div class="flex items-center gap-3">
@@ -387,7 +431,7 @@
                        class="hidden sm:flex w-9 h-9 items-center justify-center rounded-lg border border-white/[0.08] text-slate-500 hover:text-action hover:border-action ui-transition">
                         <i class="fa-brands fa-instagram text-sm"></i>
                     </a>
-                    <button @click="showContactModal = true"
+                    <button @click="showContactModal = true; stepsDone = 4"
                             class="inline-flex items-center gap-2 bg-action-gradient text-primary px-5 py-2.5 rounded-lg font-bold text-sm hover:scale-[1.02] ui-transition shadow-[0_8px_24px_rgba(168,136,74,0.3)]">
                         <i class="fa-brands fa-whatsapp"></i>
                         <span x-text="(isUtilitaire || clientType === 'pro') ? 'Demander mon devis' : 'Réserver — ' + totalPrix + '€'"></span>
