@@ -198,10 +198,10 @@
         <div x-show="clientType === 'particulier'" x-transition>
 
             <!-- 🚗 3D Car Showcase -->
-            <div id="car-showcase-container" class="mb-10" x-show="!isUtilitaire"></div>
+            <div id="car-showcase-container" class="mb-8"></div>
 
-            <!-- 01. Vehicule -->
-            <section class="mb-14">
+            <!-- 01. Vehicule — intégré dans le showcase, masqué ici -->
+            <section class="mb-14" style="display:none" aria-hidden="true">
                 <div class="flex items-center justify-between mb-8">
                     <h2 class="text-2xl font-bold flex items-center gap-3">
                         <span class="w-10 h-10 rounded-xl bg-action/10 text-action flex items-center justify-center text-lg font-bold border border-action/20">01</span>

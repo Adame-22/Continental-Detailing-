@@ -1,5 +1,6 @@
 /**
- * Continental Detailing — 3D Car Showcase Engine
+ * Continental Detailing — 3D Car Showcase Engine v2
+ * Vehicle selector integrated inside the left panel
  */
 (function() {
     'use strict';
@@ -9,7 +10,7 @@
             img: 'images/car-citadine.png',
             label: 'Citadine',
             subtitle: 'Clio, 208, Polo, Yaris...',
-            color: '#C9A84C',
+            icon: 'fa-car-side',
             services: {
                 ext: ['Prélavage Snow Foam', 'Lavage 2 seaux microfibre', 'Décontamination jantes', 'Dressing pneus', 'Séchage sécurisé'],
                 int: ['Aspiration chirurgicale', 'Pressing injection/extraction', 'Dégraissage au pinceau', 'Protection Anti-UV', 'Soin des cuirs'],
@@ -20,7 +21,7 @@
             img: 'images/car-berline.png',
             label: 'Berline',
             subtitle: 'Série 3, Classe C, A4, Model 3...',
-            color: '#C9A84C',
+            icon: 'fa-car',
             services: {
                 ext: ['Prélavage Snow Foam', 'Lavage 2 seaux microfibre', 'Décontamination jantes & freins', 'Détails pinceau calandre', 'Dressing pneus premium'],
                 int: ['Aspiration sièges & coffre', 'Pressing injection/extraction', 'Dégraissage commodos', 'Protection Anti-UV plastiques', 'Finition vitres sans trace'],
@@ -31,7 +32,7 @@
             img: 'images/car-suv.png',
             label: 'SUV',
             subtitle: '3008, Tiguan, RAV4, Model Y...',
-            color: '#C9A84C',
+            icon: 'fa-truck-pickup',
             services: {
                 ext: ['Snow Foam grande surface', 'Lavage 2 seaux spécialisé', 'Décontamination jantes', 'Nettoyage soubassements', 'Dressing pneus 4x4'],
                 int: ['Aspiration 5 places + coffre', 'Pressing banquettes arrière', 'Dégraissage tableau de bord', 'Protection UV renforcée', 'Soin cuirs & alcantara'],
@@ -42,7 +43,7 @@
             img: 'images/car-monospace.png',
             label: 'Monospace 5pl',
             subtitle: 'Scénic, Touran, Espace...',
-            color: '#C9A84C',
+            icon: 'fa-van-shuttle',
             services: {
                 ext: ['Snow Foam carrosserie longue', 'Lavage 2 seaux grande surface', 'Décontamination 4 jantes', 'Joints & trappes nettoyés', 'Dressing pneus complet'],
                 int: ['Aspiration 5 places + coffre', 'Pressing tapis & sièges', 'Dégraissage panneaux portes', 'Protection plastiques UV', 'Vitres coulissantes traitées'],
@@ -53,7 +54,7 @@
             img: 'images/car-monospace.png',
             label: 'Monospace 7pl',
             subtitle: 'Classe V, Espace 7, Touran 7...',
-            color: '#C9A84C',
+            icon: 'fa-bus',
             services: {
                 ext: ['Snow Foam carrosserie XXL', 'Lavage 2 seaux surface totale', 'Décontamination jantes', 'Nettoyage soubassements longs', 'Dressing pneus 7pl'],
                 int: ['Aspiration 7 places + coffre', 'Pressing rang 2 & rang 3', 'Dégraissage tableau de bord', 'Protection UV toute surface', 'Soin cuirs 7 places'],
@@ -64,13 +65,22 @@
             img: 'images/car-utilitaire.png',
             label: 'Utilitaire',
             subtitle: 'Sprinter, Master, Transit...',
-            color: '#C9A84C',
+            icon: 'fa-truck',
             services: {
                 ext: ['Snow Foam grand volume', 'Lavage carrosserie utilitaire', 'Décontamination jantes doubles', 'Nettoyage rehausses & crocs', 'Traitement protection carrosserie'],
                 int: ['Aspiration plancher de charge', 'Pressing siège conducteur', 'Dégraissage tableau de bord', 'Nettoyage parois internes', 'Désinfection habitacle'],
                 complet: ['Traitement complet sur devis', 'Selon volume L1/L2/L3', 'État du véhicule analysé', 'Devis personnalisé garanti', 'Intervention sur site', 'Contact pour estimation']
             }
         }
+    };
+
+    const TARIFS = {
+        citadine: { ext: 49, int: 79, complet: 119 },
+        berline:  { ext: 59, int: 89, complet: 129 },
+        suv:      { ext: 69, int: 99, complet: 139 },
+        mono5:    { ext: 79, int: 109, complet: 149 },
+        mono7:    { ext: 89, int: 119, complet: 159 },
+        util:     { ext: null, int: null, complet: null }
     };
 
     let currentCar = null;
@@ -81,13 +91,23 @@
         const container = document.getElementById('car-showcase-container');
         if (!container) return;
 
+        const vehicleButtons = Object.entries(CARS).map(([key, car]) => `
+            <button class="veh-btn" data-key="${key}" id="vbtn-${key}">
+                <i class="fa-solid ${car.icon}"></i>
+                <span>${car.label}</span>
+                ${key === 'util' ? '<em>Devis</em>' : ''}
+            </button>
+        `).join('');
+
         container.innerHTML = `
         <div class="showcase-wrapper" id="showcase-wrapper">
-            <!-- LEFT: Car Stage -->
+
+            <!-- LEFT: Car Stage + Vehicle Selector -->
             <div class="car-stage" id="car-stage">
                 <div class="stage-bg"></div>
                 <div class="spotlight spotlight-1"></div>
                 <div class="spotlight spotlight-2"></div>
+
                 <div class="car-platform">
                     <div class="car-image-wrap" id="car-image-wrap">
                         <img id="showcase-car-img" src="" alt="" class="showcase-car-img">
@@ -96,15 +116,25 @@
                     <div class="car-glow" id="car-glow"></div>
                     <div class="platform-ring"></div>
                 </div>
+
                 <div class="car-label-wrap" id="car-label-wrap">
-                    <div class="car-label-name" id="car-label-name">—</div>
-                    <div class="car-label-sub" id="car-label-sub">Sélectionnez un véhicule</div>
+                    <div class="car-label-name" id="car-label-name">Sélectionnez</div>
+                    <div class="car-label-sub" id="car-label-sub">votre véhicule ci-dessous</div>
                 </div>
+
+                <!-- VEHICLE SELECTOR — integrated in stage -->
+                <div class="vehicle-selector" id="vehicle-selector">
+                    ${vehicleButtons}
+                </div>
+
                 <canvas id="particle-canvas" class="particle-canvas"></canvas>
             </div>
 
             <!-- RIGHT: Services Panel -->
             <div class="services-panel" id="services-panel">
+
+                <div class="panel-eyebrow">Prestations incluses</div>
+
                 <div class="formule-tabs" id="formule-tabs">
                     <button class="ftab active" data-f="complet">
                         <i class="fa-solid fa-gem"></i>
@@ -137,22 +167,32 @@
             </div>
         </div>`;
 
+        initVehicleButtons();
         initTabs();
         initParticles();
+    }
 
-        // Listen to Alpine vehicule changes
-        document.addEventListener('vehiculeChanged', (e) => switchCar(e.detail));
-        document.addEventListener('formuleChanged', (e) => switchFormule(e.detail));
+    function initVehicleButtons() {
+        document.querySelectorAll('.veh-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const key = btn.dataset.key;
+                // Update Alpine state
+                if (window.__alpineVehicule) window.__alpineVehicule(key);
+                switchCar(key);
+            });
+        });
+    }
+
+    function setActiveVehicleBtn(key) {
+        document.querySelectorAll('.veh-btn').forEach(b => b.classList.remove('active'));
+        const btn = document.getElementById('vbtn-' + key);
+        if (btn) btn.classList.add('active');
     }
 
     function initTabs() {
         document.querySelectorAll('.ftab').forEach(btn => {
             btn.addEventListener('click', () => {
-                document.querySelectorAll('.ftab').forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
                 switchFormule(btn.dataset.f);
-
-                // Sync Alpine
                 if (window.__alpineFormule) window.__alpineFormule(btn.dataset.f);
             });
         });
@@ -171,8 +211,7 @@
         const labelSub = document.getElementById('car-label-sub');
         const glow = document.getElementById('car-glow');
 
-        // Exit animation
-        wrap.style.transform = 'translateX(-60px) rotateY(-15deg) scale(0.85)';
+        wrap.style.transform = 'translateX(-50px) rotateY(-12deg) scale(0.88)';
         wrap.style.opacity = '0';
 
         setTimeout(() => {
@@ -180,11 +219,10 @@
             img.alt = data.label;
             labelName.textContent = data.label;
             labelSub.textContent = data.subtitle;
-            glow.style.boxShadow = `0 0 80px 20px rgba(201,168,76,0.25)`;
+            glow.style.boxShadow = '0 0 80px 20px rgba(168,136,74,0.2)';
 
-            // Enter animation
             wrap.style.transition = 'none';
-            wrap.style.transform = 'translateX(60px) rotateY(15deg) scale(0.85)';
+            wrap.style.transform = 'translateX(50px) rotateY(12deg) scale(0.88)';
             wrap.style.opacity = '0';
 
             requestAnimationFrame(() => {
@@ -194,23 +232,20 @@
             });
 
             currentCar = key;
+            setActiveVehicleBtn(key);
             updateServices(key, currentFormule);
             updatePrices(key);
             spawnParticles();
             isAnimating = false;
-        }, 350);
+        }, 320);
     }
 
     function switchFormule(f) {
         currentFormule = f;
         if (currentCar) updateServices(currentCar, f);
-
-        // Update tab badge highlight
         document.querySelectorAll('.ftab').forEach(btn => {
             btn.classList.toggle('active', btn.dataset.f === f);
         });
-
-        // Update economy badge
         updateEconomy(currentCar, f);
     }
 
@@ -219,29 +254,19 @@
         if (!data) return;
         const list = document.getElementById('services-list');
         const items = data.services[formule] || [];
-
         list.innerHTML = '';
         items.forEach((item, i) => {
             const el = document.createElement('div');
             el.className = 'service-item';
-            el.style.animationDelay = `${i * 0.07}s`;
+            el.style.transitionDelay = `${i * 0.06}s`;
             el.innerHTML = `<i class="fa-solid fa-check-circle"></i><span>${item}</span>`;
             list.appendChild(el);
-            // Trigger animation
-            requestAnimationFrame(() => el.classList.add('visible'));
+            requestAnimationFrame(() => setTimeout(() => el.classList.add('visible'), i * 40));
         });
     }
 
     function updatePrices(carKey) {
-        const tarifs = {
-            citadine: { ext: 49, int: 79, complet: 119 },
-            berline:  { ext: 59, int: 89, complet: 129 },
-            suv:      { ext: 69, int: 99, complet: 139 },
-            mono5:    { ext: 79, int: 109, complet: 149 },
-            mono7:    { ext: 89, int: 119, complet: 159 },
-            util:     { ext: null, int: null, complet: null }
-        };
-        const t = tarifs[carKey];
+        const t = TARIFS[carKey];
         if (!t) return;
         document.getElementById('price-ext').textContent = t.ext ? t.ext + '€' : 'Devis';
         document.getElementById('price-int').textContent = t.int ? t.int + '€' : 'Devis';
@@ -250,22 +275,15 @@
     }
 
     function updateEconomy(carKey, formule) {
-        const tarifs = {
-            citadine: { ext: 49, int: 79, complet: 119 },
-            berline:  { ext: 59, int: 89, complet: 129 },
-            suv:      { ext: 69, int: 99, complet: 139 },
-            mono5:    { ext: 79, int: 109, complet: 149 },
-            mono7:    { ext: 89, int: 119, complet: 159 }
-        };
         const badge = document.getElementById('economy-badge');
-        const t = tarifs[carKey];
-        if (!t || formule !== 'complet') { badge.style.display = 'none'; return; }
+        const t = TARIFS[carKey];
+        if (!t || !t.ext || formule !== 'complet') { if(badge) badge.style.display = 'none'; return; }
         const saved = (t.ext + t.int) - t.complet;
-        document.getElementById('economy-text').textContent = `Économie de ${saved}€ avec le Pack Complet`;
+        document.getElementById('economy-text').textContent = `Vous économisez ${saved}€ vs. séparé`;
         badge.style.display = 'flex';
     }
 
-    // ---- Particle System ----
+    // ---- Particles ----
     let pCanvas, pCtx, particles = [];
 
     function initParticles() {
@@ -287,16 +305,16 @@
     function spawnParticles() {
         if (!pCanvas) return;
         const cx = pCanvas.width / 2;
-        const cy = pCanvas.height * 0.6;
-        for (let i = 0; i < 30; i++) {
+        const cy = pCanvas.height * 0.5;
+        for (let i = 0; i < 24; i++) {
             particles.push({
-                x: cx + (Math.random() - 0.5) * 200,
+                x: cx + (Math.random() - 0.5) * 160,
                 y: cy,
-                vx: (Math.random() - 0.5) * 4,
-                vy: -(Math.random() * 4 + 1),
-                size: Math.random() * 4 + 1,
+                vx: (Math.random() - 0.5) * 3,
+                vy: -(Math.random() * 3 + 1),
+                size: Math.random() * 3 + 1,
                 alpha: 1,
-                color: Math.random() > 0.5 ? '#C9A84C' : '#DFC068'
+                color: Math.random() > 0.5 ? '#A8884A' : '#C4A55D'
             });
         }
     }
@@ -306,10 +324,7 @@
         pCtx.clearRect(0, 0, pCanvas.width, pCanvas.height);
         particles = particles.filter(p => p.alpha > 0.01);
         particles.forEach(p => {
-            p.x += p.vx;
-            p.y += p.vy;
-            p.vy += 0.05;
-            p.alpha *= 0.96;
+            p.x += p.vx; p.y += p.vy; p.vy += 0.04; p.alpha *= 0.965;
             pCtx.beginPath();
             pCtx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
             pCtx.fillStyle = p.color + Math.floor(p.alpha * 255).toString(16).padStart(2, '0');
@@ -318,28 +333,30 @@
         requestAnimationFrame(animateParticles);
     }
 
-    // ---- Init ----
+    // ---- 3D Tilt ----
     document.addEventListener('DOMContentLoaded', () => {
         createShowcase();
 
-        // Hover 3D tilt on car
         document.addEventListener('mousemove', (e) => {
             const stage = document.getElementById('car-stage');
             const wrap = document.getElementById('car-image-wrap');
             if (!stage || !wrap || !currentCar) return;
             const rect = stage.getBoundingClientRect();
-            const x = (e.clientX - rect.left) / rect.width - 0.5;
-            const y = (e.clientY - rect.top) / rect.height - 0.5;
             if (e.clientX >= rect.left && e.clientX <= rect.right &&
                 e.clientY >= rect.top && e.clientY <= rect.bottom) {
-                wrap.style.transform = `perspective(1000px) rotateY(${x * 12}deg) rotateX(${-y * 6}deg) scale(1.02)`;
+                const x = (e.clientX - rect.left) / rect.width - 0.5;
+                const y = (e.clientY - rect.top) / rect.height - 0.5;
+                wrap.style.transform = `perspective(900px) rotateY(${x * 10}deg) rotateX(${-y * 5}deg) scale(1.02)`;
             } else {
                 wrap.style.transform = '';
             }
         });
+
+        // Auto-select citadine on load
+        setTimeout(() => switchCar('citadine'), 400);
     });
 
-    // Expose globally for Alpine.js bridge
+    // Exposed API
     window.showcaseSwitchCar = switchCar;
     window.showcaseSwitchFormule = switchFormule;
 })();

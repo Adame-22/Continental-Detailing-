@@ -8,9 +8,9 @@
     --color-action:     #A8884A;   /* Or mat sophistiqué */
     --color-action-lt:  #C4A55D;   /* Or hover */
     --color-action-dim: rgba(168, 136, 74, 0.12);
-    --text-primary:     #EDE8DF;   /* Blanc chaud */
-    --text-secondary:   #6B7280;   /* Gris neutre */
-    --text-muted:       #3F3F46;   /* Gris très discret */
+    --text-primary:     #F2EEE6;   /* Blanc chaud vif */
+    --text-secondary:   #9A9490;   /* Gris lisible */
+    --text-muted:       #6B6560;   /* Gris discret mais visible */
     --border-subtle:    rgba(168, 136, 74, 0.10);
     --border-card:      rgba(255, 255, 255, 0.05);
     --gold-glow:        rgba(168, 136, 74, 0.15);
