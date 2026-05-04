@@ -259,6 +259,31 @@
             </div>
 
 
+            <!-- Preuve sociale -->
+            <div class="flex items-center justify-center gap-5 mb-5 flex-wrap">
+                <div class="flex items-center gap-1.5">
+                    <div class="flex">
+                        <i class="fa-solid fa-star text-[11px]" style="color:#F59E0B;"></i>
+                        <i class="fa-solid fa-star text-[11px]" style="color:#F59E0B;"></i>
+                        <i class="fa-solid fa-star text-[11px]" style="color:#F59E0B;"></i>
+                        <i class="fa-solid fa-star text-[11px]" style="color:#F59E0B;"></i>
+                        <i class="fa-solid fa-star text-[11px]" style="color:#F59E0B;"></i>
+                    </div>
+                    <span class="text-xs font-bold text-white">4.9</span>
+                    <span class="text-xs text-slate-500">/ 5 &nbsp;&middot;&nbsp; 120+ clients</span>
+                </div>
+                <div class="w-px h-3" style="background:rgba(255,255,255,0.12);"></div>
+                <div class="flex items-center gap-1.5 text-xs text-slate-400">
+                    <i class="fa-solid fa-shield-halved text-[11px]" style="color:#A8884A;"></i>
+                    <span>Satisfaction garantie</span>
+                </div>
+                <div class="w-px h-3" style="background:rgba(255,255,255,0.12);"></div>
+                <div class="flex items-center gap-1.5 text-xs text-slate-400">
+                    <i class="fa-solid fa-location-dot text-[11px]" style="color:#A8884A;"></i>
+                    <span>Intervention &agrave; domicile</span>
+                </div>
+            </div>
+
             <div class="inline-flex items-center gap-2 px-4 py-2 text-[10px] md:text-xs font-medium tracking-wider" style="background:rgba(34,197,94,0.05);border:1px solid rgba(34,197,94,0.15);border-radius:2px;color:#4ade80;">
                 <i class="fa-solid fa-leaf"></i>
                 <span>MATÉRIEL 100% ÉLECTRIQUE &amp; SILENCIEUX (ACCÈS EAU/PRISES REQUIS)</span>
@@ -405,38 +430,49 @@
         </div>
 
         <!-- Sticky Summary Bar -->
-        <div class="fixed bottom-0 left-0 right-0 z-50 backdrop-blur-xl" style="background:rgba(13,13,16,0.93);border-top:1px solid rgba(255,255,255,0.07);">
-            <div class="max-w-4xl mx-auto flex items-center justify-between gap-4 px-4 py-3">
-                <!-- Résumé sélection -->
-                <div x-show="clientType === 'particulier' && !isUtilitaire" class="min-w-0">
-                    <div class="flex items-center gap-2 mb-0.5 flex-wrap">
-                        <p class="text-[9px] font-bold uppercase tracking-widest" style="color:#6A6460;">Votre devis</p>
-                        <span x-show="economie > 0"
-                              class="text-[9px] font-bold px-1.5 py-0.5 rounded-full"
-                              style="background:rgba(34,197,94,0.15);color:#4ade80;"
-                              x-text="'-' + economie + '€ économisés'"></span>
+        <div class="fixed bottom-0 left-0 right-0 z-50 backdrop-blur-xl" style="background:rgba(10,10,13,0.96);border-top:1px solid rgba(255,255,255,0.08);">
+            <!-- Urgence strip -->
+            <div class="flex items-center justify-center gap-2 py-1.5 text-[10px] font-semibold" style="background:rgba(168,136,74,0.12);border-bottom:1px solid rgba(168,136,74,0.15);color:#C4A55D;">
+                <i class="fa-solid fa-calendar-check text-[9px]"></i>
+                <span>Créneaux disponibles cette semaine &mdash; Réservez avant qu'ils partent</span>
+            </div>
+            <div class="max-w-4xl mx-auto px-4 py-2.5">
+                <div class="flex items-center justify-between gap-4">
+                    <!-- Résumé sélection -->
+                    <div x-show="clientType === 'particulier' &amp;&amp; !isUtilitaire" class="min-w-0">
+                        <div class="flex items-center gap-2 mb-0.5 flex-wrap">
+                            <p class="text-[9px] font-bold uppercase tracking-widest" style="color:#6A6460;">Votre devis</p>
+                            <span x-show="economie > 0"
+                                  class="text-[9px] font-bold px-1.5 py-0.5 rounded-full"
+                                  style="background:rgba(34,197,94,0.15);color:#4ade80;"
+                                  x-text="'-' + economie + '\u20ac économisés'"></span>
+                        </div>
+                        <div class="flex items-baseline gap-2">
+                            <p class="text-xl font-bold text-white" x-text="totalPrix + '\u20ac'"></p>
+                            <span class="text-xs text-slate-500 truncate" x-text="nomVehicule + ' \u00b7 ' + nomFormule"></span>
+                        </div>
                     </div>
-                    <div class="flex items-baseline gap-2">
-                        <p class="text-xl font-bold text-white" x-text="totalPrix + '€'"></p>
-                        <span class="text-xs text-slate-500 truncate" x-text="nomVehicule + ' · ' + nomFormule"></span>
+                    <div x-show="isUtilitaire || clientType === 'pro'" class="min-w-0">
+                        <p class="text-[9px] font-bold uppercase tracking-widest mb-0.5" style="color:#6A6460;">Estimation</p>
+                        <p class="text-xl font-bold text-white">Sur devis</p>
                     </div>
-                </div>
-                <div x-show="isUtilitaire || clientType === 'pro'" class="min-w-0">
-                    <p class="text-[9px] font-bold uppercase tracking-widest mb-0.5" style="color:#6A6460;">Estimation</p>
-                    <p class="text-xl font-bold text-white">Sur devis</p>
-                </div>
-                <!-- Actions -->
-                <div class="flex items-center gap-2 shrink-0">
-                    <a :href="'https://instagram.com/' + compteInsta" target="_blank"
-                       class="hidden sm:flex w-9 h-9 items-center justify-center rounded-lg border border-white/[0.08] text-slate-500 hover:text-action hover:border-action ui-transition">
-                        <i class="fa-brands fa-instagram text-sm"></i>
-                    </a>
-                    <button @click="showContactModal = true; stepsDone = 4"
-                            class="inline-flex items-center gap-2 bg-action-gradient text-primary px-5 py-2.5 rounded-lg font-bold text-sm hover:scale-[1.02] ui-transition shadow-[0_8px_24px_rgba(168,136,74,0.3)]">
-                        <i class="fa-brands fa-whatsapp"></i>
-                        <span x-text="(isUtilitaire || clientType === 'pro') ? 'Demander mon devis' : 'Réserver — ' + totalPrix + '€'"></span>
-                    </button>
-
+                    <!-- CTA -->
+                    <div class="flex flex-col items-end gap-1 shrink-0">
+                        <div class="flex items-center gap-2">
+                            <a :href="'https://instagram.com/' + compteInsta" target="_blank"
+                               class="hidden sm:flex w-9 h-9 items-center justify-center rounded-lg border border-white/[0.08] text-slate-500 hover:text-action hover:border-action ui-transition">
+                                <i class="fa-brands fa-instagram text-sm"></i>
+                            </a>
+                            <button @click="showContactModal = true; stepsDone = 4"
+                                    class="inline-flex items-center gap-2 bg-action-gradient text-primary px-5 py-2.5 rounded-lg font-bold text-sm hover:scale-[1.02] ui-transition shadow-[0_8px_24px_rgba(168,136,74,0.3)]">
+                                <i class="fa-brands fa-whatsapp"></i>
+                                <span x-text="(isUtilitaire || clientType === 'pro') ? 'Demander mon devis' : 'Réserver \u2014 ' + totalPrix + '\u20ac'"></span>
+                            </button>
+                        </div>
+                        <p class="text-[9px] text-slate-600 text-right">
+                            <i class="fa-solid fa-lock text-[8px] mr-1"></i>Sans engagement &nbsp;&middot;&nbsp; Réponse en moins de 2h
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
