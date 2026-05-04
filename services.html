@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
@@ -207,197 +207,139 @@
         <!-- Simulator Particulier -->
         <div x-show="clientType === 'particulier'" x-transition>
 
-            <!-- 🚗 3D Car Showcase -->
-            <div id="car-showcase-container" class="mb-8"></div>
+            <!-- SHOWCASE — vehicule + formule + services + prix -->
+            <div id="car-showcase-container" class="mb-10"></div>
 
-            <!-- 01. Vehicule — intégré dans le showcase, masqué ici -->
-            <section class="mb-14" style="display:none" aria-hidden="true">
-                <div class="flex items-center justify-between mb-8">
-                    <h2 class="text-2xl font-bold flex items-center gap-3">
-                        <span class="w-10 h-10 rounded-xl bg-action/10 text-action flex items-center justify-center text-lg font-bold border border-action/20">01</span>
-                        Véhicule
-                    </h2>
-                    <button @click="showGuide = true" class="text-sm font-semibold text-action hover:underline flex items-center gap-2">
-                        <i class="fa-solid fa-circle-info"></i> Guide des tailles
-                    </button>
-                </div>
-                
-                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-                    <template x-for="(data, key) in tarifs" :key="key">
-                        <button @click="vehicule = key; $nextTick(() => window.showcaseSwitchCar && window.showcaseSwitchCar(key))" 
-                                :class="vehicule === key ? 'bg-action border-action shadow-[0_10px_25px_-5px_rgba(201,168,76,0.4)]' : 'bg-secondary/40 border-secondary hover:border-action/30'"
-                                class="flex flex-col items-center p-5 rounded-xl border-2 ui-transition group">
-                            <div :class="vehicule === key ? 'bg-primary/20 text-primary' : 'bg-action/10 text-action'"
-                                 class="w-12 h-12 rounded-lg flex items-center justify-center mb-3">
-                                <template x-if="key === 'citadine'"><i class="fa-solid fa-car-side text-xl"></i></template>
-                                <template x-if="key === 'berline'"><i class="fa-solid fa-car text-xl"></i></template>
-                                <template x-if="key === 'suv'"><i class="fa-solid fa-truck-pickup text-xl"></i></template>
-                                <template x-if="key === 'mono5'"><i class="fa-solid fa-van-shuttle text-xl"></i></template>
-                                <template x-if="key === 'mono7'"><i class="fa-solid fa-bus text-xl"></i></template>
-                            </div>
-                            <span class="font-bold text-xs" :class="vehicule === key ? 'text-primary' : 'text-white'" x-text="data.nom"></span>
-                        </button>
-                    </template>
-                    <button @click="vehicule = 'util'; $nextTick(() => window.showcaseSwitchCar && window.showcaseSwitchCar('util'))" 
-                            :class="vehicule === 'util' ? 'bg-action border-action shadow-[0_10px_25px_-5px_rgba(201,168,76,0.4)]' : 'bg-secondary/40 border-secondary hover:border-action/30'"
-                            class="flex flex-col items-center p-5 rounded-xl border-2 ui-transition text-center">
-                        <div :class="vehicule === 'util' ? 'bg-primary/20 text-primary' : 'bg-action/10 text-action'"
-                             class="w-12 h-12 rounded-lg flex items-center justify-center mb-1">
-                            <i class="fa-solid fa-truck text-xl"></i>
-                        </div>
-                        <span class="font-bold text-[11px]" :class="vehicule === 'util' ? 'text-primary' : 'text-white'">Utilitaire</span>
-                        <span class="text-[9px] uppercase font-bold" :class="vehicule === 'util' ? 'text-primary/70' : 'text-slate-500'">Devis</span>
-                    </button>
-                </div>
-            </section>
-
-            <!-- 02. Prestation -->
-            <div x-show="isUtilitaire" class="mb-14">
-                <div class="bg-secondary border border-action/30 rounded-xl p-8 text-center">
-                    <h3 class="text-xl font-bold mb-4">Véhicule spécifique</h3>
-                    <p class="text-slate-400 text-sm mb-6">Les utilitaires (fourgons, bennes, vans) nécessitent une étude selon leur volume (L1, L2, H1...) et leur état.</p>
-                    <button @click="showContactModal = true" class="inline-flex bg-action-gradient text-primary px-8 py-3 rounded-lg font-bold items-center gap-2 hover:scale-105 ui-transition">
-                        <i class="fa-solid fa-paper-plane text-xl"></i> Demander un devis personnalisé
+            <!-- Utilitaire: bannière devis direct -->
+            <div x-show="isUtilitaire" class="mb-10">
+                <div class="border border-action/20 rounded-lg p-6 flex flex-col sm:flex-row items-center justify-between gap-4 bg-card">
+                    <div>
+                        <p class="text-xs font-bold uppercase tracking-widest text-action mb-1">Utilitaire — tarification sur mesure</p>
+                        <p class="text-sm text-slate-400">Volume, état et accès : chaque utilitaire est unique. Nous établissons un devis rapide et gratuit.</p>
+                    </div>
+                    <button @click="showContactModal = true" class="shrink-0 inline-flex items-center gap-2 bg-action-gradient text-primary px-6 py-3 rounded-lg font-bold text-sm hover:scale-105 ui-transition">
+                        <i class="fa-brands fa-whatsapp text-lg"></i> Demander mon devis
                     </button>
                 </div>
             </div>
 
-            <section x-show="!isUtilitaire" class="mb-14">
-                <h2 class="text-2xl font-bold flex items-center gap-3 mb-8">
-                    <span class="w-10 h-10 rounded-xl bg-action/10 text-action flex items-center justify-center text-lg font-bold border border-action/20">02</span>
-                    Votre prestation
-                </h2>
-                
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <!-- Extérieur -->
-                    <button @click="formule = 'ext'" 
-                            :class="formule === 'ext' ? 'bg-action border-action shadow-[0_10px_25px_-5px_rgba(201,168,76,0.4)]' : 'bg-secondary/40 border-secondary'"
-                            class="flex flex-col p-6 rounded-xl border-2 ui-transition text-left group">
-                        <i class="fa-solid fa-spray-can text-3xl mb-4" :class="formule === 'ext' ? 'text-primary' : 'text-action'"></i>
-                        <h3 class="font-bold text-lg mb-1" :class="formule === 'ext' ? 'text-primary' : 'text-white'">Lavage Extérieur</h3>
-                        <p class="text-[10px] font-bold uppercase tracking-wider mb-2" :class="formule === 'ext' ? 'text-primary/70' : 'text-action'">Décontamination & Brillance</p>
-                        <p class="text-xs mb-6 grow" :class="formule === 'ext' ? 'text-primary/70' : 'text-slate-400'">Prélavage Snow Foam, lavage manuel technique, jantes et dressing pneus.</p>
-                        <span class="text-3xl font-bold" :class="formule === 'ext' ? 'text-primary' : 'text-white'"><span x-text="tarifs[vehicule]?.ext"></span>€</span>
-                    </button>
-
-                    <!-- Complet -->
-                    <button @click="formule = 'complet'" 
-                            :class="formule === 'complet' ? 'bg-action-gradient border-action shadow-[0_10px_25px_-5px_rgba(201,168,76,0.4)]' : 'bg-secondary/40 border-secondary'"
-                            class="flex flex-col p-6 rounded-xl border-2 ui-transition relative text-left group">
-                        <div class="absolute -top-3 left-6 flex items-center gap-2">
-                            <span class="px-2 py-1 bg-primary text-[9px] font-bold text-action rounded border border-action uppercase">Prestation Signature</span>
-                            <span class="px-2 py-1 bg-green-500 text-[9px] font-bold text-white rounded shadow-lg animate-pulse" x-show="!isUtilitaire">
-                                -<span x-text="(tarifs[vehicule].ext + tarifs[vehicule].int) - tarifs[vehicule].complet"></span>€ d'économie
-                            </span>
+            <!-- 02. Options -->
+            <section x-show="!isUtilitaire" class="mb-8">
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="w-7 h-7 rounded-md bg-action/10 text-action flex items-center justify-center text-xs font-bold border border-action/20">02</span>
+                    <h2 class="text-sm font-bold uppercase tracking-wider text-white">Options</h2>
+                    <span class="text-xs text-slate-500">Ajoutez selon l'état de votre véhicule</span>
+                </div>
+                <div class="border border-white/[0.07] rounded-lg overflow-hidden">
+                    <button @click="options.poils = !options.poils"
+                            :class="options.poils ? 'bg-action/10 border-l-2 border-l-action' : 'border-l-2 border-l-transparent'"
+                            class="w-full flex items-center justify-between px-5 py-4 border-b border-white/[0.05] hover:bg-white/[0.03] ui-transition">
+                        <div class="flex items-center gap-3">
+                            <i class="fa-solid fa-paw w-4 text-center" :class="options.poils ? 'text-action' : 'text-slate-500'"></i>
+                            <div class="text-left">
+                                <p class="text-sm font-semibold" :class="options.poils ? 'text-white' : 'text-slate-300'">Poils d'animaux / Sable</p>
+                                <p class="text-xs text-slate-500">Véhicule très encrassé — traitement spécifique requis</p>
+                            </div>
                         </div>
-                        <i class="fa-solid fa-gem text-3xl mb-4" :class="formule === 'complet' ? 'text-primary' : 'text-action'"></i>
-                        <h3 class="font-bold text-lg mb-1" :class="formule === 'complet' ? 'text-primary' : 'text-white'">Pack Complet</h3>
-                        <p class="text-[10px] font-bold uppercase tracking-wider mb-2" :class="formule === 'complet' ? 'text-primary/70' : 'text-action'">Rénovation Totale</p>
-                        <p class="text-xs mb-6 grow" :class="formule === 'complet' ? 'text-primary/70' : 'text-slate-400'">Combinaison des soins intérieur & extérieur pour un véhicule comme neuf.</p>
-                        <span class="text-3xl font-bold" :class="formule === 'complet' ? 'text-primary' : 'text-white'"><span x-text="tarifs[vehicule]?.complet"></span>€</span>
+                        <div class="flex items-center gap-3">
+                            <span class="text-sm font-bold text-action">+20€</span>
+                            <div :class="options.poils ? 'bg-action' : 'bg-white/10'" class="w-5 h-5 rounded flex items-center justify-center transition-colors">
+                                <i x-show="options.poils" class="fa-solid fa-check text-xs text-primary"></i>
+                            </div>
+                        </div>
                     </button>
-
-                    <!-- Intérieur -->
-                    <button @click="formule = 'int'" 
-                            :class="formule === 'int' ? 'bg-action border-action shadow-[0_10px_25px_-5px_rgba(201,168,76,0.4)]' : 'bg-secondary/40 border-secondary'"
-                            class="flex flex-col p-6 rounded-xl border-2 ui-transition text-left group">
-                        <i class="fa-solid fa-couch text-3xl mb-4" :class="formule === 'int' ? 'text-primary' : 'text-action'"></i>
-                        <h3 class="font-bold text-lg mb-1" :class="formule === 'int' ? 'text-primary' : 'text-white'">Lavage Intérieur</h3>
-                        <p class="text-[10px] font-bold uppercase tracking-wider mb-2" :class="formule === 'int' ? 'text-primary/70' : 'text-action'">Rénovation Haute Précision</p>
-                        <p class="text-xs mb-6 grow" :class="formule === 'int' ? 'text-primary/70' : 'text-slate-400'">Pressing injecteur/extracteur, dégraissage au pinceau et soin des cuirs.</p>
-                        <span class="text-3xl font-bold" :class="formule === 'int' ? 'text-primary' : 'text-white'"><span x-text="tarifs[vehicule]?.int"></span>€</span>
+                    <button @click="options.non_videe = !options.non_videe"
+                            :class="options.non_videe ? 'bg-action/10 border-l-2 border-l-action' : 'border-l-2 border-l-transparent'"
+                            class="w-full flex items-center justify-between px-5 py-4 border-b border-white/[0.05] hover:bg-white/[0.03] ui-transition">
+                        <div class="flex items-center gap-3">
+                            <i class="fa-solid fa-box-open w-4 text-center" :class="options.non_videe ? 'text-action' : 'text-slate-500'"></i>
+                            <div class="text-left">
+                                <p class="text-sm font-semibold" :class="options.non_videe ? 'text-white' : 'text-slate-300'">Véhicule non vidé</p>
+                                <p class="text-xs text-slate-500">Objets personnels présents dans l'habitacle</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="text-sm font-bold text-action">+10€</span>
+                            <div :class="options.non_videe ? 'bg-action' : 'bg-white/10'" class="w-5 h-5 rounded flex items-center justify-center transition-colors">
+                                <i x-show="options.non_videe" class="fa-solid fa-check text-xs text-primary"></i>
+                            </div>
+                        </div>
+                    </button>
+                    <button @click="options.cire = !options.cire"
+                            :class="options.cire ? 'bg-action/10 border-l-2 border-l-action' : 'border-l-2 border-l-transparent'"
+                            class="w-full flex items-center justify-between px-5 py-4 hover:bg-white/[0.03] ui-transition">
+                        <div class="flex items-center gap-3">
+                            <i class="fa-solid fa-shield-halved w-4 text-center" :class="options.cire ? 'text-action' : 'text-slate-500'"></i>
+                            <div class="text-left">
+                                <p class="text-sm font-semibold" :class="options.cire ? 'text-white' : 'text-slate-300'">Cire de protection hydrophobe</p>
+                                <p class="text-xs text-slate-500">Protection longue durée, effet eau perlante garanti</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="text-sm font-bold text-action">+30€</span>
+                            <div :class="options.cire ? 'bg-action' : 'bg-white/10'" class="w-5 h-5 rounded flex items-center justify-center transition-colors">
+                                <i x-show="options.cire" class="fa-solid fa-check text-xs text-primary"></i>
+                            </div>
+                        </div>
                     </button>
                 </div>
             </section>
 
-            <!-- 03. Options -->
-            <section x-show="!isUtilitaire" class="mb-14">
-                <h2 class="text-2xl font-bold flex items-center gap-3 mb-8">
-                    <span class="w-10 h-10 rounded-xl bg-action/10 text-action flex items-center justify-center text-lg font-bold border border-action/20">03</span>
-                    Options
-                </h2>
-                <div class="space-y-3">
-                    <button @click="options.poils = !options.poils" 
-                            :class="options.poils ? 'bg-action/20 border-action' : 'bg-secondary/40 border-secondary'"
-                            class="w-full flex items-center justify-between p-5 rounded-xl border-2 ui-transition group">
-                        <div class="flex items-center gap-4">
-                            <i class="fa-solid fa-paw" :class="options.poils ? 'text-action' : 'text-slate-400'"></i>
-                            <span class="font-bold text-sm" :class="options.poils ? 'text-white' : 'text-slate-300'">Poils d'animaux / Sable / État critique</span>
-                        </div>
-                        <span class="font-bold text-action">+20€</span>
-                    </button>
-                    <button @click="options.non_videe = !options.non_videe" 
-                            :class="options.non_videe ? 'bg-action/20 border-action' : 'bg-secondary/40 border-secondary'"
-                            class="w-full flex items-center justify-between p-5 rounded-xl border-2 ui-transition group">
-                        <div class="flex items-center gap-4">
-                            <i class="fa-solid fa-box-open" :class="options.non_videe ? 'text-action' : 'text-slate-400'"></i>
-                            <span class="font-bold text-sm" :class="options.non_videe ? 'text-white' : 'text-slate-300'">Véhicule non vidé (objets personnels)</span>
-                        </div>
-                        <span class="font-bold text-action">+10€</span>
-                    </button>
-                    <button @click="options.cire = !options.cire" 
-                            :class="options.cire ? 'bg-action/20 border-action' : 'bg-secondary/40 border-secondary'"
-                            class="w-full flex items-center justify-between p-5 rounded-xl border-2 ui-transition group">
-                        <div class="flex items-center gap-4">
-                            <i class="fa-solid fa-shield-halved" :class="options.cire ? 'text-action' : 'text-slate-400'"></i>
-                            <span class="font-bold text-sm" :class="options.cire ? 'text-white' : 'text-slate-300'">Cire de protection hydrophobe</span>
-                        </div>
-                        <span class="font-bold text-action">+30€</span>
-                    </button>
+            <!-- 03. Paiement -->
+            <section x-show="!isUtilitaire" class="mb-24">
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="w-7 h-7 rounded-md bg-action/10 text-action flex items-center justify-center text-xs font-bold border border-action/20">03</span>
+                    <h2 class="text-sm font-bold uppercase tracking-wider text-white">Paiement souhaité</h2>
                 </div>
-            </section>
-
-            <!-- 04. Paiement -->
-            <section x-show="!isUtilitaire" class="mb-14">
-                <h2 class="text-2xl font-bold flex items-center gap-3 mb-8">
-                    <span class="w-10 h-10 rounded-xl bg-action/10 text-action flex items-center justify-center text-lg font-bold border border-action/20">04</span>
-                    Moyen de paiement souhaité
-                </h2>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <button @click="paiement = 'cb'" 
-                            :class="paiement === 'cb' ? 'border-action bg-action/10' : 'border-secondary bg-secondary/20'"
-                            class="flex items-center gap-4 p-5 rounded-xl border-2 ui-transition group">
+                <div class="grid grid-cols-3 gap-3">
+                    <button @click="paiement = 'cb'"
+                            :class="paiement === 'cb' ? 'border-action bg-action/10 text-white' : 'border-white/[0.07] bg-white/[0.02] text-slate-400'"
+                            class="flex flex-col items-center gap-2 p-4 rounded-lg border ui-transition">
                         <i class="fa-solid fa-credit-card text-xl" :class="paiement === 'cb' ? 'text-action' : 'text-slate-500'"></i>
-                        <span class="font-bold text-sm">Carte Bancaire</span>
+                        <span class="text-xs font-semibold">Carte Bancaire</span>
                     </button>
-                    <button @click="paiement = 'especes'" 
-                            :class="paiement === 'especes' ? 'border-action bg-action/10' : 'border-secondary bg-secondary/20'"
-                            class="flex items-center gap-4 p-5 rounded-xl border-2 ui-transition group">
-                        <i class="fa-solid fa-money-bill-1 text-xl" :class="paiement === 'especes' ? 'text-action' : 'text-slate-500'"></i>
-                        <span class="font-bold text-sm">Espèces</span>
+                    <button @click="paiement = 'especes'"
+                            :class="paiement === 'especes' ? 'border-action bg-action/10 text-white' : 'border-white/[0.07] bg-white/[0.02] text-slate-400'"
+                            class="flex flex-col items-center gap-2 p-4 rounded-lg border ui-transition">
+                        <i class="fa-solid fa-money-bill-wave text-xl" :class="paiement === 'especes' ? 'text-action' : 'text-slate-500'"></i>
+                        <span class="text-xs font-semibold">Espèces</span>
                     </button>
-                    <button @click="paiement = 'ligne'" 
-                            :class="paiement === 'ligne' ? 'border-action bg-action/10' : 'border-secondary bg-secondary/20'"
-                            class="flex items-center gap-4 p-5 rounded-xl border-2 ui-transition group relative">
+                    <button @click="paiement = 'ligne'"
+                            :class="paiement === 'ligne' ? 'border-action bg-action/10 text-white' : 'border-white/[0.07] bg-white/[0.02] text-slate-400'"
+                            class="flex flex-col items-center gap-2 p-4 rounded-lg border ui-transition">
                         <i class="fa-solid fa-link text-xl" :class="paiement === 'ligne' ? 'text-action' : 'text-slate-500'"></i>
-                        <span class="font-bold text-sm">Paiement en ligne</span>
+                        <span class="text-xs font-semibold">En ligne</span>
                     </button>
                 </div>
             </section>
         </div>
 
         <!-- Sticky Summary Bar -->
-        <div class="fixed bottom-0 left-0 right-0 bg-primary/90 border-t border-secondary backdrop-blur-xl z-50 py-4 px-4">
-            <div class="max-w-4xl mx-auto flex items-center justify-between gap-4">
-                <div class="hidden sm:block">
-                    <div class="text-[10px] text-slate-400 uppercase font-bold tracking-widest mb-1">Total estimé</div>
-                    <div class="text-3xl font-bold text-white">
-                        <span x-show="isUtilitaire || clientType === 'pro'">Sur Devis</span>
-                        <span x-show="!isUtilitaire && clientType === 'particulier'"><span x-text="totalPrix"></span>€</span>
-                    </div>
+        <div class="fixed bottom-0 left-0 right-0 z-50 backdrop-blur-xl" style="background:rgba(13,13,16,0.93);border-top:1px solid rgba(255,255,255,0.07);">
+            <div class="max-w-4xl mx-auto flex items-center justify-between gap-4 px-4 py-3">
+                <div x-show="clientType === 'particulier'">
+                    <p class="text-[10px] font-semibold uppercase tracking-widest" style="color:#8A8480;">Total estimé</p>
+                    <p class="text-2xl font-bold text-white leading-tight">
+                        <span x-show="isUtilitaire">Sur devis</span>
+                        <span x-show="!isUtilitaire" x-text="totalPrix + '€'"></span>
+                    </p>
                 </div>
-                <div class="flex gap-3 w-full sm:w-auto">
-                    <a :href="'https://instagram.com/' + compteInsta" target="_blank" class="hidden md:flex w-14 h-14 items-center justify-center bg-secondary text-slate-400 rounded-xl hover:text-action hover:border-action border border-transparent ui-transition shrink-0 shadow-lg">
-                        <i class="fa-brands fa-instagram text-2xl"></i>
+                <div x-show="clientType === 'pro'">
+                    <p class="text-sm font-semibold text-slate-400">Tarification entreprise</p>
+                </div>
+                <div class="flex items-center gap-3">
+                    <a :href="'https://instagram.com/' + compteInsta" target="_blank"
+                       class="hidden sm:flex w-10 h-10 items-center justify-center rounded-lg border border-white/[0.08] text-slate-500 hover:text-action hover:border-action ui-transition">
+                        <i class="fa-brands fa-instagram"></i>
                     </a>
-                    <button @click="showContactModal = true" class="flex-1 sm:flex-none inline-flex items-center justify-center gap-3 bg-action-gradient text-primary px-6 sm:px-10 py-3 sm:py-4 rounded-xl font-bold text-base sm:text-lg hover:scale-[1.02] ui-transition shadow-[0_10px_30px_rgba(201,168,76,0.25)]">
-                        <i class="fa-solid fa-paper-plane text-xl sm:text-2xl"></i>
-                        <span x-text="(isUtilitaire || clientType === 'pro') ? 'Demander mon devis' : 'Réserver (' + totalPrix + '€)'"></span>
+                    <button @click="showContactModal = true"
+                            class="inline-flex items-center gap-2 bg-action-gradient text-primary px-6 py-3 rounded-lg font-bold text-sm hover:scale-[1.02] ui-transition shadow-[0_8px_24px_rgba(168,136,74,0.25)]">
+                        <i class="fa-brands fa-whatsapp text-lg"></i>
+                        <span x-text="(isUtilitaire || clientType === 'pro') ? 'Demander mon devis' : 'Réserver — ' + totalPrix + '€'"></span>
                     </button>
                 </div>
             </div>
         </div>
-
         <!-- Modal Guide -->
         <div x-show="showGuide" class="fixed inset-0 z-[100] flex items-center justify-center bg-primary/95 backdrop-blur-md p-4" style="display: none;" x-transition>
             <div @click.away="showGuide = false" class="bg-secondary border border-action/20 w-full max-w-2xl max-h-[80vh] overflow-y-auto rounded-xl p-8 relative shadow-2xl">
