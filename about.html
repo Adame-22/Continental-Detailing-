@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qui sommes-nous | Continental Detailing</title>
+    <meta name="description" content="Découvrez Continental Detailing — votre spécialiste du nettoyage auto premium à domicile en Essonne (91) et Seine-et-Marne (77). Passion, rigueur et excellence.">
+    <link rel="preconnect" href="https://fonts.googleapis.com/">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary:   '#09090B',
+                        secondary: '#111117',
+                        card:      '#16161C',
+                        action:    '#A8884A',
+                        'action-lt': '#C4A55D',
+                        stone: { 400: '#A8A29E', 600: '#57534E' }
+                    },
+                    fontFamily: {
+                        sans:  ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif']
+                    },
+                    backgroundImage: {
+                        'action-gradient': 'linear-gradient(135deg, #C4A55D 0%, #A8884A 50%, #8B6F37 100%)'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .ui-transition { transition: all 0.2s ease; }
+        .gold-line { height: 1px; background: linear-gradient(90deg, transparent, #A8884A, transparent); }
+        .card-glass {
+            background: rgba(22,22,28,0.8);
+            border: 1px solid rgba(255,255,255,0.07);
+            backdrop-filter: blur(8px);
+        }
+        .value-card {
+            background: rgba(255,255,255,0.025);
+            border: 1px solid rgba(255,255,255,0.06);
+            transition: all 0.3s ease;
+        }
+        .value-card:hover {
+            background: rgba(168,136,74,0.07);
+            border-color: rgba(168,136,74,0.25);
+            transform: translateY(-3px);
+        }
+        .hero-about {
+            background: radial-gradient(ellipse at 30% 50%, rgba(168,136,74,0.06) 0%, transparent 60%),
+                        radial-gradient(ellipse at 80% 20%, rgba(100,80,200,0.04) 0%, transparent 50%);
+        }
+        .zone-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            border-radius: 4px;
+            background: rgba(168,136,74,0.08);
+            border: 1px solid rgba(168,136,74,0.2);
+            color: #C4A55D;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+        .equip-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 16px;
+            border-radius: 6px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.06);
+        }
+    </style>
+</head>
+<body class="bg-primary text-stone-100 antialiased">
+
+    <div class="ambient-spot-right" aria-hidden="true"></div>
+    <div class="ambient-spot-left" aria-hidden="true"></div>
+
+    <!-- Navigation -->
+    <nav class="w-full z-50 sticky top-0" style="background:rgba(9,9,11,0.88); backdrop-filter:blur(20px); border-bottom:1px solid rgba(255,255,255,0.05);">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="index.html" class="logo-link">
+                    <img src="images/logo_continental.png" alt="Continental Detailing" class="main-logo">
+                </a>
+                <div class="hidden md:flex gap-8 items-center">
+                    <a href="index.html" class="text-xs font-semibold tracking-[0.12em] uppercase text-stone-400 hover:text-action ui-transition">Accueil</a>
+                    <a href="about.html" class="text-xs font-semibold tracking-[0.12em] uppercase text-action">Qui sommes-nous</a>
+                    <a href="services.html" class="text-xs font-semibold tracking-[0.12em] uppercase text-stone-400 hover:text-action ui-transition">Tarifs &amp; Réservation</a>
+                    <div class="flex items-center gap-3 ml-4">
+                        <a href="mailto:continental.detailing.idf@gmail.com?subject=Devis%20Continental%20Detailing"
+                           class="w-9 h-9 rounded-full flex items-center justify-center text-stone-500 hover:text-action ui-transition"
+                           style="border:1px solid rgba(255,255,255,0.07);">
+                            <i class="fa-regular fa-envelope text-sm"></i>
+                        </a>
+                        <a href="https://wa.me/33750875964?text=Bonjour,%20je%20souhaite%20un%20devis" target="_blank"
+                           class="flex items-center gap-2 px-5 py-2 rounded-sm text-xs font-bold tracking-[0.1em] uppercase ui-transition"
+                           style="background:rgba(168,136,74,0.12); border:1px solid rgba(168,136,74,0.35); color:#C4A55D;">
+                            <i class="fa-brands fa-whatsapp"></i> WhatsApp
+                        </a>
+                    </div>
+                </div>
+                <a href="services.html" class="md:hidden text-xs font-bold tracking-widest uppercase px-4 py-2 rounded-sm"
+                   style="border:1px solid rgba(168,136,74,0.4); color:#C4A55D;">Réserver</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero-about relative pt-24 pb-20 px-6 text-center overflow-hidden">
+        <div class="max-w-3xl mx-auto relative z-10">
+            <p class="text-xs font-semibold tracking-[0.2em] uppercase mb-6" style="color:#A8884A;">
+                <span style="display:inline-block;width:24px;height:1px;background:#A8884A;vertical-align:middle;margin-right:10px;"></span>
+                Continental Detailing
+                <span style="display:inline-block;width:24px;height:1px;background:#A8884A;vertical-align:middle;margin-left:10px;"></span>
+            </p>
+            <h1 class="font-serif text-5xl md:text-6xl font-semibold text-white mb-6 leading-tight">
+                Qui sommes-nous ?
+            </h1>
+            <div class="gold-line w-16 mx-auto mb-8"></div>
+            <p class="text-lg text-stone-400 leading-relaxed max-w-xl mx-auto">
+                Passionnés d'automobile, nous avons créé Continental Detailing pour offrir une expérience de nettoyage digne des plus grands showrooms — directement chez vous.
+            </p>
+        </div>
+    </section>
+
+    <!-- Notre histoire -->
+    <section class="py-20 px-6">
+        <div class="max-w-4xl mx-auto">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <p class="text-xs font-bold tracking-[0.2em] uppercase mb-4" style="color:#A8884A;">Notre histoire</p>
+                    <h2 class="font-serif text-3xl font-semibold text-white mb-6">L'art du détail, au service de votre véhicule</h2>
+                    <div class="space-y-4 text-stone-400 leading-relaxed">
+                        <p>
+                            Continental Detailing est né d'une conviction simple : votre voiture mérite les meilleurs soins, sans que vous ayez à vous déplacer. Nous intervenons directement là où vous êtes — chez vous, au bureau, où vous le souhaitez.
+                        </p>
+                        <p>
+                            Chaque prestation est réalisée avec du matériel 100% électrique et silencieux, des produits professionnels haute gamme, et surtout une attention au détail qui fait toute la différence.
+                        </p>
+                        <p>
+                            Notre terrain d'intervention couvre l'<strong class="text-white">Essonne (91)</strong> et la <strong class="text-white">Seine-et-Marne (77)</strong>, avec une disponibilité pensée pour s'adapter à votre agenda.
+                        </p>
+                    </div>
+                </div>
+                <div class="space-y-4">
+                    <div class="equip-item">
+                        <div class="w-10 h-10 rounded-lg flex items-center justify-center shrink-0" style="background:rgba(168,136,74,0.12);border:1px solid rgba(168,136,74,0.2);">
+                            <i class="fa-solid fa-bolt" style="color:#A8884A;"></i>
+                        </div>
+                        <div>
+                            <p class="text-sm font-semibold text-white">Matériel 100% électrique</p>
+                            <p class="text-xs text-stone-500 mt-0.5">Silencieux, propre, zéro nuisance pour vos voisins</p>
+                        </div>
+                    </div>
+                    <div class="equip-item">
+                        <div class="w-10 h-10 rounded-lg flex items-center justify-center shrink-0" style="background:rgba(168,136,74,0.12);border:1px solid rgba(168,136,74,0.2);">
+                            <i class="fa-solid fa-droplet" style="color:#A8884A;"></i>
+                        </div>
+                        <div>
+                            <p class="text-sm font-semibold text-white">Produits professionnels</p>
+                            <p class="text-xs text-stone-500 mt-0.5">Snow Foam, décontaminants, protecteurs UV, cires hydrophobes</p>
+                        </div>
+                    </div>
+                    <div class="equip-item">
+                        <div class="w-10 h-10 rounded-lg flex items-center justify-center shrink-0" style="background:rgba(168,136,74,0.12);border:1px solid rgba(168,136,74,0.2);">
+                            <i class="fa-solid fa-location-dot" style="color:#A8884A;"></i>
+                        </div>
+                        <div>
+                            <p class="text-sm font-semibold text-white">Intervention à domicile</p>
+                            <p class="text-xs text-stone-500 mt-0.5">Accès eau et prise électrique requis — nous apportons le reste</p>
+                        </div>
+                    </div>
+                    <div class="equip-item">
+                        <div class="w-10 h-10 rounded-lg flex items-center justify-center shrink-0" style="background:rgba(168,136,74,0.12);border:1px solid rgba(168,136,74,0.2);">
+                            <i class="fa-solid fa-calendar-check" style="color:#A8884A;"></i>
+                        </div>
+                        <div>
+                            <p class="text-sm font-semibold text-white">Disponibilité flexible</p>
+                            <p class="text-xs text-stone-500 mt-0.5">Semaine, week-end — nous nous adaptons à votre agenda</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Séparateur -->
+    <div class="max-w-4xl mx-auto px-6"><div class="gold-line"></div></div>
+
+    <!-- Nos valeurs -->
+    <section class="py-20 px-6">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-14">
+                <p class="text-xs font-bold tracking-[0.2em] uppercase mb-4" style="color:#A8884A;">Ce qui nous guide</p>
+                <h2 class="font-serif text-3xl font-semibold text-white">Nos valeurs</h2>
+            </div>
+            <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-5">
+                <div class="value-card rounded-xl p-7">
+                    <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-5" style="background:rgba(168,136,74,0.1);border:1px solid rgba(168,136,74,0.2);">
+                        <i class="fa-solid fa-gem text-xl" style="color:#A8884A;"></i>
+                    </div>
+                    <h3 class="font-semibold text-white mb-2">Excellence</h3>
+                    <p class="text-sm text-stone-500 leading-relaxed">Chaque prestation est réalisée avec le même niveau d'exigence, du plus petit véhicule au plus grand.</p>
+                </div>
+                <div class="value-card rounded-xl p-7">
+                    <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-5" style="background:rgba(168,136,74,0.1);border:1px solid rgba(168,136,74,0.2);">
+                        <i class="fa-solid fa-handshake text-xl" style="color:#A8884A;"></i>
+                    </div>
+                    <h3 class="font-semibold text-white mb-2">Confiance</h3>
+                    <p class="text-sm text-stone-500 leading-relaxed">Tarifs transparents, devis clair avant toute intervention. Aucune mauvaise surprise.</p>
+                </div>
+                <div class="value-card rounded-xl p-7">
+                    <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-5" style="background:rgba(168,136,74,0.1);border:1px solid rgba(168,136,74,0.2);">
+                        <i class="fa-solid fa-leaf text-xl" style="color:#A8884A;"></i>
+                    </div>
+                    <h3 class="font-semibold text-white mb-2">Respect</h3>
+                    <p class="text-sm text-stone-500 leading-relaxed">Matériel électrique, produits éco-responsables, respect de votre espace et de votre temps.</p>
+                </div>
+                <div class="value-card rounded-xl p-7">
+                    <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-5" style="background:rgba(168,136,74,0.1);border:1px solid rgba(168,136,74,0.2);">
+                        <i class="fa-solid fa-bolt text-xl" style="color:#A8884A;"></i>
+                    </div>
+                    <h3 class="font-semibold text-white mb-2">Réactivité</h3>
+                    <p class="text-sm text-stone-500 leading-relaxed">Réponse WhatsApp en moins de 2h. Nous savons que votre temps est précieux.</p>
+                </div>
+                <div class="value-card rounded-xl p-7">
+                    <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-5" style="background:rgba(168,136,74,0.1);border:1px solid rgba(168,136,74,0.2);">
+                        <i class="fa-solid fa-shield-halved text-xl" style="color:#A8884A;"></i>
+                    </div>
+                    <h3 class="font-semibold text-white mb-2">Garantie</h3>
+                    <p class="text-sm text-stone-500 leading-relaxed">Satisfaction ou on revient. Votre véhicule repart impeccable, c'est notre engagement.</p>
+                </div>
+                <div class="value-card rounded-xl p-7">
+                    <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-5" style="background:rgba(168,136,74,0.1);border:1px solid rgba(168,136,74,0.2);">
+                        <i class="fa-solid fa-car text-xl" style="color:#A8884A;"></i>
+                    </div>
+                    <h3 class="font-semibold text-white mb-2">Passion</h3>
+                    <p class="text-sm text-stone-500 leading-relaxed">Passionnés d'auto avant tout. On traite votre véhicule comme si c'était le nôtre.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Zone d'intervention -->
+    <section class="py-16 px-6" style="background:rgba(255,255,255,0.015);border-top:1px solid rgba(255,255,255,0.05);border-bottom:1px solid rgba(255,255,255,0.05);">
+        <div class="max-w-3xl mx-auto text-center">
+            <p class="text-xs font-bold tracking-[0.2em] uppercase mb-4" style="color:#A8884A;">Zone couverte</p>
+            <h2 class="font-serif text-2xl font-semibold text-white mb-8">Où intervenons-nous ?</h2>
+            <div class="flex flex-wrap justify-center gap-3 mb-8">
+                <span class="zone-badge"><i class="fa-solid fa-location-dot"></i> Essonne (91)</span>
+                <span class="zone-badge"><i class="fa-solid fa-location-dot"></i> Seine-et-Marne (77)</span>
+                <span class="zone-badge"><i class="fa-solid fa-location-dot"></i> Val-de-Marne (94)</span>
+            </div>
+            <p class="text-sm text-stone-500 leading-relaxed max-w-xl mx-auto">
+                Vous n'êtes pas sûr que nous couvrons votre secteur ? Contactez-nous directement — nous faisons notre maximum pour nous déplacer jusqu'à vous.
+            </p>
+        </div>
+    </section>
+
+    <!-- CTA Final -->
+    <section class="py-24 px-6 text-center">
+        <div class="max-w-xl mx-auto">
+            <p class="text-xs font-bold tracking-[0.2em] uppercase mb-4" style="color:#A8884A;">Prêt à nous faire confiance ?</p>
+            <h2 class="font-serif text-3xl font-semibold text-white mb-6">Réservez votre prestation</h2>
+            <p class="text-stone-400 mb-10 leading-relaxed">Choisissez votre véhicule, votre formule et on s'occupe du reste. Sans engagement, réponse rapide garantie.</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="services.html"
+                   class="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-lg font-bold text-sm text-primary ui-transition hover:scale-[1.02]"
+                   style="background:linear-gradient(135deg,#C4A55D,#A8884A,#8B6F37);box-shadow:0 12px 30px rgba(168,136,74,0.25);">
+                    <i class="fa-solid fa-gem"></i>
+                    Voir les tarifs &amp; réserver
+                </a>
+                <a href="https://wa.me/33750875964?text=Bonjour,%20je%20souhaite%20en%20savoir%20plus" target="_blank"
+                   class="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-lg font-bold text-sm ui-transition hover:scale-[1.02]"
+                   style="background:rgba(168,136,74,0.1);border:1px solid rgba(168,136,74,0.3);color:#C4A55D;">
+                    <i class="fa-brands fa-whatsapp"></i>
+                    Nous contacter
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t px-6 py-10 text-center" style="border-color:rgba(255,255,255,0.06);">
+        <img src="images/logo_continental.png" alt="Continental Detailing" class="h-10 mx-auto mb-6 opacity-60">
+        <p class="text-xs text-stone-600">&copy; 2025 Continental Detailing — Essonne &amp; Seine-et-Marne</p>
+    </footer>
+
+</body>
+</html>
