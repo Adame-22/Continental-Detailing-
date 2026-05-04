@@ -42,6 +42,12 @@
         container.innerHTML = `
         <div class="showcase-wrapper" id="showcase-wrapper">
 
+            <!-- STEP 1 HEADER: Vehicle -->
+            <div class="showcase-step-header">
+                <div class="step-badge">01</div>
+                <span class="step-title">Choisissez votre véhicule</span>
+            </div>
+
             <!-- TOP: Vehicle navigation bar -->
             <nav class="vehicle-nav" id="vehicle-nav" role="tablist" aria-label="Sélection du véhicule">
                 ${vehicleTabs}
@@ -76,23 +82,43 @@
                 <!-- RIGHT: Services panel -->
                 <div class="services-panel" id="services-panel">
 
-                    <!-- Formule tabs -->
-                    <div class="formule-tabs" id="formule-tabs" role="tablist">
-                        <button class="ftab active" data-f="complet" role="tab">
-                            <i class="fa-solid fa-gem"></i>
-                            Pack Complet
-                            <span class="ftab-rec">Best</span>
-                            <span class="ftab-price" id="price-complet">—</span>
+                    <!-- Formule section header -->
+                    <div class="panel-step-header">
+                        <div class="step-badge step-badge--sm">02</div>
+                        <span class="step-title--sm">Votre formule</span>
+                    </div>
+
+                    <!-- Formule pills -->
+                    <div class="formule-pills" id="formule-tabs" role="tablist">
+                        <button class="fpill fpill--featured active" data-f="complet" role="tab">
+                            <div class="fpill-inner">
+                                <i class="fa-solid fa-gem fpill-icon"></i>
+                                <div class="fpill-info">
+                                    <span class="fpill-name">Pack Complet</span>
+                                    <span class="fpill-rec">Recommandé</span>
+                                </div>
+                                <span class="fpill-price" id="price-complet">—</span>
+                            </div>
                         </button>
-                        <button class="ftab" data-f="ext" role="tab">
-                            <i class="fa-solid fa-spray-can"></i>
-                            Extérieur
-                            <span class="ftab-price" id="price-ext">—</span>
+                        <button class="fpill" data-f="ext" role="tab">
+                            <div class="fpill-inner">
+                                <i class="fa-solid fa-spray-can fpill-icon"></i>
+                                <div class="fpill-info">
+                                    <span class="fpill-name">Extérieur</span>
+                                    <span class="fpill-sub">Décontamination</span>
+                                </div>
+                                <span class="fpill-price" id="price-ext">—</span>
+                            </div>
                         </button>
-                        <button class="ftab" data-f="int" role="tab">
-                            <i class="fa-solid fa-couch"></i>
-                            Intérieur
-                            <span class="ftab-price" id="price-int">—</span>
+                        <button class="fpill" data-f="int" role="tab">
+                            <div class="fpill-inner">
+                                <i class="fa-solid fa-couch fpill-icon"></i>
+                                <div class="fpill-info">
+                                    <span class="fpill-name">Intérieur</span>
+                                    <span class="fpill-sub">Pressing HD</span>
+                                </div>
+                                <span class="fpill-price" id="price-int">—</span>
+                            </div>
                         </button>
                     </div>
 
@@ -151,9 +177,9 @@
         });
     }
 
-    /* ── Formule tabs ── */
+    /* ── Formule pills ── */
     function initFormuleTabs() {
-        document.querySelectorAll('.ftab').forEach(btn => {
+        document.querySelectorAll('.fpill').forEach(btn => {
             btn.addEventListener('click', () => {
                 switchFormule(btn.dataset.f);
                 if (window.__alpineFormule) window.__alpineFormule(btn.dataset.f);
@@ -162,7 +188,7 @@
     }
 
     function setActiveFormuleTab(f) {
-        document.querySelectorAll('.ftab').forEach(b => b.classList.toggle('active', b.dataset.f === f));
+        document.querySelectorAll('.fpill').forEach(b => b.classList.toggle('active', b.dataset.f === f));
     }
 
     /* ── Switch car ── */
