@@ -176,9 +176,10 @@
         const img  = document.getElementById('showcase-car-img');
         const glow = document.getElementById('car-glow');
 
-        // Exit
+        // Exit animation
+        wrap.style.transition = 'all 0.25s ease';
         wrap.style.opacity = '0';
-        wrap.style.transform = 'translateX(-40px) scale(0.9)';
+        wrap.style.transform = 'translateX(-32px) scale(0.92)';
 
         setTimeout(() => {
             img.src = data.img;
@@ -188,13 +189,15 @@
             glow.style.boxShadow = '0 0 60px 16px rgba(168,136,74,0.15)';
 
             wrap.style.transition = 'none';
-            wrap.style.transform = 'translateX(40px) scale(0.9)';
+            wrap.style.transform = 'translateX(32px) scale(0.92)';
             wrap.style.opacity = '0';
 
             requestAnimationFrame(() => {
-                wrap.style.transition = 'all 0.6s cubic-bezier(0.16,1,0.3,1)';
-                wrap.style.transform = 'translateX(0) scale(1)';
-                wrap.style.opacity = '1';
+                requestAnimationFrame(() => {
+                    wrap.style.transition = 'all 0.55s cubic-bezier(0.16,1,0.3,1)';
+                    wrap.style.transform = 'translateX(0) scale(1)';
+                    wrap.style.opacity = '1';
+                });
             });
 
             currentCar = key;
@@ -204,7 +207,10 @@
             updateCTA(key);
             spawnParticles();
             isAnimating = false;
-        }, 280);
+
+            // Sync Alpine.js state
+            document.dispatchEvent(new CustomEvent('showcasecar', { detail: { key } }));
+        }, 260);
     }
 
     /* ── Switch formule ── */
@@ -217,6 +223,9 @@
             updateCTA(currentCar);
         }
         updateEconomy(currentCar, f);
+
+        // Sync Alpine.js state
+        document.dispatchEvent(new CustomEvent('showcaseformule', { detail: { f } }));
     }
 
     /* ── Services list ── */

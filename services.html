@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
@@ -58,7 +58,9 @@
     </nav>
 
     <!-- Main Content -->
-    <main class="relative z-10 pt-10 px-4 sm:px-6 max-w-4xl mx-auto"
+    <main class="relative z-10 pt-10 px-4 sm:px-6 max-w-4xl mx-auto pb-4"
+          @showcasecar.window="vehicule = $event.detail.key"
+          @showcaseformule.window="formule = $event.detail.f"
           x-data="{ 
             clientType: 'particulier',
             vehicule: 'citadine',
@@ -91,14 +93,31 @@
             nomsPaiement: { especes: 'Espèces', cb: 'Carte Bancaire', ligne: 'Paiement en ligne' },
             
             get isUtilitaire() { return this.vehicule === 'util'; },
+
+            get nomVehicule() {
+                const n = { citadine:'Citadine', berline:'Berline', suv:'SUV', mono5:'Monospace 5pl', mono7:'Monospace 7pl', util:'Utilitaire' };
+                return n[this.vehicule] || this.vehicule;
+            },
+
+            get nomFormule() {
+                return { ext:'Extérieur', int:'Intérieur', complet:'Pack Complet' }[this.formule] || this.formule;
+            },
+
+            get economie() {
+                const t = this.tarifs[this.vehicule];
+                if (!t || !t.ext || this.formule !== 'complet') return 0;
+                return (t.ext + t.int) - t.complet;
+            },
             
             get totalPrix() {
                 if (this.isUtilitaire || this.clientType === 'pro') return 0;
-                let t = this.tarifs[this.vehicule][this.formule];
-                if (this.options.poils) t += 20;
-                if (this.options.non_videe) t += 10;
-                if (this.options.cire) t += 30;
-                return t;
+                const t = this.tarifs[this.vehicule];
+                if (!t) return 0;
+                let base = t[this.formule] || 0;
+                if (this.options.poils)     base += 20;
+                if (this.options.non_videe) base += 10;
+                if (this.options.cire)      base += 30;
+                return base;
             },
 
             get texteMessage() {
@@ -166,15 +185,41 @@
           }">
         
         <!-- Header -->
-        <div class="text-center mb-12">
-            <p class="text-xs font-semibold tracking-[0.2em] uppercase mb-4" style="color:#A8884A;">Simulateur & Réservation</p>
-            <h1 class="font-serif text-4xl md:text-5xl font-semibold text-white mb-6">Votre Prestation</h1>
-            <div class="h-px w-12 mx-auto mb-8" style="background:#A8884A;"></div>
+        <div class="text-center mb-10">
+            <p class="text-xs font-semibold tracking-[0.2em] uppercase mb-4" style="color:#A8884A;">Simulateur &amp; Réservation</p>
+            <h1 class="font-serif text-4xl md:text-5xl font-semibold text-white mb-4">Votre Prestation</h1>
+            <div class="h-px w-12 mx-auto mb-6" style="background:#A8884A;"></div>
+
+            <!-- Barre de progression -->
+            <div class="flex items-center justify-center mb-6 overflow-x-auto pb-1">
+                <div class="flex items-center gap-0 flex-shrink-0">
+                    <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-full" style="background:rgba(168,136,74,0.15);border:1px solid rgba(168,136,74,0.35);">
+                        <i class="fa-solid fa-car-side text-[9px]" style="color:#C4A55D;"></i>
+                        <span class="text-[9px] font-bold tracking-wider" style="color:#C4A55D;">VÉHICULE</span>
+                    </div>
+                    <div class="w-5 h-px" style="background:rgba(168,136,74,0.35);"></div>
+                    <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-full" style="background:rgba(168,136,74,0.15);border:1px solid rgba(168,136,74,0.35);">
+                        <i class="fa-solid fa-gem text-[9px]" style="color:#C4A55D;"></i>
+                        <span class="text-[9px] font-bold tracking-wider" style="color:#C4A55D;">FORMULE</span>
+                    </div>
+                    <div class="w-5 h-px" style="background:rgba(255,255,255,0.10);"></div>
+                    <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-full" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.10);">
+                        <i class="fa-solid fa-plus text-[9px] text-slate-500"></i>
+                        <span class="text-[9px] font-bold tracking-wider text-slate-500">OPTIONS</span>
+                    </div>
+                    <div class="w-5 h-px" style="background:rgba(255,255,255,0.10);"></div>
+                    <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-full" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.10);">
+                        <i class="fa-brands fa-whatsapp text-[9px] text-slate-500"></i>
+                        <span class="text-[9px] font-bold tracking-wider text-slate-500">RÉSERVER</span>
+                    </div>
+                </div>
+            </div>
+
             <div class="inline-flex items-center gap-2 px-4 py-2 text-[10px] md:text-xs font-medium tracking-wider" style="background:rgba(34,197,94,0.05);border:1px solid rgba(34,197,94,0.15);border-radius:2px;color:#4ade80;">
                 <i class="fa-solid fa-leaf"></i>
-                <span>MATÉRIEL 100% ÉLECTRIQUE & SILENCIEUX (ACCÈS EAU/PRISES REQUIS)</span>
+                <span>MATÉRIEL 100% ÉLECTRIQUE &amp; SILENCIEUX (ACCÈS EAU/PRISES REQUIS)</span>
             </div>
-            <div class="flex max-w-sm mx-auto" style="background:#111117;border:1px solid rgba(255,255,255,0.05);border-radius:2px;padding:4px;">
+            <div class="flex max-w-sm mx-auto mt-5" style="background:#111117;border:1px solid rgba(255,255,255,0.05);border-radius:2px;padding:4px;">
                 <button @click="clientType = 'particulier'"
                         :style="clientType === 'particulier' ? 'background:#A8884A;color:#09090B;' : 'background:transparent;color:#57534E;'"
                         class="flex-1 py-3 text-xs font-bold tracking-wider uppercase ui-transition" style="border-radius:1px;">
@@ -187,6 +232,7 @@
                 </button>
             </div>
         </div>
+
 
         <!-- Section Pro -->
         <div x-show="clientType === 'pro'" x-transition class="mb-20">
@@ -317,26 +363,36 @@
         <!-- Sticky Summary Bar -->
         <div class="fixed bottom-0 left-0 right-0 z-50 backdrop-blur-xl" style="background:rgba(13,13,16,0.93);border-top:1px solid rgba(255,255,255,0.07);">
             <div class="max-w-4xl mx-auto flex items-center justify-between gap-4 px-4 py-3">
-                <div x-show="clientType === 'particulier'">
-                    <p class="text-[10px] font-semibold uppercase tracking-widest" style="color:#8A8480;">Total estimé</p>
-                    <p class="text-2xl font-bold text-white leading-tight">
-                        <span x-show="isUtilitaire">Sur devis</span>
-                        <span x-show="!isUtilitaire" x-text="totalPrix + '€'"></span>
-                    </p>
+                <!-- Résumé sélection -->
+                <div x-show="clientType === 'particulier' && !isUtilitaire" class="min-w-0">
+                    <div class="flex items-center gap-2 mb-0.5 flex-wrap">
+                        <p class="text-[9px] font-bold uppercase tracking-widest" style="color:#6A6460;">Votre devis</p>
+                        <span x-show="economie > 0"
+                              class="text-[9px] font-bold px-1.5 py-0.5 rounded-full"
+                              style="background:rgba(34,197,94,0.15);color:#4ade80;"
+                              x-text="'-' + economie + '€ économisés'"></span>
+                    </div>
+                    <div class="flex items-baseline gap-2">
+                        <p class="text-xl font-bold text-white" x-text="totalPrix + '€'"></p>
+                        <span class="text-xs text-slate-500 truncate" x-text="nomVehicule + ' · ' + nomFormule"></span>
+                    </div>
                 </div>
-                <div x-show="clientType === 'pro'">
-                    <p class="text-sm font-semibold text-slate-400">Tarification entreprise</p>
+                <div x-show="isUtilitaire || clientType === 'pro'" class="min-w-0">
+                    <p class="text-[9px] font-bold uppercase tracking-widest mb-0.5" style="color:#6A6460;">Estimation</p>
+                    <p class="text-xl font-bold text-white">Sur devis</p>
                 </div>
-                <div class="flex items-center gap-3">
+                <!-- Actions -->
+                <div class="flex items-center gap-2 shrink-0">
                     <a :href="'https://instagram.com/' + compteInsta" target="_blank"
-                       class="hidden sm:flex w-10 h-10 items-center justify-center rounded-lg border border-white/[0.08] text-slate-500 hover:text-action hover:border-action ui-transition">
-                        <i class="fa-brands fa-instagram"></i>
+                       class="hidden sm:flex w-9 h-9 items-center justify-center rounded-lg border border-white/[0.08] text-slate-500 hover:text-action hover:border-action ui-transition">
+                        <i class="fa-brands fa-instagram text-sm"></i>
                     </a>
                     <button @click="showContactModal = true"
-                            class="inline-flex items-center gap-2 bg-action-gradient text-primary px-6 py-3 rounded-lg font-bold text-sm hover:scale-[1.02] ui-transition shadow-[0_8px_24px_rgba(168,136,74,0.25)]">
-                        <i class="fa-brands fa-whatsapp text-lg"></i>
+                            class="inline-flex items-center gap-2 bg-action-gradient text-primary px-5 py-2.5 rounded-lg font-bold text-sm hover:scale-[1.02] ui-transition shadow-[0_8px_24px_rgba(168,136,74,0.3)]">
+                        <i class="fa-brands fa-whatsapp"></i>
                         <span x-text="(isUtilitaire || clientType === 'pro') ? 'Demander mon devis' : 'Réserver — ' + totalPrix + '€'"></span>
                     </button>
+
                 </div>
             </div>
         </div>
