@@ -211,7 +211,11 @@
     function switchFormule(f) {
         currentFormule = f;
         setActiveFormuleTab(f);
-        if (currentCar) { updateServices(currentCar, f); updatePriceDisplay(currentCar, f); }
+        if (currentCar) {
+            updateServices(currentCar, f);
+            updatePriceDisplay(currentCar, f);
+            updateCTA(currentCar);
+        }
         updateEconomy(currentCar, f);
     }
 
@@ -264,14 +268,25 @@
         badge.style.display = 'flex';
     }
 
-    /* ── CTA Link ── */
+    /* ── CTA Link (WhatsApp) ── */
     function updateCTA(carKey) {
         const cta = document.getElementById('showcase-cta');
-        if (!cta) return;
-        const t = TARIFS[carKey];
-        const price = t && t[currentFormule] ? t[currentFormule] + '€' : 'devis';
-        const msg = encodeURIComponent(`Bonjour Continental Detailing, je souhaite réserver :\n🚗 Véhicule : ${CARS[carKey]?.label}\n💰 Estimation : ${price}`);
-        cta.href = `https://wa.me/33750875964?text=${msg}`;
+        if (!cta || !carKey) return;
+        const car = CARS[carKey];
+        const t   = TARIFS[carKey];
+        const formuleLabels = { complet: 'Pack Complet', ext: 'Ext\u00e9rieur', int: 'Int\u00e9rieur' };
+        const prixStr = (t && t[currentFormule] !== null && t[currentFormule] !== undefined)
+            ? t[currentFormule] + '\u20ac'
+            : 'Sur devis';
+        const msg = encodeURIComponent(
+            'Bonjour Continental Detailing, je souhaite r\u00e9server :\n' +
+            '\uD83D\uDE97 V\u00e9hicule : ' + (car ? car.label : carKey) + '\n' +
+            '\u2728 Formule : ' + (formuleLabels[currentFormule] || currentFormule) + '\n' +
+            '\uD83D\uDCB0 Estimation : ' + prixStr
+        );
+        cta.href = 'https://wa.me/33750875964?text=' + msg;
+        cta.target = '_blank';
+        cta.rel    = 'noopener noreferrer';
     }
 
     /* ── Particles ── */

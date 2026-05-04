@@ -125,27 +125,36 @@
             },
             
             submitForm() {
-                if(!this.formName || !this.formEmail) return;
+                if (!this.formName || !this.formEmail) return;
                 this.formStatus = 'submitting';
-                
+
+                const vehiculeNom = this.isUtilitaire ? 'Utilitaire (devis)' : (this.tarifs[this.vehicule]?.nom || this.vehicule);
+                const formuleNom  = this.isUtilitaire ? 'Sur devis' : this.nomsFormules[this.formule];
+                const prixStr     = (this.totalPrix > 0) ? this.totalPrix + '\u20ac' : 'Sur devis';
+
                 fetch('https://api.web3forms.com/submit', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
                     body: JSON.stringify({
                         access_key: 'fdbf201b-2b59-4b8c-ba99-99b8d048e72c',
-                        subject: 'Nouveau devis depuis le site Web - ' + this.formName,
-                        from_name: this.formName,
+                        subject: '\uD83D\uDE97 Nouveau devis Continental Detailing — ' + this.formName,
+                        name: this.formName,
                         email: this.formEmail,
-                        phone: this.formPhone,
-                        message: decodeURIComponent(this.texteMessage) + '\n\nCoordonnées client:\nNom: ' + this.formName + '\nEmail: ' + this.formEmail + '\nTéléphone: ' + this.formPhone,
+                        replyto: this.formEmail,
+                        phone: this.formPhone || 'Non renseigné',
+                        message:
+                            '\uD83D\uDE97 Véhicule : ' + vehiculeNom + '\n' +
+                            '\u2728 Formule : ' + formuleNom + '\n' +
+                            '\uD83D\uDCB0 Total estimé : ' + prixStr + '\n\n' +
+                            '--- Coordonnées client ---\n' +
+                            'Nom : ' + this.formName + '\n' +
+                            'Email : ' + this.formEmail + '\n' +
+                            'Téléphone : ' + (this.formPhone || 'Non renseigné'),
                     })
                 })
-                .then(async (response) => {
-                    if (response.status == 200) {
-                        this.formStatus = 'success';
-                    } else {
-                        this.formStatus = 'error';
-                    }
+                .then(async (r) => {
+                    const data = await r.json();
+                    this.formStatus = data.success ? 'success' : 'error';
                 })
                 .catch(() => {
                     this.formStatus = 'error';
