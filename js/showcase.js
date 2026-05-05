@@ -235,7 +235,7 @@
             isAnimating = false;
 
             // Sync Alpine.js state
-            document.dispatchEvent(new CustomEvent('showcasecar', { detail: { key } }));
+            window.dispatchEvent(new CustomEvent('showcasecar', { detail: { key } }));
         }, 260);
     }
 
@@ -251,7 +251,7 @@
         updateEconomy(currentCar, f);
 
         // Sync Alpine.js state
-        document.dispatchEvent(new CustomEvent('showcaseformule', { detail: { f } }));
+        window.dispatchEvent(new CustomEvent('showcaseformule', { detail: { f } }));
     }
 
     /* ── Services list ── */
