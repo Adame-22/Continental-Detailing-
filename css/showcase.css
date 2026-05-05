@@ -525,3 +525,14 @@
     transform: translateY(-1px);
     box-shadow: 0 8px 20px rgba(168,136,74,0.25);
 }
+
+/* Mobile Optimizations */
+@media (max-width: 640px) {
+  .veh-tab { padding: 12px 10px; gap: 4px; }
+  .veh-tab i { font-size: 1.2rem; }
+  .fpill-inner { padding: 10px 12px; gap: 10px; }
+  .car-stage { padding: 1.5rem 1rem 1rem; }
+  .showcase-body { min-height: 380px; }
+  .fpill-name { font-size: 0.75rem; }
+  .fpill-price { font-size: 1rem; }
+}

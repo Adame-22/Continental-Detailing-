@@ -191,13 +191,13 @@
           }">
         
         <!-- Header -->
-        <div class="text-center mb-10">
-            <p class="text-xs font-semibold tracking-[0.2em] uppercase mb-4" style="color:#A8884A;">Simulateur &amp; Réservation</p>
-            <h1 class="font-serif text-4xl md:text-5xl font-semibold text-white mb-4">Votre Prestation</h1>
-            <div class="h-px w-12 mx-auto mb-6" style="background:#A8884A;"></div>
+        <div class="text-center mb-6 md:mb-10">
+            <p class="text-[10px] md:text-xs font-semibold tracking-[0.2em] uppercase mb-3 md:mb-4" style="color:#A8884A;">Simulateur &amp; Réservation</p>
+            <h1 class="font-serif text-3xl md:text-5xl font-semibold text-white mb-3 md:mb-4">Votre Prestation</h1>
+            <div class="h-px w-12 mx-auto mb-4 md:mb-6" style="background:#A8884A;"></div>
 
             <!-- Barre de progression -->
-            <div class="flex items-center justify-center mb-6 overflow-x-auto pb-1">
+            <div class="flex items-center justify-center mb-5 overflow-x-auto pb-1">
                 <div class="flex items-center gap-0 flex-shrink-0">
 
                     <!-- Step 1: Véhicule -->
@@ -205,15 +205,15 @@
                          :style="stepsDone >= 1
                              ? 'background:rgba(168,136,74,0.18);border:1px solid rgba(196,165,93,0.5);'
                              : 'background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);'">
-                        <i class="text-[9px] transition-all duration-300"
+                        <i class="text-[9px] md:text-[10px] transition-all duration-300"
                            :class="stepsDone >= 1 ? 'fa-solid fa-check' : 'fa-solid fa-car-side'"
                            :style="stepsDone >= 1 ? 'color:#C4A55D;' : 'color:#4a4a4a;'"></i>
-                        <span class="text-[9px] font-bold tracking-wider transition-all duration-300"
+                        <span class="hidden sm:inline text-[9px] font-bold tracking-wider transition-all duration-300"
                               :style="stepsDone >= 1 ? 'color:#C4A55D;' : 'color:#4a4a4a;'">VÉHICULE</span>
                     </div>
 
                     <!-- Connector 1→2 -->
-                    <div class="w-5 h-px transition-all duration-500"
+                    <div class="w-3 sm:w-5 h-px transition-all duration-500"
                          :style="stepsDone >= 2 ? 'background:rgba(168,136,74,0.5);' : 'background:rgba(255,255,255,0.08);'"></div>
 
                     <!-- Step 2: Formule -->
@@ -221,15 +221,15 @@
                          :style="stepsDone >= 2
                              ? 'background:rgba(168,136,74,0.18);border:1px solid rgba(196,165,93,0.5);'
                              : 'background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);'">
-                        <i class="text-[9px] transition-all duration-300"
+                        <i class="text-[9px] md:text-[10px] transition-all duration-300"
                            :class="stepsDone >= 2 ? 'fa-solid fa-check' : 'fa-solid fa-gem'"
                            :style="stepsDone >= 2 ? 'color:#C4A55D;' : 'color:#4a4a4a;'"></i>
-                        <span class="text-[9px] font-bold tracking-wider transition-all duration-300"
+                        <span class="hidden sm:inline text-[9px] font-bold tracking-wider transition-all duration-300"
                               :style="stepsDone >= 2 ? 'color:#C4A55D;' : 'color:#4a4a4a;'">FORMULE</span>
                     </div>
 
                     <!-- Connector 2→3 -->
-                    <div class="w-5 h-px transition-all duration-500"
+                    <div class="w-3 sm:w-5 h-px transition-all duration-500"
                          :style="stepsDone >= 3 ? 'background:rgba(168,136,74,0.5);' : 'background:rgba(255,255,255,0.08);'"></div>
 
                     <!-- Step 3: Options -->
@@ -237,15 +237,15 @@
                          :style="stepsDone >= 3
                              ? 'background:rgba(168,136,74,0.18);border:1px solid rgba(196,165,93,0.5);'
                              : 'background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);'">
-                        <i class="text-[9px] transition-all duration-300"
+                        <i class="text-[9px] md:text-[10px] transition-all duration-300"
                            :class="stepsDone >= 3 ? 'fa-solid fa-check' : 'fa-solid fa-sliders'"
                            :style="stepsDone >= 3 ? 'color:#C4A55D;' : 'color:#4a4a4a;'"></i>
-                        <span class="text-[9px] font-bold tracking-wider transition-all duration-300"
+                        <span class="hidden sm:inline text-[9px] font-bold tracking-wider transition-all duration-300"
                               :style="stepsDone >= 3 ? 'color:#C4A55D;' : 'color:#4a4a4a;'">OPTIONS</span>
                     </div>
 
                     <!-- Connector 3→4 -->
-                    <div class="w-5 h-px transition-all duration-500"
+                    <div class="w-3 sm:w-5 h-px transition-all duration-500"
                          :style="stepsDone >= 4 ? 'background:rgba(168,136,74,0.5);' : 'background:rgba(255,255,255,0.08);'"></div>
 
                     <!-- Step 4: Réserver -->
@@ -253,10 +253,10 @@
                          :style="stepsDone >= 4
                              ? 'background:rgba(168,136,74,0.18);border:1px solid rgba(196,165,93,0.5);'
                              : 'background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);'">
-                        <i class="text-[9px] transition-all duration-300"
+                        <i class="text-[9px] md:text-[10px] transition-all duration-300"
                            :class="stepsDone >= 4 ? 'fa-solid fa-check' : 'fa-brands fa-whatsapp'"
                            :style="stepsDone >= 4 ? 'color:#C4A55D;' : 'color:#4a4a4a;'"></i>
-                        <span class="text-[9px] font-bold tracking-wider transition-all duration-300"
+                        <span class="hidden sm:inline text-[9px] font-bold tracking-wider transition-all duration-300"
                               :style="stepsDone >= 4 ? 'color:#C4A55D;' : 'color:#4a4a4a;'">RÉSERVER</span>
                     </div>
 
@@ -265,26 +265,26 @@
 
 
             <!-- Badges de confiance -->
-            <div class="flex items-center justify-center gap-5 mb-5 flex-wrap">
-                <div class="flex items-center gap-1.5 text-xs text-slate-400">
-                    <i class="fa-solid fa-shield-halved text-[11px]" style="color:#A8884A;"></i>
+            <div class="flex justify-center gap-x-4 gap-y-2 mb-4 flex-wrap max-w-sm mx-auto px-4">
+                <div class="flex items-center gap-1.5 text-[10px] md:text-xs text-slate-400">
+                    <i class="fa-solid fa-shield-halved text-[10px] md:text-[11px]" style="color:#A8884A;"></i>
                     <span>Satisfaction garantie</span>
                 </div>
-                <div class="w-px h-3" style="background:rgba(255,255,255,0.12);"></div>
-                <div class="flex items-center gap-1.5 text-xs text-slate-400">
-                    <i class="fa-solid fa-location-dot text-[11px]" style="color:#A8884A;"></i>
-                    <span>Intervention à domicile</span>
+                <div class="hidden sm:block w-px h-3" style="background:rgba(255,255,255,0.12);"></div>
+                <div class="flex items-center gap-1.5 text-[10px] md:text-xs text-slate-400">
+                    <i class="fa-solid fa-location-dot text-[10px] md:text-[11px]" style="color:#A8884A;"></i>
+                    <span>À domicile</span>
                 </div>
-                <div class="w-px h-3" style="background:rgba(255,255,255,0.12);"></div>
-                <div class="flex items-center gap-1.5 text-xs text-slate-400">
-                    <i class="fa-solid fa-bolt text-[11px]" style="color:#A8884A;"></i>
-                    <span>Résultat en 1 journée</span>
+                <div class="hidden sm:block w-px h-3" style="background:rgba(255,255,255,0.12);"></div>
+                <div class="flex items-center gap-1.5 text-[10px] md:text-xs text-slate-400">
+                    <i class="fa-solid fa-bolt text-[10px] md:text-[11px]" style="color:#A8884A;"></i>
+                    <span>Résultat en 1j</span>
                 </div>
             </div>
 
-            <div class="inline-flex items-center gap-2 px-4 py-2 text-[10px] md:text-xs font-medium tracking-wider" style="background:rgba(34,197,94,0.05);border:1px solid rgba(34,197,94,0.15);border-radius:2px;color:#4ade80;">
+            <div class="inline-flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 text-[9px] md:text-xs font-medium tracking-wider" style="background:rgba(34,197,94,0.05);border:1px solid rgba(34,197,94,0.15);border-radius:2px;color:#4ade80;">
                 <i class="fa-solid fa-leaf"></i>
-                <span>MATÉRIEL 100% ÉLECTRIQUE &amp; SILENCIEUX (ACCÈS EAU/PRISES REQUIS)</span>
+                <span class="text-center">MATÉRIEL 100% ÉLECTRIQUE <span class="hidden sm:inline">&amp; SILENCIEUX (ACCÈS EAU/PRISES REQUIS)</span></span>
             </div>
             <div class="flex max-w-sm mx-auto mt-5" style="background:#111117;border:1px solid rgba(255,255,255,0.05);border-radius:2px;padding:4px;">
                 <button @click="clientType = 'particulier'"
@@ -430,9 +430,9 @@
         <!-- Sticky Summary Bar -->
         <div class="fixed bottom-0 left-0 right-0 z-50 backdrop-blur-xl" style="background:rgba(10,10,13,0.96);border-top:1px solid rgba(255,255,255,0.08);">
             <!-- Urgence strip -->
-            <div class="flex items-center justify-center gap-2 py-1.5 text-[10px] font-semibold" style="background:rgba(168,136,74,0.12);border-bottom:1px solid rgba(168,136,74,0.15);color:#C4A55D;">
-                <i class="fa-solid fa-calendar-check text-[9px]"></i>
-                <span>Créneaux disponibles cette semaine &mdash; Réservez avant qu'ils partent</span>
+            <div class="flex items-center justify-center gap-2 py-1 sm:py-1.5 text-[9px] sm:text-[10px] font-semibold" style="background:rgba(168,136,74,0.12);border-bottom:1px solid rgba(168,136,74,0.15);color:#C4A55D;">
+                <i class="fa-solid fa-calendar-check"></i>
+                <span>Créneaux disponibles <span class="hidden sm:inline">cette semaine</span> &mdash; Réservez vite</span>
             </div>
             <div class="max-w-4xl mx-auto px-4 py-2.5">
                 <div class="flex items-center justify-between gap-4">
@@ -446,13 +446,13 @@
                                   x-text="'-' + economie + '\u20ac économisés'"></span>
                         </div>
                         <div class="flex items-baseline gap-2">
-                            <p class="text-xl font-bold text-white" x-text="totalPrix + '\u20ac'"></p>
-                            <span class="text-xs text-slate-500 truncate" x-text="nomVehicule + ' \u00b7 ' + nomFormule"></span>
+                            <p class="text-lg sm:text-xl font-bold text-white" x-text="totalPrix + '\u20ac'"></p>
+                            <span class="text-[10px] sm:text-xs text-slate-500 truncate" x-text="nomVehicule + ' \u00b7 ' + nomFormule"></span>
                         </div>
                     </div>
                     <div x-show="isUtilitaire || clientType === 'pro'" class="min-w-0">
                         <p class="text-[9px] font-bold uppercase tracking-widest mb-0.5" style="color:#6A6460;">Estimation</p>
-                        <p class="text-xl font-bold text-white">Sur devis</p>
+                        <p class="text-lg sm:text-xl font-bold text-white">Sur devis</p>
                     </div>
                     <!-- CTA -->
                     <div class="flex flex-col items-end gap-1 shrink-0">
@@ -462,9 +462,11 @@
                                 <i class="fa-brands fa-instagram text-sm"></i>
                             </a>
                             <button @click="showContactModal = true; stepsDone = 4"
-                                    class="inline-flex items-center gap-2 bg-action-gradient text-primary px-5 py-2.5 rounded-lg font-bold text-sm hover:scale-[1.02] ui-transition shadow-[0_8px_24px_rgba(168,136,74,0.3)]">
+                                    class="inline-flex items-center gap-1.5 sm:gap-2 bg-action-gradient text-primary px-3 py-2 sm:px-5 sm:py-2.5 rounded-lg font-bold text-xs sm:text-sm hover:scale-[1.02] ui-transition shadow-[0_8px_24px_rgba(168,136,74,0.3)]">
                                 <i class="fa-brands fa-whatsapp"></i>
-                                <span x-text="(isUtilitaire || clientType === 'pro') ? 'Demander mon devis' : 'Réserver \u2014 ' + totalPrix + '\u20ac'"></span>
+                                <span x-show="!(isUtilitaire || clientType === 'pro')" class="sm:hidden">Réserver</span>
+                                <span x-show="!(isUtilitaire || clientType === 'pro')" class="hidden sm:inline" x-text="'Réserver \u2014 ' + totalPrix + '\u20ac'"></span>
+                                <span x-show="(isUtilitaire || clientType === 'pro')">Devis</span>
                             </button>
                         </div>
                         <p class="text-[9px] text-slate-600 text-right">
