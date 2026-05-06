@@ -8,7 +8,7 @@
     const stdExt = [
         'Prélavage actif (Snow Foam)',
         'Nettoyage approfondi jantes & passages de roues',
-        'Lavage manuel technique des 2 seaux',
+        'Lavage manuel & rinçage haute pression',
         'Décontamination carrosserie',
         'Séchage premium & dressing des pneumatiques'
     ];
