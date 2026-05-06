@@ -528,11 +528,31 @@
 
 /* Mobile Optimizations */
 @media (max-width: 640px) {
-  .veh-tab { padding: 12px 10px; gap: 4px; }
-  .veh-tab i { font-size: 1.2rem; }
+  .vehicle-nav {
+      justify-content: flex-start;
+      padding-bottom: 2px;
+  }
+  .veh-tab {
+      flex: 0 0 auto;
+      flex-shrink: 0;
+      min-width: 85px;
+      padding: 10px 6px;
+      gap: 4px;
+  }
+  .veh-tab i { font-size: 1.1rem; }
+  .veh-devis { font-size: 0.5rem; }
+  
   .fpill-inner { padding: 10px 12px; gap: 10px; }
-  .car-stage { padding: 1.5rem 1rem 1rem; }
-  .showcase-body { min-height: 380px; }
+  .fpill-icon { font-size: 1.2rem; }
+  .car-stage { padding: 1rem 0.5rem 0.5rem; }
+  
+  .showcase-body { min-height: 350px; }
+  
   .fpill-name { font-size: 0.75rem; }
-  .fpill-price { font-size: 1rem; }
+  .fpill-sub { font-size: 0.55rem; }
+  .fpill-price { font-size: 0.95rem; }
+  
+  .car-image-wrap { max-width: 80%; }
+  .car-reflection { bottom: -15px; }
+  .platform-ring { bottom: -25px; height: 10px; }
 }
