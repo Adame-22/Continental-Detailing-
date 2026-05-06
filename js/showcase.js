@@ -5,13 +5,36 @@
 (function () {
     'use strict';
 
+    const stdExt = [
+        'Prélavage actif (Snow Foam)',
+        'Nettoyage approfondi jantes & passages de roues',
+        'Lavage manuel technique des 2 seaux',
+        'Décontamination carrosserie',
+        'Séchage premium & dressing des pneumatiques'
+    ];
+
+    const stdInt = [
+        'Aspiration minutieuse (habitacle & coffre)',
+        'Dégraissage des plastiques au pinceau',
+        'Shampoing moquettes & tapis (Pressing)',
+        'Nettoyage en profondeur des sièges (cuir/tissu)',
+        'Nettoyage des vitres intérieures sans trace'
+    ];
+
+    const stdComplet = [
+        '✨ Toutes les prestations de la formule Intérieur',
+        '✨ Toutes les prestations de la formule Extérieur',
+        'Soin protecteur pour plastiques intérieurs',
+        'Cire de finition brillance sur carrosserie'
+    ];
+
     const CARS = {
-        citadine: { img: 'images/car-citadine.png', label: 'Citadine', subtitle: 'Clio, 208, Polo, Yaris...', icon: 'fa-car-side', services: { ext: ['Prélavage Snow Foam', 'Lavage 2 seaux microfibre', 'Décontamination jantes', 'Dressing pneus', 'Séchage sécurisé'], int: ['Aspiration chirurgicale', 'Pressing injection/extraction', 'Dégraissage au pinceau', 'Protection Anti-UV', 'Soin des cuirs'], complet: ['Snow Foam + Lavage 2 seaux', 'Décontamination jantes & pneus', 'Aspiration chirurgicale', 'Pressing profondeur', 'Dégraissage plastiques', 'Soin cuirs & vitres'] } },
-        berline:  { img: 'images/car-berline.png', label: 'Berline', subtitle: 'Série 3, Classe C, A4, Model 3...', icon: 'fa-car', services: { ext: ['Prélavage Snow Foam', 'Lavage 2 seaux microfibre', 'Décontamination jantes & freins', 'Détails pinceau calandre', 'Dressing pneus premium'], int: ['Aspiration sièges & coffre', 'Pressing injection/extraction', 'Dégraissage commodos', 'Protection Anti-UV plastiques', 'Finition vitres sans trace'], complet: ['Snow Foam + Lavage complet', 'Décontamination totale', 'Aspiration + pressing HD', 'Plastiques + cuirs traités', 'Vitres dégraissées', 'Dressing pneus'] } },
-        suv:      { img: 'images/car-suv.png', label: 'SUV', subtitle: '3008, Tiguan, RAV4, Model Y...', icon: 'fa-truck-pickup', services: { ext: ['Snow Foam grande surface', 'Lavage 2 seaux spécialisé', 'Décontamination jantes', 'Nettoyage soubassements', 'Dressing pneus 4x4'], int: ['Aspiration 5 places + coffre', 'Pressing banquettes arrière', 'Dégraissage tableau de bord', 'Protection UV renforcée', 'Soin cuirs & alcantara'], complet: ['Snow Foam + Lavage intégral', 'Décontamination jantes HD', 'Aspiration coffre + habitacle', 'Pressing profond 5 places', 'Plastiques + cuirs soignés', 'Vitres panoramiques'] } },
-        mono5:    { img: 'images/car-monospace.png', label: 'Monospace 5pl', subtitle: 'Scénic, Touran, Espace...', icon: 'fa-van-shuttle', services: { ext: ['Snow Foam carrosserie longue', 'Lavage 2 seaux grande surface', 'Décontamination 4 jantes', 'Joints & trappes nettoyés', 'Dressing pneus complet'], int: ['Aspiration 5 places + coffre', 'Pressing tapis & sièges', 'Dégraissage panneaux portes', 'Protection plastiques UV', 'Vitres coulissantes traitées'], complet: ['Snow Foam + Lavage XL', 'Décontamination jantes totale', 'Aspiration 5pl + grand coffre', 'Pressing tapis longue durée', 'Plastiques + cuirs traités', 'Vitres sans trace'] } },
-        mono7:    { img: 'images/car-monospace.png', label: 'Monospace 7pl', subtitle: 'Classe V, Espace 7, Touran 7...', icon: 'fa-bus', services: { ext: ['Snow Foam carrosserie XXL', 'Lavage 2 seaux surface totale', 'Décontamination jantes', 'Nettoyage soubassements longs', 'Dressing pneus 7pl'], int: ['Aspiration 7 places + coffre', 'Pressing rang 2 & rang 3', 'Dégraissage tableau de bord', 'Protection UV toute surface', 'Soin cuirs 7 places'], complet: ['Snow Foam + Lavage XXL', 'Décontamination totale', 'Aspiration 7pl profonde', 'Pressing tapis 3 rangs', 'Plastiques & cuirs soignés', 'Vitres latérales traitées'] } },
-        util:     { img: 'images/car-utilitaire.png', label: 'Utilitaire', subtitle: 'Sprinter, Master, Transit...', icon: 'fa-truck', services: { ext: ['Snow Foam grand volume', 'Lavage carrosserie utilitaire', 'Décontamination jantes doubles', 'Nettoyage rehausses & crocs', 'Protection carrosserie'], int: ['Aspiration plancher de charge', 'Pressing siège conducteur', 'Dégraissage tableau de bord', 'Nettoyage parois internes', 'Désinfection habitacle'], complet: ['Traitement complet sur devis', 'Selon volume L1/L2/L3', 'État du véhicule analysé', 'Devis personnalisé garanti', 'Intervention sur site', 'Contact pour estimation'] } }
+        citadine: { img: 'images/car-citadine.png', label: 'Citadine', subtitle: 'Clio, 208, Polo, Yaris...', icon: 'fa-car-side', services: { ext: stdExt, int: stdInt, complet: stdComplet } },
+        berline:  { img: 'images/car-berline.png', label: 'Berline', subtitle: 'Série 3, Classe C, A4, Model 3...', icon: 'fa-car', services: { ext: stdExt, int: stdInt, complet: stdComplet } },
+        suv:      { img: 'images/car-suv.png', label: 'SUV', subtitle: '3008, Tiguan, RAV4, Model Y...', icon: 'fa-truck-pickup', services: { ext: stdExt, int: stdInt, complet: stdComplet } },
+        mono5:    { img: 'images/car-monospace.png', label: 'Monospace 5pl', subtitle: 'Scénic, Touran, Espace...', icon: 'fa-van-shuttle', services: { ext: stdExt, int: stdInt, complet: stdComplet } },
+        mono7:    { img: 'images/car-monospace.png', label: 'Monospace 7pl', subtitle: 'Classe V, Espace 7, Touran 7...', icon: 'fa-bus', services: { ext: stdExt, int: stdInt, complet: stdComplet } },
+        util:     { img: 'images/car-utilitaire.png', label: 'Utilitaire', subtitle: 'Sprinter, Master, Transit...', icon: 'fa-truck', services: { ext: ['Sur devis selon volume'], int: ['Sur devis selon volume'], complet: ['État du véhicule analysé sur place', 'Devis personnalisé garanti', 'Intervention sur site possible', 'Contactez-nous pour une estimation'] } }
     };
 
     const TARIFS = {
