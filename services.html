@@ -10,15 +10,15 @@
     <link rel="stylesheet" href="css/showcase.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        tailwind.config = {
+                tailwind.config = {
             theme: {
                 extend: {
                     colors: {
                         bg: '#FFFFFF',
-                        'bg-alt': '#F5F5F5',
+                        'bg-alt': '#F8F7F4',
                         'bg-dark': '#0E1418',
                         primary: '#1A1A1E',
-                        secondary: '#6B6B6B',
+                        secondary: '#5A5650',
                         muted: '#999999',
                         action: '#A8884A',
                         'action-lt': '#C4A55D',
@@ -26,6 +26,9 @@
                     fontFamily: {
                         sans:  ['Outfit', 'sans-serif'],
                         serif: ['Outfit', 'sans-serif']
+                    },
+                    backgroundImage: {
+                        'gold-gradient': 'linear-gradient(135deg, #C4A55D 0%, #A8884A 50%, #8B6F37 100%)'
                     }
                 }
             }
@@ -212,7 +215,7 @@
                 <span class="text-center">MATÉRIEL 100% ÉLECTRIQUE <span class="hidden sm:inline">&amp; SILENCIEUX (ACCÈS EAU/PRISES REQUIS)</span></span>
             </div>
             
-            <div class="flex max-w-sm mx-auto mt-5 border border-gray-200 bg-bg-alt p-1 rounded-lg">
+            <div class="flex max-w-sm mx-auto mt-5 border border-gray-200 bg-bg-alt p-1 rounded-xl">
                 <button @click="clientType = 'particulier'"
                         :style="clientType === 'particulier' ? 'background:#1A1A1E;color:#FFFFFF;' : 'background:transparent;color:#6B6B6B;'"
                         class="flex-1 py-3 text-xs font-medium tracking-widest uppercase transition-colors rounded-md">
@@ -250,7 +253,7 @@
 
             <!-- Utilitaire: bannière devis direct -->
             <div x-show="isUtilitaire" class="mb-10">
-                <div class="border border-gray-200 p-6 flex flex-col sm:flex-row items-center justify-between gap-4 bg-bg-alt rounded-lg shadow-sm">
+                <div class="border border-gray-200 p-6 flex flex-col sm:flex-row items-center justify-between gap-4 bg-bg-alt rounded-xl shadow-sm">
                     <div>
                         <p class="text-[10px] font-medium uppercase tracking-widest text-primary mb-1">Utilitaire — tarification sur mesure</p>
                         <p class="text-sm text-secondary font-light">Volume, état et accès : chaque utilitaire est unique. Nous établissons un devis rapide et gratuit.</p>
@@ -270,7 +273,7 @@
                         <span class="text-xs text-muted font-light">Ajoutez selon l'état de votre véhicule</span>
                     </div>
                 </div>
-                <div class="border border-gray-200 bg-bg rounded-lg overflow-hidden shadow-sm">
+                <div class="border border-gray-200 bg-bg rounded-xl overflow-hidden shadow-sm">
                     <button @click="options.poils = !options.poils; stepsDone = Math.max(stepsDone, 3)"
                             :class="options.poils ? 'bg-bg-alt border-l-2 border-l-primary' : 'border-l-2 border-l-transparent'"
                             class="w-full flex items-center justify-between px-5 py-4 border-b border-gray-200 hover:bg-bg-alt transition-colors">
@@ -334,19 +337,19 @@
                 <div class="grid grid-cols-3 gap-3">
                     <button @click="paiement = 'cb'"
                             :class="paiement === 'cb' ? 'border-primary bg-bg-alt text-primary' : 'border-gray-200 bg-bg text-secondary'"
-                            class="flex flex-col items-center justify-center gap-3 p-4 sm:p-6 border transition-colors hover:bg-bg-alt rounded-lg shadow-sm">
+                            class="flex flex-col items-center justify-center gap-3 p-4 sm:p-6 border transition-colors hover:bg-bg-alt rounded-xl shadow-sm">
                         <i class="fa-solid fa-credit-card text-xl" :class="paiement === 'cb' ? 'text-primary' : 'text-gray-400'"></i>
                         <span class="text-[10px] sm:text-[11px] font-medium uppercase tracking-widest text-center leading-tight">Carte Bancaire</span>
                     </button>
                     <button @click="paiement = 'especes'"
                             :class="paiement === 'especes' ? 'border-primary bg-bg-alt text-primary' : 'border-gray-200 bg-bg text-secondary'"
-                            class="flex flex-col items-center justify-center gap-3 p-4 sm:p-6 border transition-colors hover:bg-bg-alt rounded-lg shadow-sm">
+                            class="flex flex-col items-center justify-center gap-3 p-4 sm:p-6 border transition-colors hover:bg-bg-alt rounded-xl shadow-sm">
                         <i class="fa-solid fa-money-bill-wave text-xl" :class="paiement === 'especes' ? 'text-primary' : 'text-gray-400'"></i>
                         <span class="text-[10px] sm:text-[11px] font-medium uppercase tracking-widest text-center leading-tight">Espèces</span>
                     </button>
                     <button @click="paiement = 'ligne'"
                             :class="paiement === 'ligne' ? 'border-primary bg-bg-alt text-primary' : 'border-gray-200 bg-bg text-secondary'"
-                            class="flex flex-col items-center justify-center gap-3 p-4 sm:p-6 border transition-colors hover:bg-bg-alt rounded-lg shadow-sm">
+                            class="flex flex-col items-center justify-center gap-3 p-4 sm:p-6 border transition-colors hover:bg-bg-alt rounded-xl shadow-sm">
                         <i class="fa-solid fa-link text-xl" :class="paiement === 'ligne' ? 'text-primary' : 'text-gray-400'"></i>
                         <span class="text-[10px] sm:text-[11px] font-medium uppercase tracking-widest text-center leading-tight">En ligne</span>
                     </button>
@@ -398,11 +401,11 @@
                     <p class="text-secondary text-sm mb-8 font-light">Choisissez par quel moyen vous souhaitez transférer votre estimation.</p>
                     
                     <div class="space-y-3">
-                        <a :href="lienWhatsApp" target="_blank" class="flex w-full items-center justify-center gap-3 bg-[#25D366] text-white px-6 py-4 font-medium tracking-widest uppercase text-[11px] hover:bg-[#1ebd5a] transition-colors rounded-lg shadow-sm">
+                        <a :href="lienWhatsApp" target="_blank" class="flex w-full items-center justify-center gap-3 bg-[#25D366] text-white px-6 py-4 font-medium tracking-widest uppercase text-[11px] hover:bg-[#1ebd5a] transition-colors rounded-xl shadow-sm">
                             <i class="fa-brands fa-whatsapp text-lg"></i> Via WhatsApp
                         </a>
                         
-                        <button @click="showForm = true" class="flex w-full items-center justify-center gap-3 bg-bg-alt text-primary border border-gray-200 px-6 py-4 font-medium tracking-widest uppercase text-[11px] hover:bg-gray-200 transition-colors rounded-lg shadow-sm">
+                        <button @click="showForm = true" class="flex w-full items-center justify-center gap-3 bg-bg-alt text-primary border border-gray-200 px-6 py-4 font-medium tracking-widest uppercase text-[11px] hover:bg-gray-200 transition-colors rounded-xl shadow-sm">
                             <i class="fa-regular fa-envelope text-lg"></i> Via E-mail
                         </button>
                     </div>
@@ -455,7 +458,7 @@
                     <p class="text-secondary text-sm mb-6 font-light">Merci <span x-text="formName" class="font-medium text-primary"></span>. Nous avons bien reçu votre demande d'estimation globale de <strong class="text-primary font-medium text-lg" x-text="totalPrix + '€'"></strong>.</p>
                     <p class="text-secondary text-xs mb-8 font-light">Nous reviendrons vers vous très rapidement sur votre adresse mail (<span x-text="formEmail" class="text-primary"></span>).</p>
                     
-                    <button @click="showContactModal = false; setTimeout(() => { showForm = false; formStatus = 'idle' }, 300)" class="btn btn-outline border-gray-300 text-primary hover:bg-bg-alt hover:border-gray-400 w-full justify-center rounded-lg">
+                    <button @click="showContactModal = false; setTimeout(() => { showForm = false; formStatus = 'idle' }, 300)" class="btn btn-outline border-gray-300 text-primary hover:bg-bg-alt hover:border-gray-400 w-full justify-center rounded-xl">
                         Fermer
                     </button>
                 </div>
@@ -513,15 +516,15 @@
             <!-- Links Column -->
             <div class="flex-1 p-10 md:p-16 flex flex-col justify-center">
                 <nav class="flex flex-col gap-6 md:gap-8">
-                    <a href="index.html" class="font-serif text-3xl md:text-5xl text-primary hover:text-action ui-transition flex justify-between items-center group decoration-transparent">
+                    <a href="index.html" class="font-sans text-3xl md:text-5xl text-primary hover:text-action ui-transition flex justify-between items-center group decoration-transparent">
                         Accueil
                         <i class="fa-solid fa-chevron-right text-sm md:text-xl opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300"></i>
                     </a>
-                    <a href="about.html" class="font-serif text-3xl md:text-5xl text-primary hover:text-action ui-transition flex justify-between items-center group decoration-transparent">
+                    <a href="about.html" class="font-sans text-3xl md:text-5xl text-primary hover:text-action ui-transition flex justify-between items-center group decoration-transparent">
                         Qui sommes-nous
                         <i class="fa-solid fa-chevron-right text-sm md:text-xl opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300"></i>
                     </a>
-                    <a href="services.html" class="font-serif text-3xl md:text-5xl text-primary hover:text-action ui-transition flex justify-between items-center group decoration-transparent">
+                    <a href="services.html" class="font-sans text-3xl md:text-5xl text-primary hover:text-action ui-transition flex justify-between items-center group decoration-transparent">
                         Tarifs & Réservation
                         <i class="fa-solid fa-chevron-right text-sm md:text-xl opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300"></i>
                     </a>
