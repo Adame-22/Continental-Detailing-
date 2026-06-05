@@ -19,9 +19,9 @@
     --accent-light:   #C4A55D;
 
     /* Rounded DA Tokens */
-    --radius-sm:      8px;
-    --radius:         16px;
-    --radius-lg:      24px;
+    --radius-sm:      4px;
+    --radius:         8px;
+    --radius-lg:      12px;
     --radius-pill:    9999px;
     --shadow-soft:    0 8px 24px rgba(0, 0, 0, 0.04);
     --shadow-hover:   0 16px 48px rgba(0, 0, 0, 0.08);
