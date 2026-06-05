@@ -401,7 +401,7 @@
                     <p class="text-secondary text-sm mb-8 font-light">Choisissez par quel moyen vous souhaitez transférer votre estimation.</p>
                     
                     <div class="space-y-3">
-                        <a :href="lienWhatsApp" target="_blank" class="flex w-full items-center justify-center gap-3 bg-[#25D366] text-white px-6 py-4 font-medium tracking-widest uppercase text-[11px] hover:bg-[#1ebd5a] transition-colors rounded-xl shadow-sm">
+                        <a :href="lienWhatsApp" target="_blank" class="flex w-full items-center justify-center gap-3 bg-[#25D366] text-primary px-6 py-4 font-medium tracking-widest uppercase text-[11px] hover:bg-[#1ebd5a] transition-colors rounded-xl shadow-sm">
                             <i class="fa-brands fa-whatsapp text-lg"></i> Via WhatsApp
                         </a>
                         
@@ -504,40 +504,40 @@
     </footer>
 
     <!-- Mega Menu Overlay -->
-    <div id="mega-menu" class="fixed inset-0 z-[100] pointer-events-none opacity-0 transition-opacity duration-500" style="background:rgba(0,0,0,0.4); backdrop-filter:blur(8px);">
+    <div id="mega-menu" class="fixed inset-0 z-[100] pointer-events-none opacity-0 transition-opacity duration-500" style="background:rgba(0,0,0,0.5); backdrop-filter:blur(8px);">
         <!-- Menu Content Panel -->
-        <div id="mega-menu-panel" class="absolute top-0 right-0 h-full w-full max-w-3xl bg-bg shadow-2xl transform translate-x-full flex flex-col md:flex-row" style="transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);">
+        <div id="mega-menu-panel" class="absolute top-0 right-0 h-full w-full max-w-5xl bg-bg shadow-2xl transform translate-x-full flex flex-col md:flex-row" style="transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);">
             
             <!-- Close Button -->
-            <button onclick="toggleMegaMenu()" class="absolute top-6 right-8 z-10 flex items-center gap-2 text-xs font-bold tracking-widest uppercase text-primary hover:text-action ui-transition bg-transparent border-none cursor-pointer">
+            <button onclick="toggleMegaMenu()" class="absolute top-6 right-8 z-20 flex items-center gap-3 text-xs font-bold tracking-widest uppercase text-primary hover:text-action ui-transition bg-transparent border-none cursor-pointer">
                 Fermer <i class="fa-solid fa-xmark text-xl"></i>
             </button>
 
-            <!-- Links Column -->
-            <div class="flex-1 p-10 md:p-16 flex flex-col justify-center">
-                <nav class="flex flex-col gap-6 md:gap-8">
-                    <a href="index.html" class="font-sans text-3xl md:text-5xl text-primary hover:text-action ui-transition flex justify-between items-center group decoration-transparent">
-                        Accueil
-                        <i class="fa-solid fa-chevron-right text-sm md:text-xl opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300"></i>
+            <!-- Links Column (Porsche style) -->
+            <div class="flex-1 p-6 md:p-12 lg:p-20 flex flex-col justify-center bg-white relative z-10">
+                <nav class="flex flex-col gap-3">
+                    <a href="index.html" class="flex justify-between items-center bg-[#F4F4F4] hover:bg-[#EAEAEA] transition-colors duration-300 rounded-xl px-8 py-6 group decoration-transparent">
+                        <span class="text-2xl md:text-3xl font-medium text-primary">Accueil</span>
+                        <i class="fa-solid fa-chevron-right text-sm text-primary opacity-50 group-hover:opacity-100 transition-opacity"></i>
                     </a>
-                    <a href="about.html" class="font-sans text-3xl md:text-5xl text-primary hover:text-action ui-transition flex justify-between items-center group decoration-transparent">
-                        Qui sommes-nous
-                        <i class="fa-solid fa-chevron-right text-sm md:text-xl opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300"></i>
+                    <a href="about.html" class="flex justify-between items-center bg-[#F4F4F4] hover:bg-[#EAEAEA] transition-colors duration-300 rounded-xl px-8 py-6 group decoration-transparent">
+                        <span class="text-2xl md:text-3xl font-medium text-primary">Qui sommes-nous</span>
+                        <i class="fa-solid fa-chevron-right text-sm text-primary opacity-50 group-hover:opacity-100 transition-opacity"></i>
                     </a>
-                    <a href="services.html" class="font-sans text-3xl md:text-5xl text-primary hover:text-action ui-transition flex justify-between items-center group decoration-transparent">
-                        Tarifs & Réservation
-                        <i class="fa-solid fa-chevron-right text-sm md:text-xl opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300"></i>
+                    <a href="services.html" class="flex justify-between items-center bg-[#F4F4F4] hover:bg-[#EAEAEA] transition-colors duration-300 rounded-xl px-8 py-6 group decoration-transparent">
+                        <span class="text-2xl md:text-3xl font-medium text-primary">Tarifs & Réservation</span>
+                        <i class="fa-solid fa-chevron-right text-sm text-primary opacity-50 group-hover:opacity-100 transition-opacity"></i>
                     </a>
                 </nav>
-                <div class="mt-16 md:mt-24 pt-8 border-t border-gray-200">
-                    <a href="mailto:continental.detailing.idf@gmail.com" class="text-sm text-secondary hover:text-action ui-transition flex items-center gap-3 mb-6 decoration-transparent">
+                <div class="mt-16 pt-10 border-t border-gray-100">
+                    <a href="mailto:continental.detailing.idf@gmail.com" class="text-sm font-medium text-primary hover:text-action transition-colors flex items-center gap-3 mb-6 decoration-transparent">
                         <i class="fa-regular fa-envelope"></i> continental.detailing.idf@gmail.com
                     </a>
                     <div class="flex gap-4">
-                        <a href="https://www.instagram.com/continental.detailing.idf/" target="_blank" class="w-12 h-12 rounded-full border border-gray-200 flex items-center justify-center text-primary hover:text-action hover:border-action ui-transition">
+                        <a href="https://www.instagram.com/continental.detailing.idf/" target="_blank" class="w-12 h-12 rounded-full border border-gray-200 flex items-center justify-center text-primary hover:bg-[#F4F4F4] hover:border-[#F4F4F4] transition-all">
                             <i class="fa-brands fa-instagram text-lg"></i>
                         </a>
-                        <a href="https://wa.me/33750875964" target="_blank" class="w-12 h-12 rounded-full border border-gray-200 flex items-center justify-center text-primary hover:text-action hover:border-action ui-transition">
+                        <a href="https://wa.me/33750875964" target="_blank" class="w-12 h-12 rounded-full border border-gray-200 flex items-center justify-center text-primary hover:bg-[#F4F4F4] hover:border-[#F4F4F4] transition-all">
                             <i class="fa-brands fa-whatsapp text-lg"></i>
                         </a>
                     </div>
@@ -545,11 +545,15 @@
             </div>
 
             <!-- Visual Column -->
-            <div class="hidden md:block w-2/5 bg-bg-alt relative overflow-hidden" style="border-left:1px solid rgba(0,0,0,0.04);">
-                <img src="images/car-prestige.png" alt="Continental Detailing Signature" class="absolute inset-0 w-full h-full object-cover mix-blend-multiply" style="opacity:0.85;">
-                <div class="absolute inset-0 bg-gradient-to-t from-bg-alt via-transparent to-transparent opacity-80"></div>
-                <div class="absolute bottom-12 left-10 right-10">
-                    <div class="text-[10px] font-bold tracking-[0.2em] uppercase text-action mb-2">Continental Detailing</div>
+            <div class="hidden md:flex w-5/12 bg-[#F4F4F4] relative flex-col justify-end p-12">
+                <img src="images/car-prestige.png" alt="Continental Detailing Signature" class="absolute inset-0 w-full h-full object-cover mix-blend-multiply opacity-80">
+                <div class="absolute inset-0 bg-gradient-to-t from-[#F4F4F4] via-transparent to-transparent opacity-90"></div>
+                
+                <div class="relative z-10">
+                    <div class="inline-flex px-3 py-1 bg-white rounded-full text-[10px] font-bold tracking-[0.15em] uppercase text-primary mb-4 shadow-sm">
+                        Signature Luxe
+                    </div>
+                    <h3 class="text-3xl font-medium text-primary mb-3">Continental Detailing</h3>
                     <p class="text-sm text-secondary leading-relaxed font-light">L'excellence du detailing automobile en Île-de-France. Une finition impeccable, sans compromis.</p>
                 </div>
             </div>
