@@ -80,16 +80,15 @@
                 <span class="logo-primary">Continental</span>
                 <span class="logo-secondary">Detailing</span>
             </a>
-            <div class="nav-links">
-                <a href="index.html" class="nav-link">Accueil</a>
-                <a href="about.html" class="nav-link nav-link--active">Qui sommes-nous</a>
-                <a href="services.html" class="nav-link">Tarifs & Réservation</a>
-            </div>
-            <div class="nav-links">
+            <div class="nav-links" style="gap:24px;">
                 <a href="https://wa.me/33750875964" target="_blank" class="nav-link"><i class="fa-brands fa-whatsapp text-sm"></i> WhatsApp</a>
-                <a href="services.html" class="nav-cta">Réserver</a>
+                <button onclick="toggleMegaMenu()" style="background:none; border:none; padding:0; cursor:pointer;" class="nav-link font-semibold">
+                    <i class="fa-solid fa-bars text-lg" style="margin-right:8px;"></i> Menu
+                </button>
             </div>
-            <a href="services.html" class="nav-mobile-cta">Réserver</a>
+            <button onclick="toggleMegaMenu()" class="nav-mobile-cta" style="background:none; border:none; cursor:pointer;">
+                <i class="fa-solid fa-bars text-sm" style="margin-right:6px;"></i> Menu
+            </button>
         </div>
     </nav>
 

@@ -54,27 +54,16 @@
                     <span class="logo-primary">Continental</span>
                     <span class="logo-secondary">Detailing</span>
                 </a>
-                <div class="hidden md:flex gap-8 items-center">
-                    <a href="index.html" class="text-xs font-semibold tracking-[0.12em] uppercase text-action">Accueil</a>
-                    <a href="about.html" class="text-xs font-semibold tracking-[0.12em] uppercase ui-transition" style="color:#5A5650;" onmouseover="this.style.color='#A8884A'" onmouseout="this.style.color='#5A5650'">Qui sommes-nous</a>
-                    <a href="services.html" class="text-xs font-semibold tracking-[0.12em] uppercase ui-transition" style="color:#5A5650;" onmouseover="this.style.color='#A8884A'" onmouseout="this.style.color='#5A5650'">Tarifs &amp; Réservation</a>
-                    <div class="flex items-center gap-3 ml-4">
-                        <a href="mailto:continental.detailing.idf@gmail.com?subject=Devis%20Continental%20Detailing"
-                           class="w-9 h-9 rounded-full flex items-center justify-center text-stone-500 hover:text-action ui-transition"
-                           style="border:1px solid rgba(255,255,255,0.07);">
-                            <i class="fa-regular fa-envelope text-sm"></i>
-                        </a>
-                        <a href="https://wa.me/33750875964?text=Bonjour,%20je%20souhaite%20un%20devis" target="_blank"
-                           class="flex items-center gap-2 px-5 py-2 rounded-full text-xs font-bold tracking-[0.1em] uppercase ui-transition"
-                           style="background:rgba(168,136,74,0.12); border:1px solid rgba(168,136,74,0.35); color:#C4A55D;">
-                            <i class="fa-brands fa-whatsapp"></i> WhatsApp
-                        </a>
-                    </div>
+                <div class="flex items-center gap-6">
+                    <a href="https://wa.me/33750875964" target="_blank"
+                       class="hidden md:flex items-center gap-2 px-5 py-2 rounded-full text-xs font-bold tracking-[0.1em] uppercase ui-transition"
+                       style="background:rgba(168,136,74,0.12); border:1px solid rgba(168,136,74,0.35); color:#C4A55D;">
+                        <i class="fa-brands fa-whatsapp"></i> WhatsApp
+                    </a>
+                    <button onclick="toggleMegaMenu()" class="flex items-center gap-3 text-sm font-semibold tracking-widest uppercase text-gray-900 hover:text-action ui-transition cursor-pointer" style="background:none; border:none; padding:0;">
+                        <i class="fa-solid fa-bars text-xl"></i> Menu
+                    </button>
                 </div>
-                <a href="services.html" class="md:hidden text-xs font-bold tracking-widest uppercase px-4 py-2 rounded-full"
-                   style="border:1px solid rgba(168,136,74,0.4); color:#C4A55D;">
-                    Réserver
-                </a>
             </div>
         </div>
     </nav>
@@ -164,46 +153,46 @@
 
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
             <!-- Intérieur -->
-            <div class="p-8 card-hover-lift reveal-left"
+            <div class="p-8 md:p-10 card-hover-lift reveal-left"
                  style="background:#FFFFFF; border:1px solid rgba(0,0,0,0.08); border-radius:12px; box-shadow:0 8px 24px rgba(0,0,0,0.04);">
-                <div class="flex items-start gap-4 mb-6">
-                    <div class="w-10 h-10 flex items-center justify-center flex-shrink-0" style="border:1px solid rgba(168,136,74,0.25); border-radius:9999px; background: rgba(168,136,74,0.05);">
-                        <i class="fa-solid fa-couch text-sm" style="color:#A8884A;"></i>
+                <div class="flex items-start gap-4 mb-8">
+                    <div class="w-12 h-12 flex items-center justify-center flex-shrink-0" style="border:1px solid rgba(168,136,74,0.25); border-radius:9999px; background: rgba(168,136,74,0.05);">
+                        <i class="fa-solid fa-couch text-base" style="color:#A8884A;"></i>
                     </div>
                     <div>
-                        <h3 class="font-semibold text-white text-lg">Lavage Intérieur</h3>
-                        <p class="text-xs tracking-wider uppercase mt-0.5" style="color:#A8884A;">Rénovation Haute Précision</p>
+                        <h3 class="font-semibold text-gray-900 text-xl">Lavage Intérieur</h3>
+                        <p class="text-xs tracking-wider uppercase mt-1" style="color:#A8884A;">Rénovation Haute Précision</p>
                     </div>
                 </div>
-                <ul class="space-y-3">
-                    <li class="flex gap-3 text-sm" style="color:#5A5650;"><span style="color:#A8884A; margin-top:2px;">—</span><span><strong class="text-white font-medium">Aspiration chirurgicale</strong> — habitacle, coffre, rails de sièges.</span></li>
-                    <li class="flex gap-3 text-sm" style="color:#5A5650;"><span style="color:#A8884A; margin-top:2px;">—</span><span><strong class="text-white font-medium">Pressing injection/extraction</strong> — shampoing profond des fibres.</span></li>
-                    <li class="flex gap-3 text-sm" style="color:#5A5650;"><span style="color:#A8884A; margin-top:2px;">—</span><span><strong class="text-white font-medium">Dégraissage au pinceau</strong> — plastiques, aérations, commodos.</span></li>
-                    <li class="flex gap-3 text-sm" style="color:#5A5650;"><span style="color:#A8884A; margin-top:2px;">—</span><span><strong class="text-white font-medium">Protection Anti-UV</strong> — plastiques soignés, effet antistatique.</span></li>
-                    <li class="flex gap-3 text-sm" style="color:#5A5650;"><span style="color:#A8884A; margin-top:2px;">—</span><span><strong class="text-white font-medium">Soin des cuirs</strong> — nettoyage pH neutre et hydratation.</span></li>
-                    <li class="flex gap-3 text-sm" style="color:#5A5650;"><span style="color:#A8884A; margin-top:2px;">—</span><span><strong class="text-white font-medium">Finition vitres</strong> — dégraissage haute clarté, sans trace.</span></li>
+                <ul class="space-y-4">
+                    <li class="flex gap-4 text-sm leading-relaxed" style="color:#5A5650;"><span style="color:#A8884A; font-weight:300;">—</span><span><strong class="text-gray-900 font-medium">Aspiration chirurgicale</strong> — habitacle, coffre, rails de sièges.</span></li>
+                    <li class="flex gap-4 text-sm leading-relaxed" style="color:#5A5650;"><span style="color:#A8884A; font-weight:300;">—</span><span><strong class="text-gray-900 font-medium">Pressing injection/extraction</strong> — shampoing profond des fibres.</span></li>
+                    <li class="flex gap-4 text-sm leading-relaxed" style="color:#5A5650;"><span style="color:#A8884A; font-weight:300;">—</span><span><strong class="text-gray-900 font-medium">Dégraissage au pinceau</strong> — plastiques, aérations, commodos.</span></li>
+                    <li class="flex gap-4 text-sm leading-relaxed" style="color:#5A5650;"><span style="color:#A8884A; font-weight:300;">—</span><span><strong class="text-gray-900 font-medium">Protection Anti-UV</strong> — plastiques soignés, effet antistatique.</span></li>
+                    <li class="flex gap-4 text-sm leading-relaxed" style="color:#5A5650;"><span style="color:#A8884A; font-weight:300;">—</span><span><strong class="text-gray-900 font-medium">Soin des cuirs</strong> — nettoyage pH neutre et hydratation.</span></li>
+                    <li class="flex gap-4 text-sm leading-relaxed" style="color:#5A5650;"><span style="color:#A8884A; font-weight:300;">—</span><span><strong class="text-gray-900 font-medium">Finition vitres</strong> — dégraissage haute clarté, sans trace.</span></li>
                 </ul>
             </div>
 
             <!-- Extérieur -->
-            <div class="p-8 card-hover-lift reveal-right"
+            <div class="p-8 md:p-10 card-hover-lift reveal-right"
                  style="background:#FFFFFF; border:1px solid rgba(0,0,0,0.08); border-radius:12px; box-shadow:0 8px 24px rgba(0,0,0,0.04);">
-                <div class="flex items-start gap-4 mb-6">
-                    <div class="w-10 h-10 flex items-center justify-center flex-shrink-0" style="border:1px solid rgba(168,136,74,0.25); border-radius:9999px; background: rgba(168,136,74,0.05);">
-                        <i class="fa-solid fa-spray-can text-sm" style="color:#A8884A;"></i>
+                <div class="flex items-start gap-4 mb-8">
+                    <div class="w-12 h-12 flex items-center justify-center flex-shrink-0" style="border:1px solid rgba(168,136,74,0.25); border-radius:9999px; background: rgba(168,136,74,0.05);">
+                        <i class="fa-solid fa-spray-can text-base" style="color:#A8884A;"></i>
                     </div>
                     <div>
-                        <h3 class="font-semibold text-white text-lg">Lavage Extérieur</h3>
-                        <p class="text-xs tracking-wider uppercase mt-0.5" style="color:#A8884A;">Décontamination & Brillance</p>
+                        <h3 class="font-semibold text-gray-900 text-xl">Lavage Extérieur</h3>
+                        <p class="text-xs tracking-wider uppercase mt-1" style="color:#A8884A;">Décontamination & Brillance</p>
                     </div>
                 </div>
-                <ul class="space-y-3">
-                    <li class="flex gap-3 text-sm" style="color:#5A5650;"><span style="color:#A8884A; margin-top:2px;">—</span><span><strong class="text-white font-medium">Prélavage Snow Foam</strong> — mousse active, zéro contact mécanique.</span></li>
-                    <li class="flex gap-3 text-sm" style="color:#5A5650;"><span style="color:#A8884A; margin-top:2px;">—</span><span><strong class="text-white font-medium">Lavage 2 seaux</strong> — gant microfibre premium, méthode sécurisée.</span></li>
-                    <li class="flex gap-3 text-sm" style="color:#5A5650;"><span style="color:#A8884A; margin-top:2px;">—</span><span><strong class="text-white font-medium">Décontamination jantes</strong> — dissolution chimique poussières de freins.</span></li>
-                    <li class="flex gap-3 text-sm" style="color:#5A5650;"><span style="color:#A8884A; margin-top:2px;">—</span><span><strong class="text-white font-medium">Détails au pinceau</strong> — logos, calandres, joints, trappe.</span></li>
-                    <li class="flex gap-3 text-sm" style="color:#5A5650;"><span style="color:#A8884A; margin-top:2px;">—</span><span><strong class="text-white font-medium">Séchage sécurisé</strong> — microfibres haute densité ou air pulsé.</span></li>
-                    <li class="flex gap-3 text-sm" style="color:#5A5650;"><span style="color:#A8884A; margin-top:2px;">—</span><span><strong class="text-white font-medium">Dressing pneus</strong> — effet noir satiné durable.</span></li>
+                <ul class="space-y-4">
+                    <li class="flex gap-4 text-sm leading-relaxed" style="color:#5A5650;"><span style="color:#A8884A; font-weight:300;">—</span><span><strong class="text-gray-900 font-medium">Prélavage Snow Foam</strong> — mousse active, zéro contact mécanique.</span></li>
+                    <li class="flex gap-4 text-sm leading-relaxed" style="color:#5A5650;"><span style="color:#A8884A; font-weight:300;">—</span><span><strong class="text-gray-900 font-medium">Lavage 2 seaux</strong> — gant microfibre premium, méthode sécurisée.</span></li>
+                    <li class="flex gap-4 text-sm leading-relaxed" style="color:#5A5650;"><span style="color:#A8884A; font-weight:300;">—</span><span><strong class="text-gray-900 font-medium">Décontamination jantes</strong> — dissolution chimique poussières de freins.</span></li>
+                    <li class="flex gap-4 text-sm leading-relaxed" style="color:#5A5650;"><span style="color:#A8884A; font-weight:300;">—</span><span><strong class="text-gray-900 font-medium">Détails au pinceau</strong> — logos, calandres, joints, trappe.</span></li>
+                    <li class="flex gap-4 text-sm leading-relaxed" style="color:#5A5650;"><span style="color:#A8884A; font-weight:300;">—</span><span><strong class="text-gray-900 font-medium">Séchage sécurisé</strong> — microfibres haute densité ou air pulsé.</span></li>
+                    <li class="flex gap-4 text-sm leading-relaxed" style="color:#5A5650;"><span style="color:#A8884A; font-weight:300;">—</span><span><strong class="text-gray-900 font-medium">Dressing pneus</strong> — effet noir satiné durable.</span></li>
                 </ul>
             </div>
         </div>
@@ -366,6 +355,81 @@
         </div>
     </footer>
 
+    <!-- Mega Menu Overlay -->
+    <div id="mega-menu" class="fixed inset-0 z-[100] pointer-events-none opacity-0 transition-opacity duration-500" style="background:rgba(0,0,0,0.4); backdrop-filter:blur(8px);">
+        <!-- Menu Content Panel -->
+        <div id="mega-menu-panel" class="absolute top-0 right-0 h-full w-full max-w-3xl bg-primary shadow-2xl transform translate-x-full flex flex-col md:flex-row" style="transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);">
+            
+            <!-- Close Button -->
+            <button onclick="toggleMegaMenu()" class="absolute top-6 right-8 z-10 flex items-center gap-2 text-xs font-bold tracking-widest uppercase text-gray-900 hover:text-action ui-transition bg-transparent border-none cursor-pointer">
+                Fermer <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+
+            <!-- Links Column -->
+            <div class="flex-1 p-10 md:p-16 flex flex-col justify-center">
+                <nav class="flex flex-col gap-6 md:gap-8">
+                    <a href="index.html" class="font-serif text-3xl md:text-5xl text-gray-900 hover:text-action ui-transition flex justify-between items-center group decoration-transparent">
+                        Accueil
+                        <i class="fa-solid fa-chevron-right text-sm md:text-xl opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300"></i>
+                    </a>
+                    <a href="about.html" class="font-serif text-3xl md:text-5xl text-gray-900 hover:text-action ui-transition flex justify-between items-center group decoration-transparent">
+                        Qui sommes-nous
+                        <i class="fa-solid fa-chevron-right text-sm md:text-xl opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300"></i>
+                    </a>
+                    <a href="services.html" class="font-serif text-3xl md:text-5xl text-gray-900 hover:text-action ui-transition flex justify-between items-center group decoration-transparent">
+                        Tarifs & Réservation
+                        <i class="fa-solid fa-chevron-right text-sm md:text-xl opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300"></i>
+                    </a>
+                </nav>
+                <div class="mt-16 md:mt-24 pt-8 border-t border-gray-100">
+                    <a href="mailto:continental.detailing.idf@gmail.com" class="text-sm text-stone-500 hover:text-action ui-transition flex items-center gap-3 mb-6 decoration-transparent">
+                        <i class="fa-regular fa-envelope"></i> continental.detailing.idf@gmail.com
+                    </a>
+                    <div class="flex gap-4">
+                        <a href="https://www.instagram.com/continental.detailing.idf/" target="_blank" class="w-12 h-12 rounded-full border border-gray-200 flex items-center justify-center text-gray-900 hover:text-action hover:border-action ui-transition">
+                            <i class="fa-brands fa-instagram text-lg"></i>
+                        </a>
+                        <a href="https://wa.me/33750875964" target="_blank" class="w-12 h-12 rounded-full border border-gray-200 flex items-center justify-center text-gray-900 hover:text-action hover:border-action ui-transition">
+                            <i class="fa-brands fa-whatsapp text-lg"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Visual Column -->
+            <div class="hidden md:block w-2/5 bg-secondary relative overflow-hidden" style="border-left:1px solid rgba(0,0,0,0.04);">
+                <img src="images/car-prestige.png" alt="Continental Detailing Signature" class="absolute inset-0 w-full h-full object-cover mix-blend-multiply" style="opacity:0.85;">
+                <div class="absolute inset-0 bg-gradient-to-t from-secondary via-transparent to-transparent opacity-80"></div>
+                <div class="absolute bottom-12 left-10 right-10">
+                    <div class="text-[10px] font-bold tracking-[0.2em] uppercase text-action mb-2">Continental Detailing</div>
+                    <p class="text-sm text-stone-600 leading-relaxed font-light">L'excellence du detailing automobile en Île-de-France. Une finition impeccable, sans compromis.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleMegaMenu() {
+            const menu = document.getElementById('mega-menu');
+            const panel = document.getElementById('mega-menu-panel');
+            
+            if (menu.classList.contains('pointer-events-none')) {
+                // Open menu
+                menu.classList.remove('pointer-events-none', 'opacity-0');
+                menu.classList.add('opacity-100');
+                panel.classList.remove('translate-x-full');
+                panel.classList.add('translate-x-0');
+                document.body.style.overflow = 'hidden'; // Prevent scrolling
+            } else {
+                // Close menu
+                menu.classList.remove('opacity-100');
+                menu.classList.add('pointer-events-none', 'opacity-0');
+                panel.classList.remove('translate-x-0');
+                panel.classList.add('translate-x-full');
+                document.body.style.overflow = ''; // Restore scrolling
+            }
+        }
+    </script>
     <script src="js/motion.js"></script>
 
 </body>
