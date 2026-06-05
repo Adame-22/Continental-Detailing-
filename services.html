@@ -5,9 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Réserver une prestation | Continental Detailing</title>
     
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/showcase.css">
@@ -17,48 +14,44 @@
             theme: {
                 extend: {
                     colors: {
-                        primary:   '#FFFFFF',
-                        secondary: '#F8F7F4',
-                        card:      '#F0EFE9',
-                        action:    '#A8884A',
+                        bg: '#FFFFFF',
+                        'bg-alt': '#F5F5F5',
+                        'bg-dark': '#0E1418',
+                        primary: '#1A1A1E',
+                        secondary: '#6B6B6B',
+                        muted: '#999999',
+                        action: '#A8884A',
                         'action-lt': '#C4A55D',
-                        stone: { 400: '#8A847E', 600: '#5A5650' }
                     },
                     fontFamily: {
-                        sans:  ['Inter', 'sans-serif'],
-                        serif: ['Playfair Display', 'serif']
-                    },
-                    backgroundImage: {
-                        'gold-gradient':   'linear-gradient(135deg, #C4A55D 0%, #A8884A 50%, #8B6F37 100%)',
-                        'action-gradient': 'linear-gradient(135deg, #C4A55D 0%, #A8884A 50%, #8B6F37 100%)'
+                        sans:  ['Outfit', 'sans-serif'],
+                        serif: ['Outfit', 'sans-serif']
                     }
                 }
             }
         }
     </script>
+    </script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
-<body class="bg-primary text-gray-900 antialiased pb-48 relative min-h-screen" style="font-family:'Inter',sans-serif;">
-
-    <div class="ambient-spot-right" aria-hidden="true"></div>
-    <div class="ambient-spot-left" aria-hidden="true"></div>
+<body class="bg-bg text-primary antialiased pb-48 relative min-h-screen">
 
     <!-- Navigation Bar -->
-    <nav class="w-full z-50 sticky top-0" style="background:rgba(255,255,255,0.92);backdrop-filter:blur(20px);border-bottom:1px solid rgba(0,0,0,0.08);">
-        <div class="max-w-5xl mx-auto px-4 md:px-6">
-            <div class="flex justify-between items-center h-20">
-                <a href="index.html" class="logo-link">
-                    <img src="images/logo_continental.png" alt="Continental Detailing" class="main-logo">
-                </a>
-                <div class="flex items-center gap-6">
-                    <a href="index.html" class="flex items-center gap-2 text-xs font-semibold tracking-widest uppercase ui-transition" style="color:#5A5650;" onmouseover="this.style.color='#A8884A'" onmouseout="this.style.color='#5A5650'">
-                        <i class="fa-solid fa-arrow-left text-xs"></i> Retour
-                    </a>
-                    <a href="about.html" class="text-xs font-semibold tracking-widest uppercase ui-transition hidden sm:block" style="color:#5A5650;" onmouseover="this.style.color='#A8884A'" onmouseout="this.style.color='#5A5650'">
-                        Qui sommes-nous
-                    </a>
-                </div>
+    <nav class="nav-main" id="navbar">
+        <div class="nav-inner">
+            <a href="index.html" class="logo-wordmark">
+                <span class="logo-primary">Continental</span>
+                <span class="logo-secondary">Detailing</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Accueil</a>
+                <a href="about.html" class="nav-link">Qui sommes-nous</a>
+                <a href="services.html" class="nav-link nav-link--active">Tarifs & Réservation</a>
             </div>
+            <div class="nav-links">
+                <a href="https://wa.me/33750875964" target="_blank" class="nav-link"><i class="fa-brands fa-whatsapp text-sm"></i> WhatsApp</a>
+            </div>
+            <a href="index.html" class="nav-mobile-cta"><i class="fa-solid fa-arrow-left"></i> Retour</a>
         </div>
     </nav>
 
@@ -192,128 +185,59 @@
           }">
         
         <!-- Header -->
-        <div class="text-center mb-6 md:mb-10">
-            <p class="text-[10px] md:text-xs font-semibold tracking-[0.2em] uppercase mb-3 md:mb-4" style="color:#A8884A;">Simulateur &amp; Réservation</p>
-            <h1 class="font-serif text-3xl md:text-5xl font-semibold text-white mb-3 md:mb-4">Votre Prestation</h1>
-            <div class="h-px w-12 mx-auto mb-4 md:mb-6" style="background:#A8884A;"></div>
-
-            <!-- Barre de progression -->
-            <div class="flex items-center justify-center mb-5 overflow-x-auto pb-1">
-                <div class="flex items-center gap-0 flex-shrink-0">
-
-                    <!-- Step 1: Véhicule -->
-                    <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-full transition-all duration-300"
-                         :style="stepsDone >= 1
-                             ? 'background:rgba(168,136,74,0.18);border:1px solid rgba(196,165,93,0.5);'
-                             : 'background:rgba(255,255,255,0.06);border:1px solid rgba(0,0,0,0.12);'">
-                        <i class="text-[9px] md:text-[10px] transition-all duration-300"
-                           :class="stepsDone >= 1 ? 'fa-solid fa-check' : 'fa-solid fa-car-side'"
-                           :style="stepsDone >= 1 ? 'color:#C4A55D;' : 'color:#4a4a4a;'"></i>
-                        <span class="hidden sm:inline text-[9px] font-bold tracking-wider transition-all duration-300"
-                              :style="stepsDone >= 1 ? 'color:#C4A55D;' : 'color:#4a4a4a;'">VÉHICULE</span>
-                    </div>
-
-                    <!-- Connector 1→2 -->
-                    <div class="w-3 sm:w-5 h-px transition-all duration-500"
-                         :style="stepsDone >= 2 ? 'background:rgba(168,136,74,0.5);' : 'background:rgba(168,136,74,0.5);'"></div>
-
-                    <!-- Step 2: Formule -->
-                    <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-full transition-all duration-300"
-                         :style="stepsDone >= 2
-                             ? 'background:rgba(168,136,74,0.18);border:1px solid rgba(196,165,93,0.5);'
-                             : 'background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);'">
-                        <i class="text-[9px] md:text-[10px] transition-all duration-300"
-                           :class="stepsDone >= 2 ? 'fa-solid fa-check' : 'fa-solid fa-gem'"
-                           :style="stepsDone >= 2 ? 'color:#C4A55D;' : 'color:#4a4a4a;'"></i>
-                        <span class="hidden sm:inline text-[9px] font-bold tracking-wider transition-all duration-300"
-                              :style="stepsDone >= 2 ? 'color:#C4A55D;' : 'color:#4a4a4a;'">FORMULE</span>
-                    </div>
-
-                    <!-- Connector 2→3 -->
-                    <div class="w-3 sm:w-5 h-px transition-all duration-500"
-                         :style="stepsDone >= 3 ? 'background:rgba(168,136,74,0.5);' : 'background:rgba(168,136,74,0.5);'"></div>
-
-                    <!-- Step 3: Options -->
-                    <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-full transition-all duration-300"
-                         :style="stepsDone >= 3
-                             ? 'background:rgba(168,136,74,0.18);border:1px solid rgba(196,165,93,0.5);'
-                             : 'background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);'">
-                        <i class="text-[9px] md:text-[10px] transition-all duration-300"
-                           :class="stepsDone >= 3 ? 'fa-solid fa-check' : 'fa-solid fa-sliders'"
-                           :style="stepsDone >= 3 ? 'color:#C4A55D;' : 'color:#4a4a4a;'"></i>
-                        <span class="hidden sm:inline text-[9px] font-bold tracking-wider transition-all duration-300"
-                              :style="stepsDone >= 3 ? 'color:#C4A55D;' : 'color:#4a4a4a;'">OPTIONS</span>
-                    </div>
-
-                    <!-- Connector 3→4 -->
-                    <div class="w-3 sm:w-5 h-px transition-all duration-500"
-                         :style="stepsDone >= 4 ? 'background:rgba(168,136,74,0.5);' : 'background:rgba(168,136,74,0.5);'"></div>
-
-                    <!-- Step 4: Réserver -->
-                    <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-full transition-all duration-300"
-                         :style="stepsDone >= 4
-                             ? 'background:rgba(168,136,74,0.18);border:1px solid rgba(196,165,93,0.5);'
-                             : 'background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);'">
-                        <i class="text-[9px] md:text-[10px] transition-all duration-300"
-                           :class="stepsDone >= 4 ? 'fa-solid fa-check' : 'fa-brands fa-whatsapp'"
-                           :style="stepsDone >= 4 ? 'color:#C4A55D;' : 'color:#4a4a4a;'"></i>
-                        <span class="hidden sm:inline text-[9px] font-bold tracking-wider transition-all duration-300"
-                              :style="stepsDone >= 4 ? 'color:#C4A55D;' : 'color:#4a4a4a;'">RÉSERVER</span>
-                    </div>
-
-                </div>
-            </div>
-
+        <div class="text-center mb-10">
+            <p class="section-eyebrow">Simulateur &amp; Réservation</p>
+            <h1 class="section-title mb-4">Votre Prestation</h1>
 
             <!-- Badges de confiance -->
-            <div class="flex justify-center gap-x-4 gap-y-2 mb-4 flex-wrap max-w-sm mx-auto px-4">
-                <div class="flex items-center gap-1.5 text-[10px] md:text-xs text-slate-400">
-                    <i class="fa-solid fa-shield-halved text-[10px] md:text-[11px]" style="color:#A8884A;"></i>
+            <div class="flex justify-center gap-x-4 gap-y-2 mb-6 flex-wrap max-w-sm mx-auto px-4 text-[10px] md:text-xs text-secondary uppercase tracking-widest font-medium">
+                <div class="flex items-center gap-1.5">
+                    <i class="fa-solid fa-shield-halved text-primary"></i>
                     <span>Satisfaction garantie</span>
                 </div>
-                <div class="hidden sm:block w-px h-3" style="background:rgba(255,255,255,0.12);"></div>
-                <div class="flex items-center gap-1.5 text-[10px] md:text-xs text-slate-400">
-                    <i class="fa-solid fa-location-dot text-[10px] md:text-[11px]" style="color:#A8884A;"></i>
+                <div class="hidden sm:block w-px h-3 bg-gray-300"></div>
+                <div class="flex items-center gap-1.5">
+                    <i class="fa-solid fa-location-dot text-primary"></i>
                     <span>À domicile</span>
                 </div>
-                <div class="hidden sm:block w-px h-3" style="background:rgba(255,255,255,0.12);"></div>
-                <div class="flex items-center gap-1.5 text-[10px] md:text-xs text-slate-400">
-                    <i class="fa-solid fa-bolt text-[10px] md:text-[11px]" style="color:#A8884A;"></i>
+                <div class="hidden sm:block w-px h-3 bg-gray-300"></div>
+                <div class="flex items-center gap-1.5">
+                    <i class="fa-solid fa-bolt text-primary"></i>
                     <span>Résultat en 1j</span>
                 </div>
             </div>
 
-            <div class="inline-flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 text-[9px] md:text-xs font-medium tracking-wider" style="background:rgba(34,197,94,0.05);border:1px solid rgba(34,197,94,0.15);border-radius:2px;color:#4ade80;">
+            <div class="eco-badge mb-8 rounded-full">
                 <i class="fa-solid fa-leaf"></i>
                 <span class="text-center">MATÉRIEL 100% ÉLECTRIQUE <span class="hidden sm:inline">&amp; SILENCIEUX (ACCÈS EAU/PRISES REQUIS)</span></span>
             </div>
-            <div class="flex max-w-sm mx-auto mt-5" style="background:#F0EFE9;border:1px solid rgba(0,0,0,0.08);border-radius:2px;padding:4px;">
+            
+            <div class="flex max-w-sm mx-auto mt-5 border border-gray-200 bg-bg-alt p-1 rounded-lg">
                 <button @click="clientType = 'particulier'"
-                        :style="clientType === 'particulier' ? 'background:#A8884A;color:#FFFFFF;' : 'background:transparent;color:#5A5650;'"
-                        class="flex-1 py-3 text-xs font-bold tracking-wider uppercase ui-transition" style="border-radius:1px;">
+                        :style="clientType === 'particulier' ? 'background:#1A1A1E;color:#FFFFFF;' : 'background:transparent;color:#6B6B6B;'"
+                        class="flex-1 py-3 text-xs font-medium tracking-widest uppercase transition-colors rounded-md">
                     <i class="fa-solid fa-user mr-2"></i>Particulier
                 </button>
                 <button @click="clientType = 'pro'"
-                        :style="clientType === 'pro' ? 'background:#A8884A;color:#FFFFFF;' : 'background:transparent;color:#5A5650;'"
-                        class="flex-1 py-3 text-xs font-bold tracking-wider uppercase ui-transition" style="border-radius:1px;">
+                        :style="clientType === 'pro' ? 'background:#1A1A1E;color:#FFFFFF;' : 'background:transparent;color:#6B6B6B;'"
+                        class="flex-1 py-3 text-xs font-medium tracking-widest uppercase transition-colors rounded-md">
                     <i class="fa-solid fa-building mr-2"></i>Entreprise
                 </button>
             </div>
         </div>
 
-
         <!-- Section Pro -->
         <div x-show="clientType === 'pro'" x-transition class="mb-20">
-            <div class="bg-secondary border border-stone-200 rounded-xl p-8 md:p-12 text-center">
-                <div class="inline-flex w-20 h-20 rounded-xl bg-action/10 items-center justify-center text-action text-4xl mb-6 border border-action/20">
+            <div class="bg-bg-alt border border-gray-200 p-8 md:p-12 text-center rounded-xl shadow-sm">
+                <div class="inline-flex w-16 h-16 border border-gray-300 items-center justify-center text-primary text-2xl mb-6 rounded-full bg-white shadow-sm">
                     <i class="fa-solid fa-handshake"></i>
                 </div>
-                <h2 class="text-3xl font-bold text-white mb-4">Solutions Entreprises</h2>
-                <p class="text-slate-400 max-w-xl mx-auto mb-10 leading-relaxed">
+                <h2 class="text-3xl font-light text-primary mb-4">Solutions Entreprises</h2>
+                <p class="text-secondary max-w-xl mx-auto mb-10 leading-relaxed font-light">
                     Gestion de flotte, préparation VO/VN, conciergerie mobile. Nous intervenons sur votre parc pour maintenir l'image de marque de votre société.
                 </p>
-                <button @click="showContactModal = true; stepsDone = 4" class="inline-flex bg-action-gradient text-primary px-10 py-4 rounded-xl font-bold text-lg hover:scale-105 ui-transition items-center gap-3 shadow-[0_10px_30px_rgba(201,168,76,0.2)]">
-                    <i class="fa-solid fa-paper-plane text-2xl"></i>Demander un devis B2B
+                <button @click="showContactModal = true; stepsDone = 4" class="btn btn-dark">
+                    <i class="fa-solid fa-paper-plane"></i> Demander un devis B2B
                 </button>
             </div>
         </div>
@@ -326,73 +250,75 @@
 
             <!-- Utilitaire: bannière devis direct -->
             <div x-show="isUtilitaire" class="mb-10">
-                <div class="border border-action/20 rounded-lg p-6 flex flex-col sm:flex-row items-center justify-between gap-4 bg-card">
+                <div class="border border-gray-200 p-6 flex flex-col sm:flex-row items-center justify-between gap-4 bg-bg-alt rounded-lg shadow-sm">
                     <div>
-                        <p class="text-xs font-bold uppercase tracking-widest text-action mb-1">Utilitaire — tarification sur mesure</p>
-                        <p class="text-sm text-slate-400">Volume, état et accès : chaque utilitaire est unique. Nous établissons un devis rapide et gratuit.</p>
+                        <p class="text-[10px] font-medium uppercase tracking-widest text-primary mb-1">Utilitaire — tarification sur mesure</p>
+                        <p class="text-sm text-secondary font-light">Volume, état et accès : chaque utilitaire est unique. Nous établissons un devis rapide et gratuit.</p>
                     </div>
-                    <button @click="showContactModal = true; stepsDone = 4" class="shrink-0 inline-flex items-center gap-2 bg-action-gradient text-primary px-4 md:px-6 py-3 rounded-lg font-bold text-sm hover:scale-105 ui-transition">
-                        <i class="fa-brands fa-whatsapp text-lg"></i> Demander mon devis
+                    <button @click="showContactModal = true; stepsDone = 4" class="btn btn-dark shrink-0">
+                        <i class="fa-brands fa-whatsapp"></i> Demander mon devis
                     </button>
                 </div>
             </div>
 
             <!-- 02. Options -->
-            <section x-show="!isUtilitaire" class="mb-8">
-                <div class="flex items-center gap-3 mb-4">
-                    <span class="w-7 h-7 rounded-md bg-action/10 text-action flex items-center justify-center text-xs font-bold border border-action/20">02</span>
-                    <h2 class="text-sm font-bold uppercase tracking-wider text-white">Options</h2>
-                    <span class="text-xs text-slate-500">Ajoutez selon l'état de votre véhicule</span>
+            <section x-show="!isUtilitaire" class="mb-12">
+                <div class="flex items-center gap-4 mb-6">
+                    <span class="w-8 h-8 bg-bg-alt border border-gray-200 text-primary flex items-center justify-center text-[10px] font-medium rounded-full shadow-sm">02</span>
+                    <div>
+                        <h2 class="text-xs font-medium uppercase tracking-widest text-primary">Options</h2>
+                        <span class="text-xs text-muted font-light">Ajoutez selon l'état de votre véhicule</span>
+                    </div>
                 </div>
-                <div class="border border-stone-200 rounded-lg overflow-hidden">
+                <div class="border border-gray-200 bg-bg rounded-lg overflow-hidden shadow-sm">
                     <button @click="options.poils = !options.poils; stepsDone = Math.max(stepsDone, 3)"
-                            :class="options.poils ? 'bg-action/10 border-l-2 border-l-action' : 'border-l-2 border-l-transparent'"
-                            class="w-full flex items-center justify-between px-5 py-4 border-b border-stone-200 hover:bg-stone-100 ui-transition">
-                        <div class="flex items-center gap-3">
-                            <i class="fa-solid fa-paw w-4 text-center" :class="options.poils ? 'text-action' : 'text-slate-500'"></i>
+                            :class="options.poils ? 'bg-bg-alt border-l-2 border-l-primary' : 'border-l-2 border-l-transparent'"
+                            class="w-full flex items-center justify-between px-5 py-4 border-b border-gray-200 hover:bg-bg-alt transition-colors">
+                        <div class="flex items-center gap-4">
+                            <i class="fa-solid fa-paw w-4 text-center" :class="options.poils ? 'text-primary' : 'text-gray-400'"></i>
                             <div class="text-left">
-                                <p class="text-sm font-semibold" :class="options.poils ? 'text-white' : 'text-slate-300'">Poils d'animaux / Sable</p>
-                                <p class="text-xs text-slate-500">Véhicule très encrassé — traitement spécifique requis</p>
+                                <p class="text-sm font-medium" :class="options.poils ? 'text-primary' : 'text-secondary'">Poils d'animaux / Sable</p>
+                                <p class="text-xs text-muted font-light">Véhicule très encrassé — traitement spécifique requis</p>
                             </div>
                         </div>
-                        <div class="flex items-center gap-3">
-                            <span class="text-sm font-bold text-action">+20€</span>
-                            <div :class="options.poils ? 'bg-action' : 'bg-white/10'" class="w-5 h-5 rounded flex items-center justify-center transition-colors">
-                                <i x-show="options.poils" class="fa-solid fa-check text-xs text-primary"></i>
+                        <div class="flex items-center gap-4">
+                            <span class="text-xs font-medium tracking-widest">+20€</span>
+                            <div :class="options.poils ? 'bg-primary' : 'bg-gray-100'" class="w-5 h-5 border border-gray-300 flex items-center justify-center transition-colors rounded">
+                                <i x-show="options.poils" class="fa-solid fa-check text-[10px] text-bg"></i>
                             </div>
                         </div>
                     </button>
                     <button @click="options.non_videe = !options.non_videe; stepsDone = Math.max(stepsDone, 3)"
-                            :class="options.non_videe ? 'bg-action/10 border-l-2 border-l-action' : 'border-l-2 border-l-transparent'"
-                            class="w-full flex items-center justify-between px-5 py-4 border-b border-stone-200 hover:bg-stone-100 ui-transition">
-                        <div class="flex items-center gap-3">
-                            <i class="fa-solid fa-box-open w-4 text-center" :class="options.non_videe ? 'text-action' : 'text-slate-500'"></i>
+                            :class="options.non_videe ? 'bg-bg-alt border-l-2 border-l-primary' : 'border-l-2 border-l-transparent'"
+                            class="w-full flex items-center justify-between px-5 py-4 border-b border-gray-200 hover:bg-bg-alt transition-colors">
+                        <div class="flex items-center gap-4">
+                            <i class="fa-solid fa-box-open w-4 text-center" :class="options.non_videe ? 'text-primary' : 'text-gray-400'"></i>
                             <div class="text-left">
-                                <p class="text-sm font-semibold" :class="options.non_videe ? 'text-white' : 'text-slate-300'">Véhicule non vidé</p>
-                                <p class="text-xs text-slate-500">Objets personnels présents dans l'habitacle</p>
+                                <p class="text-sm font-medium" :class="options.non_videe ? 'text-primary' : 'text-secondary'">Véhicule non vidé</p>
+                                <p class="text-xs text-muted font-light">Objets personnels présents dans l'habitacle</p>
                             </div>
                         </div>
-                        <div class="flex items-center gap-3">
-                            <span class="text-sm font-bold text-action">+10€</span>
-                            <div :class="options.non_videe ? 'bg-action' : 'bg-white/10'" class="w-5 h-5 rounded flex items-center justify-center transition-colors">
-                                <i x-show="options.non_videe" class="fa-solid fa-check text-xs text-primary"></i>
+                        <div class="flex items-center gap-4">
+                            <span class="text-xs font-medium tracking-widest">+10€</span>
+                            <div :class="options.non_videe ? 'bg-primary' : 'bg-gray-100'" class="w-5 h-5 border border-gray-300 flex items-center justify-center transition-colors rounded">
+                                <i x-show="options.non_videe" class="fa-solid fa-check text-[10px] text-bg"></i>
                             </div>
                         </div>
                     </button>
                     <button @click="options.cire = !options.cire; stepsDone = Math.max(stepsDone, 3)"
-                            :class="options.cire ? 'bg-action/10 border-l-2 border-l-action' : 'border-l-2 border-l-transparent'"
-                            class="w-full flex items-center justify-between px-5 py-4 hover:bg-stone-100 ui-transition">
-                        <div class="flex items-center gap-3">
-                            <i class="fa-solid fa-shield-halved w-4 text-center" :class="options.cire ? 'text-action' : 'text-slate-500'"></i>
+                            :class="options.cire ? 'bg-bg-alt border-l-2 border-l-primary' : 'border-l-2 border-l-transparent'"
+                            class="w-full flex items-center justify-between px-5 py-4 hover:bg-bg-alt transition-colors">
+                        <div class="flex items-center gap-4">
+                            <i class="fa-solid fa-shield-halved w-4 text-center" :class="options.cire ? 'text-primary' : 'text-gray-400'"></i>
                             <div class="text-left">
-                                <p class="text-sm font-semibold" :class="options.cire ? 'text-white' : 'text-slate-300'">Cire de protection hydrophobe</p>
-                                <p class="text-xs text-slate-500">Protection longue durée, effet eau perlante garanti</p>
+                                <p class="text-sm font-medium" :class="options.cire ? 'text-primary' : 'text-secondary'">Cire de protection hydrophobe</p>
+                                <p class="text-xs text-muted font-light">Protection longue durée, effet eau perlante garanti</p>
                             </div>
                         </div>
-                        <div class="flex items-center gap-3">
-                            <span class="text-sm font-bold text-action">+30€</span>
-                            <div :class="options.cire ? 'bg-action' : 'bg-white/10'" class="w-5 h-5 rounded flex items-center justify-center transition-colors">
-                                <i x-show="options.cire" class="fa-solid fa-check text-xs text-primary"></i>
+                        <div class="flex items-center gap-4">
+                            <span class="text-xs font-medium tracking-widest">+30€</span>
+                            <div :class="options.cire ? 'bg-primary' : 'bg-gray-100'" class="w-5 h-5 border border-gray-300 flex items-center justify-center transition-colors rounded">
+                                <i x-show="options.cire" class="fa-solid fa-check text-[10px] text-bg"></i>
                             </div>
                         </div>
                     </button>
@@ -401,191 +327,135 @@
 
             <!-- 03. Paiement -->
             <section x-show="!isUtilitaire" class="mb-24">
-                <div class="flex items-center gap-3 mb-4">
-                    <span class="w-7 h-7 rounded-md bg-action/10 text-action flex items-center justify-center text-xs font-bold border border-action/20">03</span>
-                    <h2 class="text-sm font-bold uppercase tracking-wider text-white">Paiement souhaité</h2>
+                <div class="flex items-center gap-4 mb-6">
+                    <span class="w-8 h-8 bg-bg-alt border border-gray-200 text-primary flex items-center justify-center text-[10px] font-medium rounded-full shadow-sm">03</span>
+                    <h2 class="text-xs font-medium uppercase tracking-widest text-primary">Paiement souhaité</h2>
                 </div>
-                <div class="grid grid-cols-3 gap-2 sm:gap-3">
+                <div class="grid grid-cols-3 gap-3">
                     <button @click="paiement = 'cb'"
-                            :class="paiement === 'cb' ? 'border-action bg-action/10 text-gray-900' : 'border-stone-200 bg-stone-50 text-stone-500'"
-                            class="flex flex-col items-center justify-center gap-1.5 sm:gap-2 p-3 sm:p-4 rounded-lg border ui-transition">
-                        <i class="fa-solid fa-credit-card text-lg sm:text-xl" :class="paiement === 'cb' ? 'text-action' : 'text-slate-500'"></i>
-                        <span class="text-[10px] sm:text-xs font-semibold text-center leading-tight">Carte Bancaire</span>
+                            :class="paiement === 'cb' ? 'border-primary bg-bg-alt text-primary' : 'border-gray-200 bg-bg text-secondary'"
+                            class="flex flex-col items-center justify-center gap-3 p-4 sm:p-6 border transition-colors hover:bg-bg-alt rounded-lg shadow-sm">
+                        <i class="fa-solid fa-credit-card text-xl" :class="paiement === 'cb' ? 'text-primary' : 'text-gray-400'"></i>
+                        <span class="text-[10px] sm:text-[11px] font-medium uppercase tracking-widest text-center leading-tight">Carte Bancaire</span>
                     </button>
                     <button @click="paiement = 'especes'"
-                            :class="paiement === 'especes' ? 'border-action bg-action/10 text-gray-900' : 'border-stone-200 bg-stone-50 text-stone-500'"
-                            class="flex flex-col items-center justify-center gap-1.5 sm:gap-2 p-3 sm:p-4 rounded-lg border ui-transition">
-                        <i class="fa-solid fa-money-bill-wave text-lg sm:text-xl" :class="paiement === 'especes' ? 'text-action' : 'text-slate-500'"></i>
-                        <span class="text-[10px] sm:text-xs font-semibold text-center leading-tight">Espèces</span>
+                            :class="paiement === 'especes' ? 'border-primary bg-bg-alt text-primary' : 'border-gray-200 bg-bg text-secondary'"
+                            class="flex flex-col items-center justify-center gap-3 p-4 sm:p-6 border transition-colors hover:bg-bg-alt rounded-lg shadow-sm">
+                        <i class="fa-solid fa-money-bill-wave text-xl" :class="paiement === 'especes' ? 'text-primary' : 'text-gray-400'"></i>
+                        <span class="text-[10px] sm:text-[11px] font-medium uppercase tracking-widest text-center leading-tight">Espèces</span>
                     </button>
                     <button @click="paiement = 'ligne'"
-                            :class="paiement === 'ligne' ? 'border-action bg-action/10 text-gray-900' : 'border-stone-200 bg-stone-50 text-stone-500'"
-                            class="flex flex-col items-center justify-center gap-1.5 sm:gap-2 p-3 sm:p-4 rounded-lg border ui-transition">
-                        <i class="fa-solid fa-link text-lg sm:text-xl" :class="paiement === 'ligne' ? 'text-action' : 'text-slate-500'"></i>
-                        <span class="text-[10px] sm:text-xs font-semibold text-center leading-tight">En ligne</span>
+                            :class="paiement === 'ligne' ? 'border-primary bg-bg-alt text-primary' : 'border-gray-200 bg-bg text-secondary'"
+                            class="flex flex-col items-center justify-center gap-3 p-4 sm:p-6 border transition-colors hover:bg-bg-alt rounded-lg shadow-sm">
+                        <i class="fa-solid fa-link text-xl" :class="paiement === 'ligne' ? 'text-primary' : 'text-gray-400'"></i>
+                        <span class="text-[10px] sm:text-[11px] font-medium uppercase tracking-widest text-center leading-tight">En ligne</span>
                     </button>
                 </div>
             </section>
         </div>
 
         <!-- Sticky Summary Bar -->
-        <div class="fixed bottom-0 left-0 right-0 z-50 backdrop-blur-xl" style="background:rgba(255,255,255,0.96);border-top:1px solid rgba(0,0,0,0.10);">
-            <!-- Urgence strip -->
-            <div class="flex items-center justify-center gap-2 py-1 sm:py-1.5 text-[9px] sm:text-[10px] font-semibold" style="background:rgba(168,136,74,0.12);border-bottom:1px solid rgba(168,136,74,0.15);color:#C4A55D;">
-                <i class="fa-solid fa-calendar-check"></i>
-                <span>Créneaux disponibles <span class="hidden sm:inline">cette semaine</span> &mdash; Réservez vite</span>
-            </div>
-            <div class="max-w-4xl mx-auto px-4 py-2.5 pb-5 sm:pb-2.5">
-                <div class="flex items-center justify-between gap-2 sm:gap-4">
+        <div class="fixed bottom-0 left-0 right-0 z-50 bg-bg border-t border-gray-200 shadow-[0_-10px_40px_rgba(0,0,0,0.05)]">
+            <div class="max-w-4xl mx-auto px-4 py-4">
+                <div class="flex items-center justify-between gap-4">
                     <!-- Résumé sélection -->
                     <div x-show="clientType === 'particulier' &amp;&amp; !isUtilitaire" class="min-w-0 flex-1">
-                        <div class="flex items-center gap-2 mb-0.5 flex-wrap">
-                            <p class="text-[9px] font-bold uppercase tracking-widest" style="color:#6A6460;">Votre devis</p>
-                            <span x-show="economie > 0"
-                                  class="text-[9px] font-bold px-1.5 py-0.5 rounded-full"
-                                  style="background:rgba(34,197,94,0.15);color:#4ade80;"
-                                  x-text="'-' + economie + '\u20ac économisés'"></span>
+                        <div class="flex items-center gap-3 mb-1 flex-wrap">
+                            <p class="text-[10px] font-medium uppercase tracking-widest text-secondary">Votre devis</p>
                         </div>
-                        <div class="flex items-baseline gap-1.5 sm:gap-2">
-                            <p class="text-lg sm:text-xl font-bold text-white whitespace-nowrap" x-text="totalPrix + '\u20ac'"></p>
-                            <span class="text-[9px] sm:text-xs text-slate-500 truncate" x-text="nomVehicule + ' \u00b7 ' + nomFormule"></span>
+                        <div class="flex items-baseline gap-3">
+                            <p class="text-2xl font-light text-primary whitespace-nowrap" x-text="totalPrix + '\u20ac'"></p>
+                            <span class="text-xs text-secondary truncate font-light" x-text="nomVehicule + ' \u00b7 ' + nomFormule"></span>
                         </div>
                     </div>
                     <div x-show="isUtilitaire || clientType === 'pro'" class="min-w-0 flex-1">
-                        <p class="text-[9px] font-bold uppercase tracking-widest mb-0.5" style="color:#6A6460;">Estimation</p>
-                        <p class="text-lg sm:text-xl font-bold text-white">Sur devis</p>
+                        <p class="text-[10px] font-medium uppercase tracking-widest text-secondary mb-1">Estimation</p>
+                        <p class="text-2xl font-light text-primary">Sur devis</p>
                     </div>
                     <!-- CTA -->
-                    <div class="flex flex-col items-end gap-1 shrink-0">
-                        <div class="flex items-center gap-2">
-                            <a :href="'https://instagram.com/' + compteInsta" target="_blank"
-                               class="hidden sm:flex w-9 h-9 items-center justify-center rounded-lg border border-white/[0.08] text-slate-500 hover:text-action hover:border-action ui-transition">
-                                <i class="fa-brands fa-instagram text-sm"></i>
-                            </a>
-                            <button @click="showContactModal = true; stepsDone = 4"
-                                    class="inline-flex items-center gap-1.5 sm:gap-2 bg-action-gradient text-primary px-3 py-2 sm:px-5 sm:py-2.5 rounded-lg font-bold text-xs sm:text-sm hover:scale-[1.02] ui-transition shadow-[0_8px_24px_rgba(168,136,74,0.3)]">
-                                <i class="fa-brands fa-whatsapp"></i>
-                                <span x-show="!(isUtilitaire || clientType === 'pro')" class="sm:hidden">Réserver</span>
-                                <span x-show="!(isUtilitaire || clientType === 'pro')" class="hidden sm:inline" x-text="'Réserver \u2014 ' + totalPrix + '\u20ac'"></span>
-                                <span x-show="(isUtilitaire || clientType === 'pro')">Devis</span>
-                            </button>
-                        </div>
-                        <p class="text-[9px] text-stone-500 text-right">
-                            <i class="fa-solid fa-lock text-[8px] mr-1"></i>Sans engagement &nbsp;&middot;&nbsp; Réponse en moins de 2h
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Modal Guide -->
-        <div x-show="showGuide" class="fixed inset-0 z-[100] flex items-center justify-center bg-white/80 backdrop-blur-md p-4" style="display: none;" x-transition>
-            <div @click.away="showGuide = false" class="bg-white border border-stone-200 w-full max-w-2xl max-h-[80vh] overflow-y-auto rounded-xl p-8 relative shadow-2xl">
-                <button @click="showGuide = false" class="absolute top-6 right-6 w-8 h-8 rounded-full bg-stone-100 text-stone-400 flex items-center justify-center hover:text-gray-900 ui-transition">
-                    <i class="fa-solid fa-xmark"></i>
-                </button>
-                <h2 class="text-2xl font-bold mb-6">Guide des catégories</h2>
-                <div class="grid gap-4">
-                    <div class="p-4 bg-stone-100 rounded-lg border border-stone-200">
-                        <h4 class="font-bold text-action mb-1">Citadine</h4>
-                        <p class="text-xs text-slate-400">Clio, 208, Polo, Yaris, C3, Sandero, Mini...</p>
-                    </div>
-                    <div class="p-4 bg-stone-100 rounded-lg border border-stone-200">
-                        <h4 class="font-bold text-action mb-1">Berline</h4>
-                        <p class="text-xs text-slate-400">Série 3, Classe C, Audi A4, Peugeot 508, Golf, A3, Tesla Model 3...</p>
-                    </div>
-                    <div class="p-4 bg-stone-100 rounded-lg border border-stone-200">
-                        <h4 class="font-bold text-action mb-1">SUV</h4>
-                        <p class="text-xs text-slate-400">3008, Qashqai, RAV4, Tiguan, Tucson, Model Y, XC60...</p>
-                    </div>
-                    <div class="p-4 bg-stone-100 rounded-lg border border-stone-200">
-                        <h4 class="font-bold text-action mb-1">Monospace / 7 places</h4>
-                        <p class="text-xs text-slate-400">Scénic, Touran, Espace, Classe V, Multipla, SUV 7 places...</p>
-                    </div>
-                    <div class="p-4 bg-stone-100 rounded-lg border border-stone-200">
-                        <h4 class="font-bold text-action mb-1">Prestige / Sport</h4>
-                        <p class="text-xs text-slate-400">911, Ferrari, Aston Martin, Lamborghini, RS6, Luxe...</p>
+                    <div class="flex flex-col items-end shrink-0">
+                        <button @click="showContactModal = true; stepsDone = 4"
+                                class="btn btn-dark">
+                            <span x-show="!(isUtilitaire || clientType === 'pro')" class="sm:hidden">Réserver</span>
+                            <span x-show="!(isUtilitaire || clientType === 'pro')" class="hidden sm:inline" x-text="'Réserver \u2014 ' + totalPrix + '\u20ac'"></span>
+                            <span x-show="(isUtilitaire || clientType === 'pro')">Demander Devis</span>
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- Modal Contact -->
-        <div x-show="showContactModal" class="fixed inset-0 z-[100] flex items-center justify-center bg-white/80 backdrop-blur-md p-4" style="display: none;" x-transition>
-            <div @click.away="showContactModal = false; setTimeout(() => { showForm = false; formStatus = 'idle' }, 300)" class="bg-white border border-stone-200 w-full max-w-md rounded-2xl p-8 relative shadow-2xl text-center">
-                <button @click="showContactModal = false; setTimeout(() => { showForm = false; formStatus = 'idle' }, 300)" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-stone-100 text-stone-400 flex items-center justify-center hover:text-gray-900 ui-transition z-10">
+        <div x-show="showContactModal" class="fixed inset-0 z-[100] flex items-center justify-center bg-bg-dark/80 backdrop-blur-sm p-4" style="display: none;" x-transition>
+            <div @click.away="showContactModal = false; setTimeout(() => { showForm = false; formStatus = 'idle' }, 300)" class="bg-bg w-full max-w-md p-8 relative shadow-2xl text-center border border-gray-200 rounded-xl">
+                <button @click="showContactModal = false; setTimeout(() => { showForm = false; formStatus = 'idle' }, 300)" class="absolute top-4 right-4 w-10 h-10 bg-bg-alt text-secondary flex items-center justify-center hover:bg-gray-200 transition-colors border border-gray-200 rounded-full">
                     <i class="fa-solid fa-xmark"></i>
                 </button>
                 
                 <!-- Vue 1: Choix initial -->
-                <div x-show="!showForm && formStatus === 'idle'" x-transition:enter="transition ease-out duration-300 delay-150" x-transition:enter-start="opacity-0 transform translate-x-4" x-transition:enter-end="opacity-100 transform translate-x-0" x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0 absolute inset-0">
-                    <div class="w-16 h-16 bg-action/10 text-action rounded-full flex items-center justify-center text-3xl mx-auto mb-6 border border-action/20">
-                        <i class="fa-solid fa-paper-plane"></i>
-                    </div>
-                    <h2 class="text-2xl font-bold mb-2">Envoyer la demande</h2>
-                    <p class="text-slate-400 text-sm mb-8">Choisissez par quel moyen vous souhaitez transférer votre estimation.</p>
+                <div x-show="!showForm && formStatus === 'idle'">
+                    <h2 class="text-2xl font-light mb-2 text-primary">Envoyer la demande</h2>
+                    <p class="text-secondary text-sm mb-8 font-light">Choisissez par quel moyen vous souhaitez transférer votre estimation.</p>
                     
-                    <div class="space-y-4">
-                        <a :href="lienWhatsApp" target="_blank" class="flex w-full items-center justify-center gap-3 bg-[#25D366] text-white px-4 md:px-6 py-4 rounded-xl font-bold text-lg hover:bg-[#1ebd5a] ui-transition shadow-lg">
-                            <i class="fa-brands fa-whatsapp text-2xl"></i> Via WhatsApp
+                    <div class="space-y-3">
+                        <a :href="lienWhatsApp" target="_blank" class="flex w-full items-center justify-center gap-3 bg-[#25D366] text-white px-6 py-4 font-medium tracking-widest uppercase text-[11px] hover:bg-[#1ebd5a] transition-colors rounded-lg shadow-sm">
+                            <i class="fa-brands fa-whatsapp text-lg"></i> Via WhatsApp
                         </a>
                         
-                        <button @click="showForm = true" class="flex w-full items-center justify-center gap-3 bg-stone-100 text-gray-900 px-4 md:px-6 py-4 rounded-xl font-bold text-lg hover:bg-stone-200 ui-transition shadow-lg border border-stone-200 hover:border-action">
-                            <i class="fa-regular fa-envelope text-2xl"></i> Via E-mail
+                        <button @click="showForm = true" class="flex w-full items-center justify-center gap-3 bg-bg-alt text-primary border border-gray-200 px-6 py-4 font-medium tracking-widest uppercase text-[11px] hover:bg-gray-200 transition-colors rounded-lg shadow-sm">
+                            <i class="fa-regular fa-envelope text-lg"></i> Via E-mail
                         </button>
                     </div>
                 </div>
 
                 <!-- Vue 2: Le Formulaire -->
-                <div x-show="showForm && formStatus !== 'success'" style="display: none;" x-transition:enter="transition ease-out duration-300 delay-150" x-transition:enter-start="opacity-0 transform -translate-x-4" x-transition:enter-end="opacity-100 transform translate-x-0" x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0 hidden">
-                    <div class="w-12 h-12 bg-stone-100 text-stone-600 rounded-full flex items-center justify-center text-xl mx-auto mb-4 border border-stone-200">
-                        <i class="fa-regular fa-envelope"></i>
-                    </div>
-                    <h2 class="text-xl font-bold mb-1">Vos coordonnées</h2>
-                    <p class="text-slate-400 text-xs mb-6">Nous vous enverrons le devis détaillé par mail.</p>
+                <div x-show="showForm && formStatus !== 'success'" style="display: none;">
+                    <h2 class="text-xl font-light mb-1 text-primary">Vos coordonnées</h2>
+                    <p class="text-secondary text-xs mb-6 font-light">Nous vous enverrons le devis détaillé par mail.</p>
                     
                     <form @submit.prevent="submitForm" class="space-y-4 text-left">
                         <div>
-                            <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Nom ou Société *</label>
-                            <input type="text" x-model="formName" required :disabled="formStatus === 'submitting'" class="w-full bg-stone-50 border border-stone-200 rounded-lg px-4 py-3 text-gray-900 focus:outline-none focus:border-action ui-transition" placeholder="Jean Dupont">
+                            <label class="block text-[10px] font-medium text-secondary uppercase tracking-widest mb-2">Nom ou Société *</label>
+                            <input type="text" x-model="formName" required :disabled="formStatus === 'submitting'" class="w-full bg-bg-alt border border-gray-200 px-4 py-3 text-primary focus:outline-none focus:border-primary transition-colors rounded-md shadow-sm" placeholder="Jean Dupont">
                         </div>
                         <div>
-                            <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">E-mail *</label>
-                            <input type="email" x-model="formEmail" required :disabled="formStatus === 'submitting'" class="w-full bg-stone-50 border border-stone-200 rounded-lg px-4 py-3 text-gray-900 focus:outline-none focus:border-action ui-transition" placeholder="jean@exemple.com">
+                            <label class="block text-[10px] font-medium text-secondary uppercase tracking-widest mb-2">E-mail *</label>
+                            <input type="email" x-model="formEmail" required :disabled="formStatus === 'submitting'" class="w-full bg-bg-alt border border-gray-200 px-4 py-3 text-primary focus:outline-none focus:border-primary transition-colors rounded-md shadow-sm" placeholder="jean@exemple.com">
                         </div>
                         <div>
-                            <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Téléphone <span class="text-slate-500 font-normal">(Optionnel)</span></label>
-                            <input type="tel" x-model="formPhone" :disabled="formStatus === 'submitting'" class="w-full bg-stone-50 border border-stone-200 rounded-lg px-4 py-3 text-gray-900 focus:outline-none focus:border-action ui-transition" placeholder="06 12 34 56 78">
+                            <label class="block text-[10px] font-medium text-secondary uppercase tracking-widest mb-2">Téléphone <span class="text-muted font-light">(Optionnel)</span></label>
+                            <input type="tel" x-model="formPhone" :disabled="formStatus === 'submitting'" class="w-full bg-bg-alt border border-gray-200 px-4 py-3 text-primary focus:outline-none focus:border-primary transition-colors rounded-md shadow-sm" placeholder="06 12 34 56 78">
                         </div>
                         
-                        <div x-show="formStatus === 'error'" class="p-3 bg-red-900/30 border border-red-500/50 rounded-lg text-red-300 text-xs text-center">
+                        <div x-show="formStatus === 'error'" class="p-3 bg-red-50 border border-red-200 text-red-600 text-xs text-center rounded-md">
                             Une erreur est survenue lors de l'envoi. Veuillez réessayer.
                         </div>
                         
-                        <button type="submit" :disabled="formStatus === 'submitting'" class="w-full mt-2 inline-flex items-center justify-center gap-2 bg-action-gradient text-primary px-4 md:px-6 py-4 rounded-xl font-bold text-base hover:scale-[1.02] ui-transition shadow-[0_10px_30px_rgba(201,168,76,0.25)] disabled:opacity-50 disabled:scale-100">
+                        <button type="submit" :disabled="formStatus === 'submitting'" class="btn btn-dark w-full mt-2 justify-center">
                             <template x-if="formStatus === 'idle' || formStatus === 'error'">
-                                <span><i class="fa-solid fa-paper-plane mr-2"></i> Envoyer la demande</span>
+                                <span>Envoyer la demande</span>
                             </template>
                             <template x-if="formStatus === 'submitting'">
-                                <span><i class="fa-solid fa-compact-disc fa-spin mr-2"></i> Envoi en cours...</span>
+                                <span><i class="fa-solid fa-circle-notch fa-spin mr-2"></i> Envoi en cours...</span>
                             </template>
                         </button>
                         
                         <div class="text-center pt-2">
-                            <button type="button" @click="showForm = false; formStatus = 'idle'" class="text-xs text-slate-500 hover:text-white ui-transition">Retour au choix</button>
+                            <button type="button" @click="showForm = false; formStatus = 'idle'" class="text-[10px] font-medium uppercase tracking-widest text-secondary hover:text-primary transition-colors">Retour au choix</button>
                         </div>
                     </form>
                 </div>
 
                 <!-- Vue 3: Succès -->
-                <div x-show="formStatus === 'success'" style="display: none;" x-transition:enter="transition ease-out duration-300 delay-300" x-transition:enter-start="opacity-0 transform scale-90" x-transition:enter-end="opacity-100 transform scale-100">
-                    <div class="w-20 h-20 bg-green-500/10 text-green-400 rounded-full flex items-center justify-center text-4xl mx-auto mb-6 border border-green-500/20">
+                <div x-show="formStatus === 'success'" style="display: none;">
+                    <div class="w-16 h-16 border border-green-500 text-green-500 flex items-center justify-center text-2xl mx-auto mb-6 rounded-full bg-green-50 shadow-sm">
                         <i class="fa-solid fa-check"></i>
                     </div>
-                    <h2 class="text-2xl font-bold mb-2">Demande envoyée !</h2>
-                    <p class="text-slate-400 text-sm mb-6">Merci <span x-text="formName" class="font-semibold text-white"></span>. Nous avons bien reçu votre demande d'estimation globale de <strong class="text-action text-lg" x-text="totalPrix + '€'"></strong>.</p>
-                    <p class="text-slate-400 text-xs mb-8">Nous reviendrons vers vous très rapidement sur votre adresse mail (<span x-text="formEmail" class="text-white"></span>).</p>
+                    <h2 class="text-2xl font-light mb-2 text-primary">Demande envoyée !</h2>
+                    <p class="text-secondary text-sm mb-6 font-light">Merci <span x-text="formName" class="font-medium text-primary"></span>. Nous avons bien reçu votre demande d'estimation globale de <strong class="text-primary font-medium text-lg" x-text="totalPrix + '€'"></strong>.</p>
+                    <p class="text-secondary text-xs mb-8 font-light">Nous reviendrons vers vous très rapidement sur votre adresse mail (<span x-text="formEmail" class="text-primary"></span>).</p>
                     
-                    <button @click="showContactModal = false; setTimeout(() => { showForm = false; formStatus = 'idle' }, 300)" class="w-full inline-flex items-center justify-center bg-secondary border border-action/30 text-white px-4 md:px-6 py-3 rounded-xl font-bold text-base hover:border-action ui-transition">
+                    <button @click="showContactModal = false; setTimeout(() => { showForm = false; formStatus = 'idle' }, 300)" class="btn btn-outline border-gray-300 text-primary hover:bg-bg-alt hover:border-gray-400 w-full justify-center rounded-lg">
                         Fermer
                     </button>
                 </div>
@@ -595,18 +465,37 @@
     </main>
 
     <!-- Footer -->
-    <footer style="border-top:1px solid rgba(0,0,0,0.08);">
-        <div class="max-w-5xl mx-auto px-6 py-8 flex flex-col md:flex-row justify-between items-center gap-6">
-            <div class="text-xs" style="color:#3F3F46;">
-                © 2026 Continental Detailing — Tous droits réservés.
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-grid">
+                <div>
+                    <a href="index.html" class="logo-wordmark logo-wordmark--inverse" style="margin-bottom: 24px;">
+                        <span class="logo-primary">Continental</span>
+                        <span class="logo-secondary">Detailing</span>
+                    </a>
+                    <p class="text-sm font-light text-[rgba(255,255,255,0.5)] max-w-sm">
+                        L'art du détail pour votre automobile. Detailing premium à domicile en Essonne et Seine-et-Marne.
+                    </p>
+                </div>
+                <div>
+                    <div class="footer-title">Navigation</div>
+                    <a href="index.html" class="footer-link">Accueil</a>
+                    <a href="about.html" class="footer-link">Qui sommes-nous</a>
+                    <a href="services.html" class="footer-link">Tarifs & Réservation</a>
+                </div>
+                <div>
+                    <div class="footer-title">Contact</div>
+                    <a href="mailto:continental.detailing.idf@gmail.com" class="footer-link">continental.detailing.idf@gmail.com</a>
+                    <a href="https://wa.me/33750875964" class="footer-link">WhatsApp (+33 7 50 87 59 64)</a>
+                </div>
             </div>
-            <div class="flex gap-6 items-center">
-                <a href="mailto:continental.detailing.idf@gmail.com" class="ui-transition text-lg" style="color:#3F3F46;" onmouseover="this.style.color='#A8884A'" onmouseout="this.style.color='#3F3F46'">
-                    <i class="fa-regular fa-envelope"></i>
-                </a>
-                <a href="https://www.instagram.com/continental.detailing.idf/" target="_blank" class="ui-transition text-lg" style="color:#3F3F46;" onmouseover="this.style.color='#A8884A'" onmouseout="this.style.color='#3F3F46'">
-                    <i class="fa-brands fa-instagram"></i>
-                </a>
+            
+            <div class="footer-bottom">
+                <div class="footer-copy">© 2026 Continental Detailing — Tous droits réservés.</div>
+                <div class="footer-socials">
+                    <a href="mailto:continental.detailing.idf@gmail.com"><i class="fa-regular fa-envelope"></i></a>
+                    <a href="https://www.instagram.com/continental.detailing.idf/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                </div>
             </div>
         </div>
     </footer>
