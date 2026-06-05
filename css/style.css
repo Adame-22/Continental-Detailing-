@@ -15,8 +15,8 @@
     --text-inverse:   #FFFFFF;
     --border:         rgba(0, 0, 0, 0.10);
     --border-light:   rgba(0, 0, 0, 0.06);
-    --accent:         #A8884A;
-    --accent-light:   #C4A55D;
+    --accent:         #1A1A1E;
+    --accent-light:   #404040;
 
     /* Rounded DA Tokens */
     --radius-sm:      4px;
