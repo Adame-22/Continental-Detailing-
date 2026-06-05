@@ -77,7 +77,7 @@
                     // Scrolling up
                     nav.classList.remove('nav-hidden');
                     nav.classList.add('nav-visible');
-                    nav.style.backgroundColor = 'rgba(15, 23, 42, 0.95)';
+                    nav.style.backgroundColor = 'rgba(255, 255, 255, 0.96)';
                 }
             } else {
                 nav.classList.remove('nav-hidden');
