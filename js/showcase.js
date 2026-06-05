@@ -237,7 +237,7 @@
             img.alt = data.label;
             document.getElementById('car-label-name').textContent = data.label;
             document.getElementById('car-label-sub').textContent = data.subtitle;
-            glow.style.boxShadow = '0 0 60px 16px rgba(168,136,74,0.15)';
+            glow.style.boxShadow = '0 0 60px 16px rgba(0,0,0,0.05)';
 
             wrap.style.transition = 'none';
             wrap.style.transform = 'translateX(32px) scale(0.92)';
@@ -380,7 +380,7 @@
                 vy: -(Math.random() * 2.5 + 0.8),
                 size: Math.random() * 2.5 + 0.8,
                 alpha: 1,
-                color: Math.random() > 0.5 ? '#A8884A' : '#C4A55D'
+                color: Math.random() > 0.5 ? '#999999' : '#CCCCCC'
             });
         }
     }
