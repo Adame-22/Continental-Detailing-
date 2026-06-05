@@ -16,12 +16,12 @@
             theme: {
                 extend: {
                     colors: {
-                        primary:   '#09090B',
-                        secondary: '#111117',
-                        card:      '#16161C',
+                        primary:   '#FFFFFF',
+                        secondary: '#F8F7F4',
+                        card:      '#F0EFE9',
                         action:    '#A8884A',
                         'action-lt': '#C4A55D',
-                        stone: { 400: '#A8A29E', 600: '#57534E' }
+                        stone: { 400: '#8A847E', 600: '#5A5650' }
                     },
                     fontFamily: {
                         sans:  ['Inter', 'sans-serif'],
@@ -38,23 +38,23 @@
         .ui-transition { transition: all 0.2s ease; }
         .gold-line { height: 1px; background: linear-gradient(90deg, transparent, #A8884A, transparent); }
         .card-glass {
-            background: rgba(22,22,28,0.8);
-            border: 1px solid rgba(255,255,255,0.07);
+            background: rgba(248,247,244,0.9);
+            border: 1px solid rgba(0,0,0,0.08);
             backdrop-filter: blur(8px);
         }
         .value-card {
-            background: rgba(255,255,255,0.025);
-            border: 1px solid rgba(255,255,255,0.06);
+            background: rgba(0,0,0,0.02);
+            border: 1px solid rgba(0,0,0,0.07);
             transition: all 0.3s ease;
         }
         .value-card:hover {
-            background: rgba(168,136,74,0.07);
+            background: rgba(168,136,74,0.06);
             border-color: rgba(168,136,74,0.25);
             transform: translateY(-3px);
         }
         .hero-about {
-            background: radial-gradient(ellipse at 30% 50%, rgba(168,136,74,0.06) 0%, transparent 60%),
-                        radial-gradient(ellipse at 80% 20%, rgba(100,80,200,0.04) 0%, transparent 50%);
+            background: radial-gradient(ellipse at 30% 50%, rgba(168,136,74,0.05) 0%, transparent 60%),
+                        radial-gradient(ellipse at 80% 20%, rgba(168,136,74,0.03) 0%, transparent 50%);
         }
         .zone-badge {
             display: inline-flex;
@@ -64,7 +64,7 @@
             border-radius: 4px;
             background: rgba(168,136,74,0.08);
             border: 1px solid rgba(168,136,74,0.2);
-            color: #C4A55D;
+            color: #A8884A;
             font-size: 0.75rem;
             font-weight: 600;
             letter-spacing: 0.08em;
@@ -76,18 +76,18 @@
             gap: 12px;
             padding: 14px 16px;
             border-radius: 6px;
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.06);
+            background: rgba(0,0,0,0.02);
+            border: 1px solid rgba(0,0,0,0.07);
         }
     </style>
 </head>
-<body class="bg-primary text-stone-100 antialiased">
+<body class="bg-primary text-gray-900 antialiased">
 
     <div class="ambient-spot-right" aria-hidden="true"></div>
     <div class="ambient-spot-left" aria-hidden="true"></div>
 
     <!-- Navigation -->
-    <nav class="w-full z-50 sticky top-0" style="background:rgba(9,9,11,0.88); backdrop-filter:blur(20px); border-bottom:1px solid rgba(255,255,255,0.05);">
+    <nav class="w-full z-50 sticky top-0" style="background:rgba(255,255,255,0.92); backdrop-filter:blur(20px); border-bottom:1px solid rgba(0,0,0,0.08);">
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
                 <a href="index.html" class="logo-link">
@@ -100,7 +100,7 @@
                     <div class="flex items-center gap-3 ml-4">
                         <a href="mailto:continental.detailing.idf@gmail.com?subject=Devis%20Continental%20Detailing"
                            class="w-9 h-9 rounded-full flex items-center justify-center text-stone-500 hover:text-action ui-transition"
-                           style="border:1px solid rgba(255,255,255,0.07);">
+                           style="border:1px solid rgba(0,0,0,0.08);">
                             <i class="fa-regular fa-envelope text-sm"></i>
                         </a>
                         <a href="https://wa.me/33750875964?text=Bonjour,%20je%20souhaite%20un%20devis" target="_blank"
@@ -253,7 +253,7 @@
     </section>
 
     <!-- Zone d'intervention -->
-    <section class="py-16 px-6" style="background:rgba(255,255,255,0.015);border-top:1px solid rgba(255,255,255,0.05);border-bottom:1px solid rgba(255,255,255,0.05);">
+    <section class="py-16 px-6" style="background:rgba(0,0,0,0.02);border-top:1px solid rgba(0,0,0,0.07);border-bottom:1px solid rgba(0,0,0,0.07);">
         <div class="max-w-3xl mx-auto text-center">
             <p class="text-xs font-bold tracking-[0.2em] uppercase mb-4" style="color:#A8884A;">Zone couverte</p>
             <h2 class="font-serif text-2xl font-semibold text-white mb-8">Où intervenons-nous ?</h2>
@@ -277,7 +277,7 @@
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
                 <a href="services.html"
                    class="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-lg font-bold text-sm text-primary ui-transition hover:scale-[1.02]"
-                   style="background:linear-gradient(135deg,#C4A55D,#A8884A,#8B6F37);box-shadow:0 12px 30px rgba(168,136,74,0.25);">
+                   style="background:linear-gradient(135deg,#C4A55D,#A8884A,#8B6F37);box-shadow:0 12px 30px rgba(168,136,74,0.25); color:#FFFFFF;">
                     <i class="fa-solid fa-gem"></i>
                     Voir les tarifs &amp; réserver
                 </a>
@@ -292,9 +292,20 @@
     </section>
 
     <!-- Footer -->
-    <footer class="border-t px-6 py-10 text-center" style="border-color:rgba(255,255,255,0.06);">
-        <img src="images/logo_continental.png" alt="Continental Detailing" class="h-10 mx-auto mb-6 opacity-60">
-        <p class="text-xs text-stone-600">&copy; 2025 Continental Detailing — Essonne &amp; Seine-et-Marne</p>
+    <footer style="border-top:1px solid rgba(0,0,0,0.08);">
+        <div class="max-w-5xl mx-auto px-6 py-8 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="text-xs" style="color:#3F3F46;">
+                © 2026 Continental Detailing — Tous droits réservés.
+            </div>
+            <div class="flex gap-6 items-center">
+                <a href="mailto:continental.detailing.idf@gmail.com" class="ui-transition text-lg" style="color:#3F3F46;" onmouseover="this.style.color='#A8884A'" onmouseout="this.style.color='#3F3F46'">
+                    <i class="fa-regular fa-envelope"></i>
+                </a>
+                <a href="https://www.instagram.com/continental.detailing.idf/" target="_blank" class="ui-transition text-lg" style="color:#3F3F46;" onmouseover="this.style.color='#A8884A'" onmouseout="this.style.color='#3F3F46'">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+            </div>
+        </div>
     </footer>
 
 </body>

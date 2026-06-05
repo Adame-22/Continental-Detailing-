@@ -1,19 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600&display=swap');
 
 :root {
-    /* Core palette — Luxury Showroom */
-    --bg-primary:       #09090B;   /* Noir pur */
-    --bg-secondary:     #111117;   /* Charcoal */
-    --bg-card:          #16161C;   /* Card surface */
+    /* Core palette — Light Luxury */
+    --bg-primary:       #FFFFFF;   /* Blanc pur */
+    --bg-secondary:     #F8F7F4;   /* Blanc cassé */
+    --bg-card:          #F0EFE9;   /* Surface carte */
     --color-action:     #A8884A;   /* Or mat sophistiqué */
     --color-action-lt:  #C4A55D;   /* Or hover */
-    --color-action-dim: rgba(168, 136, 74, 0.12);
-    --text-primary:     #F2EEE6;   /* Blanc chaud vif */
-    --text-secondary:   #9A9490;   /* Gris lisible */
-    --text-muted:       #6B6560;   /* Gris discret mais visible */
-    --border-subtle:    rgba(168, 136, 74, 0.10);
-    --border-card:      rgba(255, 255, 255, 0.05);
-    --gold-glow:        rgba(168, 136, 74, 0.15);
+    --color-action-dim: rgba(168, 136, 74, 0.10);
+    --text-primary:     #1A1817;   /* Quasi noir */
+    --text-secondary:   #5A5650;   /* Gris moyen */
+    --text-muted:       #8A847E;   /* Gris discret */
+    --border-subtle:    rgba(168, 136, 74, 0.15);
+    --border-card:      rgba(0, 0, 0, 0.08);
+    --gold-glow:        rgba(168, 136, 74, 0.12);
 }
 
 * { box-sizing: border-box; }
@@ -28,7 +28,7 @@ body {
 
 /* ── Scrollbar ── */
 ::-webkit-scrollbar { width: 4px; }
-::-webkit-scrollbar-track { background: var(--bg-primary); }
+::-webkit-scrollbar-track { background: #F0EFE9; }
 ::-webkit-scrollbar-thumb { background: var(--color-action); border-radius: 2px; }
 
 /* ── Cards ── */
@@ -52,7 +52,7 @@ body {
 
 .btn-primary:hover {
     background: var(--color-action);
-    color: var(--bg-primary);
+    color: #FFFFFF;
     box-shadow: 0 0 20px rgba(168, 136, 74, 0.25);
 }
 
@@ -78,11 +78,11 @@ body {
 
 .logo-link:hover .main-logo {
     transform: scale(1.03);
-    filter: brightness(1.15);
+    filter: brightness(1.1);
 }
 
 /* ═══════════════════════════════════════
-   AMBIENT LIGHTING — Showroom style
+   AMBIENT LIGHTING — Showroom style clair
    ═══════════════════════════════════════ */
 
 /* Spot droit — chaud/or */
@@ -92,7 +92,7 @@ body {
     right: -100px;
     width: 600px;
     height: 600px;
-    background: radial-gradient(ellipse at center, rgba(168,136,74,0.06) 0%, transparent 65%);
+    background: radial-gradient(ellipse at center, rgba(168,136,74,0.07) 0%, transparent 65%);
     pointer-events: none;
     z-index: 0;
 }
@@ -104,7 +104,7 @@ body {
     left: -150px;
     width: 500px;
     height: 500px;
-    background: radial-gradient(ellipse at center, rgba(255,255,255,0.02) 0%, transparent 65%);
+    background: radial-gradient(ellipse at center, rgba(168,136,74,0.04) 0%, transparent 65%);
     pointer-events: none;
     z-index: 0;
 }
@@ -208,7 +208,7 @@ body {
 }
 .card-hover-lift:hover {
     transform: translateY(-6px);
-    box-shadow: 0 24px 48px -12px rgba(0,0,0,0.5), 0 0 0 1px rgba(168,136,74,0.15);
+    box-shadow: 0 24px 48px -12px rgba(0,0,0,0.12), 0 0 0 1px rgba(168,136,74,0.20);
 }
 
 /* ═══════════════════════════════════════
@@ -225,6 +225,16 @@ nav { transition: transform 0.35s cubic-bezier(0.4,0,0.2,1), background-color 0.
     0%, 100% { transform: translateY(0); }
     50%       { transform: translateY(-8px); }
 }
+
+/* ═══════════════════════════════════════
+   LIGHT THEME — Overrides globaux
+   Corrige le texte blanc (invisible sur blanc)
+   ═══════════════════════════════════════ */
+.text-white { color: #1A1817 !important; }
+.text-stone-100, .text-stone-200 { color: #2C2A26 !important; }
+.text-slate-300 { color: #4A4844 !important; }
+.text-slate-400 { color: #6B6560 !important; }
+.text-slate-500 { color: #8A847E !important; }
 
 /* ═══════════════════════════════════════
    ACCESSIBILITY

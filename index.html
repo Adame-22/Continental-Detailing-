@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
@@ -21,12 +21,12 @@
             theme: {
                 extend: {
                     colors: {
-                        primary:   '#09090B',
-                        secondary: '#111117',
-                        card:      '#16161C',
+                        primary:   '#FFFFFF',
+                        secondary: '#F8F7F4',
+                        card:      '#F0EFE9',
                         action:    '#A8884A',
                         'action-lt': '#C4A55D',
-                        stone: { 400: '#A8A29E', 600: '#57534E' }
+                        stone: { 400: '#8A847E', 600: '#5A5650' }
                     },
                     fontFamily: {
                         sans:  ['Inter', 'sans-serif'],
@@ -40,14 +40,14 @@
         }
     </script>
 </head>
-<body class="bg-primary text-stone-100 antialiased">
+<body class="bg-primary text-gray-900 antialiased">
 
     <!-- Ambient lighting — showroom spots -->
     <div class="ambient-spot-right" aria-hidden="true"></div>
     <div class="ambient-spot-left" aria-hidden="true"></div>
 
     <!-- Navigation -->
-    <nav class="w-full z-50 sticky top-0" style="background:rgba(9,9,11,0.88); backdrop-filter:blur(20px); border-bottom:1px solid rgba(255,255,255,0.05);">
+    <nav class="w-full z-50 sticky top-0" style="background:rgba(255,255,255,0.92); backdrop-filter:blur(20px); border-bottom:1px solid rgba(0,0,0,0.08);">
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
                 <a href="index.html" class="logo-link">
@@ -55,8 +55,8 @@
                 </a>
                 <div class="hidden md:flex gap-8 items-center">
                     <a href="index.html" class="text-xs font-semibold tracking-[0.12em] uppercase text-action">Accueil</a>
-                    <a href="about.html" class="text-xs font-semibold tracking-[0.12em] uppercase text-stone-400 hover:text-action ui-transition">Qui sommes-nous</a>
-                    <a href="services.html" class="text-xs font-semibold tracking-[0.12em] uppercase text-stone-400 hover:text-action ui-transition">Tarifs & Réservation</a>
+                    <a href="about.html" class="text-xs font-semibold tracking-[0.12em] uppercase ui-transition" style="color:#5A5650;" onmouseover="this.style.color='#A8884A'" onmouseout="this.style.color='#5A5650'">Qui sommes-nous</a>
+                    <a href="services.html" class="text-xs font-semibold tracking-[0.12em] uppercase ui-transition" style="color:#5A5650;" onmouseover="this.style.color='#A8884A'" onmouseout="this.style.color='#5A5650'">Tarifs &amp; Réservation</a>
                     <div class="flex items-center gap-3 ml-4">
                         <a href="mailto:continental.detailing.idf@gmail.com?subject=Devis%20Continental%20Detailing"
                            class="w-9 h-9 rounded-full flex items-center justify-center text-stone-500 hover:text-action ui-transition"
@@ -128,26 +128,26 @@
     <!-- Stats bar -->
     <section class="relative z-10 max-w-5xl mx-auto px-6" style="margin-top:-2rem;">
         <div class="reveal-scale grid grid-cols-1 md:grid-cols-3"
-             style="background:rgba(22,22,28,0.9); backdrop-filter:blur(20px); border:1px solid rgba(255,255,255,0.05); border-radius:4px;">
-            <div class="p-7 flex items-center gap-5 border-b md:border-b-0 border-r-0 md:border-r" style="border-color:rgba(255,255,255,0.04);">
+             style="background:rgba(255,255,255,0.96); backdrop-filter:blur(20px); border:1px solid rgba(0,0,0,0.08); border-radius:4px; box-shadow:0 8px 32px rgba(0,0,0,0.07);">
+            <div class="p-7 flex items-center gap-5 border-b md:border-b-0 border-r-0 md:border-r" style="border-color:rgba(0,0,0,0.06);">
                 <i class="fa-solid fa-location-dot text-xl flex-shrink-0" style="color:#A8884A;"></i>
                 <div>
                     <div class="text-sm font-semibold text-white">À domicile</div>
-                    <div class="text-xs mt-0.5" style="color:#57534E;">Nous venons jusqu'à vous</div>
+                    <div class="text-xs mt-0.5" style="color:#6A6460;">Nous venons jusqu'à vous</div>
                 </div>
             </div>
-            <div class="p-7 flex items-center gap-5 border-b md:border-b-0 border-r-0 md:border-r" style="border-color:rgba(255,255,255,0.04);">
+            <div class="p-7 flex items-center gap-5 border-b md:border-b-0 border-r-0 md:border-r" style="border-color:rgba(0,0,0,0.06);">
                 <i class="fa-solid fa-hand-sparkles text-xl flex-shrink-0" style="color:#A8884A;"></i>
                 <div>
                     <div class="text-sm font-semibold text-white">Zéro micro-rayures</div>
-                    <div class="text-xs mt-0.5" style="color:#57534E;">Méthode 2 seaux + Snow Foam</div>
+                    <div class="text-xs mt-0.5" style="color:#6A6460;">Méthode 2 seaux + Snow Foam</div>
                 </div>
             </div>
             <div class="p-7 flex items-center gap-5">
                 <i class="fa-solid fa-shield-halved text-xl flex-shrink-0" style="color:#A8884A;"></i>
                 <div>
                     <div class="text-sm font-semibold text-white">Produits premium</div>
-                    <div class="text-xs mt-0.5" style="color:#57534E;">pH neutre, biodégradables</div>
+                    <div class="text-xs mt-0.5" style="color:#6A6460;">pH neutre, biodégradables</div>
                 </div>
             </div>
         </div>
@@ -164,7 +164,7 @@
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
             <!-- Intérieur -->
             <div class="p-8 card-hover-lift reveal-left"
-                 style="background:#111117; border:1px solid rgba(255,255,255,0.05); border-radius:4px;">
+                 style="background:#FFFFFF; border:1px solid rgba(0,0,0,0.08); border-radius:4px;">
                 <div class="flex items-start gap-4 mb-6">
                     <div class="w-10 h-10 flex items-center justify-center flex-shrink-0" style="border:1px solid rgba(168,136,74,0.25); border-radius:2px;">
                         <i class="fa-solid fa-couch text-sm" style="color:#A8884A;"></i>
@@ -175,18 +175,18 @@
                     </div>
                 </div>
                 <ul class="space-y-3">
-                    <li class="flex gap-3 text-sm" style="color:#A8A29E;"><span style="color:#A8884A; margin-top:2px;">—</span><span><strong class="text-white font-medium">Aspiration chirurgicale</strong> — habitacle, coffre, rails de sièges.</span></li>
-                    <li class="flex gap-3 text-sm" style="color:#A8A29E;"><span style="color:#A8884A; margin-top:2px;">—</span><span><strong class="text-white font-medium">Pressing injection/extraction</strong> — shampoing profond des fibres.</span></li>
-                    <li class="flex gap-3 text-sm" style="color:#A8A29E;"><span style="color:#A8884A; margin-top:2px;">—</span><span><strong class="text-white font-medium">Dégraissage au pinceau</strong> — plastiques, aérations, commodos.</span></li>
-                    <li class="flex gap-3 text-sm" style="color:#A8A29E;"><span style="color:#A8884A; margin-top:2px;">—</span><span><strong class="text-white font-medium">Protection Anti-UV</strong> — plastiques soignés, effet antistatique.</span></li>
-                    <li class="flex gap-3 text-sm" style="color:#A8A29E;"><span style="color:#A8884A; margin-top:2px;">—</span><span><strong class="text-white font-medium">Soin des cuirs</strong> — nettoyage pH neutre et hydratation.</span></li>
-                    <li class="flex gap-3 text-sm" style="color:#A8A29E;"><span style="color:#A8884A; margin-top:2px;">—</span><span><strong class="text-white font-medium">Finition vitres</strong> — dégraissage haute clarté, sans trace.</span></li>
+                    <li class="flex gap-3 text-sm" style="color:#5A5650;"><span style="color:#A8884A; margin-top:2px;">—</span><span><strong class="text-white font-medium">Aspiration chirurgicale</strong> — habitacle, coffre, rails de sièges.</span></li>
+                    <li class="flex gap-3 text-sm" style="color:#5A5650;"><span style="color:#A8884A; margin-top:2px;">—</span><span><strong class="text-white font-medium">Pressing injection/extraction</strong> — shampoing profond des fibres.</span></li>
+                    <li class="flex gap-3 text-sm" style="color:#5A5650;"><span style="color:#A8884A; margin-top:2px;">—</span><span><strong class="text-white font-medium">Dégraissage au pinceau</strong> — plastiques, aérations, commodos.</span></li>
+                    <li class="flex gap-3 text-sm" style="color:#5A5650;"><span style="color:#A8884A; margin-top:2px;">—</span><span><strong class="text-white font-medium">Protection Anti-UV</strong> — plastiques soignés, effet antistatique.</span></li>
+                    <li class="flex gap-3 text-sm" style="color:#5A5650;"><span style="color:#A8884A; margin-top:2px;">—</span><span><strong class="text-white font-medium">Soin des cuirs</strong> — nettoyage pH neutre et hydratation.</span></li>
+                    <li class="flex gap-3 text-sm" style="color:#5A5650;"><span style="color:#A8884A; margin-top:2px;">—</span><span><strong class="text-white font-medium">Finition vitres</strong> — dégraissage haute clarté, sans trace.</span></li>
                 </ul>
             </div>
 
             <!-- Extérieur -->
             <div class="p-8 card-hover-lift reveal-right"
-                 style="background:#111117; border:1px solid rgba(255,255,255,0.05); border-radius:4px;">
+                 style="background:#FFFFFF; border:1px solid rgba(0,0,0,0.08); border-radius:4px;">
                 <div class="flex items-start gap-4 mb-6">
                     <div class="w-10 h-10 flex items-center justify-center flex-shrink-0" style="border:1px solid rgba(168,136,74,0.25); border-radius:2px;">
                         <i class="fa-solid fa-spray-can text-sm" style="color:#A8884A;"></i>
@@ -197,12 +197,12 @@
                     </div>
                 </div>
                 <ul class="space-y-3">
-                    <li class="flex gap-3 text-sm" style="color:#A8A29E;"><span style="color:#A8884A; margin-top:2px;">—</span><span><strong class="text-white font-medium">Prélavage Snow Foam</strong> — mousse active, zéro contact mécanique.</span></li>
-                    <li class="flex gap-3 text-sm" style="color:#A8A29E;"><span style="color:#A8884A; margin-top:2px;">—</span><span><strong class="text-white font-medium">Lavage 2 seaux</strong> — gant microfibre premium, méthode sécurisée.</span></li>
-                    <li class="flex gap-3 text-sm" style="color:#A8A29E;"><span style="color:#A8884A; margin-top:2px;">—</span><span><strong class="text-white font-medium">Décontamination jantes</strong> — dissolution chimique poussières de freins.</span></li>
-                    <li class="flex gap-3 text-sm" style="color:#A8A29E;"><span style="color:#A8884A; margin-top:2px;">—</span><span><strong class="text-white font-medium">Détails au pinceau</strong> — logos, calandres, joints, trappe.</span></li>
-                    <li class="flex gap-3 text-sm" style="color:#A8A29E;"><span style="color:#A8884A; margin-top:2px;">—</span><span><strong class="text-white font-medium">Séchage sécurisé</strong> — microfibres haute densité ou air pulsé.</span></li>
-                    <li class="flex gap-3 text-sm" style="color:#A8A29E;"><span style="color:#A8884A; margin-top:2px;">—</span><span><strong class="text-white font-medium">Dressing pneus</strong> — effet noir satiné durable.</span></li>
+                    <li class="flex gap-3 text-sm" style="color:#5A5650;"><span style="color:#A8884A; margin-top:2px;">—</span><span><strong class="text-white font-medium">Prélavage Snow Foam</strong> — mousse active, zéro contact mécanique.</span></li>
+                    <li class="flex gap-3 text-sm" style="color:#5A5650;"><span style="color:#A8884A; margin-top:2px;">—</span><span><strong class="text-white font-medium">Lavage 2 seaux</strong> — gant microfibre premium, méthode sécurisée.</span></li>
+                    <li class="flex gap-3 text-sm" style="color:#5A5650;"><span style="color:#A8884A; margin-top:2px;">—</span><span><strong class="text-white font-medium">Décontamination jantes</strong> — dissolution chimique poussières de freins.</span></li>
+                    <li class="flex gap-3 text-sm" style="color:#5A5650;"><span style="color:#A8884A; margin-top:2px;">—</span><span><strong class="text-white font-medium">Détails au pinceau</strong> — logos, calandres, joints, trappe.</span></li>
+                    <li class="flex gap-3 text-sm" style="color:#5A5650;"><span style="color:#A8884A; margin-top:2px;">—</span><span><strong class="text-white font-medium">Séchage sécurisé</strong> — microfibres haute densité ou air pulsé.</span></li>
+                    <li class="flex gap-3 text-sm" style="color:#5A5650;"><span style="color:#A8884A; margin-top:2px;">—</span><span><strong class="text-white font-medium">Dressing pneus</strong> — effet noir satiné durable.</span></li>
                 </ul>
             </div>
         </div>
@@ -214,9 +214,68 @@
             <span class="text-xs font-medium tracking-wider uppercase" style="color:#4ade80;">Matériel 100 % électrique & silencieux — accès eau & prise requis</span>
         </div>
     </section>
+    
+    <!-- Réalisations / Galerie -->
+    <section class="py-24 bg-secondary/30" style="border-top:1px solid rgba(255,255,255,0.04);">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16 reveal">
+                <div class="max-w-xl">
+                    <p class="text-xs font-semibold tracking-[0.2em] uppercase mb-4" style="color:#A8884A;">Galerie</p>
+                    <h2 class="font-serif text-4xl md:text-5xl font-semibold text-white mb-6">Nos Réalisations</h2>
+                    <p class="text-stone-400 leading-relaxed">
+                        Chaque véhicule qui passe entre nos mains bénéficie d'un traitement d'exception. Découvrez l'exigence Continental Detailing en images.
+                    </p>
+                </div>
+                <div class="mt-8 md:mt-0">
+                    <a href="https://www.instagram.com/continental.detailing.idf/" target="_blank" 
+                       class="inline-flex items-center gap-3 px-6 py-3 text-xs font-bold tracking-widest uppercase ui-transition"
+                       style="border:1px solid rgba(0,0,0,0.12); color:#6A6460; border-radius:2px;"
+                       onmouseover="this.style.borderColor='rgba(168,136,74,0.5)'; this.style.color='#C4A55D'"
+                       onmouseout="this.style.borderColor='rgba(0,0,0,0.12)'; this.style.color='#6A6460'">
+                        <i class="fa-brands fa-instagram text-base"></i> Voir plus sur Instagram
+                    </a>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Main Showcase: GT3 RS -->
+                <div class="lg:col-span-2 group relative overflow-hidden rounded-sm reveal-left" style="aspect-ratio:16/9;">
+                    <img src="images/car-prestige.png" alt="Detailing Porsche 911 GT3 RS" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60"></div>
+                    <div class="absolute bottom-8 left-8">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full mb-3" style="background:rgba(168,136,74,0.2); border:1px solid rgba(168,136,74,0.3); backdrop-filter:blur(4px);">
+                            <span class="text-[10px] font-bold text-action tracking-widest uppercase">Signature Luxe</span>
+                        </div>
+                        <h3 class="text-2xl font-serif text-white font-semibold">Porsche 911 GT3 RS</h3>
+                        <p class="text-stone-400 text-sm mt-1">Lavage complet + Cire de protection hydrophobe</p>
+                    </div>
+                </div>
+
+                <!-- Secondary items (placeholders for now or reuse existing) -->
+                <div class="flex flex-col gap-6">
+                    <div class="h-full group relative overflow-hidden rounded-sm reveal-right" style="min-height:240px;">
+                        <img src="images/car-berline.png" alt="Detailing Berline Luxe" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-40"></div>
+                        <div class="absolute bottom-6 left-6">
+                            <h4 class="text-lg font-serif text-white font-semibold">Berline Premium</h4>
+                            <p class="text-stone-400 text-xs">Rénovation intérieure cuir</p>
+                        </div>
+                    </div>
+                    <div class="h-full group relative overflow-hidden rounded-sm reveal-right stagger-1" style="min-height:240px;">
+                        <img src="images/car-suv.png" alt="Detailing SUV" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-40"></div>
+                        <div class="absolute bottom-6 left-6">
+                            <h4 class="text-lg font-serif text-white font-semibold">SUV Urbain</h4>
+                            <p class="text-stone-400 text-xs">Snow Foam + Décontamination</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Pourquoi nous choisir -->
-    <section class="py-24" style="border-top:1px solid rgba(255,255,255,0.04);">
+    <section class="py-24" style="border-top:1px solid rgba(0,0,0,0.07);">
         <div class="max-w-5xl mx-auto px-6">
             <div class="text-center mb-16 reveal">
                 <p class="text-xs font-semibold tracking-[0.2em] uppercase mb-4" style="color:#A8884A;">Notre différence</p>
@@ -224,31 +283,31 @@
                 <div class="line-grow h-px mx-auto mt-6" style="background:#A8884A;"></div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px" style="background:rgba(255,255,255,0.04);">
-                <div class="p-8 card-hover-lift reveal stagger-1" style="background:#09090B;">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px" style="background:rgba(0,0,0,0.07);">
+                <div class="p-8 card-hover-lift reveal stagger-1" style="background:#FFFFFF;">
                     <i class="fa-solid fa-toolbox mb-5 text-lg" style="color:#A8884A;"></i>
                     <h3 class="font-semibold text-white mb-2">Matériel Professionnel</h3>
-                    <p class="text-sm leading-relaxed" style="color:#57534E;">Injecteur-extracteur HD, Snow Foam Gun et brosses spécifiques pour chaque surface.</p>
+                    <p class="text-sm leading-relaxed" style="color:#6A6460;">Injecteur-extracteur HD, Snow Foam Gun et brosses spécifiques pour chaque surface.</p>
                 </div>
-                <div class="p-8 card-hover-lift reveal stagger-2" style="background:#09090B;">
+                <div class="p-8 card-hover-lift reveal stagger-2" style="background:#FFFFFF;">
                     <i class="fa-solid fa-leaf mb-5 text-lg" style="color:#A8884A;"></i>
                     <h3 class="font-semibold text-white mb-2">Éco-Responsable</h3>
-                    <p class="text-sm leading-relaxed" style="color:#57534E;">Matériel 100 % électrique, zéro bruit, zéro pollution thermique.</p>
+                    <p class="text-sm leading-relaxed" style="color:#6A6460;">Matériel 100 % électrique, zéro bruit, zéro pollution thermique.</p>
                 </div>
-                <div class="p-8 card-hover-lift reveal stagger-3" style="background:#09090B;">
+                <div class="p-8 card-hover-lift reveal stagger-3" style="background:#FFFFFF;">
                     <i class="fa-solid fa-clock mb-5 text-lg" style="color:#A8884A;"></i>
                     <h3 class="font-semibold text-white mb-2">Gain de Temps</h3>
-                    <p class="text-sm leading-relaxed" style="color:#57534E;">Domicile, bureau ou parking. On s'adapte entièrement à votre agenda.</p>
+                    <p class="text-sm leading-relaxed" style="color:#6A6460;">Domicile, bureau ou parking. On s'adapte entièrement à votre agenda.</p>
                 </div>
-                <div class="p-8 card-hover-lift reveal stagger-4" style="background:#09090B;">
+                <div class="p-8 card-hover-lift reveal stagger-4" style="background:#FFFFFF;">
                     <i class="fa-solid fa-shield-heart mb-5 text-lg" style="color:#A8884A;"></i>
                     <h3 class="font-semibold text-white mb-2">Produits Sécurisés</h3>
-                    <p class="text-sm leading-relaxed" style="color:#57534E;">Produits biodégradables et pH neutre, respectueux de vos matériaux.</p>
+                    <p class="text-sm leading-relaxed" style="color:#6A6460;">Produits biodégradables et pH neutre, respectueux de vos matériaux.</p>
                 </div>
-                <div class="p-8 card-hover-lift reveal stagger-5 md:col-span-2 lg:col-span-2" style="background:#09090B;">
+                <div class="p-8 card-hover-lift reveal stagger-5 md:col-span-2 lg:col-span-2" style="background:#FFFFFF;">
                     <i class="fa-solid fa-eye mb-5 text-lg" style="color:#A8884A;"></i>
                     <h3 class="font-semibold text-white mb-2">Rigueur & Discrétion</h3>
-                    <p class="text-sm leading-relaxed" style="color:#57534E;">Attention absolue aux détails, dans le respect total de votre espace et de votre vie privée.</p>
+                    <p class="text-sm leading-relaxed" style="color:#6A6460;">Attention absolue aux détails, dans le respect total de votre espace et de votre vie privée.</p>
                 </div>
             </div>
         </div>
@@ -293,7 +352,7 @@
     <footer style="border-top:1px solid rgba(255,255,255,0.05);">
         <div class="max-w-5xl mx-auto px-6 py-8 flex flex-col md:flex-row justify-between items-center gap-6">
             <div class="text-xs" style="color:#3F3F46;">
-                © <script>document.write(new Date().getFullYear())</script> Continental Detailing — Tous droits réservés.
+                © 2026 Continental Detailing — Tous droits réservés.
             </div>
             <div class="flex gap-6 items-center">
                 <a href="mailto:continental.detailing.idf@gmail.com" class="ui-transition text-lg" style="color:#3F3F46;" onmouseover="this.style.color='#A8884A'" onmouseout="this.style.color='#3F3F46'">

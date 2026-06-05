@@ -14,9 +14,9 @@
             theme: {
                 extend: {
                     colors: {
-                        primary:   '#09090B',
-                        secondary: '#111117',
-                        card:      '#16161C',
+                        primary:   '#FFFFFF',
+                        secondary: '#F8F7F4',
+                        card:      '#F0EFE9',
                         action:    '#A8884A',
                         'action-lt': '#C4A55D',
                     },
@@ -29,14 +29,14 @@
         }
     </script>
 </head>
-<body class="bg-primary text-white font-sans min-h-screen flex flex-col antialiased" style="font-family:'Inter',sans-serif;" x-data="{ copiedItem: null }">
+<body class="bg-primary text-gray-900 font-sans min-h-screen flex flex-col antialiased" style="font-family:'Inter',sans-serif;" x-data="{ copiedItem: null }">
 
     <div class="ambient-spot-right" aria-hidden="true"></div>
 
     <!-- Header -->
-    <header class="fixed w-full top-0 z-50" style="background:rgba(9,9,11,0.92);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.05);">
+    <header class="fixed w-full top-0 z-50" style="background:rgba(255,255,255,0.92);backdrop-filter:blur(20px);border-bottom:1px solid rgba(0,0,0,0.08);">
         <nav class="max-w-xl mx-auto px-6 py-4 flex items-center justify-between">
-            <a href="services.html" class="flex items-center gap-2 text-xs font-semibold tracking-widest uppercase ui-transition" style="color:#57534E;" onmouseover="this.style.color='#A8884A'" onmouseout="this.style.color='#57534E'">
+            <a href="services.html" class="flex items-center gap-2 text-xs font-semibold tracking-widest uppercase ui-transition" style="color:#5A5650;" onmouseover="this.style.color='#A8884A'" onmouseout="this.style.color='#5A5650'">
                 <i class="fa-solid fa-arrow-left text-xs"></i> Retour
             </a>
             <a href="index.html" class="logo-link">
@@ -54,15 +54,15 @@
             <div class="text-center mb-10">
                 <p class="text-xs font-semibold tracking-[0.2em] uppercase mb-3" style="color:#A8884A;">Caisse Virtuelle</p>
                 <h1 class="font-serif text-3xl font-semibold text-white mb-2">Règlement du Solde</h1>
-                <p class="text-sm" style="color:#57534E;">Merci pour votre confiance. Choisissez votre mode de paiement.</p>
+                <p class="text-sm" style="color:#5A5650;">Merci pour votre confiance. Choisissez votre mode de paiement.</p>
             </div>
 
             <div class="space-y-4">
 
                 <!-- Option 1 : Virement Instantané (0 frais) -->
-                <div class="relative overflow-hidden" style="background:#111117;border:1px solid rgba(168,136,74,0.25);border-radius:4px;">
+                <div class="relative overflow-hidden" style="background:#FFFFFF;border:1px solid rgba(168,136,74,0.25);border-radius:4px;">
                     <!-- Badge -->
-                    <div class="absolute top-0 right-0 px-3 py-1 text-[9px] font-bold tracking-widest uppercase" style="background:#A8884A;color:#09090B;border-bottom-left-radius:4px;">
+                    <div class="absolute top-0 right-0 px-3 py-1 text-[9px] font-bold tracking-widest uppercase" style="background:#A8884A;color:#FFFFFF;border-bottom-left-radius:4px;">
                         0 frais · Recommandé
                     </div>
 
@@ -73,15 +73,15 @@
                             </div>
                             <div>
                                 <h3 class="font-semibold text-white">Virement Instantané</h3>
-                                <p class="text-xs mt-0.5" style="color:#57534E;">Via Wero, Paylib ou SEPA Instantané</p>
+                                <p class="text-xs mt-0.5" style="color:#5A5650;">Via Wero, Paylib ou SEPA Instantané</p>
                             </div>
                         </div>
 
                         <div class="space-y-3">
                             <!-- Wero -->
-                            <div class="flex items-center justify-between p-4 gap-4" style="background:rgba(9,9,11,0.6);border:1px solid rgba(255,255,255,0.04);border-radius:2px;">
+                            <div class="flex items-center justify-between p-4 gap-4" style="background:rgba(0,0,0,0.03);border:1px solid rgba(0,0,0,0.07);border-radius:2px;">
                                 <div>
-                                    <p class="text-[10px] uppercase font-semibold tracking-widest mb-1" style="color:#57534E;">Numéro Wero (Paylib)</p>
+                                    <p class="text-[10px] uppercase font-semibold tracking-widest mb-1" style="color:#5A5650;">Numéro Wero (Paylib)</p>
                                     <p class="font-mono text-sm tracking-widest text-white">07 50 87 59 64</p>
                                 </div>
                                 <button @click="navigator.clipboard.writeText('0750875964'); copiedItem = 'wero'; setTimeout(() => copiedItem = null, 3000)"
@@ -93,29 +93,29 @@
                             </div>
 
                             <!-- IBAN -->
-                            <div style="background:rgba(9,9,11,0.6);border:1px solid rgba(255,255,255,0.04);border-radius:2px;">
+                            <div style="background:rgba(0,0,0,0.03);border:1px solid rgba(0,0,0,0.07);border-radius:2px;">
                                 <div class="flex items-center justify-between p-4 gap-4">
                                     <div class="overflow-hidden">
-                                        <p class="text-[10px] uppercase font-semibold tracking-widest mb-1" style="color:#57534E;">IBAN Continental Detailing</p>
+                                        <p class="text-[10px] uppercase font-semibold tracking-widest mb-1" style="color:#5A5650;">IBAN Continental Detailing</p>
                                         <p class="font-mono text-[11px] sm:text-xs tracking-wider text-white truncate">FR76 2823 3000 0144 4023 7522 741</p>
                                     </div>
                                     <button @click="navigator.clipboard.writeText('FR7628233000014440237522741'); copiedItem = 'iban'; setTimeout(() => copiedItem = null, 3000)"
                                             class="px-4 py-2 text-xs font-semibold tracking-wider uppercase ui-transition flex-shrink-0 flex items-center gap-2"
-                                            :style="copiedItem === 'iban' ? 'background:rgba(34,197,94,0.1);color:#4ade80;border:1px solid rgba(34,197,94,0.3);border-radius:2px;' : 'background:rgba(255,255,255,0.04);color:#6B7280;border:1px solid rgba(255,255,255,0.06);border-radius:2px;'">
+                                            :style="copiedItem === 'iban' ? 'background:rgba(34,197,94,0.1);color:#16a34a;border:1px solid rgba(34,197,94,0.3);border-radius:2px;' : 'background:rgba(0,0,0,0.04);color:#6B7280;border:1px solid rgba(0,0,0,0.08);border-radius:2px;'">
                                         <span x-text="copiedItem === 'iban' ? 'Copié' : 'Copier'"></span>
                                         <i :class="copiedItem === 'iban' ? 'fa-solid fa-check' : 'fa-regular fa-copy'"></i>
                                     </button>
                                 </div>
-                                <div style="height:1px;background:rgba(255,255,255,0.04);"></div>
+                                <div style="height:1px;background:rgba(0,0,0,0.07);"></div>
                                 <!-- BIC -->
                                 <div class="flex items-center justify-between p-4 gap-4">
                                     <div>
-                                        <p class="text-[10px] uppercase font-semibold tracking-widest mb-1" style="color:#57534E;">Code BIC / SWIFT</p>
+                                        <p class="text-[10px] uppercase font-semibold tracking-widest mb-1" style="color:#5A5650;">Code BIC / SWIFT</p>
                                         <p class="font-mono text-sm tracking-widest text-white">REVOFRP2</p>
                                     </div>
                                     <button @click="navigator.clipboard.writeText('REVOFRP2'); copiedItem = 'bic'; setTimeout(() => copiedItem = null, 3000)"
                                             class="px-4 py-2 text-xs font-semibold tracking-wider uppercase ui-transition flex-shrink-0 flex items-center gap-2"
-                                            :style="copiedItem === 'bic' ? 'background:rgba(34,197,94,0.1);color:#4ade80;border:1px solid rgba(34,197,94,0.3);border-radius:2px;' : 'background:rgba(255,255,255,0.04);color:#6B7280;border:1px solid rgba(255,255,255,0.06);border-radius:2px;'">
+                                            :style="copiedItem === 'bic' ? 'background:rgba(34,197,94,0.1);color:#16a34a;border:1px solid rgba(34,197,94,0.3);border-radius:2px;' : 'background:rgba(0,0,0,0.04);color:#6B7280;border:1px solid rgba(0,0,0,0.08);border-radius:2px;'">
                                         <span x-text="copiedItem === 'bic' ? 'Copié' : 'Copier'"></span>
                                         <i :class="copiedItem === 'bic' ? 'fa-solid fa-check' : 'fa-regular fa-copy'"></i>
                                     </button>
@@ -134,7 +134,22 @@
             </div>
 
         </div>
-    </main>
+    <!-- Footer -->
+    <footer style="border-top:1px solid rgba(0,0,0,0.08);">
+        <div class="max-w-5xl mx-auto px-6 py-8 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="text-xs" style="color:#3F3F46;">
+                © 2026 Continental Detailing — Tous droits réservés.
+            </div>
+            <div class="flex gap-6 items-center">
+                <a href="mailto:continental.detailing.idf@gmail.com" class="ui-transition text-lg" style="color:#3F3F46;" onmouseover="this.style.color='#A8884A'" onmouseout="this.style.color='#3F3F46'">
+                    <i class="fa-regular fa-envelope"></i>
+                </a>
+                <a href="https://www.instagram.com/continental.detailing.idf/" target="_blank" class="ui-transition text-lg" style="color:#3F3F46;" onmouseover="this.style.color='#A8884A'" onmouseout="this.style.color='#3F3F46'">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
 
 </body>
 </html>

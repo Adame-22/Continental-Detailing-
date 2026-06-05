@@ -34,6 +34,7 @@
         suv:      { img: 'images/car-suv.png', label: 'SUV', subtitle: '3008, Tiguan, RAV4, Model Y...', icon: 'fa-truck-pickup', services: { ext: stdExt, int: stdInt, complet: stdComplet } },
         mono5:    { img: 'images/car-monospace.png', label: 'Monospace 5pl', subtitle: 'Scénic, Touran, Espace...', icon: 'fa-van-shuttle', services: { ext: stdExt, int: stdInt, complet: stdComplet } },
         mono7:    { img: 'images/car-monospace.png', label: 'Monospace 7pl', subtitle: 'Classe V, Espace 7, Touran 7...', icon: 'fa-bus', services: { ext: stdExt, int: stdInt, complet: stdComplet } },
+        prestige: { img: 'images/car-prestige.png', label: 'Prestige / Sport', subtitle: '911, Ferrari, RS6, Luxe...', icon: 'fa-gem', services: { ext: stdExt, int: stdInt, complet: stdComplet } },
         util:     { img: 'images/car-utilitaire.png', label: 'Utilitaire', subtitle: 'Sprinter, Master, Transit...', icon: 'fa-truck', services: { ext: ['Sur devis selon volume'], int: ['Sur devis selon volume'], complet: ['État du véhicule analysé sur place', 'Devis personnalisé garanti', 'Intervention sur site possible', 'Contactez-nous pour une estimation'] } }
     };
 
@@ -43,6 +44,7 @@
         suv:      { ext: 69, int: 99, complet: 139 },
         mono5:    { ext: 79, int: 109, complet: 149 },
         mono7:    { ext: 89, int: 119, complet: 159 },
+        prestige: { ext: 89, int: 129, complet: 199 },
         util:     { ext: null, int: null, complet: null }
     };
 
