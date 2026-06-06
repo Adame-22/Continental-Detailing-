@@ -3,24 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Qui sommes-nous | Continental Detailing</title>
-    <meta name="description" content="Découvrez Continental Detailing — votre spécialiste du nettoyage auto premium à domicile en Essonne (91) et Seine-et-Marne (77). Passion, rigueur et excellence.">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-        <link rel="preconnect" href="https://fonts.googleapis.com/">
+    <title>Avis clients | Continental Detailing</title>
+    <meta name="description" content="Découvrez les avis de nos clients sur nos services de nettoyage et detailing auto à domicile en Essonne (91) & Seine-et-Marne (77). Satisfaction garantie.">
+    <meta property="og:title" content="Avis clients | Continental Detailing">
+    <meta property="og:description" content="Découvrez les témoignages de nos clients et la qualité Continental Detailing.">
+    <meta property="og:image" content="images/hero-bg.png">
+    <meta property="og:type" content="website">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com/">
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-                tailwind.config = {
+        tailwind.config = {
             theme: {
                 extend: {
                     colors: {
                         bg: '#FFFFFF',
-                        'bg-alt': '#F8F7F4',
+                        'bg-alt': '#F5F5F5',
                         'bg-dark': '#0E1418',
                         primary: '#1A1A1E',
-                        secondary: '#5A5650',
+                        secondary: '#6B6B6B',
                         muted: '#999999',
                         action: '#1A1A1E',
                         'action-lt': '#404040',
@@ -37,47 +42,25 @@
         }
     </script>
     <style>
-        .value-card {
-            background: var(--bg-alt);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-lg);
-            transition: all 0.3s ease;
-        }
-        .value-card:hover {
-            border-color: var(--border);
-            box-shadow: var(--shadow-hover);
-            transform: translateY(-4px);
-        }
-        .hero-about {
-            background: var(--bg-alt);
-        }
-        .zone-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 8px 16px;
+        .review-card {
             background: var(--bg);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-pill);
-            color: var(--primary);
-            font-size: 0.75rem;
-            font-weight: 500;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-        }
-        .equip-item {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            padding: 16px 20px;
-            background: var(--bg-alt);
             border: 1px solid var(--border);
             border-radius: var(--radius-lg);
             box-shadow: var(--shadow-soft);
+            transition: all var(--duration) var(--ease);
+        }
+        .review-card:hover {
+            border-color: var(--text-primary);
+            box-shadow: var(--shadow-hover);
+            transform: translateY(-4px);
         }
     </style>
 </head>
 <body class="bg-bg text-primary antialiased">
+
+    <!-- Ambient lighting — showroom spots -->
+    <div class="ambient-spot-right" aria-hidden="true"></div>
+    <div class="ambient-spot-left" aria-hidden="true"></div>
 
     <!-- Navigation -->
     <nav class="nav-main" id="navbar">
@@ -87,7 +70,9 @@
                 <span class="logo-secondary">Detailing</span>
             </a>
             <div class="nav-links" style="gap:24px;">
-                <a href="https://wa.me/33750875964" target="_blank" class="nav-link"><i class="fa-brands fa-whatsapp text-sm"></i> WhatsApp</a>
+                <a href="https://wa.me/33750875964" target="_blank" class="nav-link">
+                    <i class="fa-brands fa-whatsapp text-sm" style="margin-right:4px;"></i> WhatsApp
+                </a>
                 <button onclick="toggleMegaMenu()" style="background:none; border:none; padding:0; cursor:pointer;" class="nav-link font-semibold">
                     <i class="fa-solid fa-bars text-lg" style="margin-right:8px;"></i> Menu
                 </button>
@@ -98,161 +83,218 @@
         </div>
     </nav>
 
-    <!-- Hero -->
-    <section class="hero-about pt-32 pb-20 px-6 text-center border-b border-gray-200">
-        <div class="max-w-3xl mx-auto">
-            <p class="section-eyebrow">Continental Detailing</p>
-            <h1 class="section-title mb-6">
-                Qui sommes-nous ?
+    <!-- Hero Section -->
+    <section class="relative overflow-hidden pt-24 pb-16 px-6 border-b border-gray-100 bg-bg-alt/30">
+        <div class="max-w-4xl mx-auto text-left reveal">
+            <p class="section-eyebrow">Ils nous font confiance</p>
+            <h1 class="font-sans text-5xl md:text-7xl font-bold tracking-tight text-primary mb-6">
+                Avis Clients.
             </h1>
-            <p class="text-lg text-secondary leading-relaxed max-w-xl mx-auto font-light">
-                Passionnés d'automobile, nous avons créé Continental Detailing pour offrir une expérience de nettoyage digne des plus grands showrooms — directement chez vous.
+            <p class="text-lg text-secondary leading-relaxed max-w-2xl font-light">
+                Chaque détail compte. Découvrez les retours d'expérience et les témoignages de nos clients en Essonne et Seine-et-Marne après nos prestations de detailing et de nettoyage premium.
             </p>
         </div>
     </section>
 
-    <!-- Notre histoire -->
+    <!-- Rating Dashboard -->
+    <section class="py-12 border-b border-gray-100 bg-bg">
+        <div class="max-w-4xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8 items-center text-center md:text-left reveal">
+            <div class="flex flex-col items-center md:items-start border-r-0 md:border-r border-gray-100 pr-0 md:pr-8">
+                <span class="text-6xl font-bold text-primary leading-none">5.0<span class="text-2xl font-light text-muted">/5</span></span>
+                <div class="flex gap-1 my-3 text-[#FFC107]">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                </div>
+                <span class="text-xs uppercase tracking-widest text-secondary font-medium">Note globale clients</span>
+            </div>
+            <div class="flex flex-col items-center md:items-start border-r-0 md:border-r border-gray-100 px-0 md:px-8">
+                <span class="text-3xl font-light text-primary mb-1">100%</span>
+                <span class="text-xs uppercase tracking-widest text-secondary font-medium mb-2">Taux de recommandation</span>
+                <p class="text-xs text-muted font-light leading-relaxed">Tous nos clients interrogés recommandent nos services à leur entourage.</p>
+            </div>
+            <div class="flex flex-col items-center md:items-start pl-0 md:pl-8">
+                <span class="text-3xl font-light text-primary mb-1">120+</span>
+                <span class="text-xs uppercase tracking-widest text-secondary font-medium mb-2">Interventions réalisées</span>
+                <p class="text-xs text-muted font-light leading-relaxed">De la citadine au SUV de luxe, nous traitons chaque véhicule avec le même niveau d'exigence.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Grid -->
     <section class="py-20 px-6 bg-bg">
-        <div class="max-w-4xl mx-auto">
-            <div class="grid md:grid-cols-2 gap-12 items-center">
-                <div>
-                    <p class="section-eyebrow">Notre histoire</p>
-                    <h2 class="section-title mb-6 text-left">L'art du détail, au service de votre véhicule</h2>
-                    <div class="space-y-4 text-secondary leading-relaxed font-light">
-                        <p>
-                            Continental Detailing est né d'une conviction simple : votre voiture mérite les meilleurs soins, sans que vous ayez à vous déplacer. Nous intervenons directement là où vous êtes — chez vous, au bureau, où vous le souhaitez.
+        <div class="max-w-5xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <!-- Review 1 -->
+                <div class="review-card p-8 flex flex-col justify-between reveal stagger-1">
+                    <div>
+                        <div class="flex justify-between items-center mb-6">
+                            <div class="flex gap-0.5 text-primary text-xs">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                            </div>
+                            <span class="inline-flex items-center gap-1.5 px-2 py-0.5 bg-green-50 border border-green-200 rounded text-[9px] font-bold text-green-600 uppercase tracking-wider">
+                                <i class="fa-solid fa-circle-check"></i> Vérifié Google
+                            </span>
+                        </div>
+                        <p class="text-sm font-light text-secondary leading-relaxed mb-6 italic">
+                            "Prestation absolument parfaite à domicile. L'équipe est venue avec tout le matériel professionnel. Ma voiture est comme neuve, l'injecteur-extracteur a fait des miracles sur mes moquettes."
                         </p>
-                        <p>
-                            Chaque prestation est réalisée avec du matériel 100% électrique et silencieux, des produits professionnels haute gamme, et surtout une attention au détail qui fait toute la différence.
-                        </p>
-                        <p>
-                            Notre terrain d'intervention couvre l'<strong class="text-primary font-medium">Essonne (91)</strong> et la <strong class="text-primary font-medium">Seine-et-Marne (77)</strong>, avec une disponibilité pensée pour s'adapter à votre agenda.
-                        </p>
+                    </div>
+                    <div class="pt-6 border-t border-gray-100">
+                        <h4 class="font-medium text-sm text-primary">Adrien D.</h4>
+                        <p class="text-[10px] uppercase tracking-widest text-muted mt-1">Audi RS6 · Le Signature (Complet)</p>
                     </div>
                 </div>
-                <div class="space-y-4">
-                    <div class="equip-item">
-                        <div class="w-12 h-12 flex items-center justify-center shrink-0 border border-gray-200 bg-bg text-primary text-xl rounded-full shadow-sm">
-                            <i class="fa-solid fa-bolt"></i>
+
+                <!-- Review 2 -->
+                <div class="review-card p-8 flex flex-col justify-between reveal stagger-2">
+                    <div>
+                        <div class="flex justify-between items-center mb-6">
+                            <div class="flex gap-0.5 text-primary text-xs">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                            </div>
+                            <span class="inline-flex items-center gap-1.5 px-2 py-0.5 bg-green-50 border border-green-200 rounded text-[9px] font-bold text-green-600 uppercase tracking-wider">
+                                <i class="fa-solid fa-circle-check"></i> Avis WhatsApp
+                            </span>
                         </div>
-                        <div>
-                            <p class="text-sm font-medium text-primary">Matériel 100% électrique</p>
-                            <p class="text-xs text-secondary mt-1 font-light">Silencieux, propre, zéro nuisance</p>
-                        </div>
+                        <p class="text-sm font-light text-secondary leading-relaxed mb-6 italic">
+                            "Nettoyage complet intérieur après le retour de vacances avec les enfants. Les sièges en cuir blanc sont revenus impeccables. Très discret, efficace et super aimable. Je recommande à 100%."
+                        </p>
                     </div>
-                    <div class="equip-item">
-                        <div class="w-12 h-12 flex items-center justify-center shrink-0 border border-gray-200 bg-bg text-primary text-xl rounded-full shadow-sm">
-                            <i class="fa-solid fa-droplet"></i>
-                        </div>
-                        <div>
-                            <p class="text-sm font-medium text-primary">Produits professionnels</p>
-                            <p class="text-xs text-secondary mt-1 font-light">Snow Foam, décontaminants, cires</p>
-                        </div>
-                    </div>
-                    <div class="equip-item">
-                        <div class="w-12 h-12 flex items-center justify-center shrink-0 border border-gray-200 bg-bg text-primary text-xl rounded-full shadow-sm">
-                            <i class="fa-solid fa-location-dot"></i>
-                        </div>
-                        <div>
-                            <p class="text-sm font-medium text-primary">Intervention à domicile</p>
-                            <p class="text-xs text-secondary mt-1 font-light">Accès eau & prise requis</p>
-                        </div>
-                    </div>
-                    <div class="equip-item">
-                        <div class="w-12 h-12 flex items-center justify-center shrink-0 border border-gray-200 bg-bg text-primary text-xl rounded-full shadow-sm">
-                            <i class="fa-solid fa-calendar-check"></i>
-                        </div>
-                        <div>
-                            <p class="text-sm font-medium text-primary">Disponibilité flexible</p>
-                            <p class="text-xs text-secondary mt-1 font-light">Nous nous adaptons à votre agenda</p>
-                        </div>
+                    <div class="pt-6 border-t border-gray-100">
+                        <h4 class="font-medium text-sm text-primary">Sarah L.</h4>
+                        <p class="text-[10px] uppercase tracking-widest text-muted mt-1">Tesla Model Y · Formule Intérieur</p>
                     </div>
                 </div>
+
+                <!-- Review 3 -->
+                <div class="review-card p-8 flex flex-col justify-between reveal stagger-3">
+                    <div>
+                        <div class="flex justify-between items-center mb-6">
+                            <div class="flex gap-0.5 text-primary text-xs">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                            </div>
+                            <span class="inline-flex items-center gap-1.5 px-2 py-0.5 bg-green-50 border border-green-200 rounded text-[9px] font-bold text-green-600 uppercase tracking-wider">
+                                <i class="fa-solid fa-circle-check"></i> Avis WhatsApp
+                            </span>
+                        </div>
+                        <p class="text-sm font-light text-secondary leading-relaxed mb-6 italic">
+                            "Je confie ma Porsche 911 régulièrement pour un lavage extérieur et pose de cire de protection. Le travail est toujours méticuleux, aucun risque de micro-rayures. Méthode 2 seaux très respectueuse."
+                        </p>
+                    </div>
+                    <div class="pt-6 border-t border-gray-100">
+                        <h4 class="font-medium text-sm text-primary">Marc-Antoine P.</h4>
+                        <p class="text-[10px] uppercase tracking-widest text-muted mt-1">Porsche 911 GT3 · Lavage + Cire</p>
+                    </div>
+                </div>
+
+                <!-- Review 4 -->
+                <div class="review-card p-8 flex flex-col justify-between reveal stagger-1">
+                    <div>
+                        <div class="flex justify-between items-center mb-6">
+                            <div class="flex gap-0.5 text-primary text-xs">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                            </div>
+                            <span class="inline-flex items-center gap-1.5 px-2 py-0.5 bg-green-50 border border-green-200 rounded text-[9px] font-bold text-green-600 uppercase tracking-wider">
+                                <i class="fa-solid fa-circle-check"></i> Vérifié Google
+                            </span>
+                        </div>
+                        <p class="text-sm font-light text-secondary leading-relaxed mb-6 italic">
+                            "Parfait pour préparer la voiture avant de la vendre. Le futur acheteur a été bluffé par la propreté intérieure. Excellent rapport qualité/prix, surtout sans avoir à se déplacer."
+                        </p>
+                    </div>
+                    <div class="pt-6 border-t border-gray-100">
+                        <h4 class="font-medium text-sm text-primary">Thomas V.</h4>
+                        <p class="text-[10px] uppercase tracking-widest text-muted mt-1">Peugeot 208 · Formule Intérieur</p>
+                    </div>
+                </div>
+
+                <!-- Review 5 -->
+                <div class="review-card p-8 flex flex-col justify-between reveal stagger-2">
+                    <div>
+                        <div class="flex justify-between items-center mb-6">
+                            <div class="flex gap-0.5 text-primary text-xs">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                            </div>
+                            <span class="inline-flex items-center gap-1.5 px-2 py-0.5 bg-green-50 border border-green-200 rounded text-[9px] font-bold text-green-600 uppercase tracking-wider">
+                                <i class="fa-solid fa-circle-check"></i> Vérifié Google
+                            </span>
+                        </div>
+                        <p class="text-sm font-light text-secondary leading-relaxed mb-6 italic">
+                            "Première fois que je faisais appel à eux et ce ne sera pas la dernière. Ponctuels, professionnels et le résultat sur les jantes incrustées de poussière de frein est spectaculaire."
+                        </p>
+                    </div>
+                    <div class="pt-6 border-t border-gray-100">
+                        <h4 class="font-medium text-sm text-primary">Clémence B.</h4>
+                        <p class="text-[10px] uppercase tracking-widest text-muted mt-1">Renault Clio · Formule Extérieur</p>
+                    </div>
+                </div>
+
+                <!-- Review 6 -->
+                <div class="review-card p-8 flex flex-col justify-between reveal stagger-3">
+                    <div>
+                        <div class="flex justify-between items-center mb-6">
+                            <div class="flex gap-0.5 text-primary text-xs">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                            </div>
+                            <span class="inline-flex items-center gap-1.5 px-2 py-0.5 bg-green-50 border border-green-200 rounded text-[9px] font-bold text-green-600 uppercase tracking-wider">
+                                <i class="fa-solid fa-circle-check"></i> Avis WhatsApp
+                            </span>
+                        </div>
+                        <p class="text-sm font-light text-secondary leading-relaxed mb-6 italic">
+                            "Le Signature Pack sur mon Range Rover a enlevé toutes les odeurs et tâches de moquette. Un vrai travail de précision, ils n'ont oublié aucun joint ni recoin. Merci encore !"
+                        </p>
+                    </div>
+                    <div class="pt-6 border-t border-gray-100">
+                        <h4 class="font-medium text-sm text-primary">Nicolas M.</h4>
+                        <p class="text-[10px] uppercase tracking-widest text-muted mt-1">Range Rover · Le Signature (Complet)</p>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
 
-    <!-- Nos valeurs -->
-    <section class="py-20 px-6 bg-bg border-t border-gray-200">
-        <div class="max-w-4xl mx-auto">
-            <div class="text-center mb-14">
-                <p class="section-eyebrow">Ce qui nous guide</p>
-                <h2 class="section-title">Nos valeurs</h2>
-            </div>
-            <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
-                <div class="value-card p-8">
-                    <div class="w-12 h-12 flex items-center justify-center mb-6 border border-gray-200 bg-bg text-primary text-xl rounded-full shadow-sm">
-                        <i class="fa-solid fa-gem"></i>
-                    </div>
-                    <h3 class="font-medium text-primary mb-3 text-lg">Excellence</h3>
-                    <p class="text-sm text-secondary leading-relaxed font-light">Chaque prestation est réalisée avec la même exigence, du plus petit véhicule au plus grand.</p>
-                </div>
-                <div class="value-card p-8">
-                    <div class="w-12 h-12 flex items-center justify-center mb-6 border border-gray-200 bg-bg text-primary text-xl rounded-full shadow-sm">
-                        <i class="fa-solid fa-handshake"></i>
-                    </div>
-                    <h3 class="font-medium text-primary mb-3 text-lg">Confiance</h3>
-                    <p class="text-sm text-secondary leading-relaxed font-light">Tarifs transparents, devis clair avant toute intervention. Aucune mauvaise surprise.</p>
-                </div>
-                <div class="value-card p-8">
-                    <div class="w-12 h-12 flex items-center justify-center mb-6 border border-gray-200 bg-bg text-primary text-xl rounded-full shadow-sm">
-                        <i class="fa-solid fa-leaf"></i>
-                    </div>
-                    <h3 class="font-medium text-primary mb-3 text-lg">Respect</h3>
-                    <p class="text-sm text-secondary leading-relaxed font-light">Matériel électrique, produits éco-responsables, respect de votre espace et de votre temps.</p>
-                </div>
-                <div class="value-card p-8">
-                    <div class="w-12 h-12 flex items-center justify-center mb-6 border border-gray-200 bg-bg text-primary text-xl rounded-full shadow-sm">
-                        <i class="fa-solid fa-bolt"></i>
-                    </div>
-                    <h3 class="font-medium text-primary mb-3 text-lg">Réactivité</h3>
-                    <p class="text-sm text-secondary leading-relaxed font-light">Réponse WhatsApp en moins de 2h. Nous savons que votre temps est précieux.</p>
-                </div>
-                <div class="value-card p-8">
-                    <div class="w-12 h-12 flex items-center justify-center mb-6 border border-gray-200 bg-bg text-primary text-xl rounded-full shadow-sm">
-                        <i class="fa-solid fa-shield-halved"></i>
-                    </div>
-                    <h3 class="font-medium text-primary mb-3 text-lg">Garantie</h3>
-                    <p class="text-sm text-secondary leading-relaxed font-light">Satisfaction ou on revient. Votre véhicule repart impeccable, c'est notre engagement.</p>
-                </div>
-                <div class="value-card p-8">
-                    <div class="w-12 h-12 flex items-center justify-center mb-6 border border-gray-200 bg-bg text-primary text-xl rounded-full shadow-sm">
-                        <i class="fa-solid fa-car"></i>
-                    </div>
-                    <h3 class="font-medium text-primary mb-3 text-lg">Passion</h3>
-                    <p class="text-sm text-secondary leading-relaxed font-light">Passionnés d'auto avant tout. On traite votre véhicule comme si c'était le nôtre.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Zone d'intervention -->
-    <section class="py-16 px-6 bg-bg-alt border-t border-b border-gray-200">
-        <div class="max-w-3xl mx-auto text-center">
-            <p class="section-eyebrow">Zone couverte</p>
-            <h2 class="section-title mb-8">Où intervenons-nous ?</h2>
-            <div class="flex flex-wrap justify-center gap-3 mb-8">
-                <span class="zone-badge"><i class="fa-solid fa-location-dot mr-1"></i> Essonne (91)</span>
-                <span class="zone-badge"><i class="fa-solid fa-location-dot mr-1"></i> Seine-et-Marne (77)</span>
-                <span class="zone-badge"><i class="fa-solid fa-location-dot mr-1"></i> Val-de-Marne (94)</span>
-            </div>
-            <p class="text-sm text-secondary leading-relaxed max-w-xl mx-auto font-light">
-                Vous n'êtes pas sûr que nous couvrons votre secteur ? Contactez-nous directement — nous faisons notre maximum pour nous déplacer jusqu'à vous.
-            </p>
-        </div>
-    </section>
-
-    <!-- CTA Final -->
-    <section class="py-24 px-6 text-center bg-bg">
-        <div class="max-w-xl mx-auto">
+    <!-- Final CTA -->
+    <section class="py-24 px-6 text-center bg-bg-alt/30 border-t border-gray-100">
+        <div class="max-w-xl mx-auto reveal">
             <p class="section-eyebrow">Prêt à nous faire confiance ?</p>
-            <h2 class="section-title mb-6">Réservez votre prestation</h2>
-            <p class="text-secondary mb-10 leading-relaxed font-light">Choisissez votre véhicule, votre formule et on s'occupe du reste. Sans engagement, réponse rapide garantie.</p>
+            <h2 class="font-sans text-4xl md:text-5xl font-bold tracking-tight text-primary mb-6">Réservez votre prestation</h2>
+            <p class="text-secondary mb-10 leading-relaxed font-light">
+                Rejoignez nos clients satisfaits. Obtenez une estimation en ligne pour votre véhicule et bloquez votre créneau en un clic.
+            </p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
                 <a href="services.html" class="btn btn-dark">
                     Voir les tarifs &amp; réserver
                 </a>
-                <a href="https://wa.me/33750875964?text=Bonjour,%20je%20souhaite%20en%20savoir%20plus" target="_blank" class="btn btn-outline">
+                <a href="https://wa.me/33750875964?text=Bonjour,%20je%20souhaite%20en%20savoir%20plus" target="_blank" class="btn btn-outline border-gray-300 !text-primary hover:bg-bg-alt transition-colors">
                     <i class="fa-brands fa-whatsapp"></i> Nous contacter
                 </a>
             </div>
@@ -260,7 +302,7 @@
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
+    <footer class="footer mt-auto">
         <div class="footer-inner">
             <div class="footer-grid">
                 <div>
@@ -296,7 +338,7 @@
         </div>
     </footer>
 
-<!-- Mega Menu Overlay -->
+    <!-- Mega Menu Overlay -->
     <div id="mega-menu" class="fixed inset-0 z-[100] pointer-events-none opacity-0 transition-opacity duration-500" style="background:rgba(0,0,0,0.5); backdrop-filter:blur(8px);">
         <!-- Menu Content Panel -->
         <div id="mega-menu-panel" class="absolute top-0 right-0 h-full w-full max-w-5xl bg-bg shadow-2xl transform translate-x-full flex flex-col md:flex-row" style="transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);">
@@ -428,23 +470,20 @@
             const panel = document.getElementById('mega-menu-panel');
             
             if (menu.classList.contains('pointer-events-none')) {
-                // Open menu
                 menu.classList.remove('pointer-events-none', 'opacity-0');
                 menu.classList.add('opacity-100');
                 panel.classList.remove('translate-x-full');
                 panel.classList.add('translate-x-0');
-                document.body.style.overflow = 'hidden'; // Prevent scrolling
+                document.body.style.overflow = 'hidden';
             } else {
-                // Close menu
                 menu.classList.remove('opacity-100');
                 menu.classList.add('pointer-events-none', 'opacity-0');
                 panel.classList.remove('translate-x-0');
                 panel.classList.add('translate-x-full');
-                document.body.style.overflow = ''; // Restore scrolling
+                document.body.style.overflow = '';
             }
         }
     </script>
     <script src="js/motion.js"></script>
-
 </body>
 </html>
