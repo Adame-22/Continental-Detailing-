@@ -258,14 +258,16 @@
                         </div>
                         <div class="absolute bottom-8 right-8 w-12 h-12 rounded-full bg-black/60 backdrop-blur-md flex items-center justify-center text-white border border-white/10 hover:bg-black transition-colors duration-300"><i class="fa-solid fa-arrow-right"></i></div>
                     </div>
-                    <div class="h-full group relative overflow-hidden rounded-xl reveal-right stagger-1" style="min-height:240px;">
-                        <img src="images/car-suv.png" alt="Detailing SUV" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
-                        <div class="absolute inset-0 bg-gradient-to-t from-white/90 via-transparent to-transparent opacity-40"></div>
+                    <div onclick="openVideoModal()" class="h-full group relative overflow-hidden rounded-xl reveal-right stagger-1 cursor-pointer" style="min-height:240px;">
+                        <video src="images/presentation.mp4" autoplay muted loop playsinline class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"></video>
+                        <div class="absolute inset-0 bg-gradient-to-t from-white/90 via-transparent to-transparent opacity-50"></div>
                         <div class="absolute bottom-6 left-6">
-                            <h4 class="text-lg font-sans text-primary font-semibold">SUV Urbain</h4>
-                            <p class="text-muted text-xs">Snow Foam + Décontamination</p>
+                            <h4 class="text-lg font-sans text-primary font-semibold">Savoir-faire</h4>
+                            <p class="text-muted text-xs">Découvrez notre travail en vidéo</p>
                         </div>
-                        <div class="absolute bottom-8 right-8 w-12 h-12 rounded-full bg-black/60 backdrop-blur-md flex items-center justify-center text-white border border-white/10 hover:bg-black transition-colors duration-300"><i class="fa-solid fa-arrow-right"></i></div>
+                        <div class="absolute bottom-8 right-8 w-12 h-12 rounded-full bg-black/60 backdrop-blur-md flex items-center justify-center text-white border border-white/10 hover:bg-black transition-colors duration-300">
+                            <i class="fa-solid fa-play text-sm ml-0.5"></i>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -515,8 +517,37 @@
                 document.body.style.overflow = ''; // Restore scrolling
             }
         }
+
+        function openVideoModal() {
+            const modal = document.getElementById('video-modal');
+            const video = document.getElementById('modal-video');
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+            modal.classList.add('opacity-100');
+            video.play();
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeVideoModal() {
+            const modal = document.getElementById('video-modal');
+            const video = document.getElementById('modal-video');
+            modal.classList.add('opacity-0', 'pointer-events-none');
+            modal.classList.remove('opacity-100');
+            video.pause();
+            video.currentTime = 0;
+            document.body.style.overflow = '';
+        }
     </script>
     <script src="js/motion.js"></script>
+
+    <!-- Video Modal -->
+    <div id="video-modal" class="fixed inset-0 z-[110] bg-black/95 backdrop-blur-md flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300">
+        <button onclick="closeVideoModal()" class="absolute top-6 right-8 text-white hover:text-gray-300 text-xs font-bold tracking-widest uppercase flex items-center gap-3 bg-transparent border-none cursor-pointer">
+            Fermer <i class="fa-solid fa-xmark text-xl"></i>
+        </button>
+        <div class="w-full max-w-4xl px-4 aspect-video">
+            <video id="modal-video" src="images/presentation.mp4" controls class="w-full h-full rounded-xl shadow-2xl bg-black"></video>
+        </div>
+    </div>
 
 </body>
 </html>
