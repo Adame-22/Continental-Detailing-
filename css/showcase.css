@@ -19,8 +19,11 @@
    ══════════════════════════════════════════ */
 .vehicle-nav {
     display: flex;
-    align-items: stretch;
+    align-items: center;
+    gap: 10px;
+    padding: 16px;
     border-bottom: 1px solid var(--border);
+    background: var(--bg-alt);
     overflow-x: auto;
     scrollbar-width: none;
     -ms-overflow-style: none;
@@ -32,61 +35,56 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 8px;
-    padding: 18px 16px;
-    border: none;
-    border-right: 1px solid var(--border);
-    background: var(--bg-alt);
+    gap: 6px;
+    padding: 12px 24px;
+    border: 1px solid var(--border);
+    background: var(--bg);
+    border-radius: 24px;
     color: var(--secondary);
     font-size: 0.70rem;
-    font-weight: 500;
+    font-weight: 600;
     letter-spacing: 0.06em;
     text-transform: uppercase;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     white-space: nowrap;
-    flex: 1;
-    min-width: 80px;
+    flex: 0 0 auto;
     position: relative;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.02);
 }
-
-.veh-tab:last-child { border-right: none; }
 
 .veh-tab i {
     font-size: 1.4rem;
     color: var(--muted);
-    transition: color 0.2s ease;
+    transition: color 0.3s ease;
 }
 
 .veh-tab .veh-devis {
     font-size: 0.55rem;
-    font-weight: 600;
+    font-weight: 700;
     letter-spacing: 0.08em;
     color: var(--primary);
     text-transform: uppercase;
 }
 
 .veh-tab:hover {
-    background: var(--bg);
+    border-color: var(--primary);
     color: var(--primary);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.06);
 }
-.veh-tab:hover i { color: var(--secondary); }
+.veh-tab:hover i { color: var(--primary); }
 
 /* Active tab */
 .veh-tab.active {
-    background: var(--bg);
-    color: var(--primary);
-}
-.veh-tab.active i { color: var(--primary); }
-.veh-tab.active::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 2px;
     background: var(--primary);
+    color: var(--bg);
+    border-color: var(--primary);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
 }
+.veh-tab.active i { color: var(--bg); }
+.veh-tab.active .veh-devis { color: rgba(255,255,255,0.8); }
 
 /* ══════════════════════════════════════════
    2. STAGE + PANEL — two-column row
@@ -249,95 +247,121 @@
 .formule-pills {
     display: flex;
     flex-direction: column;
-    gap: 0;
-    padding: 0;
+    gap: 16px;
+    padding: 16px;
+    background: var(--bg-alt);
 }
 
 .fpill {
     display: block;
     width: 100%;
-    border: none;
-    border-bottom: 1px solid var(--border);
-    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    background: var(--bg);
     cursor: pointer;
-    transition: background 0.18s ease, border-left-color 0.18s ease;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     text-align: left;
-    border-left: 3px solid transparent;
     padding: 0;
+    position: relative;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.02);
 }
-.fpill:last-child { border-bottom: none; }
-.fpill:hover { background: var(--bg-alt); }
+.fpill:hover { 
+    transform: translateY(-2px);
+    border-color: var(--primary);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+}
 
 .fpill-inner {
     display: flex;
     align-items: center;
-    gap: 14px;
-    padding: 16px 18px;
+    gap: 16px;
+    padding: 20px;
 }
 
 .fpill-icon {
-    font-size: 1.25rem;
+    font-size: 1.4rem;
     color: var(--muted);
-    width: 26px;
+    width: 32px;
     text-align: center;
     flex-shrink: 0;
-    transition: color 0.18s ease;
+    transition: color 0.3s ease;
 }
 
 .fpill-info {
     flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 1px;
+    gap: 3px;
     min-width: 0;
 }
 
 .fpill-name {
-    font-size: 0.82rem;
-    font-weight: 500;
+    font-size: 0.95rem;
+    font-weight: 700;
     letter-spacing: 0.03em;
-    color: var(--secondary);
+    color: var(--primary);
     white-space: nowrap;
-    transition: color 0.18s ease;
+    transition: color 0.3s ease;
 }
 
 .fpill-sub, .fpill-rec {
-    font-size: 0.60rem;
-    letter-spacing: 0.06em;
+    font-size: 0.65rem;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
     margin-top: 2px;
 }
 
-.fpill-sub { color: var(--muted); font-weight: 300; }
+.fpill-sub { color: var(--secondary); font-weight: 400; }
 .fpill-rec {
     color: var(--primary);
-    font-weight: 600;
+    font-weight: 700;
 }
 
 .fpill-price {
-    font-size: 1.1rem;
-    font-weight: 300;
+    font-size: 1.25rem;
+    font-weight: 600;
     color: var(--primary);
     flex-shrink: 0;
-    transition: color 0.18s ease;
+    transition: color 0.3s ease;
+    margin-right: 32px; /* Space for the checkmark */
+}
+
+/* Checkmark placeholder */
+.fpill::after {
+    content: '\f00c';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    position: absolute;
+    right: 24px;
+    top: 50%;
+    transform: translateY(-50%) scale(0);
+    color: var(--primary);
+    font-size: 1.2rem;
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* Featured pill */
 .fpill--featured {
-    background: var(--bg-alt);
+    border-color: rgba(26,26,30,0.2);
 }
 .fpill--featured .fpill-icon { color: var(--primary); }
-.fpill--featured .fpill-name { color: var(--primary); }
 
 /* Active state */
 .fpill.active {
-    border-left-color: var(--primary);
-    background: var(--bg-alt);
+    border: 2px solid var(--primary);
+    background: var(--bg);
+    transform: scale(1.02);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.12);
 }
 .fpill.active .fpill-icon { color: var(--primary); }
 .fpill.active .fpill-name { color: var(--primary); }
 .fpill.active .fpill-price { color: var(--primary); }
 .fpill.active .fpill-rec { color: var(--primary); }
+.fpill.active::after {
+    transform: translateY(-50%) scale(1);
+    opacity: 1;
+}
 
 /* Services list */
 .services-list {

@@ -51,11 +51,11 @@
             </a>
             <div class="nav-links" style="gap:24px;">
                 <a href="https://wa.me/33750875964" target="_blank" class="nav-link"><i class="fa-brands fa-whatsapp text-sm"></i> WhatsApp</a>
-                <button onclick="toggleMegaMenu()" style="background:none; border:none; padding:0; cursor:pointer;" class="nav-link font-semibold">
-                    <i class="fa-solid fa-bars text-lg" style="margin-right:8px;"></i> Menu
+                <button onclick="toggleMegaMenu()" class="bg-primary text-white px-5 py-2.5 rounded-full text-[10px] font-bold tracking-widest uppercase hover:scale-105 transition-transform flex items-center shadow-sm" style="border:none; cursor:pointer;">
+                    <i class="fa-solid fa-bars text-sm" style="margin-right:8px;"></i> Menu
                 </button>
             </div>
-            <button onclick="toggleMegaMenu()" class="nav-mobile-cta" style="background:none; border:none; cursor:pointer;">
+            <button onclick="toggleMegaMenu()" class="nav-mobile-cta bg-primary text-white px-4 py-2 rounded-full text-[10px] font-bold tracking-widest uppercase hover:scale-105 transition-transform flex items-center shadow-sm" style="border:none; cursor:pointer;">
                 <i class="fa-solid fa-bars text-sm" style="margin-right:6px;"></i> Menu
             </button>
         </div>
@@ -66,9 +66,9 @@
           @showcasecar.window="vehicule = $event.detail.key; stepsDone = Math.max(stepsDone, 1)"
           @showcaseformule.window="formule = $event.detail.f; stepsDone = Math.max(stepsDone, 2)"
           x-data="{ 
-            clientType: 'particulier',
-            vehicule: 'citadine',
-            formule: 'complet',
+            clientType: new URLSearchParams(window.location.search).get('type') === 'pro' ? 'pro' : 'particulier',
+            vehicule: new URLSearchParams(window.location.search).get('v') || 'citadine',
+            formule: new URLSearchParams(window.location.search).get('f') || 'complet',
             stepsDone: 1,
             options: { poils: false, non_videe: false, cire: false },
             paiement: 'cb', 
@@ -339,22 +339,25 @@
                 </div>
                 <div class="grid grid-cols-3 gap-3">
                     <button @click="paiement = 'cb'"
-                            :class="paiement === 'cb' ? 'border-primary bg-bg-alt text-primary' : 'border-gray-200 bg-bg text-secondary'"
-                            class="flex flex-col items-center justify-center gap-3 p-4 sm:p-6 border transition-colors hover:bg-bg-alt rounded-xl shadow-sm">
-                        <i class="fa-solid fa-credit-card text-xl" :class="paiement === 'cb' ? 'text-primary' : 'text-gray-400'"></i>
-                        <span class="text-[10px] sm:text-[11px] font-medium uppercase tracking-widest text-center leading-tight">Carte Bancaire</span>
+                            :class="paiement === 'cb' ? 'border-2 border-primary bg-[rgba(26,26,30,0.03)] text-primary shadow-md transform scale-[1.02]' : 'border border-gray-200 bg-white text-secondary hover:border-gray-300'"
+                            class="relative flex flex-col items-center justify-center gap-3 p-4 sm:p-6 transition-all rounded-xl">
+                        <div x-show="paiement === 'cb'" class="absolute -top-2 -right-2 w-5 h-5 bg-primary text-white rounded-full flex items-center justify-center shadow-sm"><i class="fa-solid fa-check text-[10px]"></i></div>
+                        <i class="fa-solid fa-credit-card text-2xl mb-1" :class="paiement === 'cb' ? 'text-primary' : 'text-gray-400'"></i>
+                        <span class="text-[10px] sm:text-[11px] font-bold uppercase tracking-widest text-center leading-tight">Carte Bancaire</span>
                     </button>
                     <button @click="paiement = 'especes'"
-                            :class="paiement === 'especes' ? 'border-primary bg-bg-alt text-primary' : 'border-gray-200 bg-bg text-secondary'"
-                            class="flex flex-col items-center justify-center gap-3 p-4 sm:p-6 border transition-colors hover:bg-bg-alt rounded-xl shadow-sm">
-                        <i class="fa-solid fa-money-bill-wave text-xl" :class="paiement === 'especes' ? 'text-primary' : 'text-gray-400'"></i>
-                        <span class="text-[10px] sm:text-[11px] font-medium uppercase tracking-widest text-center leading-tight">Espèces</span>
+                            :class="paiement === 'especes' ? 'border-2 border-primary bg-[rgba(26,26,30,0.03)] text-primary shadow-md transform scale-[1.02]' : 'border border-gray-200 bg-white text-secondary hover:border-gray-300'"
+                            class="relative flex flex-col items-center justify-center gap-3 p-4 sm:p-6 transition-all rounded-xl">
+                        <div x-show="paiement === 'especes'" class="absolute -top-2 -right-2 w-5 h-5 bg-primary text-white rounded-full flex items-center justify-center shadow-sm"><i class="fa-solid fa-check text-[10px]"></i></div>
+                        <i class="fa-solid fa-money-bill-wave text-2xl mb-1" :class="paiement === 'especes' ? 'text-primary' : 'text-gray-400'"></i>
+                        <span class="text-[10px] sm:text-[11px] font-bold uppercase tracking-widest text-center leading-tight">Espèces</span>
                     </button>
                     <button @click="paiement = 'ligne'"
-                            :class="paiement === 'ligne' ? 'border-primary bg-bg-alt text-primary' : 'border-gray-200 bg-bg text-secondary'"
-                            class="flex flex-col items-center justify-center gap-3 p-4 sm:p-6 border transition-colors hover:bg-bg-alt rounded-xl shadow-sm">
-                        <i class="fa-solid fa-link text-xl" :class="paiement === 'ligne' ? 'text-primary' : 'text-gray-400'"></i>
-                        <span class="text-[10px] sm:text-[11px] font-medium uppercase tracking-widest text-center leading-tight">En ligne</span>
+                            :class="paiement === 'ligne' ? 'border-2 border-primary bg-[rgba(26,26,30,0.03)] text-primary shadow-md transform scale-[1.02]' : 'border border-gray-200 bg-white text-secondary hover:border-gray-300'"
+                            class="relative flex flex-col items-center justify-center gap-3 p-4 sm:p-6 transition-all rounded-xl">
+                        <div x-show="paiement === 'ligne'" class="absolute -top-2 -right-2 w-5 h-5 bg-primary text-white rounded-full flex items-center justify-center shadow-sm"><i class="fa-solid fa-check text-[10px]"></i></div>
+                        <i class="fa-solid fa-link text-2xl mb-1" :class="paiement === 'ligne' ? 'text-primary' : 'text-gray-400'"></i>
+                        <span class="text-[10px] sm:text-[11px] font-bold uppercase tracking-widest text-center leading-tight">En ligne</span>
                     </button>
                 </div>
             </section>
@@ -381,10 +384,11 @@
                     <!-- CTA -->
                     <div class="flex flex-col items-end shrink-0">
                         <button @click="showContactModal = true; stepsDone = 4"
-                                class="btn btn-dark">
+                                class="bg-primary text-white px-8 md:px-12 py-3.5 md:py-4 rounded-full text-xs md:text-sm font-bold tracking-[0.15em] uppercase hover:bg-black hover:scale-[1.02] transition-all shadow-xl flex items-center gap-3 border-none cursor-pointer">
                             <span x-show="!(isUtilitaire || clientType === 'pro')" class="sm:hidden">Réserver</span>
-                            <span x-show="!(isUtilitaire || clientType === 'pro')" class="hidden sm:inline" x-text="'Réserver \u2014 ' + totalPrix + '\u20ac'"></span>
-                            <span x-show="(isUtilitaire || clientType === 'pro')">Demander Devis</span>
+                            <span x-show="!(isUtilitaire || clientType === 'pro')" class="hidden sm:inline" x-text="'Réserver — ' + totalPrix + '€'"></span>
+                            <span x-show="isUtilitaire || clientType === 'pro'">Demander un devis</span>
+                            <i class="fa-solid fa-arrow-right"></i>
                         </button>
                     </div>
                 </div>
@@ -556,7 +560,7 @@
             <div class="hidden md:block w-5/12 bg-[#F4F4F4] overflow-y-auto" style="border-left:1px solid rgba(0,0,0,0.05); max-height: 100vh;">
                 <div class="p-8 md:p-12 flex flex-col gap-12">
                     
-                    <a href="services.html" class="group block text-center decoration-transparent">
+                    <a href="services.html?v=citadine" class="group block text-center decoration-transparent">
                         <div class="text-left mb-2">
                             <h4 class="text-2xl font-light text-primary">Citadine</h4>
                         </div>
@@ -568,7 +572,7 @@
                         </div>
                     </a>
 
-                    <a href="services.html" class="group block text-center decoration-transparent">
+                    <a href="services.html?v=berline" class="group block text-center decoration-transparent">
                         <div class="text-left mb-2">
                             <h4 class="text-2xl font-light text-primary">Berline</h4>
                         </div>
@@ -580,7 +584,7 @@
                         </div>
                     </a>
 
-                    <a href="services.html" class="group block text-center decoration-transparent">
+                    <a href="services.html?v=suv" class="group block text-center decoration-transparent">
                         <div class="text-left mb-2">
                             <h4 class="text-2xl font-light text-primary">SUV</h4>
                         </div>
@@ -592,7 +596,7 @@
                         </div>
                     </a>
 
-                    <a href="services.html" class="group block text-center decoration-transparent">
+                    <a href="services.html?v=mono5" class="group block text-center decoration-transparent">
                         <div class="text-left mb-2">
                             <h4 class="text-2xl font-light text-primary">Monospace</h4>
                         </div>
@@ -604,7 +608,7 @@
                         </div>
                     </a>
 
-                    <a href="services.html" class="group block text-center decoration-transparent">
+                    <a href="services.html?v=prestige" class="group block text-center decoration-transparent">
                         <div class="text-left mb-2">
                             <h4 class="text-2xl font-light text-primary">Prestige / Sport</h4>
                         </div>
@@ -616,7 +620,7 @@
                         </div>
                     </a>
 
-                    <a href="services.html" class="group block text-center decoration-transparent">
+                    <a href="services.html?v=util" class="group block text-center decoration-transparent">
                         <div class="text-left mb-2">
                             <h4 class="text-2xl font-light text-primary">Utilitaire</h4>
                         </div>
@@ -627,6 +631,17 @@
                             <span class="inline-block bg-white text-primary text-[11px] font-medium px-4 py-1.5 rounded-full shadow-sm border border-gray-100">Sur devis</span>
                         </div>
                     </a>
+
+                    <!-- Entreprise Shortcut -->
+                    <div class="pt-8 border-t border-gray-200 mt-4">
+                        <a href="services.html?type=pro" class="group block text-center decoration-transparent bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:border-primary transition-colors">
+                            <div class="flex items-center justify-center w-12 h-12 bg-bg-alt text-primary rounded-full mx-auto mb-4 group-hover:bg-primary group-hover:text-white transition-colors">
+                                <i class="fa-solid fa-building text-lg"></i>
+                            </div>
+                            <h4 class="text-xl font-medium text-primary mb-2">Solutions Entreprises</h4>
+                            <p class="text-xs text-secondary font-light">Gestion de flotte, VO/VN & conciergerie</p>
+                        </a>
+                    </div>
 
                 </div>
             </div>
@@ -656,10 +671,15 @@
 
     <script src="js/showcase.js"></script>
     <script>
-        // Auto-trigger citadine on load
+        // Auto-trigger from URL parameters or default to citadine
         document.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => {
-                if (window.showcaseSwitchCar) window.showcaseSwitchCar('citadine');
+                const params = new URLSearchParams(window.location.search);
+                const car = params.get('v') || 'citadine';
+                const form = params.get('f') || 'complet';
+                
+                if (window.showcaseSwitchCar) window.showcaseSwitchCar(car);
+                if (window.showcaseSwitchFormule) window.showcaseSwitchFormule(form);
             }, 400);
         });
     </script>
