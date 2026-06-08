@@ -77,14 +77,14 @@
 
 /* Active tab */
 .veh-tab.active {
-    background-color: var(--primary) !important;
-    color: var(--bg) !important;
-    border-color: var(--primary) !important;
+    background-color: var(--bg) !important;
+    color: var(--primary) !important;
+    border: 2px solid var(--primary) !important;
     transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.12);
 }
-.veh-tab.active i { color: var(--bg) !important; }
-.veh-tab.active .veh-devis { color: rgba(255,255,255,0.8) !important; }
+.veh-tab.active i { color: var(--primary) !important; }
+.veh-tab.active .veh-devis { color: var(--secondary) !important; font-weight: 500 !important; }
 
 /* ══════════════════════════════════════════
    2. STAGE + PANEL — two-column row
