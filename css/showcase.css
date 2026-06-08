@@ -80,11 +80,11 @@
     background-color: var(--bg) !important;
     color: var(--primary) !important;
     border: 1px solid var(--primary) !important;
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    transform: translateY(0);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.06);
 }
 .veh-tab.active i { color: var(--primary) !important; }
-.veh-tab.active .veh-devis { color: var(--secondary) !important; font-weight: 500 !important; }
+.veh-tab.active .veh-devis { color: var(--primary) !important; }
 
 /* ══════════════════════════════════════════
    2. STAGE + PANEL — two-column row
