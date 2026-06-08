@@ -68,9 +68,14 @@
         <div class="showcase-wrapper" id="showcase-wrapper">
 
             <!-- STEP 1 HEADER: Vehicle -->
-            <div class="showcase-step-header">
-                <div class="step-badge">01</div>
-                <span class="step-title">Choisissez votre véhicule</span>
+            <div class="showcase-step-header" style="display:flex; align-items:center; flex-wrap:wrap; gap:8px;">
+                <div style="display:flex; align-items:center;">
+                    <div class="step-badge">01</div>
+                    <span class="step-title">Choisissez votre véhicule</span>
+                </div>
+                <button type="button" @click="showGuide = true" class="ml-auto flex items-center justify-center text-[10px] md:text-[11px] font-medium bg-white hover:bg-gray-100 text-secondary px-3 py-1.5 rounded-full transition-colors border border-gray-200 cursor-pointer shadow-sm">
+                    <i class="fa-solid fa-circle-info mr-1.5"></i> Aide
+                </button>
             </div>
 
             <!-- TOP: Vehicle navigation bar -->

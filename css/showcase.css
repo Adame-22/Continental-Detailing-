@@ -77,14 +77,14 @@
 
 /* Active tab */
 .veh-tab.active {
-    background: var(--primary);
-    color: var(--bg);
-    border-color: var(--primary);
+    background-color: var(--primary) !important;
+    color: var(--bg) !important;
+    border-color: var(--primary) !important;
     transform: translateY(-2px);
     box-shadow: 0 8px 20px rgba(0,0,0,0.15);
 }
-.veh-tab.active i { color: var(--bg); }
-.veh-tab.active .veh-devis { color: rgba(255,255,255,0.8); }
+.veh-tab.active i { color: var(--bg) !important; }
+.veh-tab.active .veh-devis { color: rgba(255,255,255,0.8) !important; }
 
 /* ══════════════════════════════════════════
    2. STAGE + PANEL — two-column row
@@ -495,15 +495,18 @@
 /* Mobile Optimizations */
 @media (max-width: 640px) {
   .vehicle-nav {
-      justify-content: flex-start;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      justify-content: center;
       padding-bottom: 2px;
+      overflow-x: hidden;
   }
   .veh-tab {
-      flex: 0 0 auto;
-      flex-shrink: 0;
-      min-width: 85px;
-      padding: 10px 6px;
+      min-width: 0;
+      padding: 12px 4px;
       gap: 4px;
+      width: 100%;
   }
   .veh-tab i { font-size: 1.1rem; }
   .veh-devis { font-size: 0.5rem; }

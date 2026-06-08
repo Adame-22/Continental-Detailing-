@@ -242,7 +242,7 @@
                 <p class="text-secondary max-w-xl mx-auto mb-10 leading-relaxed font-light">
                     Gestion de flotte, préparation VO/VN, conciergerie mobile. Nous intervenons sur votre parc pour maintenir l'image de marque de votre société.
                 </p>
-                <button @click="showContactModal = true; stepsDone = 4" class="btn btn-dark">
+                <button @click="showContactModal = true; stepsDone = 4" class="btn btn-dark w-full sm:w-auto justify-center mt-2">
                     <i class="fa-solid fa-paper-plane"></i> Demander un devis B2B
                 </button>
             </div>
@@ -261,7 +261,7 @@
                         <p class="text-[10px] font-medium uppercase tracking-widest text-primary mb-1">Utilitaire — tarification sur mesure</p>
                         <p class="text-sm text-secondary font-light">Volume, état et accès : chaque utilitaire est unique. Nous établissons un devis rapide et gratuit.</p>
                     </div>
-                    <button @click="showContactModal = true; stepsDone = 4" class="btn btn-dark shrink-0">
+                    <button @click="showContactModal = true; stepsDone = 4" class="btn btn-dark w-full sm:w-auto justify-center shrink-0">
                         <i class="fa-brands fa-whatsapp"></i> Demander mon devis
                     </button>
                 </div>
@@ -391,6 +391,70 @@
                             <i class="fa-solid fa-arrow-right"></i>
                         </button>
                     </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Guide Vehicules -->
+        <div x-show="showGuide" class="fixed inset-0 z-[100] flex items-center justify-center bg-bg-dark/80 backdrop-blur-sm p-4" style="display: none;" x-transition>
+            <div @click.away="showGuide = false" class="bg-bg w-full max-w-lg p-6 md:p-8 relative shadow-2xl border border-gray-200 rounded-xl overflow-hidden flex flex-col max-h-[85vh]">
+                <button @click="showGuide = false" class="absolute top-4 right-4 w-10 h-10 bg-bg-alt text-secondary flex items-center justify-center hover:bg-gray-200 transition-colors border border-gray-200 rounded-full z-10">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+                
+                <h2 class="text-xl md:text-2xl font-light mb-1 text-primary pr-10">Guide des catégories</h2>
+                <p class="text-secondary text-xs md:text-sm mb-6 font-light">Trouvez la catégorie correspondante à votre modèle de voiture.</p>
+                
+                <div class="overflow-y-auto pr-2 space-y-4 text-left" style="scrollbar-width: thin;">
+                    
+                    <div class="p-4 bg-bg-alt rounded-lg border border-gray-100">
+                        <div class="flex items-center gap-3 mb-2">
+                            <i class="fa-solid fa-car-side text-primary text-lg"></i>
+                            <h3 class="font-medium text-primary text-sm tracking-wide uppercase">Citadine</h3>
+                        </div>
+                        <p class="text-xs text-secondary leading-relaxed font-light">Ex: Renault Clio/Twingo, Peugeot 208, Fiat 500, VW Polo, Toyota Yaris, Audi A1, Mini Cooper, Citroën C3...</p>
+                    </div>
+
+                    <div class="p-4 bg-bg-alt rounded-lg border border-gray-100">
+                        <div class="flex items-center gap-3 mb-2">
+                            <i class="fa-solid fa-car text-primary text-lg"></i>
+                            <h3 class="font-medium text-primary text-sm tracking-wide uppercase">Berline / Compacte</h3>
+                        </div>
+                        <p class="text-xs text-secondary leading-relaxed font-light">Ex: Renault Megane, Peugeot 308/508, VW Golf/Passat, BMW Série 3/4, Audi A3/A4, Tesla Model 3, Mercedes Classe A/C...</p>
+                    </div>
+
+                    <div class="p-4 bg-bg-alt rounded-lg border border-gray-100">
+                        <div class="flex items-center gap-3 mb-2">
+                            <i class="fa-solid fa-truck-pickup text-primary text-lg"></i>
+                            <h3 class="font-medium text-primary text-sm tracking-wide uppercase">SUV / Crossover</h3>
+                        </div>
+                        <p class="text-xs text-secondary leading-relaxed font-light">Ex: Peugeot 2008/3008, Renault Captur/Kadjar, VW Tiguan, BMW X1/X3, Audi Q3/Q5, Tesla Model Y, Nissan Qashqai...</p>
+                    </div>
+
+                    <div class="p-4 bg-bg-alt rounded-lg border border-gray-100">
+                        <div class="flex items-center gap-3 mb-2">
+                            <i class="fa-solid fa-van-shuttle text-primary text-lg"></i>
+                            <h3 class="font-medium text-primary text-sm tracking-wide uppercase">Monospace / Break</h3>
+                        </div>
+                        <p class="text-xs text-secondary leading-relaxed font-light">Ex: Renault Scénic/Espace, VW Touran/Multivan, Citroën Picasso/SpaceTourer, Mercedes Classe V, Break familiaux (SW)...</p>
+                    </div>
+
+                    <div class="p-4 bg-bg-alt rounded-lg border border-gray-100">
+                        <div class="flex items-center gap-3 mb-2">
+                            <i class="fa-solid fa-gem text-primary text-lg"></i>
+                            <h3 class="font-medium text-primary text-sm tracking-wide uppercase">Prestige / Sport / Très Grand SUV</h3>
+                        </div>
+                        <p class="text-xs text-secondary leading-relaxed font-light">Ex: Porsche (911, Cayenne, Macan), Ferrari, Lamborghini, Audi RS, BMW M, Mercedes AMG, Range Rover, BMW X5/X6, Audi Q7/Q8...</p>
+                    </div>
+
+                    <div class="p-4 bg-bg-alt rounded-lg border border-gray-100">
+                        <div class="flex items-center gap-3 mb-2">
+                            <i class="fa-solid fa-truck text-primary text-lg"></i>
+                            <h3 class="font-medium text-primary text-sm tracking-wide uppercase">Utilitaire</h3>
+                        </div>
+                        <p class="text-xs text-secondary leading-relaxed font-light">Ex: Renault Kangoo/Trafic/Master, Peugeot Partner/Expert, Citroën Berlingo, Mercedes Vito/Sprinter...</p>
+                    </div>
+
                 </div>
             </div>
         </div>
