@@ -495,18 +495,24 @@
 /* Mobile Optimizations */
 @media (max-width: 640px) {
   .vehicle-nav {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      display: flex;
+      flex-wrap: nowrap;
+      overflow-x: auto;
       gap: 8px;
-      justify-content: center;
-      padding-bottom: 2px;
-      overflow-x: hidden;
+      justify-content: flex-start;
+      padding-bottom: 12px;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+  }
+  .vehicle-nav::-webkit-scrollbar {
+      display: none;
   }
   .veh-tab {
-      min-width: 0;
-      padding: 12px 4px;
-      gap: 4px;
-      width: 100%;
+      min-width: 100px;
+      padding: 12px 8px;
+      gap: 6px;
+      width: auto;
+      flex-shrink: 0;
   }
   .veh-tab i { font-size: 1.1rem; }
   .veh-devis { font-size: 0.5rem; }
