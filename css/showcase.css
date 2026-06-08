@@ -79,9 +79,9 @@
 .veh-tab.active {
     background-color: var(--bg) !important;
     color: var(--primary) !important;
-    border: 2px solid var(--primary) !important;
+    border: 1px solid var(--primary) !important;
     transform: translateY(-2px);
-    box-shadow: 0 12px 32px rgba(0,0,0,0.12);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
 }
 .veh-tab.active i { color: var(--primary) !important; }
 .veh-tab.active .veh-devis { color: var(--secondary) !important; font-weight: 500 !important; }
