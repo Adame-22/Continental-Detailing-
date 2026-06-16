@@ -622,72 +622,80 @@
         </div>
     </section>
 
-        <!-- FAQ Section -->
+            <!-- FAQ Section -->
     <section class="py-24 bg-white border-t border-gray-100">
-        <div class="max-w-4xl mx-auto px-6">
+        <div class="max-w-3xl mx-auto px-6">
             <div class="reveal text-center mb-16">
                 <p class="text-xs font-semibold tracking-[0.2em] uppercase mb-4" style="color:#6B6B6B;">Vos questions fréquentes</p>
-                <h2 class="font-sans text-4xl md:text-6xl font-bold tracking-tight text-primary">Foire Aux Questions</h2>
-                <div class="w-16 h-1 bg-primary mx-auto mt-6"></div>
+                <h2 class="font-sans text-4xl md:text-5xl font-bold tracking-tight text-primary">Foire Aux Questions</h2>
+                <div class="w-12 h-[2px] bg-primary mx-auto mt-6"></div>
             </div>
 
-            <div class="space-y-6 text-left">
+            <div class="divide-y divide-gray-200 text-left">
                 <!-- Q1 -->
-                <details class="group reveal stagger-1 border border-gray-200 rounded-2xl p-6 transition-all hover:border-primary">
-                    <summary class="font-sans font-bold text-lg text-primary flex justify-between items-center cursor-pointer list-none">
-                        <span>Faut-il fournir de l'eau ou de l'électricité ?</span>
-                        <span class="transition-transform duration-300 transform group-open:rotate-180">
-                            <i class="fa-solid fa-chevron-down text-sm"></i>
+                <div class="py-6 reveal stagger-1">
+                    <button onclick="toggleFAQ(this)" class="w-full flex justify-between items-center text-left font-sans font-bold text-lg text-primary bg-transparent border-none py-2 cursor-pointer group focus:outline-none">
+                        <span class="pr-4">Faut-il fournir de l'eau ou de l'électricité ?</span>
+                        <span class="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center text-secondary group-hover:text-primary group-hover:border-primary transition-all duration-300 transform faq-icon flex-shrink-0">
+                            <i class="fa-solid fa-plus text-[10px]"></i>
                         </span>
-                    </summary>
-                    <p class="text-sm leading-relaxed text-secondary font-light mt-4 pt-4 border-t border-gray-100">
-                        Non, absolument pas. <strong class="text-primary font-medium">Continental Detailing est 100 % autonome</strong>. Nous disposons dans notre véhicule d'intervention d'un groupe électrogène insonorisé de dernière génération et d'une réserve d'eau filtrée. Nous intervenons partout : dans votre allée, devant votre bureau, sur un parking public ou privé.
-                    </p>
-                </details>
+                    </button>
+                    <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                        <p class="text-sm leading-relaxed text-secondary font-light pt-4 pb-2">
+                            Non, absolument pas. <strong class="text-primary font-medium">Continental Detailing est 100 % autonome</strong>. Nous disposons dans notre véhicule d'intervention d'un groupe électrogène insonorisé de dernière génération et d'une réserve d'eau filtrée. Nous intervenons partout : dans votre allée, devant votre bureau, sur un parking public ou privé.
+                        </p>
+                    </div>
+                </div>
 
                 <!-- Q2 -->
-                <details class="group reveal stagger-2 border border-gray-200 rounded-2xl p-6 transition-all hover:border-primary">
-                    <summary class="font-sans font-bold text-lg text-primary flex justify-between items-center cursor-pointer list-none">
-                        <span>Combien de temps dure une prestation de detailing ?</span>
-                        <span class="transition-transform duration-300 transform group-open:rotate-180">
-                            <i class="fa-solid fa-chevron-down text-sm"></i>
+                <div class="py-6 reveal stagger-2">
+                    <button onclick="toggleFAQ(this)" class="w-full flex justify-between items-center text-left font-sans font-bold text-lg text-primary bg-transparent border-none py-2 cursor-pointer group focus:outline-none">
+                        <span class="pr-4">Combien de temps dure une prestation de detailing ?</span>
+                        <span class="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center text-secondary group-hover:text-primary group-hover:border-primary transition-all duration-300 transform faq-icon flex-shrink-0">
+                            <i class="fa-solid fa-plus text-[10px]"></i>
                         </span>
-                    </summary>
-                    <div class="text-sm leading-relaxed text-secondary font-light mt-4 pt-4 border-t border-gray-100">
-                        La durée dépend de l'état de votre véhicule et de la formule choisie :
-                        <ul class="list-disc pl-5 mt-2 space-y-1">
-                            <li><strong>Nettoyage Intérieur ou Extérieur Simple</strong> : 2 à 3 heures.</li>
-                            <li><strong>Formule Complète (Intérieur + Extérieur)</strong> : 4 à 5 heures.</li>
-                            <li><strong>Detailing Complet avec Polissage et Céramique</strong> : de 8 heures à 2 jours de travail pour une correction optimale du vernis.</li>
-                        </ul>
+                    </button>
+                    <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                        <div class="text-sm leading-relaxed text-secondary font-light pt-4 pb-2">
+                            La durée dépend de l'état de votre véhicule et de la formule choisie :
+                            <ul class="list-disc pl-5 mt-2 space-y-2">
+                                <li><strong class="text-primary font-medium">Nettoyage Intérieur ou Extérieur Simple</strong> : 2 à 3 heures.</li>
+                                <li><strong class="text-primary font-medium">Formule Complète (Intérieur + Extérieur)</strong> : 4 à 5 heures.</li>
+                                <li><strong class="text-primary font-medium">Detailing Complet avec Polissage et Céramique</strong> : de 8 heures à 2 jours de travail pour une correction optimale du vernis.</li>
+                            </ul>
+                        </div>
                     </div>
-                </details>
+                </div>
 
                 <!-- Q3 -->
-                <details class="group reveal stagger-3 border border-gray-200 rounded-2xl p-6 transition-all hover:border-primary">
-                    <summary class="font-sans font-bold text-lg text-primary flex justify-between items-center cursor-pointer list-none">
-                        <span>Quelle est la différence entre un lavage classique et un detailing ?</span>
-                        <span class="transition-transform duration-300 transform group-open:rotate-180">
-                            <i class="fa-solid fa-chevron-down text-sm"></i>
+                <div class="py-6 reveal stagger-3">
+                    <button onclick="toggleFAQ(this)" class="w-full flex justify-between items-center text-left font-sans font-bold text-lg text-primary bg-transparent border-none py-2 cursor-pointer group focus:outline-none">
+                        <span class="pr-4">Quelle est la différence entre un lavage classique et un detailing ?</span>
+                        <span class="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center text-secondary group-hover:text-primary group-hover:border-primary transition-all duration-300 transform faq-icon flex-shrink-0">
+                            <i class="fa-solid fa-plus text-[10px]"></i>
                         </span>
-                    </summary>
-                    <p class="text-sm leading-relaxed text-secondary font-light mt-4 pt-4 border-t border-gray-100">
-                        Le lavage classique élimine uniquement la saleté superficielle, parfois en créant des micro-rayures (comme les rouleaux). Le <strong class="text-primary font-medium">detailing</strong> est un procédé cosmétique méticuleux. Il inclut une décontamination en profondeur de la carrosserie, la correction des défauts du vernis par polissage, le nettoyage micrométrique des moindres détails (joints, grilles, interstices au pinceau) et l'application de protections durables (cire, céramique, imperméabilisant tissu/cuir).
-                    </p>
-                </details>
+                    </button>
+                    <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                        <p class="text-sm leading-relaxed text-secondary font-light pt-4 pb-2">
+                            Le lavage classique élimine uniquement la saleté superficielle, parfois en créant des micro-rayures (comme les rouleaux). Le <strong class="text-primary font-medium">detailing</strong> est un procédé cosmétique méticuleux. Il inclut une décontamination en profondeur de la carrosserie, la correction des défauts du vernis par polissage, le nettoyage micrométrique des moindres détails (joints, grilles, interstices au pinceau) et l'application de protections durables (cire, céramique, imperméabilisant tissu/cuir).
+                        </p>
+                    </div>
+                </div>
 
                 <!-- Q4 -->
-                <details class="group reveal stagger-4 border border-gray-200 rounded-2xl p-6 transition-all hover:border-primary">
-                    <summary class="font-sans font-bold text-lg text-primary flex justify-between items-center cursor-pointer list-none">
-                        <span>Comment se passe la prise de rendez-vous et le règlement ?</span>
-                        <span class="transition-transform duration-300 transform group-open:rotate-180">
-                            <i class="fa-solid fa-chevron-down text-sm"></i>
+                <div class="py-6 reveal stagger-4">
+                    <button onclick="toggleFAQ(this)" class="w-full flex justify-between items-center text-left font-sans font-bold text-lg text-primary bg-transparent border-none py-2 cursor-pointer group focus:outline-none">
+                        <span class="pr-4">Comment se passe la prise de rendez-vous et le règlement ?</span>
+                        <span class="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center text-secondary group-hover:text-primary group-hover:border-primary transition-all duration-300 transform faq-icon flex-shrink-0">
+                            <i class="fa-solid fa-plus text-[10px]"></i>
                         </span>
-                    </summary>
-                    <p class="text-sm leading-relaxed text-secondary font-light mt-4 pt-4 border-t border-gray-100">
-                        Vous pouvez estimer le tarif sur notre page de réservation. Cliquez ensuite sur le bouton WhatsApp pour valider la date avec nous. Un acompte en ligne sécurisé vous sera demandé pour bloquer le créneau. Le solde restant est réglé en ligne ou en espèces une fois la prestation terminée et validée par vos soins.
-                    </p>
-                </details>
+                    </button>
+                    <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                        <p class="text-sm leading-relaxed text-secondary font-light pt-4 pb-2">
+                            Vous pouvez estimer le tarif sur notre page de réservation. Cliquez ensuite sur le bouton WhatsApp pour valider la date avec nous. Un acompte en ligne sécurisé vous sera demandé pour bloquer le créneau. Le solde restant est réglé en ligne ou en espèces une fois la prestation terminée et validée par vos soins.
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -904,5 +912,41 @@
         </div>
     </div>
 
+
+    <script>
+    function toggleFAQ(button) {
+        const content = button.nextElementSibling;
+        const icon = button.querySelector('.faq-icon i');
+        const circle = button.querySelector('.faq-icon');
+        
+        // Close all other FAQs
+        const allContents = document.querySelectorAll('.faq-content');
+        const allIcons = document.querySelectorAll('.faq-icon i');
+        const allCircles = document.querySelectorAll('.faq-icon');
+        
+        allContents.forEach((c, idx) => {
+            if (c !== content) {
+                c.style.maxHeight = null;
+                allIcons[idx].className = 'fa-solid fa-plus text-[10px]';
+                allCircles[idx].classList.remove('border-primary', 'text-primary');
+                allCircles[idx].classList.add('border-gray-200', 'text-secondary');
+            }
+        });
+        
+        // Toggle current FAQ
+        if (content.style.maxHeight) {
+            content.style.maxHeight = null;
+            icon.className = 'fa-solid fa-plus text-[10px]';
+            circle.classList.remove('border-primary', 'text-primary');
+            circle.classList.add('border-gray-200', 'text-secondary');
+        } else {
+            content.style.maxHeight = content.scrollHeight + "px";
+            icon.className = 'fa-solid fa-minus text-[10px]';
+            circle.classList.remove('border-gray-200', 'text-secondary');
+            circle.classList.add('border-primary', 'text-primary');
+        }
+    }
+    </script>
 </body>
+
 </html>
