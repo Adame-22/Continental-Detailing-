@@ -1,6 +1,124 @@
 <!DOCTYPE html>
 <html lang="fr" class="scroll-smooth">
 <head>
+    <!-- Schemas de Référencement Google (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "AutoBodyShop",
+          "@id": "https://continentaldetailing.fr/#localbusiness",
+          "name": "Continental Detailing",
+          "image": "https://continentaldetailing.fr/images/logo_continental.png",
+          "url": "https://continentaldetailing.fr/",
+          "telephone": "+33750875964",
+          "priceRange": "$$",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Service mobile à domicile",
+            "addressLocality": "Évry / Melun / Fontainebleau",
+            "postalCode": "91000",
+            "addressCountry": "FR"
+          },
+          "geo": {
+            "@type": "GeoCircle",
+            "geoMidpoint": {
+              "@type": "GeoCoordinates",
+              "latitude": 48.6238,
+              "longitude": 2.4296
+            },
+            "radius": "40000"
+          },
+          "areaServed": [
+            {
+              "@type": "AdministrativeArea",
+              "name": "Essonne"
+            },
+            {
+              "@type": "AdministrativeArea",
+              "name": "Seine-et-Marne"
+            },
+            {
+              "@type": "City",
+              "name": "Fontainebleau"
+            },
+            {
+              "@type": "City",
+              "name": "Melun"
+            },
+            {
+              "@type": "City",
+              "name": "Évry-Courcouronnes"
+            },
+            {
+              "@type": "City",
+              "name": "Massy"
+            },
+            {
+              "@type": "City",
+              "name": "Savigny-le-Temple"
+            }
+          ],
+          "openingHoursSpecification": {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": [
+              "Monday",
+              "Tuesday",
+              "Wednesday",
+              "Thursday",
+              "Friday",
+              "Saturday",
+              "Sunday"
+            ],
+            "opens": "08:00",
+            "closes": "20:00"
+          },
+          "sameAs": [
+            "https://www.instagram.com/continental.detailing.idf/"
+          ]
+        },
+        {
+          "@type": "FAQPage",
+          "@id": "https://continentaldetailing.fr/#faq",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Faut-il fournir de l'eau ou de l'électricité ?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Non, Continental Detailing est 100 % autonome. Nous disposons dans notre véhicule d'intervention d'un groupe électrogène insonorisé de dernière génération et d'une réserve d'eau filtrée. Nous intervenons partout : allée, bureau, parking public ou privé."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Combien de temps dure une prestation de detailing ?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "La durée varie de 2-3 heures pour un nettoyage intérieur/extérieur simple, 4-5 heures pour une formule complète, et jusqu'à un jour ou plus pour un detailing complet avec polissage et traitement céramique."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Quelle est la différence entre un lavage classique et un detailing ?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Le lavage classique élimine uniquement la saleté superficielle. Le detailing est un procédé minutieux qui nettoie en profondeur (décontamination), corrige les défauts de carrosserie (polissage des micro-rayures), traite les détails au pinceau et protège durablement (cire, céramique)."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Comment se passe la prise de rendez-vous et le règlement ?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Estimez le tarif en ligne, puis cliquez sur le bouton WhatsApp pour bloquer une date. Un acompte sécurisé en ligne valide la réservation, et le solde restant est réglé après réalisation de la prestation."
+              }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
     <!-- Favicon / Icône du site -->
     <link rel="icon" type="image/png" sizes="192x192" href="images/favicon.png">
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
@@ -500,6 +618,76 @@
                 <p class="text-xs text-secondary mt-6 italic">
                     * Votre ville n'est pas dans la liste ? Nous intervenons sur l'ensemble des départements 91 et 77. Contactez-nous pour confirmer.
                 </p>
+            </div>
+        </div>
+    </section>
+
+        <!-- FAQ Section -->
+    <section class="py-24 bg-white border-t border-gray-100">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="reveal text-center mb-16">
+                <p class="text-xs font-semibold tracking-[0.2em] uppercase mb-4" style="color:#6B6B6B;">Vos questions fréquentes</p>
+                <h2 class="font-sans text-4xl md:text-6xl font-bold tracking-tight text-primary">Foire Aux Questions</h2>
+                <div class="w-16 h-1 bg-primary mx-auto mt-6"></div>
+            </div>
+
+            <div class="space-y-6 text-left">
+                <!-- Q1 -->
+                <details class="group reveal stagger-1 border border-gray-200 rounded-2xl p-6 transition-all hover:border-primary">
+                    <summary class="font-sans font-bold text-lg text-primary flex justify-between items-center cursor-pointer list-none">
+                        <span>Faut-il fournir de l'eau ou de l'électricité ?</span>
+                        <span class="transition-transform duration-300 transform group-open:rotate-180">
+                            <i class="fa-solid fa-chevron-down text-sm"></i>
+                        </span>
+                    </summary>
+                    <p class="text-sm leading-relaxed text-secondary font-light mt-4 pt-4 border-t border-gray-100">
+                        Non, absolument pas. <strong class="text-primary font-medium">Continental Detailing est 100 % autonome</strong>. Nous disposons dans notre véhicule d'intervention d'un groupe électrogène insonorisé de dernière génération et d'une réserve d'eau filtrée. Nous intervenons partout : dans votre allée, devant votre bureau, sur un parking public ou privé.
+                    </p>
+                </details>
+
+                <!-- Q2 -->
+                <details class="group reveal stagger-2 border border-gray-200 rounded-2xl p-6 transition-all hover:border-primary">
+                    <summary class="font-sans font-bold text-lg text-primary flex justify-between items-center cursor-pointer list-none">
+                        <span>Combien de temps dure une prestation de detailing ?</span>
+                        <span class="transition-transform duration-300 transform group-open:rotate-180">
+                            <i class="fa-solid fa-chevron-down text-sm"></i>
+                        </span>
+                    </summary>
+                    <div class="text-sm leading-relaxed text-secondary font-light mt-4 pt-4 border-t border-gray-100">
+                        La durée dépend de l'état de votre véhicule et de la formule choisie :
+                        <ul class="list-disc pl-5 mt-2 space-y-1">
+                            <li><strong>Nettoyage Intérieur ou Extérieur Simple</strong> : 2 à 3 heures.</li>
+                            <li><strong>Formule Complète (Intérieur + Extérieur)</strong> : 4 à 5 heures.</li>
+                            <li><strong>Detailing Complet avec Polissage et Céramique</strong> : de 8 heures à 2 jours de travail pour une correction optimale du vernis.</li>
+                        </ul>
+                    </div>
+                </details>
+
+                <!-- Q3 -->
+                <details class="group reveal stagger-3 border border-gray-200 rounded-2xl p-6 transition-all hover:border-primary">
+                    <summary class="font-sans font-bold text-lg text-primary flex justify-between items-center cursor-pointer list-none">
+                        <span>Quelle est la différence entre un lavage classique et un detailing ?</span>
+                        <span class="transition-transform duration-300 transform group-open:rotate-180">
+                            <i class="fa-solid fa-chevron-down text-sm"></i>
+                        </span>
+                    </summary>
+                    <p class="text-sm leading-relaxed text-secondary font-light mt-4 pt-4 border-t border-gray-100">
+                        Le lavage classique élimine uniquement la saleté superficielle, parfois en créant des micro-rayures (comme les rouleaux). Le <strong class="text-primary font-medium">detailing</strong> est un procédé cosmétique méticuleux. Il inclut une décontamination en profondeur de la carrosserie, la correction des défauts du vernis par polissage, le nettoyage micrométrique des moindres détails (joints, grilles, interstices au pinceau) et l'application de protections durables (cire, céramique, imperméabilisant tissu/cuir).
+                    </p>
+                </details>
+
+                <!-- Q4 -->
+                <details class="group reveal stagger-4 border border-gray-200 rounded-2xl p-6 transition-all hover:border-primary">
+                    <summary class="font-sans font-bold text-lg text-primary flex justify-between items-center cursor-pointer list-none">
+                        <span>Comment se passe la prise de rendez-vous et le règlement ?</span>
+                        <span class="transition-transform duration-300 transform group-open:rotate-180">
+                            <i class="fa-solid fa-chevron-down text-sm"></i>
+                        </span>
+                    </summary>
+                    <p class="text-sm leading-relaxed text-secondary font-light mt-4 pt-4 border-t border-gray-100">
+                        Vous pouvez estimer le tarif sur notre page de réservation. Cliquez ensuite sur le bouton WhatsApp pour valider la date avec nous. Un acompte en ligne sécurisé vous sera demandé pour bloquer le créneau. Le solde restant est réglé en ligne ou en espèces une fois la prestation terminée et validée par vos soins.
+                    </p>
+                </details>
             </div>
         </div>
     </section>

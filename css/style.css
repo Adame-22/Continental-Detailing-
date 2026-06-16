@@ -878,3 +878,18 @@ nav {
     }
     .reveal { opacity: 1 !important; transform: none !important; }
 }
+
+/* ═══════════════════════════════════════
+   ACCORDION (FAQ) — Details/Summary
+   ═══════════════════════════════════════ */
+summary::-webkit-details-marker {
+    display: none !important;
+}
+summary {
+    display: flex !important;
+    outline: none;
+    user-select: none;
+}
+details[open] {
+    border-color: #1A1A1E;
+}
