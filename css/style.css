@@ -851,6 +851,24 @@ body {
 .border-bottom { border-bottom: 1px solid var(--border); }
 
 /* ═══════════════════════════════════════
+   CARD HOVER TILT & NAV AUTO-HIDE
+   ═══════════════════════════════════════ */
+.card-hover-lift {
+    transition: transform var(--duration) var(--ease),
+                box-shadow var(--duration) var(--ease),
+                border-color var(--duration-short) var(--ease);
+    will-change: transform;
+}
+
+nav {
+    transition: transform var(--duration) var(--ease),
+                background-color var(--duration-short) var(--ease);
+}
+.nav-hidden {
+    transform: translateY(-100%);
+}
+
+/* ═══════════════════════════════════════
    ACCESSIBILITY
    ═══════════════════════════════════════ */
 @media (prefers-reduced-motion: reduce) {

@@ -16,11 +16,14 @@
             theme: {
                 extend: {
                     colors: {
-                        primary:   '#09090B',
-                        secondary: '#111117',
-                        card:      '#16161C',
-                        action:    '#FFFFFF',
-                        'action-lt': '#EAEAEA',
+                        bg: '#FFFFFF',
+                        'bg-alt': '#F5F5F5',
+                        'bg-dark': '#0E1418',
+                        primary: '#1A1A1E',
+                        secondary: '#6B6B6B',
+                        muted: '#999999',
+                        action: '#1A1A1E',
+                        'action-lt': '#404040',
                     },
                     fontFamily: {
                         sans:  ['Outfit', 'sans-serif'],
@@ -31,23 +34,25 @@
         }
     </script>
 </head>
-<body class="bg-primary text-white font-sans min-h-screen flex flex-col antialiased" style="font-family:'Outfit',sans-serif;">
+<body class="bg-bg text-primary font-sans min-h-screen flex flex-col antialiased">
 
     <div class="ambient-spot-right" aria-hidden="true"></div>
 
-    <!-- Header -->
-    <header class="fixed w-full top-0 z-50" style="background:rgba(9,9,11,0.92);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.05);">
-        <nav class="max-w-xl mx-auto px-6 py-4 flex items-center justify-between">
-            <a href="services.html" class="flex items-center gap-2 text-xs font-semibold tracking-widest uppercase ui-transition" style="color:#57534E;" onmouseover="this.style.color='#FFFFFF'" onmouseout="this.style.color='#57534E'">
-                <i class="fa-solid fa-arrow-left text-xs"></i> Retour
-            </a>
-            <a href="index.html" class="logo-wordmark logo-wordmark--inverse">
+    <!-- Navigation Bar -->
+    <nav class="nav-main" id="navbar">
+        <div class="nav-inner">
+            <a href="index.html" class="logo-wordmark">
                 <span class="logo-primary">Continental</span>
                 <span class="logo-secondary">Detailing</span>
             </a>
-            <div style="width:80px;"></div>
-        </nav>
-    </header>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Accueil</a>
+                <a href="about.html" class="nav-link">Qui sommes-nous</a>
+                <a href="services.html" class="nav-link">Tarifs & Réservation</a>
+            </div>
+            <a href="services.html" class="nav-mobile-cta"><i class="fa-solid fa-arrow-left"></i> Retour</a>
+        </div>
+    </nav>
 
     <!-- Main -->
     <main class="flex-grow flex items-center justify-center px-4 pt-28 pb-16">
@@ -55,96 +60,119 @@
 
             <!-- Title -->
             <div class="text-center mb-8">
-                <div class="inline-flex items-center justify-center w-14 h-14 mb-5" style="border:1px solid rgba(34,197,94,0.2);border-radius:2px;background:rgba(34,197,94,0.05);">
-                    <i class="fa-solid fa-lock" style="color:#4ade80;"></i>
+                <div class="inline-flex items-center justify-center w-14 h-14 mb-5 reveal-down">
+                    <div class="w-14 h-14 rounded-full flex items-center justify-center" style="background:#f0fdf4;">
+                        <i class="fa-solid fa-lock text-lg" style="color:#16a34a;"></i>
+                    </div>
                 </div>
-                <p class="text-xs font-semibold tracking-[0.2em] uppercase mb-2" style="color:#E5E5E5;">Réservation sécurisée</p>
-                <h1 class="font-serif text-3xl font-semibold text-white mb-2">Sécurisez votre RDV</h1>
-                <p class="text-sm" style="color:#57534E;">Réglez l'acompte pour bloquer définitivement votre créneau.</p>
+                <p class="text-xs uppercase tracking-widest text-muted mb-2 reveal-down">Réservation sécurisée</p>
+                <h1 class="text-3xl font-bold text-primary mb-2 reveal-down">Sécurisez votre RDV</h1>
+                <p class="text-sm text-secondary font-light reveal-down">Réglez l'acompte pour bloquer définitivement votre créneau.</p>
             </div>
 
             <!-- Card -->
-            <div style="background:#111117;border:1px solid rgba(255,255,255,0.06);border-radius:4px;overflow:hidden;">
-
+            <div class="relative overflow-hidden bg-bg border border-gray-200 transition-colors hover:border-gray-300 rounded-xl shadow-sm card-hover-lift reveal-scale">
+ 
                 <!-- Top bar -->
-                <div class="flex items-center justify-between px-6 py-4" style="border-bottom:1px solid rgba(255,255,255,0.04);background:rgba(9,9,11,0.5);">
-                    <span class="text-xs tracking-wider uppercase" style="color:#57534E;">Référence</span>
-                    <span class="text-xs font-bold tracking-widest text-white" style="font-family:'Courier New',monospace;">ACOMPTE-CD</span>
+                <div class="flex items-center justify-between px-6 py-4" style="border-bottom:1px solid var(--border-light);background:var(--bg-alt);">
+                    <span class="text-xs tracking-wider uppercase text-secondary">Référence</span>
+                    <span class="text-xs font-bold tracking-widest text-primary" style="font-family:'Courier New',monospace;">ACOMPTE-CD</span>
                 </div>
-
+ 
                 <div class="p-6 sm:p-7">
                     <!-- Amount -->
-                    <div class="flex items-center justify-between mb-8 pb-7" style="border-bottom:1px solid rgba(255,255,255,0.05);">
+                    <div class="flex items-center justify-between mb-8 pb-7" style="border-bottom:1px solid var(--border-light);">
                         <div>
-                            <h3 class="font-semibold text-white mb-1">Acompte de réservation</h3>
-                            <p class="text-xs" style="color:#57534E;">Nettoyage / Detailing automobile</p>
+                            <h3 class="font-semibold text-primary mb-1">Acompte de réservation</h3>
+                            <p class="text-xs text-secondary">Nettoyage / Detailing automobile</p>
                         </div>
                         <div class="text-right">
-                            <span class="text-3xl font-bold" style="color:#E5E5E5;">40€</span>
-                            <span class="text-xs block mt-0.5" style="color:#57534E;">TTC</span>
+                            <span class="text-3xl font-bold text-primary">40€</span>
+                            <span class="text-xs block mt-0.5 text-secondary">TTC</span>
                         </div>
                     </div>
-
+ 
                     <!-- Garanties -->
                     <ul class="space-y-3 mb-7">
                         <li class="flex items-start gap-3">
-                            <i class="fa-solid fa-check text-xs mt-1 flex-shrink-0" style="color:#4ade80;"></i>
-                            <p class="text-sm" style="color:#A8A29E;">Votre date est protégée contre toute autre demande.</p>
+                            <i class="fa-solid fa-check text-xs mt-1 flex-shrink-0" style="color:#16a34a;"></i>
+                            <p class="text-sm text-secondary">Votre date est protégée contre toute autre demande.</p>
                         </li>
                         <li class="flex items-start gap-3">
-                            <i class="fa-solid fa-check text-xs mt-1 flex-shrink-0" style="color:#4ade80;"></i>
-                            <p class="text-sm" style="color:#A8A29E;">Les 40€ sont déduits du montant total le jour J.</p>
+                            <i class="fa-solid fa-check text-xs mt-1 flex-shrink-0" style="color:#16a34a;"></i>
+                            <p class="text-sm text-secondary">Les 40€ sont déduits du montant total le jour J.</p>
                         </li>
                     </ul>
-
+ 
                     <!-- CTA -->
                     <a href="#" onclick="alert('Lien de paiement à configurer — Stripe ou SumUp')"
-                       class="flex items-center justify-center gap-3 w-full py-4 text-sm font-bold tracking-[0.08em] uppercase ui-transition"
-                       style="background:#FFFFFF;color:#09090B;border-radius:2px;">
+                       class="flex items-center justify-center gap-3 w-full py-4 text-sm font-bold tracking-[0.08em] uppercase transition-colors rounded-lg bg-primary hover:bg-accent-light text-white">
                         <i class="fa-solid fa-credit-card"></i>
                         Régler 40€ par CB
                     </a>
                 </div>
-
+ 
                 <!-- Bottom trust bar -->
-                <div class="px-6 py-4 text-center" style="border-top:1px solid rgba(255,255,255,0.04);background:rgba(9,9,11,0.4);">
-                    <div class="flex items-center justify-center gap-5 text-xl mb-2" style="color:#3F3F46;">
+                <div class="px-6 py-4 text-center" style="border-top:1px solid var(--border-light);background:var(--bg-alt);">
+                    <div class="flex items-center justify-center gap-5 text-xl mb-2 text-muted">
                         <i class="fa-brands fa-cc-visa"></i>
                         <i class="fa-brands fa-cc-mastercard"></i>
                         <i class="fa-brands fa-cc-amex"></i>
                         <i class="fa-brands fa-cc-apple-pay"></i>
                     </div>
-                    <p class="text-[10px] leading-relaxed" style="color:#3F3F46;">
+                    <p class="text-[10px] leading-relaxed text-muted">
                         Paiement sécurisé — vos données bancaires ne sont jamais stockées sur ce site.
                     </p>
                 </div>
             </div>
 
-            <div class="text-center mt-8">
-                <a href="index.html" class="text-xs tracking-widest uppercase ui-transition" style="color:#3F3F46;" onmouseover="this.style.color='#FFFFFF'" onmouseout="this.style.color='#3F3F46'">
-                    <i class="fa-solid fa-arrow-left mr-2 text-xs"></i>Retour à l'accueil
+            <div class="text-center mt-12">
+                <a href="index.html" class="text-[10px] tracking-widest uppercase font-medium text-secondary hover:text-primary transition-colors">
+                    <i class="fa-solid fa-arrow-left mr-2"></i>Retour à l'accueil
                 </a>
             </div>
-
+ 
         </div>
     </main>
-
+ 
     <!-- Footer -->
-    <footer style="border-top:1px solid rgba(255,255,255,0.05);">
-        <div class="max-w-5xl mx-auto px-6 py-8 flex flex-col md:flex-row justify-between items-center gap-6">
-            <div class="text-xs" style="color:#3F3F46;">
-                © 2026 Continental Detailing — Tous droits réservés.
+    <footer class="footer mt-auto">
+        <div class="footer-inner">
+            <div class="footer-grid">
+                <div>
+                    <a href="index.html" class="logo-wordmark logo-wordmark--inverse" style="margin-bottom: 24px;">
+                        <span class="logo-primary">Continental</span>
+                        <span class="logo-secondary">Detailing</span>
+                    </a>
+                    <p class="text-sm font-light text-[rgba(255,255,255,0.5)] max-w-sm">
+                        L'art du détail pour votre automobile. Detailing premium à domicile en Essonne et Seine-et-Marne.
+                    </p>
+                </div>
+                <div>
+                    <div class="footer-title">Navigation</div>
+                    <a href="index.html" class="footer-link">Accueil</a>
+                    <a href="about.html" class="footer-link">Qui sommes-nous</a>
+                    <a href="services.html" class="footer-link">Tarifs & Réservation</a>
+                    <a href="avis.html" class="footer-link">Avis clients</a>
+                </div>
+                <div>
+                    <div class="footer-title">Contact</div>
+                    <a href="mailto:continental.detailing.idf@gmail.com" class="footer-link">continental.detailing.idf@gmail.com</a>
+                    <a href="https://wa.me/33750875964" class="footer-link">WhatsApp (+33 7 50 87 59 64)</a>
+                </div>
             </div>
-            <div class="flex gap-6 items-center">
-                <a href="mailto:continental.detailing.idf@gmail.com" class="ui-transition text-lg" style="color:#3F3F46;" onmouseover="this.style.color='#FFFFFF'" onmouseout="this.style.color='#3F3F46'">
-                    <i class="fa-regular fa-envelope"></i>
-                </a>
-                <a href="https://www.instagram.com/continental.detailing.idf/" target="_blank" class="ui-transition text-lg" style="color:#3F3F46;" onmouseover="this.style.color='#FFFFFF'" onmouseout="this.style.color='#3F3F46'">
-                    <i class="fa-brands fa-instagram"></i>
-                </a>
+            
+            <div class="footer-bottom">
+                <div class="footer-copy">© 2026 Continental Detailing — Tous droits réservés.</div>
+                <div class="footer-socials">
+                    <a href="mailto:continental.detailing.idf@gmail.com"><i class="fa-regular fa-envelope"></i></a>
+                    <a href="https://www.instagram.com/continental.detailing.idf/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                </div>
             </div>
         </div>
     </footer>
+ 
+    <script src="js/motion.js"></script>
 
 </body>
 </html>
