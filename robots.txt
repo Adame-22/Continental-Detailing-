@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://adame-22.github.io/continental-detailing-/sitemap.xml
+Sitemap: https://continental-detailing.fr/sitemap.xml
