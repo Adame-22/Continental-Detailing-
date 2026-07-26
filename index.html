@@ -201,11 +201,14 @@
         </div>
 
         <div class="relative z-10 max-w-7xl mx-auto px-6 text-left">
-            <!-- Eyebrow -->
-            <div class="hero-badge inline-flex items-center gap-2 mb-8">
-                <span style="display:inline-block; width:28px; height:1px; background:rgba(255,255,255,0.45);"></span>
-                <span class="text-[11px] font-semibold tracking-[0.2em] uppercase" style="color:rgba(255,255,255,0.85);">Detailing Premium — Essonne & Seine-et-Marne</span>
-                <span style="display:inline-block; width:28px; height:1px; background:rgba(255,255,255,0.45);"></span>
+            <!-- 21st.dev Shimmer Hero Badge -->
+            <div class="hero-badge inline-flex items-center gap-3 mb-8 px-4 py-2 rounded-full border border-white/20 bg-white/10 backdrop-blur-md shadow-2xl relative overflow-hidden group">
+                <span class="relative flex h-2 w-2">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                </span>
+                <span class="text-[11px] font-bold tracking-[0.18em] uppercase text-white/90">Detailing Premium — Essonne (91) & Seine-et-Marne (77)</span>
+                <span class="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></span>
             </div>
 
             <!-- Title -->
@@ -333,6 +336,85 @@
              style="background:rgba(34,197,94,0.05); border:1px solid rgba(34,197,94,0.15); border-radius:9999px;">
             <i class="fa-solid fa-leaf text-xs" style="color:#4ade80;"></i>
             <span class="text-xs font-medium tracking-wider uppercase" style="color:#4ade80;">Matériel 100 % électrique & silencieux — accès eau & prise requis</span>
+        </div>
+    </section>
+
+    <!-- Comparateur Avant / Après (21st.dev UI component) -->
+    <section class="py-24 bg-white border-t border-gray-100 overflow-hidden">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="text-center mb-12 reveal">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/5 border border-primary/10 mb-4">
+                    <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+                    <span class="text-[11px] font-bold tracking-widest uppercase text-primary">Résultat Immédiat</span>
+                </div>
+                <h2 class="font-sans text-4xl md:text-6xl font-bold tracking-tight text-primary">La Différence Detailing</h2>
+                <p class="text-secondary font-light text-sm md:text-base max-w-2xl mx-auto mt-4">
+                    Faites glisser le curseur ci-dessous pour voir la transformation en direct : élimination des micro-rayures, brillance miroir et protection céramique.
+                </p>
+            </div>
+
+            <!-- 21st.dev Compare Component Card -->
+            <div class="reveal-scale relative w-full max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-2xl border border-gray-200 select-none group"
+                 id="before-after-container"
+                 style="aspect-ratio: 16/9; touch-action: pan-y;">
+                
+                <!-- After Image (Background / Base) -->
+                <img src="images/detailing_after.jpg"
+                     alt="Après Detailing - Finition miroir céramique"
+                     class="absolute inset-0 w-full h-full object-cover pointer-events-none">
+                
+                <!-- After Badge (Top Right) -->
+                <div class="absolute top-5 right-5 z-20 pointer-events-none">
+                    <span class="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-white/90 backdrop-blur-md text-primary font-bold text-xs uppercase tracking-widest shadow-lg border border-white/40">
+                        <i class="fa-solid fa-sparkles text-amber-500 text-xs"></i> APRÈS (Céramique)
+                    </span>
+                </div>
+
+                <!-- Before Image (Clipped overlay) -->
+                <div class="absolute inset-0 w-full h-full overflow-hidden pointer-events-none"
+                     id="before-image-wrapper"
+                     style="width: 50%;">
+                    <img src="images/detailing_before.jpg"
+                         alt="Avant Detailing - Peinture ternie et micro-rayures"
+                         class="absolute top-0 left-0 w-full h-full object-cover max-w-none"
+                         id="before-image">
+                </div>
+
+                <!-- Before Badge (Top Left) -->
+                <div class="absolute top-5 left-5 z-20 pointer-events-none">
+                    <span class="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-black/60 backdrop-blur-md text-white/90 font-semibold text-xs uppercase tracking-widest border border-white/20">
+                        AVANT (Terni / Rayé)
+                    </span>
+                </div>
+
+                <!-- Slider Handle Line -->
+                <div class="absolute top-0 bottom-0 z-30 pointer-events-none flex items-center justify-center transform -translate-x-1/2"
+                     id="slider-handle"
+                     style="left: 50%;">
+                    <!-- Vertical Line -->
+                    <div class="w-1 h-full bg-white shadow-[0_0_12px_rgba(0,0,0,0.5)]"></div>
+                    
+                    <!-- Center Glassmorphic Knob -->
+                    <div class="absolute w-12 h-12 rounded-full bg-white/90 backdrop-blur-md border border-white text-primary flex items-center justify-center shadow-2xl text-xs font-bold transition-transform duration-200 group-hover:scale-110">
+                        <i class="fa-solid fa-left-right text-sm"></i>
+                    </div>
+                </div>
+
+                <!-- Invisible Range Input for Full Touch/Keyboard/Mouse Accessibility -->
+                <input type="range"
+                       min="0"
+                       max="100"
+                       value="50"
+                       class="absolute inset-0 w-full h-full opacity-0 cursor-ew-resize z-40"
+                       id="before-after-slider"
+                       aria-label="Comparateur Avant et Après Detailing">
+            </div>
+
+            <!-- Instruction hint -->
+            <div class="flex items-center justify-center gap-2 mt-4 text-xs text-secondary italic">
+                <i class="fa-solid fa-hand-pointer text-xs opacity-60"></i>
+                <span>Glissez avec votre doigt ou votre souris pour comparer</span>
+            </div>
         </div>
     </section>
     
@@ -946,6 +1028,34 @@
             circle.classList.add('border-primary', 'text-primary');
         }
     }
+
+    // 21st.dev Before/After Compare Slider Logic
+    document.addEventListener('DOMContentLoaded', () => {
+        const slider = document.getElementById('before-after-slider');
+        const beforeWrapper = document.getElementById('before-image-wrapper');
+        const beforeImg = document.getElementById('before-image');
+        const handle = document.getElementById('slider-handle');
+        const container = document.getElementById('before-after-container');
+
+        if (slider && beforeWrapper && beforeImg && handle && container) {
+            function updateSlider(val) {
+                beforeWrapper.style.width = val + '%';
+                handle.style.left = val + '%';
+                beforeImg.style.width = container.offsetWidth + 'px';
+            }
+
+            slider.addEventListener('input', (e) => {
+                updateSlider(e.target.value);
+            });
+
+            window.addEventListener('resize', () => {
+                updateSlider(slider.value);
+            });
+
+            // Initial setup
+            updateSlider(50);
+        }
+    });
     </script>
 </body>
 
