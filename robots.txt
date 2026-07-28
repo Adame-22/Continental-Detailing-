@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+
+Disallow: /acompte.html
+Disallow: /reglement.html
+Disallow: /insta-senior.html
+Disallow: /flyer.html
+Disallow: /flyer-tarifs.html
+Disallow: /flyer_base.html
+Disallow: /flyer_tarifs.html
+
+Sitemap: https://continentaldetailing.fr/sitemap.xml

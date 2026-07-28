@@ -5,6 +5,7 @@
     <link rel="icon" type="image/png" sizes="192x192" href="images/favicon.png">
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
     <meta charset="UTF-8">
+    <meta name="robots" content="noindex, nofollow">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Paiement Acompte | Continental Detailing</title>
     <meta name="description" content="Réglez l'acompte de votre prestation Continental Detailing en toute sécurité pour valider votre rendez-vous.">
@@ -53,7 +54,7 @@
     <nav class="nav-main" id="navbar">
         <div class="nav-inner">
             <a href="index.html" class="logo-link flex items-center">
-                <img src="images/logo_continental.png" alt="Continental Detailing" class="main-logo" style="height:44px; width:auto; object-fit:contain;">
+                <img src="images/logo_continental.webp" alt="Continental Detailing" class="main-logo" style="height:44px; width:auto; object-fit:contain;">
             </a>
             <div class="nav-links">
                 <a href="index.html" class="nav-link">Accueil</a>
@@ -151,7 +152,7 @@
             <div class="footer-grid">
                 <div>
                     <a href="index.html" class="logo-link flex items-center" style="margin-bottom: 24px;">
-                        <img src="images/logo_continental_white.png" alt="Continental Detailing" class="main-logo" style="height:44px; width:auto; object-fit:contain;">
+                        <img src="images/logo_continental_white.webp" alt="Continental Detailing" class="main-logo" style="height:44px; width:auto; object-fit:contain;">
                     </a>
                     <p class="text-sm font-light text-[rgba(255,255,255,0.5)] max-w-sm">
                         L'art du détail pour votre automobile. Detailing premium à domicile en Essonne et Seine-et-Marne.
@@ -172,10 +173,10 @@
             </div>
             
             <div class="footer-bottom">
-                <div class="footer-copy">© 2026 Continental Detailing — Tous droits réservés. &nbsp;·&nbsp;<a href="mentions-legales.html" style="color:#A0A0A0; text-decoration:underline;" onmouseover="this.style.color='#FFFFFF'" onmouseout="this.style.color='#A0A0A0'">Mentions légales</a> &nbsp;·&nbsp;<a href="cgv.html" style="color:#A0A0A0; text-decoration:underline;" onmouseover="this.style.color='#FFFFFF'" onmouseout="this.style.color='#A0A0A0'">CGV</a></div>
+                <div class="footer-copy">© <span class="cd-year">2026</span> Continental Detailing — Tous droits réservés. &nbsp;·&nbsp;<a href="mentions-legales.html" style="color:#A0A0A0; text-decoration:underline;" onmouseover="this.style.color='#FFFFFF'" onmouseout="this.style.color='#A0A0A0'">Mentions légales</a> &nbsp;·&nbsp;<a href="cgv.html" style="color:#A0A0A0; text-decoration:underline;" onmouseover="this.style.color='#FFFFFF'" onmouseout="this.style.color='#A0A0A0'">CGV</a></div>
                 <div class="footer-socials">
                     <a href="mailto:continental.detailing.idf@gmail.com"><i class="fa-regular fa-envelope"></i></a>
-                    <a href="https://www.instagram.com/continental.detailing.idf/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://www.instagram.com/continental.detailing.idf/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-instagram"></i></a>
                 </div>
             </div>
         </div>
@@ -183,5 +184,6 @@
  
     <script src="js/motion.js"></script>
 
+<script>document.querySelectorAll(".cd-year").forEach(e=>e.textContent=new Date().getFullYear());</script>
 </body>
 </html>
