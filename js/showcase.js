@@ -29,13 +29,13 @@
     ];
 
     const CARS = {
-        citadine: { img: 'images/car-citadine.png', label: 'Citadine', subtitle: 'Clio, 208, Polo, Yaris...', icon: 'fa-car-side', services: { ext: stdExt, int: stdInt, complet: stdComplet } },
-        berline:  { img: 'images/car-berline.png', label: 'Berline', subtitle: 'Série 3, Classe C, A4, Model 3...', icon: 'fa-car', services: { ext: stdExt, int: stdInt, complet: stdComplet } },
-        suv:      { img: 'images/car-suv.png', label: 'SUV', subtitle: '3008, Tiguan, RAV4, Model Y...', icon: 'fa-truck-pickup', services: { ext: stdExt, int: stdInt, complet: stdComplet } },
-        mono5:    { img: 'images/car-monospace.png', label: 'Monospace 5pl', subtitle: 'Scénic, Touran, Espace...', icon: 'fa-van-shuttle', services: { ext: stdExt, int: stdInt, complet: stdComplet } },
-        mono7:    { img: 'images/car-monospace.png', label: 'Monospace 7pl', subtitle: 'Classe V, Espace 7, Touran 7...', icon: 'fa-bus', services: { ext: stdExt, int: stdInt, complet: stdComplet } },
-        prestige: { img: 'images/car-prestige.png', label: 'Prestige / Sport', subtitle: '911, Ferrari, RS6, Luxe...', icon: 'fa-gem', services: { ext: stdExt, int: stdInt, complet: stdComplet } },
-        util:     { img: 'images/car-utilitaire.png', label: 'Utilitaire', subtitle: 'Sprinter, Master, Transit...', icon: 'fa-truck', services: { ext: ['Sur devis selon volume'], int: ['Sur devis selon volume'], complet: ['État du véhicule analysé sur place', 'Devis personnalisé garanti', 'Intervention sur site possible', 'Contactez-nous pour une estimation'] } }
+        citadine: { img: 'images/car-citadine.webp', label: 'Citadine', subtitle: 'Clio, 208, Polo, Yaris...', icon: 'fa-car-side', services: { ext: stdExt, int: stdInt, complet: stdComplet } },
+        berline:  { img: 'images/car-berline.webp', label: 'Berline', subtitle: 'Série 3, Classe C, A4, Model 3...', icon: 'fa-car', services: { ext: stdExt, int: stdInt, complet: stdComplet } },
+        suv:      { img: 'images/car-suv.webp', label: 'SUV', subtitle: '3008, Tiguan, RAV4, Model Y...', icon: 'fa-truck-pickup', services: { ext: stdExt, int: stdInt, complet: stdComplet } },
+        mono5:    { img: 'images/car-monospace.webp', label: 'Monospace 5pl', subtitle: 'Scénic, Touran, Espace...', icon: 'fa-van-shuttle', services: { ext: stdExt, int: stdInt, complet: stdComplet } },
+        mono7:    { img: 'images/car-monospace.webp', label: 'Monospace 7pl', subtitle: 'Classe V, Espace 7, Touran 7...', icon: 'fa-bus', services: { ext: stdExt, int: stdInt, complet: stdComplet } },
+        prestige: { img: 'images/car-prestige.webp', label: 'Prestige / Sport', subtitle: '911, Ferrari, RS6, Luxe...', icon: 'fa-gem', services: { ext: stdExt, int: stdInt, complet: stdComplet } },
+        util:     { img: 'images/car-utilitaire.webp', label: 'Utilitaire', subtitle: 'Sprinter, Master, Transit...', icon: 'fa-truck', services: { ext: ['Sur devis selon volume'], int: ['Sur devis selon volume'], complet: ['État du véhicule analysé sur place', 'Devis personnalisé garanti', 'Intervention sur site possible', 'Contactez-nous pour une estimation'] } }
     };
 
     const TARIFS = {
