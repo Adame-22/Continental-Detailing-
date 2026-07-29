@@ -28,6 +28,32 @@
         'Cire de finition brillance sur carrosserie'
     ];
 
+    /* ── Prestations moto ─────────────────────────────────────────
+       Une moto n'a pas d'habitacle : les trois niveaux correspondent
+       à une montée en minutie, pas à intérieur/extérieur.           */
+    const motoEssentiel = [
+        'Prélavage actif (Snow Foam) sans contact',
+        'Lavage manuel carénages & réservoir',
+        'Nettoyage des jantes et pneumatiques',
+        'Séchage à l\'air pulsé (zones électriques préservées)'
+    ];
+
+    const motoDetails = [
+        '✨ Toutes les prestations de la formule Essentiel',
+        'Dégraissage et lubrification de la chaîne',
+        'Détourage au pinceau : cadre, rayons, radiateur',
+        'Nettoyage du bloc moteur et des échappements',
+        'Polish des optiques et de la bulle'
+    ];
+
+    const motoComplet = [
+        '✨ Toutes les prestations de la formule Détails',
+        'Cire de protection hydrophobe sur carénages',
+        'Soin nourrissant de la selle (cuir ou synthétique)',
+        'Traitement anti-corrosion des parties métalliques',
+        'Rénovation des plastiques et caches ternis'
+    ];
+
     const CARS = {
         citadine: { img: 'images/car-citadine.webp', label: 'Citadine', subtitle: 'Clio, 208, Polo, Yaris...', icon: 'fa-car-side', services: { ext: stdExt, int: stdInt, complet: stdComplet } },
         berline:  { img: 'images/car-berline.webp', label: 'Berline', subtitle: 'Série 3, Classe C, A4, Model 3...', icon: 'fa-car', services: { ext: stdExt, int: stdInt, complet: stdComplet } },
@@ -35,6 +61,11 @@
         mono5:    { img: 'images/car-monospace.webp', label: 'Monospace 5pl', subtitle: 'Scénic, Touran, Espace...', icon: 'fa-van-shuttle', services: { ext: stdExt, int: stdInt, complet: stdComplet } },
         mono7:    { img: 'images/car-monospace.webp', label: 'Monospace 7pl', subtitle: 'Classe V, Espace 7, Touran 7...', icon: 'fa-bus', services: { ext: stdExt, int: stdInt, complet: stdComplet } },
         prestige: { img: 'images/car-prestige.webp', label: 'Prestige / Sport', subtitle: '911, Ferrari, RS6, Luxe...', icon: 'fa-gem', services: { ext: stdExt, int: stdInt, complet: stdComplet } },
+        moto:     { img: null, label: 'Moto', subtitle: 'Roadster, Sportive, Trail, Custom...', icon: 'fa-motorcycle',
+                    labels: { ext:    { name: 'Essentiel', sub: 'Lavage sécurisé', icon: 'fa-spray-can' },
+                              int:    { name: 'Détails',   sub: 'Chaîne & cadre',  icon: 'fa-link' },
+                              complet:{ name: 'Pack Complet', rec: 'Recommandé',   icon: 'fa-gem' } },
+                    services: { ext: motoEssentiel, int: motoDetails, complet: motoComplet } },
         util:     { img: 'images/car-utilitaire.webp', label: 'Utilitaire', subtitle: 'Sprinter, Master, Transit...', icon: 'fa-truck', services: { ext: ['Sur devis selon volume'], int: ['Sur devis selon volume'], complet: ['État du véhicule analysé sur place', 'Devis personnalisé garanti', 'Intervention sur site possible', 'Contactez-nous pour une estimation'] } }
     };
 
@@ -45,6 +76,7 @@
         mono5:    { ext: 79, int: 109, complet: 149 },
         mono7:    { ext: 89, int: 119, complet: 159 },
         prestige: { ext: 89, int: 129, complet: 199 },
+        moto:     { ext: 39, int: 69, complet: 99 },
         util:     { ext: null, int: null, complet: null }
     };
 
@@ -95,6 +127,7 @@
                     <div class="car-platform">
                         <div class="car-image-wrap" id="car-image-wrap">
                             <img id="showcase-car-img" src="" alt="" class="showcase-car-img">
+                            <i id="showcase-car-icon" class="fa-solid fa-motorcycle showcase-car-icon" style="display:none" aria-hidden="true"></i>
                             <div class="car-reflection"></div>
                         </div>
                         <div class="car-glow" id="car-glow"></div>
@@ -222,6 +255,30 @@
     }
 
     /* ── Switch car ── */
+    /* Libellés de formules par défaut (voitures) */
+    const DEFAULT_LABELS = {
+        ext:     { name: 'Extérieur',    sub: 'Décontamination', icon: 'fa-spray-can' },
+        int:     { name: 'Intérieur',    sub: 'Pressing HD',     icon: 'fa-couch' },
+        complet: { name: 'Pack Complet', rec: 'Recommandé',      icon: 'fa-gem' }
+    };
+
+    /* Adapte le nom des formules au véhicule sélectionné (ex. moto) */
+    function applyFormuleLabels(data) {
+        ['ext', 'int', 'complet'].forEach(f => {
+            const pill = document.querySelector('.fpill[data-f="' + f + '"]');
+            if (!pill) return;
+            const cfg = (data.labels && data.labels[f]) || DEFAULT_LABELS[f];
+            const nameEl = pill.querySelector('.fpill-name');
+            const subEl  = pill.querySelector('.fpill-sub');
+            const recEl  = pill.querySelector('.fpill-rec');
+            const iconEl = pill.querySelector('.fpill-icon');
+            if (nameEl) nameEl.textContent = cfg.name;
+            if (subEl && cfg.sub) subEl.textContent = cfg.sub;
+            if (recEl && cfg.rec) recEl.textContent = cfg.rec;
+            if (iconEl && cfg.icon) iconEl.className = 'fa-solid ' + cfg.icon + ' fpill-icon';
+        });
+    }
+
     function switchCar(key) {
         if (isAnimating || currentCar === key) return;
         isAnimating = true;
@@ -238,8 +295,23 @@
         wrap.style.transform = 'translateX(-32px) scale(0.92)';
 
         setTimeout(() => {
-            img.src = data.img;
-            img.alt = data.label;
+            // Véhicule sans visuel photo : on bascule sur une grande icône
+            const icon = document.getElementById('showcase-car-icon');
+            if (data.img) {
+                img.src = data.img;
+                img.alt = data.label;
+                img.style.display = '';
+                if (icon) icon.style.display = 'none';
+            } else {
+                img.removeAttribute('src');
+                img.alt = '';
+                img.style.display = 'none';
+                if (icon) {
+                    icon.className = 'fa-solid ' + data.icon + ' showcase-car-icon';
+                    icon.style.display = '';
+                }
+            }
+            applyFormuleLabels(data);
             document.getElementById('car-label-name').textContent = data.label;
             document.getElementById('car-label-sub').textContent = data.subtitle;
             glow.style.boxShadow = '0 0 60px 16px rgba(0,0,0,0.05)';

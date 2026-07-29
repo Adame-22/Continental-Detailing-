@@ -7,8 +7,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="canonical" href="https://continentaldetailing.fr/services.html">
-    <title>Tarifs Detailing & Nettoyage Auto à Domicile — Prix & Réservation | Continental Detailing</title>
-    <meta name="description" content="Tarifs detailing à domicile dès 49€ : citadine, berline, SUV, monospace, prestige. Estimez votre prestation en ligne et réservez en 1 clic par WhatsApp. Essonne (91) & Seine-et-Marne (77).">
+    <title>Tarifs Detailing Auto & Moto à Domicile — Prix & Réservation | Continental Detailing</title>
+    <meta name="description" content="Tarifs detailing à domicile dès 39€ : moto, citadine, berline, SUV, monospace, prestige. Estimez votre prestation en ligne et réservez en 1 clic par WhatsApp. Essonne (91) & Seine-et-Marne (77).">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
         <link rel="preconnect" href="https://fonts.googleapis.com/">
@@ -44,16 +44,16 @@
     </script>
     </script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    <meta property="og:title" content="Tarifs Detailing & Nettoyage Auto à Domicile — Prix & Réservation | Continental Detailing">
-    <meta property="og:description" content="Tarifs detailing à domicile dès 49€ : citadine, berline, SUV, monospace, prestige. Estimez votre prestation en ligne et réservez en 1 clic par WhatsApp. Essonne (91) & Seine-et-Marne (77).">
+    <meta property="og:title" content="Tarifs Detailing Auto & Moto à Domicile — Prix & Réservation | Continental Detailing">
+    <meta property="og:description" content="Tarifs detailing à domicile dès 39€ : moto, citadine, berline, SUV, monospace, prestige. Estimez votre prestation en ligne et réservez en 1 clic par WhatsApp. Essonne (91) & Seine-et-Marne (77).">
     <meta property="og:image" content="https://continentaldetailing.fr/images/hero-bg-hq.webp">
     <meta property="og:url" content="https://continentaldetailing.fr/services.html">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Continental Detailing">
     <meta property="og:locale" content="fr_FR">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Tarifs Detailing & Nettoyage Auto à Domicile — Prix & Réservation | Continental Detailing">
-    <meta name="twitter:description" content="Tarifs detailing à domicile dès 49€ : citadine, berline, SUV, monospace, prestige. Estimez votre prestation en ligne et réservez en 1 clic par WhatsApp. Essonne (91) & Seine-et-Marne (77).">
+    <meta name="twitter:title" content="Tarifs Detailing Auto & Moto à Domicile — Prix & Réservation | Continental Detailing">
+    <meta name="twitter:description" content="Tarifs detailing à domicile dès 39€ : moto, citadine, berline, SUV, monospace, prestige. Estimez votre prestation en ligne et réservez en 1 clic par WhatsApp. Essonne (91) & Seine-et-Marne (77).">
     <meta name="twitter:image" content="https://continentaldetailing.fr/images/hero-bg-hq.webp">
     <!-- Données structurées : catalogue de prestations -->
     <script type="application/ld+json">
@@ -83,7 +83,10 @@
           { "@type": "Offer", "name": "Pack Complet — SUV", "price": "139", "priceCurrency": "EUR" },
           { "@type": "Offer", "name": "Pack Complet — Monospace 5 places", "price": "149", "priceCurrency": "EUR" },
           { "@type": "Offer", "name": "Pack Complet — Monospace 7 places", "price": "159", "priceCurrency": "EUR" },
-          { "@type": "Offer", "name": "Pack Complet — Prestige / Sport", "price": "199", "priceCurrency": "EUR" }
+          { "@type": "Offer", "name": "Pack Complet — Prestige / Sport", "price": "199", "priceCurrency": "EUR" },
+          { "@type": "Offer", "name": "Nettoyage Moto — Essentiel", "price": "39", "priceCurrency": "EUR" },
+          { "@type": "Offer", "name": "Nettoyage Moto — Détails", "price": "69", "priceCurrency": "EUR" },
+          { "@type": "Offer", "name": "Pack Complet Moto", "price": "99", "priceCurrency": "EUR" }
         ]
       }
     }
@@ -111,7 +114,7 @@
 
     <!-- Main Content -->
     <main class="relative z-10 pt-10 px-4 sm:px-4 md:px-6 max-w-4xl mx-auto pb-4"
-          @showcasecar.window="vehicule = $event.detail.key; stepsDone = Math.max(stepsDone, 1)"
+          @showcasecar.window="vehicule = $event.detail.key; if (vehicule === 'moto') options.non_videe = false; stepsDone = Math.max(stepsDone, 1)"
           @showcaseformule.window="formule = $event.detail.f; stepsDone = Math.max(stepsDone, 2)"
           x-data="{ 
             clientType: new URLSearchParams(window.location.search).get('type') === 'pro' ? 'pro' : 'particulier',
@@ -137,24 +140,36 @@
                 suv: { ext: 69, int: 99, complet: 139, nom: 'SUV' },
                 mono5: { ext: 79, int: 109, complet: 149, nom: 'Monospace 5pl' },
                 mono7: { ext: 89, int: 119, complet: 159, nom: 'Monospace 7pl' },
-                prestige: { ext: 89, int: 129, complet: 199, nom: 'Prestige / Sport' }
+                prestige: { ext: 89, int: 129, complet: 199, nom: 'Prestige / Sport' },
+                moto: { ext: 39, int: 69, complet: 99, nom: 'Moto' }
             },
-            nomsFormules: { 
-                ext: 'Formule Extérieur (Décontamination & Brillance)', 
-                int: 'Formule Intérieur (Rénovation Haute Précision)', 
-                complet: 'Le Signature (Pack Complet)' 
+            nomsFormules: {
+                ext: 'Formule Extérieur (Décontamination & Brillance)',
+                int: 'Formule Intérieur (Rénovation Haute Précision)',
+                complet: 'Le Signature (Pack Complet)'
+            },
+            // Une moto n'a pas d'habitacle : libellés dédiés
+            nomsFormulesMoto: {
+                ext: 'Formule Essentiel (Lavage sécurisé)',
+                int: 'Formule Détails (Chaîne, cadre & moteur)',
+                complet: 'Pack Complet Moto (avec protection)'
             },
             nomsPaiement: { especes: 'Espèces', cb: 'Carte Bancaire', ligne: 'Paiement en ligne' },
             
             get isUtilitaire() { return this.vehicule === 'util'; },
 
             get nomVehicule() {
-                const n = { citadine:'Citadine', berline:'Berline', suv:'SUV', mono5:'Monospace 5pl', mono7:'Monospace 7pl', prestige: 'Prestige / Sport', util:'Utilitaire' };
+                const n = { citadine:'Citadine', berline:'Berline', suv:'SUV', mono5:'Monospace 5pl', mono7:'Monospace 7pl', prestige: 'Prestige / Sport', moto:'Moto', util:'Utilitaire' };
                 return n[this.vehicule] || this.vehicule;
             },
 
+            get isMoto() { return this.vehicule === 'moto'; },
+
             get nomFormule() {
-                return { ext:'Extérieur', int:'Intérieur', complet:'Pack Complet' }[this.formule] || this.formule;
+                const libelles = this.isMoto
+                    ? { ext:'Essentiel', int:'Détails', complet:'Pack Complet' }
+                    : { ext:'Extérieur', int:'Intérieur', complet:'Pack Complet' };
+                return libelles[this.formule] || this.formule;
             },
 
             get economie() {
@@ -183,8 +198,8 @@
                 }
 
                 let msg = 'Bonjour Continental Detailing, je souhaite planifier une intervention :\n\n';
-                msg += '🚗 Véhicule : ' + this.tarifs[this.vehicule].nom + '\n';
-                msg += '✨ Formule : ' + this.nomsFormules[this.formule] + '\n';
+                msg += (this.isMoto ? '🏍️ Véhicule : ' : '🚗 Véhicule : ') + this.tarifs[this.vehicule].nom + '\n';
+                msg += '✨ Formule : ' + (this.isMoto ? this.nomsFormulesMoto : this.nomsFormules)[this.formule] + '\n';
                 
                 let opts = [];
                 if(this.options.poils) opts.push('Poils/Très sale');
@@ -202,7 +217,7 @@
                 this.formStatus = 'submitting';
 
                 const vehiculeNom = this.isUtilitaire ? 'Utilitaire (devis)' : (this.tarifs[this.vehicule]?.nom || this.vehicule);
-                const formuleNom  = this.isUtilitaire ? 'Sur devis' : this.nomsFormules[this.formule];
+                const formuleNom  = this.isUtilitaire ? 'Sur devis' : (this.isMoto ? this.nomsFormulesMoto : this.nomsFormules)[this.formule];
                 const prixStr     = (this.totalPrix > 0) ? this.totalPrix + '\u20ac' : 'Sur devis';
 
                 fetch('https://api.web3forms.com/submit', {
@@ -342,7 +357,7 @@
                             </div>
                         </div>
                     </button>
-                    <button @click="options.non_videe = !options.non_videe; stepsDone = Math.max(stepsDone, 3)"
+                    <button x-show="!isMoto" @click="options.non_videe = !options.non_videe; stepsDone = Math.max(stepsDone, 3)"
                             :class="options.non_videe ? 'bg-bg-alt border-l-2 border-l-primary' : 'border-l-2 border-l-transparent'"
                             class="w-full flex items-center justify-between px-5 py-4 border-b border-gray-200 hover:bg-bg-alt transition-colors">
                         <div class="flex items-center gap-4">
@@ -493,6 +508,14 @@
                             <h3 class="font-medium text-primary text-sm tracking-wide uppercase">Prestige / Sport / Très Grand SUV</h3>
                         </div>
                         <p class="text-xs text-secondary leading-relaxed font-light">Ex: Porsche (911, Cayenne, Macan), Ferrari, Lamborghini, Audi RS, BMW M, Mercedes AMG, Range Rover, BMW X5/X6, Audi Q7/Q8...</p>
+                    </div>
+
+                    <div class="p-4 bg-bg-alt rounded-lg border border-gray-100">
+                        <div class="flex items-center gap-3 mb-2">
+                            <i class="fa-solid fa-motorcycle text-primary text-lg"></i>
+                            <h3 class="font-medium text-primary text-sm tracking-wide uppercase">Moto</h3>
+                        </div>
+                        <p class="text-xs text-secondary leading-relaxed font-light">Roadster, sportive, trail, custom, scooter grande cylindrée. Formules adaptées : lavage sécurisé sans contact sur les parties électriques, entretien de la chaîne et détourage du cadre.</p>
                     </div>
 
                     <div class="p-4 bg-bg-alt rounded-lg border border-gray-100">

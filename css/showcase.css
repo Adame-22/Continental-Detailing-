@@ -157,6 +157,18 @@
     display: block;
 }
 
+/* Visuel de repli pour les véhicules sans photo (ex. moto) */
+.showcase-car-icon {
+    display: block;
+    width: 100%;
+    text-align: center;
+    font-size: clamp(5rem, 16vw, 11rem);
+    line-height: 1;
+    padding: 2.5rem 0;
+    color: var(--primary);
+    opacity: 0.88;
+}
+
 .car-reflection {
     position: absolute;
     bottom: -24px; left: 10%; right: 10%;
