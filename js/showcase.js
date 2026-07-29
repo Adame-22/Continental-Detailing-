@@ -61,7 +61,7 @@
         mono5:    { img: 'images/car-monospace.webp', label: 'Monospace 5pl', subtitle: 'Scénic, Touran, Espace...', icon: 'fa-van-shuttle', services: { ext: stdExt, int: stdInt, complet: stdComplet } },
         mono7:    { img: 'images/car-monospace.webp', label: 'Monospace 7pl', subtitle: 'Classe V, Espace 7, Touran 7...', icon: 'fa-bus', services: { ext: stdExt, int: stdInt, complet: stdComplet } },
         prestige: { img: 'images/car-prestige.webp', label: 'Prestige / Sport', subtitle: '911, Ferrari, RS6, Luxe...', icon: 'fa-gem', services: { ext: stdExt, int: stdInt, complet: stdComplet } },
-        moto:     { img: null, label: 'Moto', subtitle: 'Roadster, Sportive, Trail, Custom...', icon: 'fa-motorcycle',
+        moto:     { img: 'images/car-moto.webp', label: 'Moto', subtitle: 'Roadster, Sportive, Trail, Custom...', icon: 'fa-motorcycle',
                     labels: { ext:    { name: 'Essentiel', sub: 'Lavage sécurisé', icon: 'fa-spray-can' },
                               int:    { name: 'Détails',   sub: 'Chaîne & cadre',  icon: 'fa-link' },
                               complet:{ name: 'Pack Complet', rec: 'Recommandé',   icon: 'fa-gem' } },
