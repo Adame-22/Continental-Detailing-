@@ -14,6 +14,19 @@
     overflow: hidden;
 }
 
+/* Sur grand écran, le sélecteur déborde du conteneur de texte
+   pour exploiter la largeur disponible, tout en restant centré. */
+@media (min-width: 1100px) {
+    .showcase-wrapper {
+        --sw: min(1180px, calc(100vw - 4rem));
+        width: var(--sw);
+        margin-left: calc((100% - var(--sw)) / 2);
+    }
+}
+@media (min-width: 1500px) {
+    .showcase-wrapper { --sw: min(1320px, calc(100vw - 5rem)); }
+}
+
 /* ══════════════════════════════════════════
    1. VEHICLE NAV BAR  (top strip)
    ══════════════════════════════════════════ */
@@ -150,6 +163,10 @@
     transition: transform 0.45s cubic-bezier(0.16,1,0.3,1), opacity 0.3s ease;
     transform-style: preserve-3d;
 }
+
+/* Le véhicule profite de la largeur gagnée sur grand écran */
+@media (min-width: 1100px) { .car-image-wrap { max-width: 520px; } }
+@media (min-width: 1500px) { .car-image-wrap { max-width: 600px; } }
 
 .showcase-car-img {
     width: 100%;
