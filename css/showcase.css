@@ -43,13 +43,26 @@
 }
 .vehicle-nav::-webkit-scrollbar { display: none; }
 
+/* Sur ordinateur : colonnes de largeur identique réparties sur toute
+   la barre. grid-auto-columns s'adapte au nombre de véhicules. */
+@media (min-width: 1100px) {
+    .vehicle-nav {
+        display: grid;
+        grid-auto-flow: column;
+        grid-auto-columns: 1fr;
+        gap: 12px;
+        overflow: visible;
+    }
+}
+
 .veh-tab {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 6px;
-    padding: 12px 24px;
+    min-height: 82px;
+    padding: 12px 24px 20px;
     border: 1px solid var(--border);
     background: var(--bg);
     border-radius: 24px;
@@ -76,11 +89,18 @@
     transition: color 0.3s ease;
 }
 
+/* Badge « Devis » sorti du flux : sans lui, l'onglet Utilitaire
+   était plus haut et son libellé désaligné des autres. */
 .veh-tab .veh-devis {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 6px;
+    text-align: center;
     font-size: 0.55rem;
     font-weight: 700;
     letter-spacing: 0.08em;
-    color: var(--primary);
+    color: var(--muted);
     text-transform: uppercase;
 }
 
@@ -109,6 +129,28 @@
 }
 .veh-tab.active i { color: var(--primary) !important; }
 .veh-tab.active .veh-devis { color: var(--primary) !important; }
+
+/* Colonnes de largeur égale : on resserre les marges internes et on
+   adapte le texte pour que les libellés longs tiennent sans déborder. */
+@media (min-width: 1100px) {
+    .veh-tab {
+        padding-left: 6px;
+        padding-right: 6px;
+        min-width: 0;
+        font-size: 0.60rem;
+        letter-spacing: 0.03em;
+    }
+    .veh-tab i { font-size: 1.25rem; }
+}
+@media (min-width: 1400px) {
+    .veh-tab {
+        padding-left: 12px;
+        padding-right: 12px;
+        font-size: 0.66rem;
+        letter-spacing: 0.05em;
+    }
+    .veh-tab i { font-size: 1.35rem; }
+}
 
 /* ══════════════════════════════════════════
    2. STAGE + PANEL — two-column row
