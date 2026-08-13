@@ -497,7 +497,17 @@
     /* ── Boot ── */
     document.addEventListener('DOMContentLoaded', () => {
         createShowcase();
-        setTimeout(() => switchCar('citadine'), 350);
+
+        // Respecte le véhicule/formule choisis dans le menu (ex. services.html?v=suv&f=ext)
+        const params = new URLSearchParams(window.location.search);
+        const vParam = params.get('v');
+        const fParam = params.get('f');
+        const startCar = (vParam && CARS[vParam]) ? vParam : 'citadine';
+        const startFormule = ['ext', 'int', 'complet'].includes(fParam) ? fParam : 'complet';
+
+        currentFormule = startFormule;
+        setActiveFormuleTab(startFormule);
+        setTimeout(() => switchCar(startCar), 350);
     });
 
     /* ── Public API ── */
