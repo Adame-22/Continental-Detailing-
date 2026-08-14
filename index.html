@@ -386,16 +386,18 @@
 
                 <!-- Secondary items (placeholders for now or reuse existing) -->
                 <div class="flex flex-col gap-6">
-                    <div class="h-full group relative overflow-hidden rounded-xl reveal-right" style="min-height:240px;">
-                        <img src="images/car-berline.webp" alt="Detailing Berline Luxe" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
-                        <div class="absolute inset-0 bg-gradient-to-t from-white/90 via-transparent to-transparent opacity-40"></div>
+                    <div onclick="openVideoModal('images/video-twingo-tapis.mp4')" class="h-full group relative overflow-hidden rounded-xl reveal-right cursor-pointer" style="min-height:240px;">
+                        <video src="images/video-twingo-tapis.mp4" autoplay muted loop playsinline class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"></video>
+                        <div class="absolute inset-0 bg-gradient-to-t from-white/90 via-transparent to-transparent opacity-50"></div>
                         <div class="absolute bottom-6 left-6">
-                            <h4 class="text-lg font-sans text-primary font-semibold">Berline Premium</h4>
-                            <p class="text-muted text-xs">Rénovation intérieure cuir</p>
+                            <h4 class="text-lg font-sans text-primary font-semibold">Twingo 3</h4>
+                            <p class="text-muted text-xs">Rénovation tapis intérieur</p>
                         </div>
-                        <div class="absolute bottom-8 right-8 w-12 h-12 rounded-full bg-black/60 backdrop-blur-md flex items-center justify-center text-white border border-white/10 hover:bg-black transition-colors duration-300"><i class="fa-solid fa-arrow-right"></i></div>
+                        <div class="absolute bottom-8 right-8 w-12 h-12 rounded-full bg-black/60 backdrop-blur-md flex items-center justify-center text-white border border-white/10 hover:bg-black transition-colors duration-300">
+                            <i class="fa-solid fa-play text-sm ml-0.5"></i>
+                        </div>
                     </div>
-                    <div onclick="openVideoModal()" class="h-full group relative overflow-hidden rounded-xl reveal-right stagger-1 cursor-pointer" style="min-height:240px;">
+                    <div onclick="openVideoModal('images/presentation.mp4')" class="h-full group relative overflow-hidden rounded-xl reveal-right stagger-1 cursor-pointer" style="min-height:240px;">
                         <video src="images/presentation.mp4" autoplay muted loop playsinline class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"></video>
                         <div class="absolute inset-0 bg-gradient-to-t from-white/90 via-transparent to-transparent opacity-50"></div>
                         <div class="absolute bottom-6 left-6">
@@ -905,9 +907,10 @@
             }
         }
 
-        function openVideoModal() {
+        function openVideoModal(src) {
             const modal = document.getElementById('video-modal');
             const video = document.getElementById('modal-video');
+            if (src) video.src = src;
             modal.classList.remove('opacity-0', 'pointer-events-none');
             modal.classList.add('opacity-100');
             video.play();
@@ -931,8 +934,8 @@
         <button onclick="closeVideoModal()" class="absolute top-6 right-8 text-white hover:text-gray-300 text-xs font-bold tracking-widest uppercase flex items-center gap-3 bg-transparent border-none cursor-pointer">
             Fermer <i class="fa-solid fa-xmark text-xl"></i>
         </button>
-        <div class="w-full max-w-4xl px-4 aspect-video">
-            <video id="modal-video" src="images/presentation.mp4" controls class="w-full h-full rounded-xl shadow-2xl bg-black"></video>
+        <div class="w-full max-w-4xl px-4 flex items-center justify-center" style="max-height:85vh;">
+            <video id="modal-video" src="" controls class="rounded-xl shadow-2xl bg-black" style="max-width:100%; max-height:85vh; width:auto; height:auto; object-fit:contain;"></video>
         </div>
     </div>
 
