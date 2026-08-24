@@ -805,7 +805,7 @@ body {
     transition: color var(--duration-short) var(--ease);
 }
 
-.footer-socials a:hover { color: #FFFFFF; }
+.footer-socials a:hover { color: var(--color-racing-red); }
 
 /* ═══════════════════════════════════════
    MOTION
@@ -892,4 +892,66 @@ summary {
 }
 details[open] {
     border-color: #1A1A1E;
+}
+
+/* ═══════════════════════════════════════
+   MOTORSPORT ACCENT — subtle racing touches
+   layered on top of the existing system,
+   never replacing its tokens or spacing
+   ═══════════════════════════════════════ */
+
+:root {
+    --color-racing-red: #E10600;
+}
+
+/* Checkered flag micro-flourish */
+.checker-chip {
+    display: inline-flex;
+    width: 22px;
+    height: 8px;
+    background-image: conic-gradient(from 90deg at 25% 25%, #000 90deg, #fff 90deg 180deg, #000 180deg 270deg, #fff 270deg);
+    background-size: 6px 6px;
+    border-radius: 2px;
+    flex-shrink: 0;
+    opacity: 0.9;
+}
+
+/* Checkered connector between process steps, replacing the plain grey line */
+.timeline-checker {
+    background-image: repeating-linear-gradient(90deg, #1A1A1E 0 10px, #fff 10px 20px);
+    background-size: 20px 2px;
+    background-repeat: repeat-x;
+    background-position: center;
+}
+
+/* Racing-red ring on step badges, on hover */
+.step-badge-racing {
+    transition: box-shadow var(--duration) var(--ease),
+                border-color var(--duration) var(--ease);
+}
+.step-badge-racing:hover {
+    border-color: var(--color-racing-red) !important;
+    box-shadow: 0 0 0 5px rgba(225, 6, 0, 0.12), var(--shadow-hover);
+}
+
+/* Racing-red sweep underline for pill CTAs */
+.cta-race {
+    position: relative;
+    overflow: hidden;
+}
+.cta-race::before {
+    content: '';
+    position: absolute;
+    left: 18%;
+    right: 18%;
+    bottom: 0;
+    height: 3px;
+    border-radius: 3px 3px 0 0;
+    background: var(--color-racing-red);
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform var(--duration) var(--ease);
+}
+.cta-race:hover::before {
+    transform: scaleX(1);
 }
