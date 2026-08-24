@@ -462,7 +462,7 @@
         <!-- Modal Guide Vehicules -->
         <div x-show="showGuide" class="fixed inset-0 z-[100] flex items-center justify-center bg-bg-dark/80 backdrop-blur-sm p-4" style="display: none;" x-transition>
             <div @click.away="showGuide = false" class="bg-bg w-full max-w-lg p-6 md:p-8 relative shadow-2xl border border-gray-200 rounded-xl overflow-hidden flex flex-col max-h-[85vh]">
-                <button @click="showGuide = false" class="absolute top-4 right-4 w-10 h-10 bg-bg-alt text-secondary flex items-center justify-center hover:bg-gray-200 transition-colors border border-gray-200 rounded-full z-10">
+                <button @click="showGuide = false" aria-label="Fermer le guide des catégories" class="absolute top-4 right-4 w-10 h-10 bg-bg-alt text-secondary flex items-center justify-center hover:bg-gray-200 transition-colors border border-gray-200 rounded-full z-10">
                     <i class="fa-solid fa-xmark"></i>
                 </button>
                 
@@ -534,7 +534,7 @@
         <!-- Modal Contact -->
         <div x-show="showContactModal" class="fixed inset-0 z-[100] flex items-center justify-center bg-bg-dark/80 backdrop-blur-sm p-4" style="display: none;" x-transition>
             <div @click.away="showContactModal = false; setTimeout(() => { showForm = false; formStatus = 'idle' }, 300)" class="bg-bg w-full max-w-md p-8 relative shadow-2xl text-center border border-gray-200 rounded-xl">
-                <button @click="showContactModal = false; setTimeout(() => { showForm = false; formStatus = 'idle' }, 300)" class="absolute top-4 right-4 w-10 h-10 bg-bg-alt text-secondary flex items-center justify-center hover:bg-gray-200 transition-colors border border-gray-200 rounded-full">
+                <button @click="showContactModal = false; setTimeout(() => { showForm = false; formStatus = 'idle' }, 300)" aria-label="Fermer" class="absolute top-4 right-4 w-10 h-10 bg-bg-alt text-secondary flex items-center justify-center hover:bg-gray-200 transition-colors border border-gray-200 rounded-full">
                     <i class="fa-solid fa-xmark"></i>
                 </button>
                 
