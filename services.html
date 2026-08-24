@@ -147,8 +147,9 @@
         
         <!-- Header -->
         <div class="text-center mb-12">
-            <h1 class="text-3xl md:text-5xl font-bold mb-6 text-white">Estimation & Réservation</h1>
-            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-green-500/10 text-green-400 text-[10px] md:text-xs font-bold border border-green-500/20 mb-8">
+            <h1 class="text-3xl md:text-5xl font-bold mb-6 text-white uppercase italic">Estimation & Réservation</h1>
+            <div class="inline-flex items-center gap-3 px-4 py-2 rounded-lg bg-green-500/10 text-green-400 text-[10px] md:text-xs font-bold border border-green-500/20 mb-8">
+                <span class="checker-strip"></span>
                 <i class="fa-solid fa-leaf"></i>
                 <span>MATÉRIEL 100% ÉLECTRIQUE & SILENCIEUX (ACCÈS EAU/PRISES REQUIS)</span>
             </div>
@@ -188,7 +189,7 @@
             <section class="mb-14">
                 <div class="flex items-center justify-between mb-8">
                     <h2 class="text-2xl font-bold flex items-center gap-3">
-                        <span class="w-10 h-10 rounded-xl bg-action/10 text-action flex items-center justify-center text-lg font-bold border border-action/20">01</span>
+                        <span class="badge-racing w-10 h-10 rounded-lg flex items-center justify-center text-lg font-bold"><span>01</span></span>
                         Véhicule
                     </h2>
                     <button @click="showGuide = true" class="text-sm font-semibold text-action hover:underline flex items-center gap-2">
@@ -240,7 +241,7 @@
 
             <section x-show="!isUtilitaire" class="mb-14">
                 <h2 class="text-2xl font-bold flex items-center gap-3 mb-8">
-                    <span class="w-10 h-10 rounded-xl bg-action/10 text-action flex items-center justify-center text-lg font-bold border border-action/20">02</span>
+                    <span class="badge-racing w-10 h-10 rounded-lg flex items-center justify-center text-lg font-bold"><span>02</span></span>
                     Votre prestation
                 </h2>
                 
@@ -261,7 +262,7 @@
                             :class="formule === 'complet' ? 'bg-action-gradient border-action shadow-[0_10px_25px_-5px_rgba(56,189,248,0.4)]' : 'bg-secondary/40 border-secondary'"
                             class="card-depth flex flex-col p-6 rounded-xl border-2 ui-transition relative text-left group">
                         <div class="absolute -top-3 left-6 flex items-center gap-2">
-                            <span class="px-2 py-1 bg-primary text-[9px] font-bold text-action rounded border border-action uppercase">Prestation Signature</span>
+                            <span class="tag-racing px-3 py-1 text-[9px] font-bold uppercase">Prestation Signature</span>
                             <span class="px-2 py-1 bg-green-500 text-[9px] font-bold text-white rounded shadow-lg animate-pulse" x-show="!isUtilitaire">
                                 -<span x-text="(tarifs[vehicule].ext + tarifs[vehicule].int) - tarifs[vehicule].complet"></span>€ d'économie
                             </span>
@@ -289,7 +290,7 @@
             <!-- 03. Options -->
             <section x-show="!isUtilitaire" class="mb-14">
                 <h2 class="text-2xl font-bold flex items-center gap-3 mb-8">
-                    <span class="w-10 h-10 rounded-xl bg-action/10 text-action flex items-center justify-center text-lg font-bold border border-action/20">03</span>
+                    <span class="badge-racing w-10 h-10 rounded-lg flex items-center justify-center text-lg font-bold"><span>03</span></span>
                     Options
                 </h2>
                 <div class="space-y-3">
@@ -326,7 +327,7 @@
             <!-- 04. Paiement -->
             <section x-show="!isUtilitaire" class="mb-14">
                 <h2 class="text-2xl font-bold flex items-center gap-3 mb-8">
-                    <span class="w-10 h-10 rounded-xl bg-action/10 text-action flex items-center justify-center text-lg font-bold border border-action/20">04</span>
+                    <span class="badge-racing w-10 h-10 rounded-lg flex items-center justify-center text-lg font-bold"><span>04</span></span>
                     Moyen de paiement souhaité
                 </h2>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
