@@ -47,3 +47,239 @@ body {
 .ui-transition {
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
+
+/* ===== Texture & Depth (grain film over the whole page) ===== */
+body {
+    position: relative;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 30;
+    pointer-events: none;
+    opacity: 0.035;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Fine diagonal weave — subtle carbon-fiber feel for section backgrounds */
+.texture-fine-lines {
+    background-image:
+        repeating-linear-gradient(45deg, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 1px, transparent 1px, transparent 7px),
+        repeating-linear-gradient(-45deg, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 1px, transparent 1px, transparent 7px);
+}
+
+/* ===== Premium buttons: layered shadows + glossy sweep on hover ===== */
+.btn-shine {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(155deg, #93DDFD 0%, #38BDF8 45%, #0B8FCB 100%);
+    border: 1px solid rgba(255,255,255,0.35);
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.55),
+        inset 0 -10px 16px -8px rgba(8,64,92,0.55),
+        0 14px 28px -10px rgba(14,165,233,0.55),
+        0 3px 6px rgba(0,0,0,0.3);
+    transition: transform 0.35s cubic-bezier(0.4,0,0.2,1), box-shadow 0.35s cubic-bezier(0.4,0,0.2,1);
+}
+
+.btn-shine::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(115deg, transparent 35%, rgba(255,255,255,0.5) 50%, transparent 65%);
+    transform: translateX(-130%);
+    transition: transform 0.7s ease;
+    mix-blend-mode: overlay;
+}
+
+.btn-shine:hover {
+    transform: translateY(-3px);
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.6),
+        inset 0 -10px 16px -8px rgba(8,64,92,0.6),
+        0 20px 38px -10px rgba(14,165,233,0.65),
+        0 6px 12px rgba(0,0,0,0.35);
+}
+
+.btn-shine:hover::after {
+    transform: translateX(130%);
+}
+
+.btn-shine:active {
+    transform: translateY(-1px);
+}
+
+/* ===== Outline buttons: subtle glow lift on hover ===== */
+.btn-outline-premium {
+    position: relative;
+    transition: transform 0.35s cubic-bezier(0.4,0,0.2,1), box-shadow 0.35s cubic-bezier(0.4,0,0.2,1), background-color 0.35s ease, color 0.35s ease, border-color 0.35s ease;
+    box-shadow: 0 8px 20px -12px rgba(56,189,248,0);
+}
+
+.btn-outline-premium:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 16px 32px -12px rgba(56,189,248,0.4);
+}
+
+/* ===== Card depth: layered shadow + elevate on hover ===== */
+.card-depth {
+    position: relative;
+    box-shadow:
+        0 1px 0 rgba(255,255,255,0.04) inset,
+        0 24px 40px -22px rgba(0,0,0,0.6),
+        0 2px 4px rgba(0,0,0,0.3);
+    transition: transform 0.4s cubic-bezier(0.4,0,0.2,1), box-shadow 0.4s cubic-bezier(0.4,0,0.2,1), border-color 0.4s ease, background-color 0.4s ease;
+}
+
+.card-depth:hover {
+    transform: translateY(-6px);
+    box-shadow:
+        0 1px 0 rgba(255,255,255,0.06) inset,
+        0 32px 54px -20px rgba(0,0,0,0.65),
+        0 4px 10px rgba(0,0,0,0.35);
+}
+
+/* ===== Premium nav links: small caps + animated underline ===== */
+.nav-link-premium {
+    position: relative;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding-bottom: 6px;
+}
+
+.nav-link-premium::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 1px;
+    background: var(--color-action);
+    transition: width 0.35s cubic-bezier(0.4,0,0.2,1);
+}
+
+.nav-link-premium:hover::after,
+.nav-link-premium.active::after {
+    width: 100%;
+}
+
+/* ===== Motorsport identity: condensed type, racing red, livery details ===== */
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&display=swap');
+
+:root {
+    --color-racing-red: #E11D2E;
+    --color-racing-red-dark: #9B0F1F;
+}
+
+h1, h2, h3, h4,
+.font-race {
+    font-family: 'Oswald', 'Inter', sans-serif;
+    letter-spacing: 0.01em;
+}
+
+/* Speed chevron notch on primary CTAs — subtle racing-tag silhouette */
+.btn-shine {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 10px 100%, 0 50%);
+}
+
+/* Racing bib badges — skewed parallelogram, red gradient */
+.badge-racing {
+    position: relative;
+    font-family: 'Oswald', 'Inter', sans-serif;
+    background: linear-gradient(155deg, var(--color-racing-red) 0%, var(--color-racing-red-dark) 100%);
+    color: #fff;
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.35),
+        inset 0 -6px 10px -6px rgba(0,0,0,0.4),
+        0 12px 22px -8px rgba(225,29,46,0.55);
+    transform: skewX(-8deg);
+}
+
+.badge-racing > * {
+    display: inline-block;
+    transform: skewX(8deg);
+}
+
+/* Small checkered-flag flourish */
+.checker-strip {
+    display: inline-flex;
+    width: 32px;
+    height: 8px;
+    background-image:
+        conic-gradient(from 90deg at 25% 25%, #0F172A 90deg, #fff 90deg 180deg, #0F172A 180deg 270deg, #fff 270deg);
+    background-size: 8px 8px;
+    border-radius: 2px;
+    opacity: 0.85;
+    flex-shrink: 0;
+}
+
+/* Diagonal speed-stripe accent behind key headings */
+.speed-stripes {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.speed-stripes::before {
+    content: '';
+    position: absolute;
+    top: -14px;
+    left: -10%;
+    width: 120%;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--color-racing-red) 35%, var(--color-racing-red) 65%, transparent);
+    transform: rotate(-3deg);
+    opacity: 0.45;
+}
+
+.speed-stripes::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: -10%;
+    width: 120%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #fff 35%, #fff 65%, transparent);
+    transform: rotate(-3deg);
+    opacity: 0.15;
+}
+
+/* Two-tone livery underline (blue + red) */
+.pinstripe-bar {
+    display: flex;
+    justify-content: center;
+    gap: 4px;
+}
+
+.pinstripe-bar span {
+    display: block;
+    height: 4px;
+    border-radius: 2px;
+}
+
+.pinstripe-bar span:first-child {
+    width: 48px;
+    background: var(--color-action);
+}
+
+.pinstripe-bar span:last-child {
+    width: 20px;
+    background: var(--color-racing-red);
+}
+
+/* Angled racing tag — replaces flat "Signature" pill */
+.tag-racing {
+    position: relative;
+    font-family: 'Oswald', 'Inter', sans-serif;
+    background: linear-gradient(155deg, var(--color-racing-red) 0%, var(--color-racing-red-dark) 100%);
+    color: #fff;
+    clip-path: polygon(8% 0, 100% 0, 92% 100%, 0 100%);
+    box-shadow: 0 8px 16px -6px rgba(225,29,46,0.6);
+}
