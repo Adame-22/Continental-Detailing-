@@ -904,16 +904,6 @@ details[open] {
     --color-racing-red: #E10600;
 }
 
-/* Checkered flag flourish — real icon glyph, crisp at any size */
-.checker-chip {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--color-racing-red);
-    font-size: 12px;
-    flex-shrink: 0;
-}
-
 /* Checkered connector between process steps, replacing the plain grey line */
 .timeline-checker {
     background-image: repeating-linear-gradient(90deg, #1A1A1E 0 10px, #fff 10px 20px);
