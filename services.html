@@ -252,7 +252,9 @@
             },
             
             get lienWhatsApp() { return 'https://wa.me/' + this.numeroContact + '?text=' + this.texteMessage; },
-            get lienEmail() { return 'mailto:continental.detailing.idf@gmail.com?subject=Demande%20de%20devis%20-%20Continental%20Detailing&body=' + this.texteMessage; }
+            get lienEmail() { return 'mailto:continental.detailing.idf@gmail.com?subject=Demande%20de%20devis%20-%20Continental%20Detailing&body=' + this.texteMessage; },
+            get lienSms() { return 'sms:+' + this.numeroContact + '?&body=' + this.texteMessage; },
+            get lienInstagram() { return 'https://ig.me/m/' + this.compteInsta; }
           }">
         
         <!-- Header -->
@@ -548,7 +550,15 @@
                         <a :href="lienWhatsApp" target="_blank" rel="noopener noreferrer" class="flex w-full items-center justify-center gap-3 bg-[#25D366] text-primary px-6 py-4 font-medium tracking-widest uppercase text-[11px] hover:bg-[#1ebd5a] transition-colors rounded-xl shadow-sm">
                             <i class="fa-brands fa-whatsapp text-lg"></i> Via WhatsApp
                         </a>
-                        
+
+                        <a :href="lienSms" class="flex w-full items-center justify-center gap-3 bg-[#0A84FF] text-white px-6 py-4 font-medium tracking-widest uppercase text-[11px] hover:bg-[#0870d6] transition-colors rounded-xl shadow-sm">
+                            <i class="fa-solid fa-message text-lg"></i> Via SMS
+                        </a>
+
+                        <a :href="lienInstagram" target="_blank" rel="noopener noreferrer" class="flex w-full items-center justify-center gap-3 text-white px-6 py-4 font-medium tracking-widest uppercase text-[11px] transition-opacity hover:opacity-90 rounded-xl shadow-sm" style="background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);">
+                            <i class="fa-brands fa-instagram text-lg"></i> Via Instagram
+                        </a>
+
                         <button @click="showForm = true" class="flex w-full items-center justify-center gap-3 bg-bg-alt text-primary border border-gray-200 px-6 py-4 font-medium tracking-widest uppercase text-[11px] hover:bg-gray-200 transition-colors rounded-xl shadow-sm">
                             <i class="fa-regular fa-envelope text-lg"></i> Via E-mail
                         </button>
