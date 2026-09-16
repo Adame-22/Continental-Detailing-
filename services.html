@@ -543,10 +543,10 @@
                 </button>
                 
                 <!-- Vue 1: Choix initial -->
-                <div x-show="!showForm && formStatus === 'idle'">
+                <div x-show="!showForm && formStatus === 'idle' && !igCopied">
                     <h2 class="text-2xl font-light mb-2 text-primary">Envoyer la demande</h2>
                     <p class="text-secondary text-sm mb-8 font-light">Choisissez par quel moyen vous souhaitez transférer votre estimation.</p>
-                    
+
                     <div class="space-y-3">
                         <a :href="lienWhatsApp" target="_blank" rel="noopener noreferrer" class="flex w-full items-center justify-center gap-3 bg-[#25D366] text-primary px-6 py-4 font-medium tracking-widest uppercase text-[11px] hover:bg-[#1ebd5a] transition-colors rounded-xl shadow-sm">
                             <i class="fa-brands fa-whatsapp text-lg"></i> Via WhatsApp
@@ -556,18 +556,32 @@
                             <i class="fa-solid fa-message text-lg"></i> Via SMS
                         </a>
 
-                        <a :href="lienInstagram" target="_blank" rel="noopener noreferrer"
-                           @click="navigator.clipboard && navigator.clipboard.writeText(decodeURIComponent(texteMessage)).then(() => igCopied = true).catch(() => {})"
+                        <button type="button"
+                           @click="navigator.clipboard && navigator.clipboard.writeText(decodeURIComponent(texteMessage)).then(() => igCopied = true).catch(() => igCopied = true)"
                            class="flex w-full items-center justify-center gap-3 text-white px-6 py-4 font-medium tracking-widest uppercase text-[11px] transition-opacity hover:opacity-90 rounded-xl shadow-sm" style="background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);">
                             <i class="fa-brands fa-instagram text-lg"></i> Via Instagram
-                        </a>
-                        <p x-show="igCopied" x-transition class="text-[10px] text-secondary" style="display:none;">
-                            <i class="fa-solid fa-circle-check" style="color:#4ade80;"></i> Message copié — collez-le (Ctrl/Cmd+V) dans la conversation Instagram.
-                        </p>
+                        </button>
 
                         <button @click="showForm = true" class="flex w-full items-center justify-center gap-3 bg-bg-alt text-primary border border-gray-200 px-6 py-4 font-medium tracking-widest uppercase text-[11px] hover:bg-gray-200 transition-colors rounded-xl shadow-sm">
                             <i class="fa-regular fa-envelope text-lg"></i> Via E-mail
                         </button>
+                    </div>
+                </div>
+
+                <!-- Vue Instagram : confirmation AVANT de quitter le site -->
+                <div x-show="igCopied" style="display:none;">
+                    <div class="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-5" style="background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);">
+                        <i class="fa-solid fa-check text-white text-xl"></i>
+                    </div>
+                    <h2 class="text-xl font-light mb-2 text-primary">Message copié !</h2>
+                    <p class="text-secondary text-sm mb-8 font-light">
+                        Votre récapitulatif est dans le presse-papier. Une fois sur Instagram, collez-le (<strong class="text-primary">Ctrl+V</strong> ou <strong class="text-primary">Cmd+V</strong>) dans la conversation qui va s'ouvrir, puis envoyez-le.
+                    </p>
+                    <div class="space-y-3">
+                        <a :href="lienInstagram" target="_blank" rel="noopener noreferrer" @click="setTimeout(() => igCopied = false, 300)" class="flex w-full items-center justify-center gap-3 text-white px-6 py-4 font-medium tracking-widest uppercase text-[11px] transition-opacity hover:opacity-90 rounded-xl shadow-sm" style="background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);">
+                            Continuer vers Instagram <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                        </a>
+                        <button @click="igCopied = false" class="text-[10px] font-medium uppercase tracking-widest text-secondary hover:text-primary transition-colors">Retour au choix</button>
                     </div>
                 </div>
 
