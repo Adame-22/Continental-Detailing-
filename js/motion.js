@@ -115,9 +115,10 @@
     }
 
     function animateCounter(el) {
-        const target = parseInt(el.dataset.count, 10);
+        const target = parseFloat(el.dataset.count);
+        const decimals = parseInt(el.dataset.decimals || '0', 10);
         const suffix = el.dataset.suffix || '';
-        const duration = 2000;
+        const duration = 1800;
         const startTime = performance.now();
 
         function step(currentTime) {
@@ -125,7 +126,7 @@
             const progress = Math.min(elapsed / duration, 1);
             // Ease out cubic
             const eased = 1 - Math.pow(1 - progress, 3);
-            const current = Math.round(eased * target);
+            const current = (eased * target).toFixed(decimals);
             el.textContent = current + suffix;
 
             if (progress < 1) {
@@ -171,5 +172,66 @@
             card.style.transform = '';
         });
     });
+
+    // =========================================
+    // 7. BEFORE / AFTER COMPARISON SLIDER
+    // =========================================
+    const baSlider = document.getElementById('baSlider');
+
+    if (baSlider) {
+        const baBefore = baSlider.querySelector('.ba-before');
+        const baHandle = baSlider.querySelector('.ba-handle');
+        let dragging = false;
+
+        function setBaPosition(percent) {
+            percent = Math.max(0, Math.min(100, percent));
+            baBefore.style.clipPath = `inset(0 ${100 - percent}% 0 0)`;
+            baHandle.style.left = percent + '%';
+        }
+
+        function positionFromEvent(e) {
+            const rect = baSlider.getBoundingClientRect();
+            return ((e.clientX - rect.left) / rect.width) * 100;
+        }
+
+        baSlider.addEventListener('pointerdown', (e) => {
+            dragging = true;
+            baSlider.setPointerCapture(e.pointerId);
+            setBaPosition(positionFromEvent(e));
+        });
+        baSlider.addEventListener('pointermove', (e) => {
+            if (dragging) setBaPosition(positionFromEvent(e));
+        });
+        baSlider.addEventListener('pointerup', () => { dragging = false; });
+        baSlider.addEventListener('pointercancel', () => { dragging = false; });
+
+        setBaPosition(50);
+    }
+
+    // =========================================
+    // 8. AMBIENT CURSOR GLOW
+    // =========================================
+    const cursorGlow = document.getElementById('cursorGlow');
+
+    if (cursorGlow && window.matchMedia('(hover: hover)').matches && window.matchMedia('(prefers-reduced-motion: no-preference)').matches) {
+        let glowX = 0, glowY = 0, glowTicking = false;
+
+        window.addEventListener('mousemove', (e) => {
+            glowX = e.clientX;
+            glowY = e.clientY;
+            if (!glowTicking) {
+                requestAnimationFrame(() => {
+                    cursorGlow.style.transform = `translate(${glowX - 250}px, ${glowY - 250}px)`;
+                    cursorGlow.style.opacity = '1';
+                    glowTicking = false;
+                });
+                glowTicking = true;
+            }
+        }, { passive: true });
+
+        document.addEventListener('mouseleave', () => {
+            cursorGlow.style.opacity = '0';
+        });
+    }
 
 })();

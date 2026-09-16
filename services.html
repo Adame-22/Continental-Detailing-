@@ -94,6 +94,8 @@
 </head>
 <body class="bg-bg text-primary antialiased pb-48 relative min-h-screen">
 
+    <div id="cursorGlow" aria-hidden="true"></div>
+
     <!-- Navigation Bar -->
     <nav class="nav-main" id="navbar">
         <div class="nav-inner">
@@ -305,7 +307,7 @@
                 <p class="text-secondary max-w-xl mx-auto mb-10 leading-relaxed font-light">
                     Gestion de flotte, préparation VO/VN, conciergerie mobile. Nous intervenons sur votre parc pour maintenir l'image de marque de votre société.
                 </p>
-                <button @click="showContactModal = true; stepsDone = 4" class="cta-race btn btn-dark w-full sm:w-auto justify-center mt-2">
+                <button @click="showContactModal = true; stepsDone = 4" class="cta-race glow-pulse btn btn-dark w-full sm:w-auto justify-center mt-2">
                     <i class="fa-solid fa-paper-plane"></i> Demander un devis B2B
                 </button>
             </div>
@@ -324,7 +326,7 @@
                         <p class="text-[10px] font-medium uppercase tracking-widest text-primary mb-1">Utilitaire — tarification sur mesure</p>
                         <p class="text-sm text-secondary font-light">Volume, état et accès : chaque utilitaire est unique. Nous établissons un devis rapide et gratuit.</p>
                     </div>
-                    <button @click="showContactModal = true; stepsDone = 4" class="cta-race btn btn-dark w-full sm:w-auto justify-center shrink-0">
+                    <button @click="showContactModal = true; stepsDone = 4" class="cta-race glow-pulse btn btn-dark w-full sm:w-auto justify-center shrink-0">
                         <i class="fa-brands fa-whatsapp"></i> Demander mon devis
                     </button>
                 </div>
@@ -694,7 +696,7 @@
             <div class="hidden md:block w-5/12 bg-[#F4F4F4] overflow-y-auto" style="border-left:1px solid rgba(0,0,0,0.05); max-height: 100vh;">
                 <div class="p-8 md:p-12 flex flex-col gap-12">
                     
-                    <a href="services.html?v=citadine" class="group block text-center decoration-transparent">
+                    <a href="services.html?v=citadine" class="card-hover-lift group block text-center decoration-transparent">
                         <div class="text-left mb-2">
                             <h4 class="text-2xl font-light text-primary">Citadine</h4>
                         </div>
@@ -706,7 +708,7 @@
                         </div>
                     </a>
 
-                    <a href="services.html?v=berline" class="group block text-center decoration-transparent">
+                    <a href="services.html?v=berline" class="card-hover-lift group block text-center decoration-transparent">
                         <div class="text-left mb-2">
                             <h4 class="text-2xl font-light text-primary">Berline</h4>
                         </div>
@@ -718,7 +720,7 @@
                         </div>
                     </a>
 
-                    <a href="services.html?v=suv" class="group block text-center decoration-transparent">
+                    <a href="services.html?v=suv" class="card-hover-lift group block text-center decoration-transparent">
                         <div class="text-left mb-2">
                             <h4 class="text-2xl font-light text-primary">SUV</h4>
                         </div>
@@ -730,7 +732,7 @@
                         </div>
                     </a>
 
-                    <a href="services.html?v=mono5" class="group block text-center decoration-transparent">
+                    <a href="services.html?v=mono5" class="card-hover-lift group block text-center decoration-transparent">
                         <div class="text-left mb-2">
                             <h4 class="text-2xl font-light text-primary">Monospace</h4>
                         </div>
@@ -742,7 +744,7 @@
                         </div>
                     </a>
 
-                    <a href="services.html?v=prestige" class="group block text-center decoration-transparent">
+                    <a href="services.html?v=prestige" class="card-hover-lift group block text-center decoration-transparent">
                         <div class="text-left mb-2">
                             <h4 class="text-2xl font-light text-primary">Prestige / Sport</h4>
                         </div>
@@ -754,7 +756,7 @@
                         </div>
                     </a>
 
-                    <a href="services.html?v=util" class="group block text-center decoration-transparent">
+                    <a href="services.html?v=util" class="card-hover-lift group block text-center decoration-transparent">
                         <div class="text-left mb-2">
                             <h4 class="text-2xl font-light text-primary">Utilitaire</h4>
                         </div>
