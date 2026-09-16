@@ -174,42 +174,7 @@
     });
 
     // =========================================
-    // 7. BEFORE / AFTER COMPARISON SLIDER
-    // =========================================
-    const baSlider = document.getElementById('baSlider');
-
-    if (baSlider) {
-        const baBefore = baSlider.querySelector('.ba-before');
-        const baHandle = baSlider.querySelector('.ba-handle');
-        let dragging = false;
-
-        function setBaPosition(percent) {
-            percent = Math.max(0, Math.min(100, percent));
-            baBefore.style.clipPath = `inset(0 ${100 - percent}% 0 0)`;
-            baHandle.style.left = percent + '%';
-        }
-
-        function positionFromEvent(e) {
-            const rect = baSlider.getBoundingClientRect();
-            return ((e.clientX - rect.left) / rect.width) * 100;
-        }
-
-        baSlider.addEventListener('pointerdown', (e) => {
-            dragging = true;
-            baSlider.setPointerCapture(e.pointerId);
-            setBaPosition(positionFromEvent(e));
-        });
-        baSlider.addEventListener('pointermove', (e) => {
-            if (dragging) setBaPosition(positionFromEvent(e));
-        });
-        baSlider.addEventListener('pointerup', () => { dragging = false; });
-        baSlider.addEventListener('pointercancel', () => { dragging = false; });
-
-        setBaPosition(50);
-    }
-
-    // =========================================
-    // 8. AMBIENT CURSOR GLOW
+    // 7. AMBIENT CURSOR GLOW
     // =========================================
     const cursorGlow = document.getElementById('cursorGlow');
 
