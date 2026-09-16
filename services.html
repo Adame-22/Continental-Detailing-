@@ -125,9 +125,10 @@
             stepsDone: 1,
             options: { poils: false, non_videe: false, cire: false },
             paiement: 'cb', 
-            showGuide: false, 
+            showGuide: false,
             showContactModal: false,
             showForm: false,
+            igCopied: false,
             formName: '',
             formEmail: '',
             formPhone: '',
@@ -536,8 +537,8 @@
 
         <!-- Modal Contact -->
         <div x-show="showContactModal" class="fixed inset-0 z-[100] flex items-center justify-center bg-bg-dark/80 backdrop-blur-sm p-4" style="display: none;" x-transition>
-            <div @click.away="showContactModal = false; setTimeout(() => { showForm = false; formStatus = 'idle' }, 300)" class="bg-bg w-full max-w-md p-8 relative shadow-2xl text-center border border-gray-200 rounded-xl">
-                <button @click="showContactModal = false; setTimeout(() => { showForm = false; formStatus = 'idle' }, 300)" aria-label="Fermer" class="absolute top-4 right-4 w-10 h-10 bg-bg-alt text-secondary flex items-center justify-center hover:bg-gray-200 transition-colors border border-gray-200 rounded-full">
+            <div @click.away="showContactModal = false; setTimeout(() => { showForm = false; formStatus = 'idle'; igCopied = false }, 300)" class="bg-bg w-full max-w-md p-8 relative shadow-2xl text-center border border-gray-200 rounded-xl">
+                <button @click="showContactModal = false; setTimeout(() => { showForm = false; formStatus = 'idle'; igCopied = false }, 300)" aria-label="Fermer" class="absolute top-4 right-4 w-10 h-10 bg-bg-alt text-secondary flex items-center justify-center hover:bg-gray-200 transition-colors border border-gray-200 rounded-full">
                     <i class="fa-solid fa-xmark"></i>
                 </button>
                 
@@ -551,13 +552,18 @@
                             <i class="fa-brands fa-whatsapp text-lg"></i> Via WhatsApp
                         </a>
 
-                        <a :href="lienSms" class="flex w-full items-center justify-center gap-3 bg-[#0A84FF] text-white px-6 py-4 font-medium tracking-widest uppercase text-[11px] hover:bg-[#0870d6] transition-colors rounded-xl shadow-sm">
+                        <a :href="lienSms" class="md:hidden flex w-full items-center justify-center gap-3 bg-[#0A84FF] text-white px-6 py-4 font-medium tracking-widest uppercase text-[11px] hover:bg-[#0870d6] transition-colors rounded-xl shadow-sm">
                             <i class="fa-solid fa-message text-lg"></i> Via SMS
                         </a>
 
-                        <a :href="lienInstagram" target="_blank" rel="noopener noreferrer" class="flex w-full items-center justify-center gap-3 text-white px-6 py-4 font-medium tracking-widest uppercase text-[11px] transition-opacity hover:opacity-90 rounded-xl shadow-sm" style="background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);">
+                        <a :href="lienInstagram" target="_blank" rel="noopener noreferrer"
+                           @click="navigator.clipboard && navigator.clipboard.writeText(decodeURIComponent(texteMessage)).then(() => igCopied = true).catch(() => {})"
+                           class="flex w-full items-center justify-center gap-3 text-white px-6 py-4 font-medium tracking-widest uppercase text-[11px] transition-opacity hover:opacity-90 rounded-xl shadow-sm" style="background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);">
                             <i class="fa-brands fa-instagram text-lg"></i> Via Instagram
                         </a>
+                        <p x-show="igCopied" x-transition class="text-[10px] text-secondary" style="display:none;">
+                            <i class="fa-solid fa-circle-check" style="color:#4ade80;"></i> Message copié — collez-le (Ctrl/Cmd+V) dans la conversation Instagram.
+                        </p>
 
                         <button @click="showForm = true" class="flex w-full items-center justify-center gap-3 bg-bg-alt text-primary border border-gray-200 px-6 py-4 font-medium tracking-widest uppercase text-[11px] hover:bg-gray-200 transition-colors rounded-xl shadow-sm">
                             <i class="fa-regular fa-envelope text-lg"></i> Via E-mail
@@ -612,7 +618,7 @@
                     <p class="text-secondary text-sm mb-6 font-light">Merci <span x-text="formName" class="font-medium text-primary"></span>. Nous avons bien reçu votre demande d'estimation globale de <strong class="text-primary font-medium text-lg" x-text="totalPrix + '€'"></strong>.</p>
                     <p class="text-secondary text-xs mb-8 font-light">Nous reviendrons vers vous très rapidement sur votre adresse mail (<span x-text="formEmail" class="text-primary"></span>).</p>
                     
-                    <button @click="showContactModal = false; setTimeout(() => { showForm = false; formStatus = 'idle' }, 300)" class="btn btn-outline border-gray-300 text-primary hover:bg-bg-alt hover:border-gray-400 w-full justify-center rounded-xl">
+                    <button @click="showContactModal = false; setTimeout(() => { showForm = false; formStatus = 'idle'; igCopied = false }, 300)" class="btn btn-outline border-gray-300 text-primary hover:bg-bg-alt hover:border-gray-400 w-full justify-center rounded-xl">
                         Fermer
                     </button>
                 </div>
