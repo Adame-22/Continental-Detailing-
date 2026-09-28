@@ -1220,3 +1220,249 @@ details[open] {
     text-decoration-thickness: 1px;
     margin-right: 2px;
 }
+
+:root { --promo-color: #C2410C; }
+
+/* ── Live countdown boxes ── */
+.cd {
+    display: flex;
+    gap: 8px;
+}
+.cd-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 56px;
+    padding: 8px 6px 6px;
+    border-radius: 10px;
+    background: #0E1418;
+    color: #FFFFFF;
+    line-height: 1;
+}
+.cd-box b {
+    font-size: 22px;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+}
+.cd-box small {
+    margin-top: 5px;
+    font-size: 9px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* ── Arrival popup ("affiche") ── */
+.promo-pop-open { overflow: hidden; }
+
+.promo-pop {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+.promo-pop[hidden] { display: none; }
+
+.promo-pop__backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(8, 10, 12, 0.6);
+    backdrop-filter: blur(4px);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+.promo-pop__card {
+    position: relative;
+    width: 100%;
+    max-width: 440px;
+    border-radius: 20px;
+    overflow: hidden;
+    background: #FFFFFF;
+    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.35);
+    opacity: 0;
+    transform: translateY(24px) scale(0.97);
+    transition: opacity 0.5s var(--ease-out-expo), transform 0.7s var(--ease-out-expo);
+}
+.promo-pop__card:focus { outline: none; }
+.promo-pop.is-open .promo-pop__backdrop { opacity: 1; }
+.promo-pop.is-open .promo-pop__card { opacity: 1; transform: none; }
+
+.promo-pop__close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    z-index: 2;
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.45);
+    color: #FFFFFF;
+    font-size: 24px;
+    line-height: 1;
+    cursor: pointer;
+}
+.promo-pop__close:hover { background: rgba(0, 0, 0, 0.7); }
+
+.promo-pop__visual {
+    position: relative;
+    height: 190px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 22px 26px;
+    color: #FFFFFF;
+    background:
+        linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.15) 70%),
+        url('../images/hero-bg-hq.webp') center 60% / cover no-repeat;
+}
+.promo-pop__tag {
+    align-self: flex-start;
+    padding: 4px 12px;
+    border-radius: 9999px;
+    background: var(--promo-color);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+}
+.promo-pop__big {
+    margin: 6px 0 0;
+    font-size: 84px;
+    font-weight: 800;
+    line-height: 0.9;
+    letter-spacing: -0.04em;
+}
+
+.promo-pop__body { padding: 22px 26px 24px; }
+.promo-pop__title {
+    margin: 0 0 8px;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+.promo-pop__text {
+    margin: 0 0 18px;
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--text-secondary);
+}
+.promo-pop__ends {
+    margin: 0 0 8px;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--promo-color);
+}
+.promo-pop__cta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+    padding: 16px;
+    border-radius: 9999px;
+    background: var(--promo-color);
+    color: #FFFFFF;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background 0.3s ease;
+}
+.promo-pop__cta:hover { background: #9A3412; }
+.promo-pop__later {
+    display: block;
+    width: 100%;
+    margin-top: 6px;
+    padding: 10px;
+    border: none;
+    background: none;
+    color: var(--text-muted);
+    font-size: 12px;
+    text-decoration: underline;
+    cursor: pointer;
+}
+.promo-pop__legal {
+    margin: 4px 0 0;
+    font-size: 11px;
+    text-align: center;
+    color: var(--text-muted);
+}
+
+/* Mobile: bottom sheet instead of a full-screen interstitial */
+@media (max-width: 640px) {
+    .promo-pop { align-items: flex-end; padding: 0; }
+    .promo-pop__card {
+        max-width: none;
+        border-radius: 20px 20px 0 0;
+        transform: translateY(100%);
+    }
+    .promo-pop__visual { height: 140px; padding: 16px 20px; }
+    .promo-pop__big { font-size: 64px; }
+    .promo-pop__body { padding: 18px 20px 20px; }
+    .promo-pop__title { font-size: 19px; }
+    .promo-pop__text { margin-bottom: 14px; font-size: 13px; }
+    .promo-pop__cta { margin-top: 14px; }
+    .cd-box { min-width: 0; flex: 1; }
+}
+
+/* ── Pricing page: promo panel above the simulator ── */
+.promo-panel { display: none; }
+.promo-on .promo-panel {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px 24px;
+    margin-bottom: 24px;
+    padding: 20px 24px;
+    border-radius: 16px;
+    background: #FFF7ED;
+    border: 1px solid rgba(194, 65, 12, 0.25);
+}
+.promo-panel__left { display: flex; align-items: center; gap: 18px; }
+.promo-panel__pct {
+    font-size: 48px;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    color: var(--promo-color);
+}
+.promo-panel__title {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+.promo-panel__sub {
+    margin: 2px 0 0;
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+.promo-panel__right { display: flex; flex-direction: column; gap: 6px; }
+.promo-panel__ends {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--promo-color);
+}
+@media (max-width: 640px) {
+    .promo-on .promo-panel { padding: 16px; }
+    .promo-panel__pct { font-size: 40px; }
+    .promo-panel__right { width: 100%; }
+    .promo-panel .cd-box { flex: 1; min-width: 0; }
+}
+
+/* Discounted prices take the offer colour so they stand out */
+.promo-on .promo-price { color: var(--promo-color) !important; }
+
+@media (prefers-reduced-motion: reduce) {
+    .promo-pop__card, .promo-pop__backdrop { transition: none; }
+}

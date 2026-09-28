@@ -402,7 +402,9 @@
         const fmt = (v) => (v !== null && v !== undefined) ? v + '€' : 'Devis';
 
         ['ext', 'int', 'complet'].forEach((f) => {
-            document.getElementById('price-' + f).textContent = fmt(P(t[f]));
+            const priceEl = document.getElementById('price-' + f);
+            priceEl.textContent = fmt(P(t[f]));
+            priceEl.classList.toggle('promo-price', promoOn && !!t[f]);
             const oldEl = document.getElementById('price-' + f + '-old');
             if (promoOn && t[f]) {
                 oldEl.textContent = fmt(t[f]);
@@ -442,7 +444,9 @@
             return;
         }
         const old = promoOn ? `<s class="promo-old" style="font-size:0.45em">${val}€</s> ` : '';
-        el.innerHTML = `${old}${P(val)} <span>€ TTC</span>`;
+        el.innerHTML = promoOn
+            ? `${old}<strong class="promo-price" style="font-weight:500">${P(val)}</strong> <span>€ TTC</span>`
+            : `${P(val)} <span>€ TTC</span>`;
     }
 
     function updateEconomy(carKey, formule) {

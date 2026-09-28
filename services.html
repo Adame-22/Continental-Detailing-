@@ -365,6 +365,21 @@
         <!-- Simulator Particulier -->
         <div x-show="clientType === 'particulier'" x-transition>
 
+            <!-- Offre saisonnière (visible uniquement pendant l'offre, voir js/promo.js) -->
+            <div class="promo-panel" role="note">
+                <div class="promo-panel__left">
+                    <span class="promo-panel__pct" x-text="'−' + (window.PROMO ? PROMO.percent : 0) + '%'"></span>
+                    <div>
+                        <p class="promo-panel__title"><span data-promo-label></span> — déjà appliquée à vos prix</p>
+                        <p class="promo-panel__sub">Sur toutes les prestations et options, jusqu'au <span data-promo-until></span> inclus.</p>
+                    </div>
+                </div>
+                <div class="promo-panel__right">
+                    <span class="promo-panel__ends">Se termine dans</span>
+                    <div class="cd" data-promo-countdown></div>
+                </div>
+            </div>
+
             <!-- SHOWCASE — vehicule + formule + services + prix -->
             <div id="car-showcase-container" class="mb-10"></div>
 
@@ -485,6 +500,9 @@
                     <div x-show="clientType === 'particulier' &amp;&amp; !isUtilitaire" class="min-w-0 flex-1">
                         <div class="flex items-center gap-3 mb-1 flex-wrap">
                             <p class="text-[10px] font-medium uppercase tracking-widest text-secondary">Votre devis</p>
+                            <span x-show="promoOn" style="display:none; background:#C2410C; color:#FFFFFF;"
+                                  class="hidden sm:inline-block text-[10px] font-bold px-2 py-0.5 rounded-full whitespace-nowrap uppercase tracking-wider"
+                                  x-text="window.PROMO ? PROMO.label + ' −' + PROMO.percent + '%' : ''"></span>
                             <span x-show="economie > 0" style="display:none; background:rgba(34,197,94,0.12); color:#15803d;"
                                   class="text-[10px] font-bold px-2 py-0.5 rounded-full whitespace-nowrap"
                                   x-text="'−' + economie + '€ économisés'"></span>
@@ -495,7 +513,7 @@
                         </div>
                         <div class="flex items-baseline gap-3">
                             <s x-show="promoOn &amp;&amp; totalPrixNormal > totalPrix" style="display:none" class="promo-old text-sm whitespace-nowrap" x-text="totalPrixNormal + '\u20ac'"></s>
-                            <p class="text-2xl font-light text-primary whitespace-nowrap" x-text="totalPrix + '\u20ac'"></p>
+                            <p class="text-2xl font-light text-primary whitespace-nowrap" :class="promoOn &amp;&amp; totalPrixNormal > totalPrix ? 'promo-price font-medium' : ''" x-text="totalPrix + '\u20ac'"></p>
                             <span class="text-xs text-secondary truncate font-light" x-text="nomVehicule + ' \u00b7 ' + nomFormule"></span>
                         </div>
                     </div>
