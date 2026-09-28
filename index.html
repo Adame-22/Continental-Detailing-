@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr" class="scroll-smooth">
 <head>
+    <script>document.documentElement.classList.add('js');setTimeout(function(){if(!window.__motionReady)document.documentElement.classList.remove('js')},4000);</script>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-K3PHWTTYR2"></script>
     <script>
@@ -192,12 +193,6 @@
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
 
-    <div id="cursorGlow" aria-hidden="true"></div>
-
-    <!-- Ambient lighting — showroom spots -->
-    <div class="ambient-spot-right" aria-hidden="true"></div>
-    <div class="ambient-spot-left" aria-hidden="true"></div>
-
     <!-- Navigation -->
     <nav class="nav-main" id="navbar">
         <div class="nav-inner">
@@ -219,8 +214,8 @@
     </nav>
 
     <!-- Hero -->
-    <header class="relative overflow-hidden" style="padding-top:clamp(5rem,12vw,10rem); padding-bottom:clamp(4rem,10vw,8rem);">
-        <div class="absolute inset-0 z-0">
+    <header class="relative overflow-hidden" style="padding-top:clamp(5rem,12vw,10rem); padding-bottom:clamp(5rem,11vw,9rem);">
+        <div class="absolute inset-0 z-0 hero-zoom">
             <img src="images/hero-bg-hq.webp" alt="" role="presentation"
                  class="w-full h-full object-cover parallax-bg"
                  style="opacity:1.0;">
@@ -228,43 +223,41 @@
             <div class="absolute inset-0 bg-black/35"></div>
             <div class="absolute inset-0 bg-gradient-to-r from-black/70 via-black/30 to-transparent"></div>
         </div>
+        <div class="hero-sheen" aria-hidden="true"></div>
 
         <div class="relative z-10 max-w-7xl mx-auto px-6 text-left">
-            <!-- 21st.dev Shimmer Hero Badge -->
-            <div class="hero-badge hero-animate inline-flex items-center gap-3 mb-8 px-4 py-2 rounded-full border border-white/20 bg-white/10 backdrop-blur-md shadow-2xl relative overflow-hidden group">
-                <span class="relative flex h-2 w-2">
-                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                    <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-                </span>
-                <span class="text-[11px] font-bold tracking-[0.18em] uppercase text-white/90">Detailing Premium — Essonne (91) & Seine-et-Marne (77)</span>
-                <span class="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></span>
-            </div>
+            <p class="hero-kicker hero-fade mb-8">Detailing premium à domicile — Essonne & Seine-et-Marne</p>
 
             <!-- Title -->
-            <h1 class="hero-title hero-animate hero-animate--delay-1 font-sans text-5xl md:text-8xl lg:text-[100px] font-bold leading-none mb-6 text-white tracking-tight">
+            <h1 data-split data-split-delay="0.25" class="hero-title font-sans text-5xl md:text-8xl lg:text-[100px] font-bold leading-none mb-6 text-white tracking-tight">
                 L'art du détail<br>
                 <span class="text-white">pour votre voiture.</span>
             </h1>
 
             <!-- Subtitle -->
-            <p class="hero-subtitle hero-animate hero-animate--delay-2 text-base md:text-lg max-w-xl mb-10 leading-relaxed" style="color:rgba(255, 255, 255, 0.75);">
+            <p class="hero-subtitle hero-fade hero-fade--d1 text-base md:text-lg max-w-xl mb-10 leading-relaxed" style="color:rgba(255, 255, 255, 0.75);">
                 Service mobile de detailing haut de gamme. Nous venons à vous — domicile, bureau, parking.
             </p>
 
             <!-- CTA row -->
-            <div class="hero-cta hero-animate hero-animate--delay-3 flex flex-col sm:flex-row gap-4 items-center justify-start w-full">
+            <div class="hero-cta hero-fade hero-fade--d2 flex flex-col sm:flex-row gap-4 items-center justify-start w-full">
                 <a href="services.html"
-                   class="cta-race glow-pulse inline-flex justify-center w-full sm:w-auto items-center gap-3 px-8 py-4 text-sm font-bold tracking-[0.08em] uppercase ui-transition hover:scale-105"
+                   class="cta-race inline-flex justify-center w-full sm:w-auto items-center gap-3 px-8 py-4 text-sm font-bold tracking-[0.08em] uppercase ui-transition"
                    style="background:#FFFFFF; border:1px solid #FFFFFF; color:#1A1A1E; border-radius:9999px; box-shadow: 0 8px 32px rgba(255,255,255,0.15);">
                     Voir les prestations
                     <i class="fa-solid fa-arrow-right text-xs"></i>
                 </a>
                 <a href="https://wa.me/33750875964" target="_blank" rel="noopener noreferrer"
-                   class="glow-pulse inline-flex justify-center w-full sm:w-auto items-center gap-3 px-8 py-4 text-sm font-bold tracking-wider uppercase ui-transition hover:bg-white hover:text-[#1A1A1E]"
+                   class="inline-flex justify-center w-full sm:w-auto items-center gap-3 px-8 py-4 text-sm font-bold tracking-wider uppercase ui-transition hover:bg-white hover:text-[#1A1A1E]"
                    style="border:2px solid #FFFFFF; background:rgba(255,255,255,0.05); backdrop-filter:blur(12px); border-radius:9999px; color:#FFFFFF;">
                     <i class="fa-brands fa-whatsapp text-lg"></i> Contact direct
                 </a>
             </div>
+        </div>
+
+        <div class="scroll-cue hero-fade hero-fade--d2" aria-hidden="true">
+            <span>Défiler</span>
+            <span class="scroll-cue__line"></span>
         </div>
     </header>
 
@@ -296,20 +289,38 @@
         </div>
     </section>
 
+    <!-- Bandeau savoir-faire (défilant) -->
+    <div class="marquee mt-16" aria-hidden="true">
+        <div class="marquee__track">
+            <span class="marquee__item">Snow Foam <i class="marquee__dot"></i></span>
+            <span class="marquee__item marquee__item--ghost">Décontamination <i class="marquee__dot"></i></span>
+            <span class="marquee__item">Soin du cuir <i class="marquee__dot"></i></span>
+            <span class="marquee__item marquee__item--ghost">Jantes <i class="marquee__dot"></i></span>
+            <span class="marquee__item">Protection céramique <i class="marquee__dot"></i></span>
+            <span class="marquee__item marquee__item--ghost">Vitres sans trace <i class="marquee__dot"></i></span>
+            <span class="marquee__item">Snow Foam <i class="marquee__dot"></i></span>
+            <span class="marquee__item marquee__item--ghost">Décontamination <i class="marquee__dot"></i></span>
+            <span class="marquee__item">Soin du cuir <i class="marquee__dot"></i></span>
+            <span class="marquee__item marquee__item--ghost">Jantes <i class="marquee__dot"></i></span>
+            <span class="marquee__item">Protection céramique <i class="marquee__dot"></i></span>
+            <span class="marquee__item marquee__item--ghost">Vitres sans trace <i class="marquee__dot"></i></span>
+        </div>
+    </div>
+
     <!-- Formules -->
     <section class="py-28 max-w-5xl mx-auto px-6">
         <div class="text-left mb-16 reveal">
             <p class="text-xs font-semibold tracking-[0.2em] uppercase mb-4" style="color:#1A1A1E;">Nos Formules</p>
-            <h2 class="font-sans text-4xl md:text-7xl font-bold tracking-tight text-primary">Signature Services</h2>
+            <h2 data-split class="font-sans text-4xl md:text-7xl font-bold tracking-tight text-primary">Signature Services</h2>
             <div class="line-grow h-px mt-6" style="background:#1A1A1E;"></div>
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
             <!-- Intérieur -->
-            <div class="card-hover-lift reveal-left flex flex-col"
+            <div class="card-hover-lift reveal stagger-1 flex flex-col"
                  style="background:#FFFFFF; border:1px solid rgba(0,0,0,0.08); border-radius:16px; box-shadow:0 8px 24px rgba(0,0,0,0.04); overflow:hidden;">
                 
-                <div class="w-full h-56 md:h-72 relative">
+                <div class="w-full h-56 md:h-72 relative overflow-hidden img-reveal">
                     <img src="images/service-interior.webp" width="1024" height="1024" loading="lazy" class="w-full h-full object-cover" alt="Lavage Intérieur">
                 </div>
 
@@ -326,17 +337,17 @@
                     <li class="flex gap-4 text-sm leading-relaxed text-secondary"><div class="min-w-[24px] h-6 rounded-full bg-bg-alt flex items-center justify-center mt-0.5 border border-gray-100"><i class="fa-solid fa-check text-primary text-[10px]"></i></div><span><strong class="text-primary font-medium">Soin des cuirs</strong> - nettoyage pH neutre et hydratation.</span></li>
                     <li class="flex gap-4 text-sm leading-relaxed text-secondary"><div class="min-w-[24px] h-6 rounded-full bg-bg-alt flex items-center justify-center mt-0.5 border border-gray-100"><i class="fa-solid fa-check text-primary text-[10px]"></i></div><span><strong class="text-primary font-medium">Finition vitres</strong> - dégraissage haute clarté, sans trace.</span></li>
                 </ul>
-                <a href="services.html?f=int" class="w-full block text-center py-4 bg-primary text-white rounded-xl text-xs font-bold tracking-[0.15em] uppercase hover:bg-action-lt hover:scale-[1.02] transition-all shadow-md mt-auto">
+                <a href="services.html?f=int" class="w-full block text-center py-4 bg-primary text-white rounded-xl text-xs font-bold tracking-[0.15em] uppercase hover:bg-action-lt transition-colors shadow-md mt-auto">
                     Réserver cette formule
                 </a>
             </div>
             </div>
 
             <!-- Extérieur -->
-            <div class="card-hover-lift reveal-right flex flex-col"
+            <div class="card-hover-lift reveal stagger-2 flex flex-col"
                  style="background:#FFFFFF; border:1px solid rgba(0,0,0,0.08); border-radius:16px; box-shadow:0 8px 24px rgba(0,0,0,0.04); overflow:hidden;">
                 
-                <div class="w-full h-56 md:h-72 relative">
+                <div class="w-full h-56 md:h-72 relative overflow-hidden img-reveal">
                     <img src="images/service-exterior.webp" width="1024" height="1024" loading="lazy" class="w-full h-full object-cover" alt="Lavage Extérieur">
                 </div>
 
@@ -353,7 +364,7 @@
                     <li class="flex gap-4 text-sm leading-relaxed text-secondary"><div class="min-w-[24px] h-6 rounded-full bg-bg-alt flex items-center justify-center mt-0.5 border border-gray-100"><i class="fa-solid fa-check text-primary text-[10px]"></i></div><span><strong class="text-primary font-medium">Séchage sécurisé</strong> - microfibres haute densité ou air pulsé.</span></li>
                     <li class="flex gap-4 text-sm leading-relaxed text-secondary"><div class="min-w-[24px] h-6 rounded-full bg-bg-alt flex items-center justify-center mt-0.5 border border-gray-100"><i class="fa-solid fa-check text-primary text-[10px]"></i></div><span><strong class="text-primary font-medium">Dressing pneus</strong> - effet noir satiné durable.</span></li>
                 </ul>
-                <a href="services.html?f=ext" class="w-full block text-center py-4 bg-primary text-white rounded-xl text-xs font-bold tracking-[0.15em] uppercase hover:bg-action-lt hover:scale-[1.02] transition-all shadow-md mt-auto">
+                <a href="services.html?f=ext" class="w-full block text-center py-4 bg-primary text-white rounded-xl text-xs font-bold tracking-[0.15em] uppercase hover:bg-action-lt transition-colors shadow-md mt-auto">
                     Réserver cette formule
                 </a>
             </div>
@@ -374,7 +385,7 @@
             <div class="flex flex-col md:flex-row justify-between items-end mb-16 reveal">
                 <div class="max-w-xl">
                     <p class="text-xs font-semibold tracking-[0.2em] uppercase mb-4" style="color:#1A1A1E;">Galerie</p>
-                    <h2 class="font-sans text-4xl md:text-7xl font-bold tracking-tight text-primary mb-6">Nos Réalisations</h2>
+                    <h2 data-split class="font-sans text-4xl md:text-7xl font-bold tracking-tight text-primary mb-6">Nos Réalisations</h2>
                     <p class="text-muted leading-relaxed">
                         Chaque véhicule qui passe entre nos mains bénéficie d'un traitement d'exception. Découvrez l'exigence Continental Detailing en images.
                     </p>
@@ -392,7 +403,7 @@
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <!-- Twingo 3 : vraie prestation, avant/après tapis -->
-                <div onclick="openVideoModal('images/video-twingo-tapis.mp4')" class="group relative overflow-hidden rounded-xl reveal-left cursor-pointer" style="aspect-ratio:4/5;">
+                <div onclick="openVideoModal('images/video-twingo-tapis.mp4')" class="group relative overflow-hidden rounded-xl img-reveal cursor-pointer" style="aspect-ratio:4/5; --clip-r:12px;">
                     <video src="images/video-twingo-tapis-preview.mp4" autoplay muted loop playsinline class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"></video>
                     <div class="absolute inset-0 bg-gradient-to-t from-white/90 via-transparent to-transparent opacity-60"></div>
                     <div class="absolute bottom-8 left-8">
@@ -408,7 +419,7 @@
                 </div>
 
                 <!-- Savoir-faire : coulisses du métier -->
-                <div onclick="openVideoModal('images/presentation.mp4')" class="group relative overflow-hidden rounded-xl reveal-right cursor-pointer" style="aspect-ratio:4/5;">
+                <div onclick="openVideoModal('images/presentation.mp4')" class="group relative overflow-hidden rounded-xl img-reveal stagger-2 cursor-pointer" style="aspect-ratio:4/5; --clip-r:12px;">
                     <video src="images/presentation.mp4" autoplay muted loop playsinline class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"></video>
                     <div class="absolute inset-0 bg-gradient-to-t from-white/90 via-transparent to-transparent opacity-60"></div>
                     <div class="absolute bottom-8 left-8">
@@ -431,21 +442,21 @@
         <div class="max-w-5xl mx-auto px-6">
             <div class="text-left mb-16 reveal">
                 <p class="text-xs font-semibold tracking-[0.2em] uppercase mb-4" style="color:#1A1A1E;">Notre différence</p>
-                <h2 class="font-sans text-4xl md:text-7xl font-bold tracking-tight text-primary">Pourquoi nous choisir ?</h2>
+                <h2 data-split class="font-sans text-4xl md:text-7xl font-bold tracking-tight text-primary">Pourquoi nous choisir ?</h2>
                 <div class="line-grow h-px mt-6" style="background:#1A1A1E;"></div>
             </div>
 
             <div class="grid grid-cols-3 gap-6 mb-16 reveal stagger-1">
                 <div class="text-center">
-                    <div class="text-4xl md:text-5xl font-light text-primary"><span data-count="5" data-decimals="1">0</span><span class="text-xl md:text-2xl">/5</span></div>
+                    <div class="text-3xl md:text-5xl font-light text-primary whitespace-nowrap"><span data-count="5" data-decimals="1">0</span><span class="text-xl md:text-2xl">/5</span></div>
                     <div class="text-[10px] md:text-xs uppercase tracking-widest text-muted mt-2">Note moyenne</div>
                 </div>
                 <div class="text-center">
-                    <div class="text-4xl md:text-5xl font-light text-primary"><span data-count="40">0</span> km</div>
+                    <div class="text-3xl md:text-5xl font-light text-primary whitespace-nowrap"><span data-count="40">0</span> km</div>
                     <div class="text-[10px] md:text-xs uppercase tracking-widest text-muted mt-2">Rayon d'intervention</div>
                 </div>
                 <div class="text-center">
-                    <div class="text-4xl md:text-5xl font-light text-primary"><span data-count="7">0</span>/7</div>
+                    <div class="text-3xl md:text-5xl font-light text-primary whitespace-nowrap"><span data-count="7">0</span>/7</div>
                     <div class="text-[10px] md:text-xs uppercase tracking-widest text-muted mt-2">Jours sur 7</div>
                 </div>
             </div>
@@ -494,7 +505,7 @@
             </div>
 
             <div class="mt-16 text-center reveal stagger-6">
-                <a href="services.html" class="cta-race inline-flex items-center gap-4 px-10 py-4 bg-primary text-white rounded-full text-xs font-bold tracking-[0.15em] uppercase hover:bg-action-lt hover:scale-105 transition-all shadow-xl">
+                <a href="services.html" class="cta-race inline-flex items-center gap-4 px-10 py-4 bg-primary text-white rounded-full text-xs font-bold tracking-[0.15em] uppercase hover:bg-action-lt transition-colors shadow-xl">
                     Découvrir nos tarifs et réserver <i class="fa-solid fa-arrow-right"></i>
                 </a>
             </div>
@@ -505,7 +516,7 @@
     <section class="py-24 max-w-4xl mx-auto px-6 text-center">
         <div class="reveal mb-16">
             <p class="text-xs font-semibold tracking-[0.2em] uppercase mb-4" style="color:#1A1A1E;">Simple & transparent</p>
-            <h2 class="font-sans text-4xl md:text-7xl font-bold tracking-tight text-primary">En 3 étapes</h2>
+            <h2 data-split class="font-sans text-4xl md:text-7xl font-bold tracking-tight text-primary">En 3 étapes</h2>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-12 relative">
@@ -528,7 +539,7 @@
         </div>
 
         <div class="mt-16 reveal stagger-4">
-            <a href="services.html" class="cta-race inline-flex items-center gap-4 px-10 py-4 bg-primary text-white rounded-full text-xs font-bold tracking-[0.15em] uppercase hover:bg-action-lt hover:scale-105 transition-all shadow-xl">
+            <a href="services.html" class="cta-race inline-flex items-center gap-4 px-10 py-4 bg-primary text-white rounded-full text-xs font-bold tracking-[0.15em] uppercase hover:bg-action-lt transition-colors shadow-xl">
                 Démarrer l'estimation <i class="fa-solid fa-arrow-right"></i>
             </a>
         </div>
@@ -539,7 +550,7 @@
         <div class="max-w-5xl mx-auto px-6">
             <div class="reveal text-center mb-16">
                 <p class="text-xs font-semibold tracking-[0.2em] uppercase mb-4" style="color:#6B6B6B;">Notre savoir-faire</p>
-                <h2 class="font-sans text-4xl md:text-6xl font-bold tracking-tight text-primary">L'Expertise Continental Detailing</h2>
+                <h2 data-split class="font-sans text-4xl md:text-6xl font-bold tracking-tight text-primary">L'Expertise Continental Detailing</h2>
                 <div class="w-16 h-1 bg-primary mx-auto mt-6"></div>
             </div>
 
@@ -581,7 +592,7 @@
             <!-- Texte intro -->
             <div class="lg:col-span-1 reveal">
                 <p class="text-xs font-semibold tracking-[0.2em] uppercase mb-4" style="color:#6B6B6B;">À domicile ou au bureau</p>
-                <h2 class="font-sans text-3xl md:text-5xl font-bold tracking-tight text-primary mb-6">Zone d'intervention</h2>
+                <h2 data-split class="font-sans text-3xl md:text-5xl font-bold tracking-tight text-primary mb-6">Zone d'intervention</h2>
                 <p class="text-sm leading-relaxed text-secondary font-light mb-6">
                     Nous nous déplaçons directement à l'adresse de votre choix avec tout notre équipement professionnel (un accès à une prise électrique et à un point d'eau est requis).
                 </p>
@@ -668,7 +679,7 @@
         <div class="max-w-3xl mx-auto px-6">
             <div class="reveal text-center mb-16">
                 <p class="text-xs font-semibold tracking-[0.2em] uppercase mb-4" style="color:#6B6B6B;">Vos questions fréquentes</p>
-                <h2 class="font-sans text-4xl md:text-5xl font-bold tracking-tight text-primary">Foire Aux Questions</h2>
+                <h2 data-split class="font-sans text-4xl md:text-5xl font-bold tracking-tight text-primary">Foire Aux Questions</h2>
                 <div class="w-12 h-[2px] bg-primary mx-auto mt-6"></div>
             </div>
 

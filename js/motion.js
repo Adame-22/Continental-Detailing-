@@ -1,47 +1,114 @@
 /**
  * Continental Detailing — Motion Design Engine
- * Scroll reveals, parallax, navbar auto-hide, counters
+ * Headline word reveals, image curtains, scroll reveals, hero parallax,
+ * navbar auto-hide, counters.
  */
 
 (function () {
     'use strict';
 
-    // =========================================
-    // 1. SCROLL REVEAL — Intersection Observer
-    // =========================================
-    const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale, .line-grow');
+    const root = document.documentElement;
+    root.classList.add('js');
+    window.__motionReady = true;
 
-    if ('IntersectionObserver' in window) {
-        const revealObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('revealed');
-                    revealObserver.unobserve(entry.target); // Animate once
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // =========================================
+    // 1. HEADLINE SPLIT — each word rises from behind a mask
+    // =========================================
+    function splitWords(el) {
+        if (el.dataset.splitDone) return;
+        el.dataset.splitDone = '1';
+        el.setAttribute('aria-label', el.textContent.replace(/\s+/g, ' ').trim());
+
+        const baseDelay = parseFloat(el.dataset.splitDelay || '0');
+        let index = 0;
+
+        (function walk(node) {
+            Array.from(node.childNodes).forEach((child) => {
+                if (child.nodeType === Node.TEXT_NODE) {
+                    const frag = document.createDocumentFragment();
+                    child.textContent.split(/(\s+)/).forEach((part) => {
+                        if (!part) return;
+                        if (/^\s+$/.test(part)) {
+                            frag.appendChild(document.createTextNode(' '));
+                            return;
+                        }
+                        const outer = document.createElement('span');
+                        outer.className = 'sw';
+                        outer.setAttribute('aria-hidden', 'true');
+                        const inner = document.createElement('span');
+                        inner.className = 'sw-i';
+                        inner.textContent = part;
+                        inner.style.transitionDelay = (baseDelay + index * 0.07).toFixed(2) + 's';
+                        index++;
+                        outer.appendChild(inner);
+                        frag.appendChild(outer);
+                    });
+                    node.replaceChild(frag, child);
+                } else if (child.nodeType === Node.ELEMENT_NODE && child.tagName !== 'BR') {
+                    walk(child);
                 }
             });
-        }, {
-            threshold: 0.15,
-            rootMargin: '0px 0px -40px 0px'
-        });
+        })(el);
+    }
 
-        revealElements.forEach(el => revealObserver.observe(el));
-    } else {
-        // Fallback: show everything immediately
-        revealElements.forEach(el => el.classList.add('revealed'));
+    if (!reducedMotion) {
+        document.querySelectorAll('[data-split]').forEach(splitWords);
     }
 
     // =========================================
-    // 2. PARALLAX — Hero background
+    // 2. SCROLL REVEAL — Intersection Observer
+    // =========================================
+    const revealSelector = '.reveal, .reveal-left, .reveal-right, .reveal-scale, .line-grow, [data-split], .img-reveal';
+    const revealElements = document.querySelectorAll(revealSelector);
+
+    function markRevealed(el) {
+        el.classList.add('revealed');
+        // After the entrance finishes, drop stagger delays so hover feedback is instant
+        setTimeout(() => el.classList.add('reveal-done'), 2200);
+    }
+
+    if ('IntersectionObserver' in window && !reducedMotion) {
+        // An .img-reveal starts fully clipped, and Chromium treats a fully clipped
+        // element as never intersecting — so we watch its parent instead.
+        const watched = new Map();
+
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    (watched.get(entry.target) || []).forEach(markRevealed);
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.12,
+            rootMargin: '0px 0px -8% 0px'
+        });
+
+        revealElements.forEach((el) => {
+            const target = el.classList.contains('img-reveal') && el.parentElement ? el.parentElement : el;
+            if (!watched.has(target)) watched.set(target, []);
+            watched.get(target).push(el);
+            revealObserver.observe(target);
+        });
+    } else {
+        revealElements.forEach(markRevealed);
+    }
+
+    // =========================================
+    // 3. PARALLAX — Hero background
     // =========================================
     const parallaxBg = document.querySelector('.parallax-bg');
-    
-    if (parallaxBg) {
+
+    if (parallaxBg && !reducedMotion) {
         let ticking = false;
 
         function updateParallax() {
-            const scrollY = window.scrollY;
-            const speed = 0.3;
-            parallaxBg.style.transform = `translateY(${scrollY * speed}px) scale(1.1)`;
+            const y = window.scrollY;
+            if (y < window.innerHeight * 1.2) {
+                parallaxBg.style.transform = `translate3d(0, ${y * 0.25}px, 0) scale(1.08)`;
+            }
             ticking = false;
         }
 
@@ -52,15 +119,14 @@
             }
         }, { passive: true });
 
-        // Initial scale to prevent gap
-        parallaxBg.style.transform = 'translateY(0) scale(1.1)';
+        parallaxBg.style.transform = 'translate3d(0, 0, 0) scale(1.08)';
     }
 
     // =========================================
-    // 3. NAVBAR — Auto-hide on scroll down
+    // 4. NAVBAR — Auto-hide on scroll down
     // =========================================
     const nav = document.querySelector('nav');
-    
+
     if (nav) {
         let lastScrollY = 0;
         let navTicking = false;
@@ -70,11 +136,9 @@
 
             if (currentScrollY > 100) {
                 if (currentScrollY > lastScrollY && currentScrollY > 200) {
-                    // Scrolling down & past threshold
                     nav.classList.add('nav-hidden');
                     nav.classList.remove('nav-visible');
                 } else {
-                    // Scrolling up
                     nav.classList.remove('nav-hidden');
                     nav.classList.add('nav-visible');
                     nav.style.backgroundColor = 'rgba(255, 255, 255, 0.96)';
@@ -97,13 +161,36 @@
     }
 
     // =========================================
-    // 4. COUNTER ANIMATION — Animate numbers
+    // 5. COUNTER ANIMATION — Animate numbers
     // =========================================
     const counters = document.querySelectorAll('[data-count]');
 
-    if (counters.length > 0) {
+    function animateCounter(el) {
+        const target = parseFloat(el.dataset.count);
+        const decimals = parseInt(el.dataset.decimals || '0', 10);
+        const suffix = el.dataset.suffix || '';
+
+        if (reducedMotion) {
+            el.textContent = target.toFixed(decimals) + suffix;
+            return;
+        }
+
+        const duration = 1800;
+        const startTime = performance.now();
+
+        function step(currentTime) {
+            const progress = Math.min((currentTime - startTime) / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 4);
+            el.textContent = (eased * target).toFixed(decimals) + suffix;
+            if (progress < 1) requestAnimationFrame(step);
+        }
+
+        requestAnimationFrame(step);
+    }
+
+    if (counters.length > 0 && 'IntersectionObserver' in window) {
         const counterObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
+            entries.forEach((entry) => {
                 if (entry.isIntersecting) {
                     animateCounter(entry.target);
                     counterObserver.unobserve(entry.target);
@@ -111,92 +198,9 @@
             });
         }, { threshold: 0.5 });
 
-        counters.forEach(el => counterObserver.observe(el));
-    }
-
-    function animateCounter(el) {
-        const target = parseFloat(el.dataset.count);
-        const decimals = parseInt(el.dataset.decimals || '0', 10);
-        const suffix = el.dataset.suffix || '';
-        const duration = 1800;
-        const startTime = performance.now();
-
-        function step(currentTime) {
-            const elapsed = currentTime - startTime;
-            const progress = Math.min(elapsed / duration, 1);
-            // Ease out cubic
-            const eased = 1 - Math.pow(1 - progress, 3);
-            const current = (eased * target).toFixed(decimals);
-            el.textContent = current + suffix;
-
-            if (progress < 1) {
-                requestAnimationFrame(step);
-            }
-        }
-
-        requestAnimationFrame(step);
-    }
-
-    // =========================================
-    // 5. MAGNETIC CURSOR — CTA buttons
-    // =========================================
-    const magneticButtons = document.querySelectorAll('.glow-pulse');
-
-    magneticButtons.forEach(btn => {
-        btn.addEventListener('mousemove', (e) => {
-            const rect = btn.getBoundingClientRect();
-            const x = e.clientX - rect.left - rect.width / 2;
-            const y = e.clientY - rect.top - rect.height / 2;
-            btn.style.transform = `translate(${x * 0.15}px, ${y * 0.15}px) scale(1.02)`;
-        });
-
-        btn.addEventListener('mouseleave', () => {
-            btn.style.transform = '';
-        });
-    });
-
-    // =========================================
-    // 6. TILT EFFECT — Cards
-    // =========================================
-    const tiltCards = document.querySelectorAll('.card-hover-lift');
-
-    tiltCards.forEach(card => {
-        card.addEventListener('mousemove', (e) => {
-            const rect = card.getBoundingClientRect();
-            const x = (e.clientX - rect.left) / rect.width - 0.5;
-            const y = (e.clientY - rect.top) / rect.height - 0.5;
-            card.style.transform = `translateY(-8px) perspective(800px) rotateX(${y * -5}deg) rotateY(${x * 5}deg)`;
-        });
-
-        card.addEventListener('mouseleave', () => {
-            card.style.transform = '';
-        });
-    });
-
-    // =========================================
-    // 7. AMBIENT CURSOR GLOW
-    // =========================================
-    const cursorGlow = document.getElementById('cursorGlow');
-
-    if (cursorGlow && window.matchMedia('(hover: hover)').matches && window.matchMedia('(prefers-reduced-motion: no-preference)').matches) {
-        let glowX = 0, glowY = 0, glowTicking = false;
-
-        window.addEventListener('mousemove', (e) => {
-            glowX = e.clientX;
-            glowY = e.clientY;
-            if (!glowTicking) {
-                requestAnimationFrame(() => {
-                    cursorGlow.style.transform = `translate(${glowX - 250}px, ${glowY - 250}px)`;
-                    cursorGlow.style.opacity = '1';
-                    glowTicking = false;
-                });
-                glowTicking = true;
-            }
-        }, { passive: true });
-
-        document.addEventListener('mouseleave', () => {
-            cursorGlow.style.opacity = '0';
-        });
+        counters.forEach((el) => counterObserver.observe(el));
+    } else {
+        counters.forEach(animateCounter);
     }
 
 })();
