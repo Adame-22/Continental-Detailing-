@@ -158,9 +158,15 @@
                                 <i class="fa-solid fa-gem fpill-icon"></i>
                                 <div class="fpill-info">
                                     <span class="fpill-name">Pack Complet</span>
-                                    <span class="fpill-rec">Recommandé</span>
+                                    <span class="fpill-rec-row">
+                                        <span class="fpill-rec">Recommandé</span>
+                                        <span class="fpill-save" id="save-complet" style="display:none"></span>
+                                    </span>
                                 </div>
-                                <span class="fpill-price" id="price-complet">—</span>
+                                <span class="fpill-prices">
+                                    <s class="fpill-old" id="price-complet-old" style="display:none"></s>
+                                    <span class="fpill-price" id="price-complet">—</span>
+                                </span>
                             </div>
                         </button>
                         <button class="fpill" data-f="ext" role="tab">
@@ -193,11 +199,11 @@
                         </div>
                     </div>
 
-                    <!-- Economy badge -->
-                    <div class="economy-badge" id="economy-badge" style="display:none">
+                    <!-- Economy badge: savings on Pack Complet, or an upsell towards it -->
+                    <button type="button" class="economy-badge" id="economy-badge" style="display:none">
                         <i class="fa-solid fa-piggy-bank"></i>
                         <span id="economy-text"></span>
-                    </div>
+                    </button>
 
                     <!-- Price + CTA -->
                     <div class="price-summary">
@@ -248,6 +254,13 @@
                 if (window.__alpineFormule) window.__alpineFormule(btn.dataset.f);
             });
         });
+
+        const badge = document.getElementById('economy-badge');
+        if (badge) {
+            badge.addEventListener('click', () => {
+                if (currentFormule !== 'complet') switchFormule('complet');
+            });
+        }
     }
 
     function setActiveFormuleTab(f) {
@@ -380,6 +393,19 @@
         document.getElementById('price-ext').textContent = fmt(t.ext);
         document.getElementById('price-int').textContent = fmt(t.int);
         document.getElementById('price-complet').textContent = fmt(t.complet);
+
+        // Pack Complet always shows what it saves vs. booking both separately
+        const oldEl  = document.getElementById('price-complet-old');
+        const saveEl = document.getElementById('save-complet');
+        const saved  = (t.ext && t.int && t.complet) ? (t.ext + t.int) - t.complet : 0;
+        if (saved > 0) {
+            oldEl.textContent  = (t.ext + t.int) + '€';
+            saveEl.textContent = '−' + saved + '€';
+            oldEl.style.display = saveEl.style.display = '';
+        } else {
+            oldEl.style.display = saveEl.style.display = 'none';
+        }
+
         updatePriceDisplay(carKey, currentFormule);
         updateEconomy(carKey, currentFormule);
     }
@@ -399,9 +425,21 @@
     function updateEconomy(carKey, formule) {
         const badge = document.getElementById('economy-badge');
         const t = TARIFS[carKey];
-        if (!t || !t.ext || formule !== 'complet') { if (badge) badge.style.display = 'none'; return; }
+        if (!badge) return;
+        if (!t || !t.ext || !t.int || !t.complet) { badge.style.display = 'none'; return; }
+
+        const text = document.getElementById('economy-text');
         const saved = (t.ext + t.int) - t.complet;
-        document.getElementById('economy-text').textContent = `${saved}€ économisés vs séparé`;
+
+        if (formule === 'complet') {
+            text.textContent = `Vous économisez ${saved}€ vs formules séparées`;
+            badge.classList.remove('economy-badge--upsell');
+        } else {
+            // One formula chosen: show how little it costs to get everything
+            const extra = t.complet - t[formule];
+            text.textContent = `Passez au Pack Complet : +${extra}€ seulement`;
+            badge.classList.add('economy-badge--upsell');
+        }
         badge.style.display = 'flex';
     }
 

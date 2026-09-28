@@ -3,6 +3,14 @@
    Layout: stacked (vehicle nav top → stage → panel)
    ═══════════════════════════════════════════════════ */
 
+/* These tokens were referenced below but never defined, which made the
+   "Réserver" button white-on-white and dropped the active-pill border. */
+:root {
+    --primary:   var(--text-primary, #1A1A1E);
+    --secondary: var(--text-secondary, #6B6B6B);
+    --muted:     var(--text-muted, #707070);
+}
+
 /* ── Wrapper: full-width vertical layout ── */
 .showcase-wrapper {
     width: 100%;
@@ -408,6 +416,36 @@
     margin-right: 32px; /* Space for the checkmark */
 }
 
+/* Pack Complet: saving tag + struck "separate" price */
+.fpill-rec-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+.fpill-save {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    padding: 2px 8px;
+    border-radius: 9999px;
+    background: rgba(34, 197, 94, 0.12);
+    color: #15803d; /* 4.9:1 on the tinted background */
+    white-space: nowrap;
+}
+.fpill-prices {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    flex-shrink: 0;
+}
+.fpill-old {
+    font-size: 0.85rem;
+    font-weight: 400;
+    color: var(--muted);
+    text-decoration-thickness: 1px;
+}
+
 /* Checkmark placeholder */
 .fpill::after {
     content: '\f00c';
@@ -517,7 +555,31 @@
     font-weight: 500;
     letter-spacing: 0.04em;
     text-transform: uppercase;
+    font-family: inherit;
+    width: calc(100% - 1.5rem);
+    cursor: default;
 }
+.economy-badge i { color: #15803d; }
+
+/* Upsell variant: one formula picked → nudge towards Pack Complet */
+.economy-badge--upsell {
+    cursor: pointer;
+    background: rgba(34, 197, 94, 0.08);
+    border-color: rgba(21, 128, 61, 0.35);
+    color: #15803d;
+    font-weight: 700;
+    transition: background 0.3s ease, border-color 0.3s ease;
+}
+.economy-badge--upsell::after {
+    content: '\2192';
+    margin-left: 2px;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.economy-badge--upsell:hover {
+    background: rgba(34, 197, 94, 0.14);
+    border-color: #15803d;
+}
+.economy-badge--upsell:hover::after { transform: translateX(4px); }
 
 /* Panel price summary */
 .price-summary {
@@ -608,6 +670,9 @@
   .fpill-name { font-size: 0.75rem; }
   .fpill-sub { font-size: 0.55rem; }
   .fpill-price { font-size: 0.95rem; }
+  .fpill-old { font-size: 0.7rem; }
+  .fpill-prices { gap: 5px; }
+  .fpill-save { font-size: 0.55rem; padding: 1px 6px; }
 
   .car-image-wrap { max-width: 80%; }
   .car-reflection { bottom: -15px; }

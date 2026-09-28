@@ -198,6 +198,12 @@
                 if (!t || !t.ext || this.formule !== 'complet') return 0;
                 return (t.ext + t.int) - t.complet;
             },
+
+            get supplementComplet() {
+                const t = this.tarifs[this.vehicule];
+                if (!t || !t.complet || this.formule === 'complet' || !t[this.formule]) return 0;
+                return t.complet - t[this.formule];
+            },
             
             get totalPrix() {
                 if (this.isUtilitaire || this.clientType === 'pro') return 0;
@@ -457,6 +463,13 @@
                     <div x-show="clientType === 'particulier' &amp;&amp; !isUtilitaire" class="min-w-0 flex-1">
                         <div class="flex items-center gap-3 mb-1 flex-wrap">
                             <p class="text-[10px] font-medium uppercase tracking-widest text-secondary">Votre devis</p>
+                            <span x-show="economie > 0" style="display:none; background:rgba(34,197,94,0.12); color:#15803d;"
+                                  class="text-[10px] font-bold px-2 py-0.5 rounded-full whitespace-nowrap"
+                                  x-text="'−' + economie + '€ économisés'"></span>
+                            <button type="button" x-show="supplementComplet > 0" style="display:none; background:rgba(34,197,94,0.08); color:#15803d; border:1px solid rgba(21,128,61,0.35);"
+                                    @click="window.showcaseSwitchFormule ? window.showcaseSwitchFormule('complet') : (formule = 'complet')"
+                                    class="text-[10px] font-bold px-2 py-0.5 rounded-full whitespace-nowrap cursor-pointer"
+                                    x-text="'Pack Complet : +' + supplementComplet + '€ seulement →'"></button>
                         </div>
                         <div class="flex items-baseline gap-3">
                             <p class="text-2xl font-light text-primary whitespace-nowrap" x-text="totalPrix + '\u20ac'"></p>
