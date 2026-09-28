@@ -178,6 +178,24 @@
             setTimeout(openPopup, POPUP_DELAY_MS);
         }
 
+        // Offer video: only downloaded once it comes into view, plays while
+        // visible. With reduced motion the poster (final frame) stays up.
+        var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        document.querySelectorAll('video[data-src]').forEach(function (video) {
+            if (reduceMotion || !('IntersectionObserver' in window)) return;
+            new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) {
+                        if (!video.src) video.src = video.getAttribute('data-src');
+                        var p = video.play();
+                        if (p && p.catch) p.catch(function () { /* autoplay refused: poster stays */ });
+                    } else if (video.src) {
+                        video.pause();
+                    }
+                });
+            }, { threshold: 0.35 }).observe(video);
+        });
+
         renderCountdowns();
         setInterval(renderCountdowns, 1000);
     });

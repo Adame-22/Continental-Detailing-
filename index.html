@@ -316,6 +316,25 @@
         </div>
     </div>
 
+    <!-- Offre saisonnière : vidéo + compte à rebours (masqué hors offre, voir js/promo.js) -->
+    <section class="promo-feature" aria-labelledby="promoFeatureTitle">
+        <div class="promo-feature__inner reveal">
+            <a href="services.html" class="promo-feature__media" aria-label="Voir les prix de l’Offre Automne">
+                <video class="promo-feature__video" muted loop playsinline preload="none"
+                       poster="images/offre-automne-poster.webp" data-src="images/offre-automne.mp4"
+                       aria-hidden="true"></video>
+            </a>
+            <div class="promo-feature__body">
+                <span class="promo-feature__tag" data-promo-label></span>
+                <h2 id="promoFeatureTitle" class="promo-feature__title">Préparez votre voiture pour l’hiver, à −20%</h2>
+                <p class="promo-feature__text">Intérieur, extérieur ou pack complet : toutes nos prestations sont à −20% jusqu’au <span data-promo-until></span> inclus. On vient chez vous, vous n’avez rien à faire.</p>
+                <p class="promo-feature__ends">L’offre se termine dans</p>
+                <div class="cd" data-promo-countdown></div>
+                <a href="services.html" class="promo-feature__cta">Voir mes prix remisés <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </section>
+
     <!-- Formules -->
     <section class="py-28 max-w-5xl mx-auto px-6">
         <div class="text-left mb-16 reveal">
