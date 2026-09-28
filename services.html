@@ -3,21 +3,8 @@
 <head>
     <script>document.documentElement.classList.add('js');setTimeout(function(){if(!window.__motionReady)document.documentElement.classList.remove('js')},4000);</script>
     <script src="js/promo.js"></script>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-K3PHWTTYR2"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-K3PHWTTYR2');
-    </script>
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-KRXZ2QSL');</script>
-    <!-- End Google Tag Manager -->
+    <!-- Mesure d'audience : chargée seulement après accord (bannière cookies) -->
+    <script src="js/consent.js"></script>
     <!-- Favicon / Icône du site -->
     <link rel="icon" type="image/png" sizes="192x192" href="images/favicon.png">
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
@@ -110,10 +97,6 @@
     </script>
 </head>
 <body class="bg-bg text-primary antialiased pb-48 relative min-h-screen">
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KRXZ2QSL"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
 
     <!-- Offre saisonnière : affichée uniquement pendant l'offre (réglages dans js/promo.js) -->
     <a href="services.html" class="promo-bar">
@@ -159,6 +142,7 @@
             formName: '',
             formEmail: '',
             formPhone: '',
+            formBot: false,   // honeypot: only bots tick this hidden box
             formStatus: 'idle',
             
             numeroContact: '33750875964', 
@@ -263,6 +247,8 @@
             
             submitForm() {
                 if (!this.formName || !this.formEmail) return;
+                // Honeypot ticked = bot: pretend it worked, send nothing
+                if (this.formBot) { this.formStatus = 'success'; return; }
                 this.formStatus = 'submitting';
 
                 const vehiculeNom = this.isUtilitaire ? 'Utilitaire (devis)' : (this.tarifs[this.vehicule]?.nom || this.vehicule);
@@ -279,6 +265,7 @@
                         email: this.formEmail,
                         replyto: this.formEmail,
                         phone: this.formPhone || 'Non renseigné',
+                        botcheck: false,
                         message:
                             '\uD83D\uDE97 Véhicule : ' + vehiculeNom + '\n' +
                             '\u2728 Formule : ' + formuleNom + '\n' +
@@ -676,6 +663,10 @@
                             <input type="tel" x-model="formPhone" :disabled="formStatus === 'submitting'" class="w-full bg-bg-alt border border-gray-200 px-4 py-3 text-primary focus:outline-none focus:border-primary transition-colors rounded-md shadow-sm" placeholder="06 12 34 56 78">
                         </div>
                         
+                        <!-- Anti-spam : champ invisible pour les humains, rempli par les robots -->
+                        <div aria-hidden="true" style="position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden;">
+                            <label>Ne pas cocher <input type="checkbox" x-model="formBot" tabindex="-1" autocomplete="off"></label>
+                        </div>
                         <div x-show="formStatus === 'error'" class="p-3 bg-red-50 border border-red-200 text-red-600 text-xs text-center rounded-md">
                             Une erreur est survenue lors de l'envoi. Veuillez réessayer.
                         </div>
@@ -740,7 +731,7 @@
             </div>
             
             <div class="footer-bottom">
-                <div class="footer-copy">© <span class="cd-year">2026</span> Continental Detailing — Tous droits réservés. &nbsp;·&nbsp;<a href="mentions-legales.html" style="color:#A0A0A0; text-decoration:underline;" onmouseover="this.style.color='#FFFFFF'" onmouseout="this.style.color='#A0A0A0'">Mentions légales</a> &nbsp;·&nbsp;<a href="cgv.html" style="color:#A0A0A0; text-decoration:underline;" onmouseover="this.style.color='#FFFFFF'" onmouseout="this.style.color='#A0A0A0'">CGV</a></div>
+                <div class="footer-copy">© <span class="cd-year">2026</span> Continental Detailing — Tous droits réservés. &nbsp;·&nbsp;<a href="mentions-legales.html" style="color:#A0A0A0; text-decoration:underline;" onmouseover="this.style.color='#FFFFFF'" onmouseout="this.style.color='#A0A0A0'">Mentions légales</a>&nbsp;·&nbsp;<a href="mentions-legales.html#cookies" data-cookie-settings style="color:#A0A0A0; text-decoration:underline;">Cookies</a> &nbsp;·&nbsp;<a href="cgv.html" style="color:#A0A0A0; text-decoration:underline;" onmouseover="this.style.color='#FFFFFF'" onmouseout="this.style.color='#A0A0A0'">CGV</a></div>
                 <div class="footer-socials">
                     <a href="mailto:continental.detailing.idf@gmail.com"><i class="fa-regular fa-envelope"></i></a>
                     <a href="https://www.instagram.com/continental.detailing.idf/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-instagram"></i></a>

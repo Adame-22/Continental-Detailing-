@@ -203,4 +203,30 @@
         counters.forEach(animateCounter);
     }
 
+    // ─── Lazy videos ───
+    // <video data-src> is only downloaded once it nears the screen, then plays
+    // while visible and pauses off-screen. Reduced motion: first frame/poster only.
+    const lazyVideos = document.querySelectorAll('video[data-src]');
+    function loadVideo(video) {
+        if (!video.getAttribute('src')) video.src = video.getAttribute('data-src');
+    }
+    if (lazyVideos.length && 'IntersectionObserver' in window) {
+        const videoObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                const video = entry.target;
+                if (entry.isIntersecting) {
+                    loadVideo(video);
+                    if (reducedMotion) return;
+                    const p = video.play();
+                    if (p && p.catch) p.catch(() => { /* autoplay refused: poster stays */ });
+                } else if (video.getAttribute('src')) {
+                    video.pause();
+                }
+            });
+        }, { rootMargin: '200px 0px', threshold: 0.01 });
+        lazyVideos.forEach((v) => videoObserver.observe(v));
+    } else {
+        lazyVideos.forEach(loadVideo);
+    }
+
 })();

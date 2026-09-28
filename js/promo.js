@@ -175,26 +175,21 @@
         // Arrival popup (once a day at most)
         if (!popupRecentlySeen()) {
             var openPopup = buildPopup();
-            setTimeout(openPopup, POPUP_DELAY_MS);
+            // Never stack the offer on top of the cookie banner: wait for an answer first
+            var openWhenFree = function () {
+                var cookieBanner = document.querySelector('.cookie-banner');
+                if (cookieBanner && !cookieBanner.hidden) {
+                    cookieBanner.addEventListener('click', function retry(e) {
+                        if (!e.target.closest('[data-cookie]')) return;
+                        cookieBanner.removeEventListener('click', retry);
+                        setTimeout(openPopup, 800);
+                    });
+                } else {
+                    openPopup();
+                }
+            };
+            setTimeout(openWhenFree, POPUP_DELAY_MS);
         }
-
-        // Offer video: only downloaded once it comes into view, plays while
-        // visible. With reduced motion the poster (final frame) stays up.
-        var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        document.querySelectorAll('video[data-src]').forEach(function (video) {
-            if (reduceMotion || !('IntersectionObserver' in window)) return;
-            new IntersectionObserver(function (entries) {
-                entries.forEach(function (entry) {
-                    if (entry.isIntersecting) {
-                        if (!video.src) video.src = video.getAttribute('data-src');
-                        var p = video.play();
-                        if (p && p.catch) p.catch(function () { /* autoplay refused: poster stays */ });
-                    } else if (video.src) {
-                        video.pause();
-                    }
-                });
-            }, { threshold: 0.35 }).observe(video);
-        });
 
         renderCountdowns();
         setInterval(renderCountdowns, 1000);

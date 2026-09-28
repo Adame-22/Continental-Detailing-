@@ -1,0 +1,13 @@
+# Fichiers de travail : gardés dans le dépôt mais jamais mis en ligne
+*.py
+*.ps1
+base64.txt
+gt3rs-b64.txt
+logo_base64.txt
+qr_base64.txt
+flyer*.html
+flyer*.png
+insta-senior.html
+continental-detailing-flyer-A5.png
+gt3rs-bg.png
+assets/

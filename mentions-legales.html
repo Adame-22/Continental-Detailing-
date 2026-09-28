@@ -2,21 +2,8 @@
 <html lang="fr" class="scroll-smooth">
 <head>
     <script>document.documentElement.classList.add('js');setTimeout(function(){if(!window.__motionReady)document.documentElement.classList.remove('js')},4000);</script>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-K3PHWTTYR2"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-K3PHWTTYR2');
-    </script>
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-KRXZ2QSL');</script>
-    <!-- End Google Tag Manager -->
+    <!-- Mesure d'audience : chargée seulement après accord (bannière cookies) -->
+    <script src="js/consent.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mentions légales | Continental Detailing</title>
@@ -63,10 +50,6 @@
     </script>
 </head>
 <body class="bg-bg text-primary antialiased">
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KRXZ2QSL"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
 
     <!-- Navigation -->
     <nav class="nav-main" id="navbar">
@@ -130,12 +113,14 @@
 
             <section>
                 <h2 class="text-xl font-bold text-primary mb-3">5. Données personnelles</h2>
-                <p>Ce site ne collecte aucune donnée personnelle via un formulaire. Les prises de contact se font via WhatsApp et Instagram, plateformes disposant de leurs propres politiques de confidentialité. Aucune donnée n'est stockée sur ce site. Conformément au RGPD, vous pouvez exercer vos droits d'accès et de suppression en nous contactant directement.</p>
+                <p>Lorsque vous demandez un devis via le formulaire de la page Tarifs, votre nom, votre adresse e-mail, votre téléphone (facultatif) et le détail de la prestation choisie nous sont transmis par e-mail via le service Web3Forms. Ces informations servent uniquement à vous répondre et à organiser la prestation ; elles ne sont ni revendues ni utilisées à des fins publicitaires, et sont conservées au maximum 3 ans après notre dernier échange. Les prises de contact via WhatsApp, SMS, Instagram ou Facebook relèvent des politiques de confidentialité de ces services.</p>
+                <p class="mt-3">Conformément au RGPD, vous disposez d'un droit d'accès, de rectification et de suppression de vos données : il suffit de nous contacter. Vous pouvez aussi adresser une réclamation à la CNIL (<a href="https://www.cnil.fr" target="_blank" rel="noopener noreferrer" class="underline hover:text-primary">cnil.fr</a>).</p>
             </section>
 
-            <section>
+            <section id="cookies">
                 <h2 class="text-xl font-bold text-primary mb-3">6. Cookies</h2>
-                <p>Ce site ne dépose aucun cookie de suivi ou publicitaire. Seules des ressources techniques externes (polices, icônes) peuvent être chargées pour l'affichage.</p>
+                <p>Avec votre accord uniquement, ce site utilise Google Analytics (via Google Tag Manager) pour mesurer son audience : pages vues, provenance des visites, type d'appareil. Ces cookies (<code>_ga</code>) sont conservés 13 mois au maximum. Aucun cookie publicitaire n'est utilisé. Si vous refusez, aucun outil de mesure n'est chargé et votre navigation n'est pas affectée.</p>
+                <p class="mt-3">Votre choix est mémorisé 6 mois dans votre navigateur. Vous pouvez le modifier à tout moment : <a href="#cookies" data-cookie-settings class="underline hover:text-primary font-medium">gérer mes cookies</a>.</p>
             </section>
 
             <section>
@@ -156,7 +141,7 @@
         <div class="max-w-5xl mx-auto px-6 py-8 flex flex-col md:flex-row justify-between items-center gap-6">
             <div class="text-xs" style="color:#A0A0A0;">
                 © <span class="cd-year">2026</span> Continental Detailing — Tous droits réservés.
-                &nbsp;·&nbsp;<a href="mentions-legales.html" style="color:#FFFFFF; text-decoration:underline;">Mentions légales</a>
+                &nbsp;·&nbsp;<a href="mentions-legales.html" style="color:#FFFFFF; text-decoration:underline;">Mentions légales</a>&nbsp;·&nbsp;<a href="mentions-legales.html#cookies" data-cookie-settings style="color:#FFFFFF; text-decoration:underline;">Cookies</a>
                 &nbsp;·&nbsp;<a href="cgv.html" style="color:#FFFFFF; text-decoration:underline;">CGV</a>
             </div>
             <div class="flex gap-6 items-center">

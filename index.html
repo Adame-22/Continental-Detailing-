@@ -3,21 +3,8 @@
 <head>
     <script>document.documentElement.classList.add('js');setTimeout(function(){if(!window.__motionReady)document.documentElement.classList.remove('js')},4000);</script>
     <script src="js/promo.js"></script>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-K3PHWTTYR2"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-K3PHWTTYR2');
-    </script>
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-KRXZ2QSL');</script>
-    <!-- End Google Tag Manager -->
+    <!-- Mesure d'audience : chargée seulement après accord (bannière cookies) -->
+    <script src="js/consent.js"></script>
     <!-- Schemas de Référencement Google (JSON-LD) -->
     <script type="application/ld+json">
     {
@@ -189,10 +176,6 @@
     <meta name="twitter:image" content="https://continentaldetailing.fr/images/hero-bg-hq.webp">
 </head>
 <body class="bg-bg text-primary antialiased">
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KRXZ2QSL"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
 
     <!-- Offre saisonnière : affichée uniquement pendant l'offre (réglages dans js/promo.js) -->
     <a href="services.html" class="promo-bar">
@@ -432,7 +415,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <!-- Twingo 3 : vraie prestation, avant/après tapis -->
                 <div onclick="openVideoModal('images/video-twingo-tapis.mp4')" class="group relative overflow-hidden rounded-xl img-reveal cursor-pointer" style="aspect-ratio:4/5; --clip-r:12px;">
-                    <video src="images/video-twingo-tapis-preview.mp4" autoplay muted loop playsinline class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"></video>
+                    <video data-src="images/video-twingo-tapis-preview.mp4" muted loop playsinline preload="none" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"></video>
                     <div class="absolute inset-0 bg-gradient-to-t from-white/90 via-transparent to-transparent opacity-60"></div>
                     <div class="absolute bottom-8 left-8">
                         <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full mb-3" style="background:rgba(168,136,74,0.2); border:1px solid rgba(0,0,0,0.15); backdrop-filter:blur(4px);">
@@ -448,7 +431,7 @@
 
                 <!-- Savoir-faire : coulisses du métier -->
                 <div onclick="openVideoModal('images/presentation.mp4')" class="group relative overflow-hidden rounded-xl img-reveal stagger-2 cursor-pointer" style="aspect-ratio:4/5; --clip-r:12px;">
-                    <video src="images/presentation.mp4" autoplay muted loop playsinline class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"></video>
+                    <video data-src="images/presentation.mp4" muted loop playsinline preload="none" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"></video>
                     <div class="absolute inset-0 bg-gradient-to-t from-white/90 via-transparent to-transparent opacity-60"></div>
                     <div class="absolute bottom-8 left-8">
                         <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full mb-3" style="background:rgba(168,136,74,0.2); border:1px solid rgba(0,0,0,0.15); backdrop-filter:blur(4px);">
@@ -790,7 +773,7 @@
         </div>
         <div class="max-w-5xl mx-auto px-6 py-8 flex flex-col md:flex-row justify-between items-center gap-6">
             <div class="text-xs" style="color:#A0A0A0;">
-                © <span class="cd-year">2026</span> Continental Detailing — Tous droits réservés. &nbsp;·&nbsp;<a href="mentions-legales.html" style="color:#A0A0A0; text-decoration:underline;" onmouseover="this.style.color='#FFFFFF'" onmouseout="this.style.color='#A0A0A0'">Mentions légales</a> &nbsp;·&nbsp;<a href="cgv.html" style="color:#A0A0A0; text-decoration:underline;" onmouseover="this.style.color='#FFFFFF'" onmouseout="this.style.color='#A0A0A0'">CGV</a>
+                © <span class="cd-year">2026</span> Continental Detailing — Tous droits réservés. &nbsp;·&nbsp;<a href="mentions-legales.html" style="color:#A0A0A0; text-decoration:underline;" onmouseover="this.style.color='#FFFFFF'" onmouseout="this.style.color='#A0A0A0'">Mentions légales</a>&nbsp;·&nbsp;<a href="mentions-legales.html#cookies" data-cookie-settings style="color:#A0A0A0; text-decoration:underline;">Cookies</a> &nbsp;·&nbsp;<a href="cgv.html" style="color:#A0A0A0; text-decoration:underline;" onmouseover="this.style.color='#FFFFFF'" onmouseout="this.style.color='#A0A0A0'">CGV</a>
             </div>
             <div class="flex gap-6 items-center">
                 <a href="mailto:continental.detailing.idf@gmail.com" class="ui-transition text-lg" style="color:#A0A0A0;" onmouseover="this.style.color='#FFFFFF'" onmouseout="this.style.color='#3F3F46'">
