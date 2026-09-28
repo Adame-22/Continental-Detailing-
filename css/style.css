@@ -1158,3 +1158,65 @@ details[open] {
 .cta-race:hover::before {
     transform: scaleX(1);
 }
+
+/* ═══════════════════════════════════════
+   SEASONAL OFFER (driven by js/promo.js)
+   Hidden unless <html> has .promo-on, so it
+   disappears by itself once the offer ends.
+   ═══════════════════════════════════════ */
+
+.promo-bar { display: none; }
+
+.promo-on .promo-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 6px 14px;
+    padding: 10px 16px;
+    background: #0E1418;
+    color: #FFFFFF;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    text-align: center;
+    text-decoration: none;
+    position: relative;
+    z-index: 101;
+}
+
+.promo-bar__tag {
+    padding: 3px 10px;
+    border-radius: 9999px;
+    background: #C2410C; /* autumn orange, 5.2:1 with white */
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+.promo-bar__days {
+    color: rgba(255, 255, 255, 0.6);
+}
+.promo-bar__days::before { content: '·'; margin-right: 14px; }
+
+.promo-bar__cta {
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-size: 11px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+@media (max-width: 640px) {
+    .promo-on .promo-bar { font-size: 11px; padding: 9px 12px; }
+    .promo-bar__days { display: none; }
+}
+
+/* Struck reference price next to the discounted one */
+.promo-old {
+    color: var(--text-muted);
+    font-weight: 400;
+    text-decoration-thickness: 1px;
+    margin-right: 2px;
+}

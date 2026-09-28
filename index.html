@@ -2,6 +2,7 @@
 <html lang="fr" class="scroll-smooth">
 <head>
     <script>document.documentElement.classList.add('js');setTimeout(function(){if(!window.__motionReady)document.documentElement.classList.remove('js')},4000);</script>
+    <script src="js/promo.js"></script>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-K3PHWTTYR2"></script>
     <script>
@@ -192,6 +193,14 @@
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KRXZ2QSL"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
+
+    <!-- Offre saisonnière : affichée uniquement pendant l'offre (réglages dans js/promo.js) -->
+    <a href="services.html" class="promo-bar">
+        <span class="promo-bar__tag" data-promo-label></span>
+        <span class="promo-bar__text" data-promo-text></span>
+        <span class="promo-bar__days" data-promo-days></span>
+        <span class="promo-bar__cta">Réserver <i class="fa-solid fa-arrow-right"></i></span>
+    </a>
 
     <!-- Navigation -->
     <nav class="nav-main" id="navbar">
@@ -832,7 +841,7 @@
                             <img src="images/car-citadine.webp" width="800" height="291" loading="lazy" alt="Citadine" class="transition-transform duration-500 group-hover:scale-105" style="width:65%; height:auto; max-height:100%; transform-origin: bottom center; mix-blend-mode: multiply;">
                         </div>
                         <div class="text-left">
-                            <span class="inline-block bg-white text-primary text-[11px] font-medium px-4 py-1.5 rounded-full shadow-sm border border-gray-100">À partir de 49€</span>
+                            <span class="inline-block bg-white text-primary text-[11px] font-medium px-4 py-1.5 rounded-full shadow-sm border border-gray-100" data-from-price="49">À partir de 49€</span>
                         </div>
                     </a>
 
@@ -844,7 +853,7 @@
                             <img src="images/car-berline.webp" width="800" height="259" loading="lazy" alt="Berline" class="transition-transform duration-500 group-hover:scale-105" style="width:82%; height:auto; max-height:100%; transform-origin: bottom center; mix-blend-mode: multiply;">
                         </div>
                         <div class="text-left">
-                            <span class="inline-block bg-white text-primary text-[11px] font-medium px-4 py-1.5 rounded-full shadow-sm border border-gray-100">À partir de 59€</span>
+                            <span class="inline-block bg-white text-primary text-[11px] font-medium px-4 py-1.5 rounded-full shadow-sm border border-gray-100" data-from-price="59">À partir de 59€</span>
                         </div>
                     </a>
 
@@ -856,7 +865,7 @@
                             <img src="images/car-suv.webp" width="800" height="320" loading="lazy" alt="SUV" class="transition-transform duration-500 group-hover:scale-105" style="width:78%; height:auto; max-height:100%; transform-origin: bottom center; mix-blend-mode: multiply;">
                         </div>
                         <div class="text-left">
-                            <span class="inline-block bg-white text-primary text-[11px] font-medium px-4 py-1.5 rounded-full shadow-sm border border-gray-100">À partir de 69€</span>
+                            <span class="inline-block bg-white text-primary text-[11px] font-medium px-4 py-1.5 rounded-full shadow-sm border border-gray-100" data-from-price="69">À partir de 69€</span>
                         </div>
                     </a>
 
@@ -868,7 +877,7 @@
                             <img src="images/car-monospace.webp" width="800" height="338" loading="lazy" alt="Monospace" class="transition-transform duration-500 group-hover:scale-105" style="width:80%; height:auto; max-height:100%; transform-origin: bottom center; mix-blend-mode: multiply;">
                         </div>
                         <div class="text-left">
-                            <span class="inline-block bg-white text-primary text-[11px] font-medium px-4 py-1.5 rounded-full shadow-sm border border-gray-100">À partir de 79€</span>
+                            <span class="inline-block bg-white text-primary text-[11px] font-medium px-4 py-1.5 rounded-full shadow-sm border border-gray-100" data-from-price="79">À partir de 79€</span>
                         </div>
                     </a>
 
@@ -880,7 +889,7 @@
                             <img src="images/car-prestige.webp" width="800" height="259" loading="lazy" alt="Prestige" class="transition-transform duration-500 group-hover:scale-105" style="width:76%; height:auto; max-height:100%; transform-origin: bottom center; mix-blend-mode: multiply;">
                         </div>
                         <div class="text-left">
-                            <span class="inline-block bg-white text-primary text-[11px] font-medium px-4 py-1.5 rounded-full shadow-sm border border-gray-100">À partir de 89€</span>
+                            <span class="inline-block bg-white text-primary text-[11px] font-medium px-4 py-1.5 rounded-full shadow-sm border border-gray-100" data-from-price="89">À partir de 89€</span>
                         </div>
                     </a>
 
@@ -892,7 +901,7 @@
                             <img src="images/car-moto.webp" width="800" height="274" loading="lazy" alt="Moto" class="transition-transform duration-500 group-hover:scale-105" style="width:95%; height:auto; max-height:100%; transform-origin: bottom center; mix-blend-mode: multiply;">
                         </div>
                         <div class="text-left">
-                            <span class="inline-block bg-white text-primary text-[11px] font-medium px-4 py-1.5 rounded-full shadow-sm border border-gray-100">À partir de 39€</span>
+                            <span class="inline-block bg-white text-primary text-[11px] font-medium px-4 py-1.5 rounded-full shadow-sm border border-gray-100" data-from-price="39">À partir de 39€</span>
                         </div>
                     </a>
 

@@ -2,6 +2,7 @@
 <html lang="fr" class="scroll-smooth">
 <head>
     <script>document.documentElement.classList.add('js');setTimeout(function(){if(!window.__motionReady)document.documentElement.classList.remove('js')},4000);</script>
+    <script src="js/promo.js"></script>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-K3PHWTTYR2"></script>
     <script>
@@ -114,6 +115,14 @@
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
 
+    <!-- Offre saisonnière : affichée uniquement pendant l'offre (réglages dans js/promo.js) -->
+    <a href="services.html" class="promo-bar">
+        <span class="promo-bar__tag" data-promo-label></span>
+        <span class="promo-bar__text" data-promo-text></span>
+        <span class="promo-bar__days" data-promo-days></span>
+        <span class="promo-bar__cta">Réserver <i class="fa-solid fa-arrow-right"></i></span>
+    </a>
+
     <!-- Navigation Bar -->
     <nav class="nav-main" id="navbar">
         <div class="nav-inner">
@@ -193,19 +202,23 @@
                 return libelles[this.formule] || this.formule;
             },
 
+            // Seasonal offer from js/promo.js; tarifs above stay the regular prices
+            promoOn: !!(window.PROMO && window.PROMO.active),
+            prix(v) { return window.PROMO ? window.PROMO.apply(v) : v; },
+
             get economie() {
                 const t = this.tarifs[this.vehicule];
                 if (!t || !t.ext || this.formule !== 'complet') return 0;
-                return (t.ext + t.int) - t.complet;
+                return (this.prix(t.ext) + this.prix(t.int)) - this.prix(t.complet);
             },
 
             get supplementComplet() {
                 const t = this.tarifs[this.vehicule];
                 if (!t || !t.complet || this.formule === 'complet' || !t[this.formule]) return 0;
-                return t.complet - t[this.formule];
+                return this.prix(t.complet) - this.prix(t[this.formule]);
             },
-            
-            get totalPrix() {
+
+            get totalPrixNormal() {
                 if (this.isUtilitaire || this.clientType === 'pro') return 0;
                 const t = this.tarifs[this.vehicule];
                 if (!t) return 0;
@@ -214,6 +227,15 @@
                 if (this.options.non_videe) base += 10;
                 if (this.options.cire)      base += 30;
                 return base;
+            },
+
+            get totalPrix() {
+                return this.prix(this.totalPrixNormal);
+            },
+
+            get mentionPromo() {
+                if (!this.promoOn || !this.totalPrix || this.totalPrix === this.totalPrixNormal) return '';
+                return ' (' + window.PROMO.label + ' −' + window.PROMO.percent + '%, au lieu de ' + this.totalPrixNormal + '€)';
             },
 
             get texteMessage() {
@@ -234,7 +256,7 @@
                 if(this.options.cire) opts.push('Cire Express');
                 if(opts.length > 0) msg += '➕ Options : ' + opts.join(', ') + '\n';
                 
-                msg += '\n💰 TOTAL ESTIMÉ : ' + this.totalPrix + '€\n';
+                msg += '\n💰 TOTAL ESTIMÉ : ' + this.totalPrix + '€' + this.mentionPromo + '\n';
                 msg += '💳 Paiement : ' + this.nomsPaiement[this.paiement] + '\n';
                 return encodeURIComponent(msg);
             },
@@ -245,7 +267,7 @@
 
                 const vehiculeNom = this.isUtilitaire ? 'Utilitaire (devis)' : (this.tarifs[this.vehicule]?.nom || this.vehicule);
                 const formuleNom  = this.isUtilitaire ? 'Sur devis' : (this.isMoto ? this.nomsFormulesMoto : this.nomsFormules)[this.formule];
-                const prixStr     = (this.totalPrix > 0) ? this.totalPrix + '\u20ac' : 'Sur devis';
+                const prixStr     = (this.totalPrix > 0) ? this.totalPrix + '\u20ac' + this.mentionPromo : 'Sur devis';
 
                 fetch('https://api.web3forms.com/submit', {
                     method: 'POST',
@@ -380,7 +402,7 @@
                             </div>
                         </div>
                         <div class="flex items-center gap-4">
-                            <span class="text-xs font-medium tracking-widest">+20€</span>
+                            <span class="text-xs font-medium tracking-widest" data-option-price="20">+20€</span>
                             <div :class="options.poils ? 'bg-primary' : 'bg-gray-100'" class="w-5 h-5 border border-gray-300 flex items-center justify-center transition-colors rounded">
                                 <i x-show="options.poils" class="fa-solid fa-check text-[10px] text-bg"></i>
                             </div>
@@ -397,7 +419,7 @@
                             </div>
                         </div>
                         <div class="flex items-center gap-4">
-                            <span class="text-xs font-medium tracking-widest">+10€</span>
+                            <span class="text-xs font-medium tracking-widest" data-option-price="10">+10€</span>
                             <div :class="options.non_videe ? 'bg-primary' : 'bg-gray-100'" class="w-5 h-5 border border-gray-300 flex items-center justify-center transition-colors rounded">
                                 <i x-show="options.non_videe" class="fa-solid fa-check text-[10px] text-bg"></i>
                             </div>
@@ -414,7 +436,7 @@
                             </div>
                         </div>
                         <div class="flex items-center gap-4">
-                            <span class="text-xs font-medium tracking-widest">+30€</span>
+                            <span class="text-xs font-medium tracking-widest" data-option-price="30">+30€</span>
                             <div :class="options.cire ? 'bg-primary' : 'bg-gray-100'" class="w-5 h-5 border border-gray-300 flex items-center justify-center transition-colors rounded">
                                 <i x-show="options.cire" class="fa-solid fa-check text-[10px] text-bg"></i>
                             </div>
@@ -472,6 +494,7 @@
                                     x-text="'Pack Complet : +' + supplementComplet + '€ seulement →'"></button>
                         </div>
                         <div class="flex items-baseline gap-3">
+                            <s x-show="promoOn &amp;&amp; totalPrixNormal > totalPrix" style="display:none" class="promo-old text-sm whitespace-nowrap" x-text="totalPrixNormal + '\u20ac'"></s>
                             <p class="text-2xl font-light text-primary whitespace-nowrap" x-text="totalPrix + '\u20ac'"></p>
                             <span class="text-xs text-secondary truncate font-light" x-text="nomVehicule + ' \u00b7 ' + nomFormule"></span>
                         </div>
@@ -765,7 +788,7 @@
                             <img src="images/car-citadine.webp" width="800" height="291" loading="lazy" alt="Citadine" class="w-full object-contain transition-transform duration-500 group-hover:scale-105" style="max-height: 140px; transform-origin: bottom center;">
                         </div>
                         <div class="text-left">
-                            <span class="inline-block bg-white text-primary text-[11px] font-medium px-4 py-1.5 rounded-full shadow-sm border border-gray-100">À partir de 49€</span>
+                            <span class="inline-block bg-white text-primary text-[11px] font-medium px-4 py-1.5 rounded-full shadow-sm border border-gray-100" data-from-price="49">À partir de 49€</span>
                         </div>
                     </a>
 
@@ -777,7 +800,7 @@
                             <img src="images/car-berline.webp" width="800" height="259" loading="lazy" alt="Berline" class="w-full object-contain transition-transform duration-500 group-hover:scale-105" style="max-height: 140px; transform-origin: bottom center;">
                         </div>
                         <div class="text-left">
-                            <span class="inline-block bg-white text-primary text-[11px] font-medium px-4 py-1.5 rounded-full shadow-sm border border-gray-100">À partir de 59€</span>
+                            <span class="inline-block bg-white text-primary text-[11px] font-medium px-4 py-1.5 rounded-full shadow-sm border border-gray-100" data-from-price="59">À partir de 59€</span>
                         </div>
                     </a>
 
@@ -789,7 +812,7 @@
                             <img src="images/car-suv.webp" width="800" height="320" loading="lazy" alt="SUV" class="w-full object-contain transition-transform duration-500 group-hover:scale-105" style="max-height: 140px; transform-origin: bottom center;">
                         </div>
                         <div class="text-left">
-                            <span class="inline-block bg-white text-primary text-[11px] font-medium px-4 py-1.5 rounded-full shadow-sm border border-gray-100">À partir de 69€</span>
+                            <span class="inline-block bg-white text-primary text-[11px] font-medium px-4 py-1.5 rounded-full shadow-sm border border-gray-100" data-from-price="69">À partir de 69€</span>
                         </div>
                     </a>
 
@@ -801,7 +824,7 @@
                             <img src="images/car-monospace.webp" width="800" height="338" loading="lazy" alt="Monospace" class="w-full object-contain transition-transform duration-500 group-hover:scale-105" style="max-height: 140px; transform-origin: bottom center;">
                         </div>
                         <div class="text-left">
-                            <span class="inline-block bg-white text-primary text-[11px] font-medium px-4 py-1.5 rounded-full shadow-sm border border-gray-100">À partir de 79€</span>
+                            <span class="inline-block bg-white text-primary text-[11px] font-medium px-4 py-1.5 rounded-full shadow-sm border border-gray-100" data-from-price="79">À partir de 79€</span>
                         </div>
                     </a>
 
@@ -813,7 +836,7 @@
                             <img src="images/car-prestige.webp" width="800" height="259" loading="lazy" alt="Prestige" class="w-full object-contain transition-transform duration-500 group-hover:scale-105" style="max-height: 140px; transform-origin: bottom center;">
                         </div>
                         <div class="text-left">
-                            <span class="inline-block bg-white text-primary text-[11px] font-medium px-4 py-1.5 rounded-full shadow-sm border border-gray-100">À partir de 89€</span>
+                            <span class="inline-block bg-white text-primary text-[11px] font-medium px-4 py-1.5 rounded-full shadow-sm border border-gray-100" data-from-price="89">À partir de 89€</span>
                         </div>
                     </a>
 

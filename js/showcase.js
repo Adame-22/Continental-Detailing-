@@ -176,7 +176,10 @@
                                     <span class="fpill-name">Extérieur</span>
                                     <span class="fpill-sub">Décontamination</span>
                                 </div>
-                                <span class="fpill-price" id="price-ext">—</span>
+                                <span class="fpill-prices">
+                                    <s class="fpill-old" id="price-ext-old" style="display:none"></s>
+                                    <span class="fpill-price" id="price-ext">—</span>
+                                </span>
                             </div>
                         </button>
                         <button class="fpill" data-f="int" role="tab">
@@ -186,7 +189,10 @@
                                     <span class="fpill-name">Intérieur</span>
                                     <span class="fpill-sub">Pressing HD</span>
                                 </div>
-                                <span class="fpill-price" id="price-int">—</span>
+                                <span class="fpill-prices">
+                                    <s class="fpill-old" id="price-int-old" style="display:none"></s>
+                                    <span class="fpill-price" id="price-int">—</span>
+                                </span>
                             </div>
                         </button>
                     </div>
@@ -386,24 +392,40 @@
     }
 
     /* ── Prices ── */
+    // Seasonal offer (js/promo.js). TARIFS stay the regular prices; P() gives today's price.
+    const promoOn = !!(window.PROMO && window.PROMO.active);
+    const P = (v) => (window.PROMO ? window.PROMO.apply(v) : v);
+
     function updatePrices(carKey) {
         const t = TARIFS[carKey];
         if (!t) return;
-        const fmt = (v) => (v !== null && v !== undefined) ? v + '\u20ac' : 'Devis';
-        document.getElementById('price-ext').textContent = fmt(t.ext);
-        document.getElementById('price-int').textContent = fmt(t.int);
-        document.getElementById('price-complet').textContent = fmt(t.complet);
+        const fmt = (v) => (v !== null && v !== undefined) ? v + '€' : 'Devis';
+
+        ['ext', 'int', 'complet'].forEach((f) => {
+            document.getElementById('price-' + f).textContent = fmt(P(t[f]));
+            const oldEl = document.getElementById('price-' + f + '-old');
+            if (promoOn && t[f]) {
+                oldEl.textContent = fmt(t[f]);
+                oldEl.style.display = '';
+            } else {
+                oldEl.style.display = 'none';
+            }
+        });
 
         // Pack Complet always shows what it saves vs. booking both separately
-        const oldEl  = document.getElementById('price-complet-old');
+        // (at today's prices). Outside an offer, the struck price is that separate total.
         const saveEl = document.getElementById('save-complet');
-        const saved  = (t.ext && t.int && t.complet) ? (t.ext + t.int) - t.complet : 0;
+        const saved  = (t.ext && t.int && t.complet) ? (P(t.ext) + P(t.int)) - P(t.complet) : 0;
         if (saved > 0) {
-            oldEl.textContent  = (t.ext + t.int) + '€';
             saveEl.textContent = '−' + saved + '€';
-            oldEl.style.display = saveEl.style.display = '';
+            saveEl.style.display = '';
+            if (!promoOn) {
+                const oldComplet = document.getElementById('price-complet-old');
+                oldComplet.textContent = fmt(t.ext + t.int);
+                oldComplet.style.display = '';
+            }
         } else {
-            oldEl.style.display = saveEl.style.display = 'none';
+            saveEl.style.display = 'none';
         }
 
         updatePriceDisplay(carKey, currentFormule);
@@ -419,7 +441,8 @@
             el.innerHTML = 'Sur devis';
             return;
         }
-        el.innerHTML = `${val} <span>\u20ac TTC</span>`;
+        const old = promoOn ? `<s class="promo-old" style="font-size:0.45em">${val}€</s> ` : '';
+        el.innerHTML = `${old}${P(val)} <span>€ TTC</span>`;
     }
 
     function updateEconomy(carKey, formule) {
@@ -429,14 +452,14 @@
         if (!t || !t.ext || !t.int || !t.complet) { badge.style.display = 'none'; return; }
 
         const text = document.getElementById('economy-text');
-        const saved = (t.ext + t.int) - t.complet;
+        const saved = (P(t.ext) + P(t.int)) - P(t.complet);
 
         if (formule === 'complet') {
             text.textContent = `Vous économisez ${saved}€ vs formules séparées`;
             badge.classList.remove('economy-badge--upsell');
         } else {
             // One formula chosen: show how little it costs to get everything
-            const extra = t.complet - t[formule];
+            const extra = P(t.complet) - P(t[formule]);
             text.textContent = `Passez au Pack Complet : +${extra}€ seulement`;
             badge.classList.add('economy-badge--upsell');
         }
@@ -450,8 +473,9 @@
         const car = CARS[carKey];
         const t   = TARIFS[carKey];
         const formuleLabels = { complet: 'Pack Complet', ext: 'Ext\u00e9rieur', int: 'Int\u00e9rieur' };
-        const prixStr = (t && t[currentFormule] !== null && t[currentFormule] !== undefined)
-            ? t[currentFormule] + '\u20ac'
+        const regular = t ? t[currentFormule] : null;
+        const prixStr = (regular !== null && regular !== undefined)
+            ? P(regular) + '\u20ac' + (promoOn ? ' (' + window.PROMO.label + ' \u2212' + window.PROMO.percent + '%, au lieu de ' + regular + '\u20ac)' : '')
             : 'Sur devis';
         const msg = encodeURIComponent(
             'Bonjour Continental Detailing, je souhaite r\u00e9server :\n' +

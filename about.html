@@ -2,6 +2,7 @@
 <html lang="fr" class="scroll-smooth">
 <head>
     <script>document.documentElement.classList.add('js');setTimeout(function(){if(!window.__motionReady)document.documentElement.classList.remove('js')},4000);</script>
+    <script src="js/promo.js"></script>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-K3PHWTTYR2"></script>
     <script>
@@ -113,6 +114,14 @@
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KRXZ2QSL"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
+
+    <!-- Offre saisonnière : affichée uniquement pendant l'offre (réglages dans js/promo.js) -->
+    <a href="services.html" class="promo-bar">
+        <span class="promo-bar__tag" data-promo-label></span>
+        <span class="promo-bar__text" data-promo-text></span>
+        <span class="promo-bar__days" data-promo-days></span>
+        <span class="promo-bar__cta">Réserver <i class="fa-solid fa-arrow-right"></i></span>
+    </a>
 
     <!-- Navigation -->
     <nav class="nav-main" id="navbar">
@@ -386,7 +395,7 @@
                             <img src="images/car-citadine.webp" alt="Citadine" class="w-full object-contain transition-transform duration-500 group-hover:scale-105" style="max-height: 140px; transform-origin: bottom center;">
                         </div>
                         <div class="text-left">
-                            <span class="inline-block bg-white text-primary text-[11px] font-medium px-4 py-1.5 rounded-full shadow-sm border border-gray-100">À partir de 49€</span>
+                            <span class="inline-block bg-white text-primary text-[11px] font-medium px-4 py-1.5 rounded-full shadow-sm border border-gray-100" data-from-price="49">À partir de 49€</span>
                         </div>
                     </a>
 
@@ -398,7 +407,7 @@
                             <img src="images/car-berline.webp" alt="Berline" class="w-full object-contain transition-transform duration-500 group-hover:scale-105" style="max-height: 140px; transform-origin: bottom center;">
                         </div>
                         <div class="text-left">
-                            <span class="inline-block bg-white text-primary text-[11px] font-medium px-4 py-1.5 rounded-full shadow-sm border border-gray-100">À partir de 59€</span>
+                            <span class="inline-block bg-white text-primary text-[11px] font-medium px-4 py-1.5 rounded-full shadow-sm border border-gray-100" data-from-price="59">À partir de 59€</span>
                         </div>
                     </a>
 
@@ -410,7 +419,7 @@
                             <img src="images/car-suv.webp" alt="SUV" class="w-full object-contain transition-transform duration-500 group-hover:scale-105" style="max-height: 140px; transform-origin: bottom center;">
                         </div>
                         <div class="text-left">
-                            <span class="inline-block bg-white text-primary text-[11px] font-medium px-4 py-1.5 rounded-full shadow-sm border border-gray-100">À partir de 69€</span>
+                            <span class="inline-block bg-white text-primary text-[11px] font-medium px-4 py-1.5 rounded-full shadow-sm border border-gray-100" data-from-price="69">À partir de 69€</span>
                         </div>
                     </a>
 
@@ -422,7 +431,7 @@
                             <img src="images/car-monospace.webp" alt="Monospace" class="w-full object-contain transition-transform duration-500 group-hover:scale-105" style="max-height: 140px; transform-origin: bottom center;">
                         </div>
                         <div class="text-left">
-                            <span class="inline-block bg-white text-primary text-[11px] font-medium px-4 py-1.5 rounded-full shadow-sm border border-gray-100">À partir de 79€</span>
+                            <span class="inline-block bg-white text-primary text-[11px] font-medium px-4 py-1.5 rounded-full shadow-sm border border-gray-100" data-from-price="79">À partir de 79€</span>
                         </div>
                     </a>
 
@@ -434,7 +443,7 @@
                             <img src="images/car-prestige.webp" alt="Prestige" class="w-full object-contain transition-transform duration-500 group-hover:scale-105" style="max-height: 140px; transform-origin: bottom center;">
                         </div>
                         <div class="text-left">
-                            <span class="inline-block bg-white text-primary text-[11px] font-medium px-4 py-1.5 rounded-full shadow-sm border border-gray-100">À partir de 89€</span>
+                            <span class="inline-block bg-white text-primary text-[11px] font-medium px-4 py-1.5 rounded-full shadow-sm border border-gray-100" data-from-price="89">À partir de 89€</span>
                         </div>
                     </a>
 
