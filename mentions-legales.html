@@ -4,6 +4,9 @@
     <script>document.documentElement.classList.add('js');setTimeout(function(){if(!window.__motionReady)document.documentElement.classList.remove('js')},4000);</script>
     <!-- Mesure d'audience : chargée seulement après accord (bannière cookies) -->
     <script src="js/consent.js"></script>
+    <!-- Statistiques de visite sans cookie (Vercel Web Analytics) : comptent aussi les visiteurs qui refusent les cookies -->
+    <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+    <script defer src="/_vercel/insights/script.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mentions légales | Continental Detailing</title>
@@ -119,7 +122,8 @@
 
             <section id="cookies">
                 <h2 class="text-xl font-bold text-primary mb-3">6. Cookies</h2>
-                <p>Avec votre accord uniquement, ce site utilise Google Analytics (via Google Tag Manager) pour mesurer son audience : pages vues, provenance des visites, type d'appareil. Ces cookies (<code>_ga</code>) sont conservés 13 mois au maximum. Aucun cookie publicitaire n'est utilisé. Si vous refusez, aucun outil de mesure n'est chargé et votre navigation n'est pas affectée.</p>
+                <p>Avec votre accord uniquement, ce site utilise Google Analytics (via Google Tag Manager) pour mesurer son audience : pages vues, provenance des visites, type d'appareil. Ces cookies (<code>_ga</code>) sont conservés 13 mois au maximum. Aucun cookie publicitaire n'est utilisé. Si vous refusez, Google Analytics n'est pas chargé et votre navigation n'est pas affectée.</p>
+                <p class="mt-3">Par ailleurs, le site utilise Vercel Web Analytics, un outil de statistiques de visite qui ne dépose aucun cookie et ne permet pas de vous identifier : il compte uniquement les pages vues, la provenance des visites et le type d'appareil, de façon agrégée et anonyme.</p>
                 <p class="mt-3">Votre choix est mémorisé 6 mois dans votre navigateur. Vous pouvez le modifier à tout moment : <a href="#cookies" data-cookie-settings class="underline hover:text-primary font-medium">gérer mes cookies</a>.</p>
             </section>
 

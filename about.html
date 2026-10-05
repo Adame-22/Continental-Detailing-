@@ -5,6 +5,9 @@
     <script src="js/promo.js"></script>
     <!-- Mesure d'audience : chargée seulement après accord (bannière cookies) -->
     <script src="js/consent.js"></script>
+    <!-- Statistiques de visite sans cookie (Vercel Web Analytics) : comptent aussi les visiteurs qui refusent les cookies -->
+    <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+    <script defer src="/_vercel/insights/script.js"></script>
     <!-- Favicon / Icône du site -->
     <link rel="icon" type="image/png" sizes="192x192" href="images/favicon.png">
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
