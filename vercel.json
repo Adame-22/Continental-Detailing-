@@ -1,0 +1,44 @@
+{
+  "redirects": [
+    {
+      "source": "/contact",
+      "destination": "/contact.html",
+      "permanent": true
+    },
+    {
+      "source": "/contact-us",
+      "destination": "/contact.html",
+      "permanent": true
+    },
+    {
+      "source": "/contactez-nous",
+      "destination": "/contact.html",
+      "permanent": true
+    },
+    {
+      "source": "/nous-contacter",
+      "destination": "/contact.html",
+      "permanent": true
+    },
+    {
+      "source": "/nous-joindre",
+      "destination": "/contact.html",
+      "permanent": true
+    },
+    {
+      "source": "/get-in-touch",
+      "destination": "/contact.html",
+      "permanent": true
+    },
+    {
+      "source": "/fr/contact",
+      "destination": "/contact.html",
+      "permanent": true
+    },
+    {
+      "source": "/en/contact",
+      "destination": "/contact.html",
+      "permanent": true
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Génère les pages statiques qui partagent un même gabarit :
-   - carte-cadeau.html, professionnels.html
+   - carte-cadeau.html, professionnels.html, contact.html
    - une page par ville (nettoyage-voiture-domicile-<ville>.html)
 
 Les tarifs ci-dessous doivent rester identiques à ceux de services.html
@@ -134,6 +134,7 @@ FOOT = '''
                     <a href="carte-cadeau.html" class="footer-link">Carte cadeau</a>
                     <a href="professionnels.html" class="footer-link">Professionnels</a>
                     <a href="avis.html" class="footer-link">Avis clients</a>
+                    <a href="contact.html" class="footer-link">Contact</a>
                 </div>
                 <div>
                     <div class="footer-title">Contact</div>
@@ -682,7 +683,88 @@ def build_cadeau():
     write('carte-cadeau.html', head + render(GIFT_BODY, faq=faq_block(GIFT_FAQS), vehicules_js=vehicules) + FOOT)
 
 
+# ───────────────────────── Contact ─────────────────────────
+
+CONTACT_BODY = '''
+    <main>
+        <section class="pg-hero">
+            <div class="pg-wrap">
+                <p class="pg-eyebrow">Contact</p>
+                <h1 class="pg-h1">Écrivez-nous, on vous répond vite</h1>
+                <p class="pg-lead">Nous sommes souvent en prestation : le plus rapide est de nous envoyer un message. Dites-nous votre véhicule, la formule souhaitée et votre ville, nous revenons vers vous rapidement.</p>
+            </div>
+        </section>
+
+        <section class="pg-section">
+            <div class="pg-wrap">
+                <div class="pg-grid3">
+                    <a href="{{wa}}" target="_blank" rel="noopener noreferrer" class="pg-card pg-contact reveal">
+                        <i class="fa-brands fa-whatsapp pg-icon"></i><h2 class="pg-h3">WhatsApp</h2>
+                        <p>Le moyen le plus rapide. Votre message est déjà rédigé, il ne reste qu'à l'envoyer.</p><span>Ouvrir WhatsApp <i class="fa-solid fa-arrow-right"></i></span>
+                    </a>
+                    <a href="{{sms}}" class="pg-card pg-contact reveal stagger-1">
+                        <i class="fa-solid fa-comment-sms pg-icon"></i><h2 class="pg-h3">SMS</h2>
+                        <p>07 50 87 59 64. Par message de préférence : nous ne pouvons pas toujours décrocher.</p><span>Envoyer un SMS <i class="fa-solid fa-arrow-right"></i></span>
+                    </a>
+                    <a href="https://www.instagram.com/continental.detailing.idf/" target="_blank" rel="noopener noreferrer" class="pg-card pg-contact reveal stagger-2">
+                        <i class="fa-brands fa-instagram pg-icon"></i><h2 class="pg-h3">Instagram</h2>
+                        <p>@continental.detailing.idf. Écrivez-nous en message privé et découvrez nos réalisations.</p><span>Voir le profil <i class="fa-solid fa-arrow-right"></i></span>
+                    </a>
+                    <a href="mailto:continental.detailing.idf@gmail.com" class="pg-card pg-contact reveal">
+                        <i class="fa-regular fa-envelope pg-icon"></i><h2 class="pg-h3">E-mail</h2>
+                        <p>continental.detailing.idf@gmail.com. Idéal pour une demande de devis professionnel.</p><span>Écrire un e-mail <i class="fa-solid fa-arrow-right"></i></span>
+                    </a>
+                    <a href="services.html" class="pg-card pg-contact reveal stagger-1">
+                        <i class="fa-solid fa-calculator pg-icon"></i><h2 class="pg-h3">Devis en ligne</h2>
+                        <p>Choisissez votre véhicule et votre formule : votre prix s'affiche en deux minutes.</p><span>Calculer mon prix <i class="fa-solid fa-arrow-right"></i></span>
+                    </a>
+                    <a href="professionnels.html" class="pg-card pg-contact reveal stagger-2">
+                        <i class="fa-solid fa-building pg-icon"></i><h2 class="pg-h3">Professionnels</h2>
+                        <p>Flottes, utilitaires, véhicules d'occasion à préparer : demandez un devis adapté.</p><span>Voir l'offre pro <i class="fa-solid fa-arrow-right"></i></span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="pg-section pg-section--alt">
+            <div class="pg-wrap pg-two">
+                <div class="pg-prose">
+                    <h2 class="pg-h2">Informations pratiques</h2>
+                    <p><strong>Zone d'intervention :</strong> Essonne (91) et Seine-et-Marne (77), à domicile ou sur votre lieu de travail.</p>
+                    <p><strong>Horaires :</strong> tous les jours, de 8h à 20h, sur rendez-vous.</p>
+                    <p><strong>Sur place :</strong> une prise électrique standard et un point d'eau à proximité du véhicule suffisent. Nous apportons tout le reste.</p>
+                    <p><strong>Paiement :</strong> acompte de 40€ par Wero ou virement pour bloquer le créneau, solde après la prestation.</p>
+                </div>
+                <aside class="pg-card">
+                    <h3 class="pg-h3">Villes desservies</h3>
+                    <p>{{villes}} et les communes voisines.</p>
+                    <p style="margin-top:14px;">Continental Detailing · micro-entreprise basée au Mée-sur-Seine (77) · SIRET 100 916 949 00017</p>
+                </aside>
+            </div>
+        </section>
+    </main>
+'''
+
+
+def build_contact():
+    url = SITE + '/contact.html'
+    message = 'Bonjour, je souhaite un renseignement pour le nettoyage de ma voiture 🚗\nVéhicule : \nFormule : \nVille : '
+    schema = jsonld({
+        '@context': 'https://schema.org', '@type': 'ContactPage', 'url': url,
+        'name': 'Contact — Continental Detailing',
+        'mainEntity': {'@id': SITE + '/#localbusiness'},
+    })
+    villes = ', '.join('<a href="nettoyage-voiture-domicile-' + v['slug'] + '.html">' + v['nom'] + '</a>' for v in VILLES)
+    head = render(HEAD, canonical=url,
+                  title='Contact — WhatsApp, SMS, e-mail | Continental Detailing',
+                  description="Contactez Continental Detailing par WhatsApp, SMS, Instagram ou e-mail : nettoyage et detailing auto à domicile en Essonne (91) et Seine-et-Marne (77), 7j/7 de 8h à 20h.",
+                  head_extra=schema)
+    write('contact.html', head + render(CONTACT_BODY, wa=wa(message),
+                                        sms='sms:+33750875964?&body=' + urllib.parse.quote(message), villes=villes) + FOOT)
+
+
 if __name__ == '__main__':
     build_villes()
     build_pro()
     build_cadeau()
+    build_contact()

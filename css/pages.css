@@ -171,3 +171,13 @@
     .gift-home { padding: 0 16px 72px; }
     .gift-home__inner { grid-template-columns: 1fr; gap: 28px; padding: 24px 20px 28px; }
 }
+
+/* ── Contact : cartes cliquables ── */
+.pg-contact { display: flex; flex-direction: column; text-decoration: none; transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s; }
+.pg-contact:hover { transform: translateY(-3px); border-color: rgba(0, 0, 0, 0.25); }
+.pg-contact p { flex: 1; }
+.pg-contact span { display: inline-flex; align-items: center; gap: 8px; margin-top: 18px; font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #1A1A1E; }
+.pg-contact:focus-visible { outline: 2px solid #C2410C; outline-offset: 3px; }
+.pg-prose strong { font-weight: 600; color: #1A1A1E; }
+.pg-card a { color: #1A1A1E; text-decoration: underline; }
+a.pg-card { color: inherit; }
