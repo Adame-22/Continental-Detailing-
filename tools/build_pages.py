@@ -208,7 +208,7 @@ VILLES = [
     {
         'slug': 'melun', 'nom': 'Melun', 'a': 'à Melun', 'cp': '77000', 'dept': 'Seine-et-Marne (77)',
         'intro': "Préfecture de la Seine-et-Marne, Melun est une ville où la voiture reste indispensable : trajets vers Paris par l'A5 ou la Francilienne, école, courses, week-ends. À ce rythme, l'habitacle s'encrasse vite et la carrosserie ternit sans qu'on trouve le temps de s'en occuper.",
-        'intro2': "Continental Detailing se déplace chez vous, à Melun et dans les communes voisines, avec tout le matériel professionnel. Vous ne perdez pas une demi-journée dans une station de lavage : vous restez chez vous ou au bureau pendant que votre voiture retrouve son éclat.",
+        'intro2': "Continental Detailing se déplace chez vous, à Melun et dans les communes voisines, avec tout le matériel professionnel. Vous ne perdez pas une demi-journée dans une station de lavage : nous venons le week-end ou en soirée, et vous restez chez vous pendant que votre voiture retrouve son éclat.",
         'angle_titre': 'Pensé pour ceux qui roulent tous les jours',
         'angle': "Miettes, traces de café, poussière dans les aérations, tapis gorgés de saleté : c'est le quotidien des voitures qui font la navette. Notre formule Intérieur traite tout cela en profondeur — aspiration jusque dans les rails de sièges, shampoing des tissus par injection-extraction, plastiques nettoyés au pinceau et vitres sans trace.",
         'voisines': ['Dammarie-les-Lys', 'Le Mée-sur-Seine', 'Vaux-le-Pénil', 'La Rochette', 'Rubelles', 'Maincy', 'Livry-sur-Seine'],
@@ -258,12 +258,12 @@ VILLES = [
     {
         'slug': 'massy', 'nom': 'Massy', 'a': 'à Massy', 'cp': '91300', 'dept': 'Essonne (91)',
         'intro': "À Massy, entre la gare TGV, les RER et le quartier d'affaires Atlantis, les journées sont chargées et le temps manque pour s'occuper de sa voiture. Résultat : on repousse le nettoyage de semaine en semaine.",
-        'intro2': "Continental Detailing vous fait gagner ce temps. Nous intervenons à votre domicile ou sur votre lieu de travail, à Massy et dans les communes voisines : vous nous confiez les clés, vous travaillez, et vous retrouvez un véhicule impeccable en fin de prestation.",
-        'angle_titre': 'Pendant que vous travaillez',
-        'angle': "Avec l'accord de votre employeur, nous pouvons intervenir sur le parking de votre entreprise, dès lors qu'une prise électrique et un point d'eau sont accessibles à proximité. Vous êtes dirigeant ou gestionnaire de flotte ? Nous entretenons aussi les véhicules de société, sur devis.",
+        'intro2': "Continental Detailing vous fait gagner ce temps. Nous intervenons chez vous, à Massy et dans les communes voisines, le samedi, le dimanche ou en semaine après 19h : pas de demi-journée à poser, pas de file d'attente en station.",
+        'angle_titre': 'Le week-end ou après le travail',
+        'angle': "Vous rentrez tard ? Nous venons en semaine à partir de 19h, ou le samedi et le dimanche en journée. Il nous faut simplement une prise électrique et un point d'eau à proximité du véhicule. Vous êtes dirigeant ou gestionnaire de flotte ? Nous entretenons aussi les véhicules de société le samedi, quand ils sont à l'arrêt, sur devis.",
         'voisines': ['Palaiseau', 'Verrières-le-Buisson', 'Igny', 'Chilly-Mazarin', 'Wissous', 'Champlan', 'Longjumeau'],
         'faq': ("Pouvez-vous intervenir sur le parking de mon entreprise ?",
-                "Oui, si l'employeur ou le gestionnaire du parking est d'accord et qu'une prise électrique standard et un point d'eau sont accessibles près du véhicule. Nous apportons rallonges et tuyaux. Pour plusieurs véhicules, consultez notre page Professionnels."),
+                "Oui, le samedi ou en soirée, si l'employeur ou le gestionnaire du parking est d'accord et qu'une prise électrique standard et un point d'eau sont accessibles près du véhicule. Nous apportons rallonges et tuyaux. Pour plusieurs véhicules, consultez notre page Professionnels."),
     },
 ]
 
@@ -321,7 +321,7 @@ CITY_BODY = '''
                 <h2 class="pg-h2 reveal">Comment ça se passe ?</h2>
                 <ol class="pg-steps">
                     <li class="reveal"><span>1</span><h3>Vous estimez votre prix</h3><p>Choisissez votre véhicule et votre formule dans le simulateur : le tarif s'affiche tout de suite.</p></li>
-                    <li class="reveal stagger-1"><span>2</span><h3>On fixe un créneau</h3><p>Par WhatsApp, SMS ou Instagram. Un acompte de 40€, déduit du total, bloque votre date.</p></li>
+                    <li class="reveal stagger-1"><span>2</span><h3>On fixe un créneau</h3><p>Le samedi ou le dimanche en journée, ou en semaine après 19h. Un acompte de 40€, déduit du total, bloque votre date.</p></li>
                     <li class="reveal stagger-2"><span>3</span><h3>On vient {{a}}</h3><p>Avec tout le matériel. Il nous faut seulement une prise électrique et un point d'eau à proximité.</p></li>
                     <li class="reveal stagger-3"><span>4</span><h3>Vous retrouvez une voiture propre</h3><p>Comptez 2 à 3 heures pour un intérieur ou un extérieur, 4 à 5 heures pour un pack complet.</p></li>
                 </ol>
@@ -370,6 +370,8 @@ def build_villes():
             v['faq'],
             ('Combien de temps dure la prestation ?',
              "Comptez 2 à 3 heures pour un nettoyage intérieur ou extérieur, et 4 à 5 heures pour un pack complet. La durée dépend de la taille et de l'état du véhicule."),
+            ('Quand intervenez-vous ' + a + ' ?',
+             "Le samedi et le dimanche en journée, et en semaine à partir de 19h. Pensez à réserver votre samedi quelques jours à l'avance."),
             ('Comment réserver ' + a + ' ?',
              "Estimez votre prix dans le simulateur, puis écrivez-nous par WhatsApp, SMS ou Instagram pour choisir un créneau. Un acompte de 40€, déduit du total, valide le rendez-vous ; le solde se règle après la prestation."),
         ]
@@ -411,8 +413,10 @@ PRO_FAQS = [
      "Oui, une facture est émise pour chaque intervention ou regroupée en fin de mois selon ce qui vous arrange. TVA non applicable, article 293 B du CGI."),
     ("Où a lieu l'intervention ?",
      "Sur votre site : parking de l'entreprise, dépôt, agence ou concession. Il nous faut une prise électrique standard et un point d'eau à proximité des véhicules ; nous apportons le reste."),
+    ("Quand intervenez-vous ?",
+     "Le samedi et le dimanche en journée, et en semaine à partir de 19h. Vos véhicules ne sont donc jamais immobilisés pendant vos heures de travail."),
     ("Pouvez-vous passer régulièrement ?",
-     "Oui. Nous pouvons convenir d'un passage hebdomadaire, bimensuel ou mensuel, à jour fixe, pour que vos véhicules restent présentables toute l'année."),
+     "Oui. Nous pouvons convenir d'un passage régulier, par exemple un samedi par mois ou un samedi sur deux, pour que vos véhicules restent présentables toute l'année."),
 ]
 
 PRO_BODY = '''
@@ -421,14 +425,14 @@ PRO_BODY = '''
             <div class="pg-wrap">
                 <p class="pg-eyebrow">Professionnels · Essonne & Seine-et-Marne</p>
                 <h1 class="pg-h1">L'entretien de vos véhicules, sur votre site</h1>
-                <p class="pg-lead">Flottes d'entreprise, utilitaires, véhicules d'occasion à préparer : nous nettoyons vos véhicules directement sur votre parking, sans immobilisation ni aller-retour à la station.</p>
+                <p class="pg-lead">Flottes d'entreprise, utilitaires, véhicules d'occasion à préparer : nous nettoyons vos véhicules sur votre parking le samedi, quand ils sont à l'arrêt, ou en soirée. Aucune immobilisation pendant vos heures de travail.</p>
                 <div class="pg-actions">
                     <a href="{{wa}}" target="_blank" rel="noopener noreferrer" class="pg-btn pg-btn--dark"><i class="fa-brands fa-whatsapp"></i> Demander un devis</a>
                     <a href="{{mail}}" class="pg-btn pg-btn--line"><i class="fa-regular fa-envelope"></i> Par e-mail</a>
                 </div>
                 <ul class="pg-chips">
                     <li><i class="fa-solid fa-file-invoice"></i> Devis gratuit, facture fournie</li>
-                    <li><i class="fa-solid fa-calendar-check"></i> Passages réguliers possibles</li>
+                    <li><i class="fa-solid fa-calendar-check"></i> Le samedi ou en soirée</li>
                     <li><i class="fa-solid fa-location-dot"></i> Intervention sur site</li>
                 </ul>
             </div>
@@ -438,7 +442,7 @@ PRO_BODY = '''
             <div class="pg-wrap">
                 <h2 class="pg-h2 reveal">Pour qui ?</h2>
                 <div class="pg-grid3">
-                    <div class="pg-card reveal"><i class="fa-solid fa-building pg-icon"></i><h3 class="pg-h3">Entreprises & flottes</h3><p>Véhicules de fonction et de service entretenus sur le parking, pendant que vos équipes travaillent. Une image soignée chez vos clients.</p></div>
+                    <div class="pg-card reveal"><i class="fa-solid fa-building pg-icon"></i><h3 class="pg-h3">Entreprises & flottes</h3><p>Véhicules de fonction et de service entretenus sur votre parking le samedi ou en soirée, quand ils ne roulent pas. Une image soignée chez vos clients.</p></div>
                     <div class="pg-card reveal stagger-1"><i class="fa-solid fa-truck pg-icon"></i><h3 class="pg-h3">Artisans & utilitaires</h3><p>Cabine dépoussiérée, sièges shampouinés, carrosserie propre : votre utilitaire est votre première carte de visite.</p></div>
                     <div class="pg-card reveal stagger-2"><i class="fa-solid fa-car-side pg-icon"></i><h3 class="pg-h3">Garages & vendeurs VO</h3><p>Préparation esthétique avant mise en vente : un véhicule impeccable se photographie mieux et part plus vite.</p></div>
                     <div class="pg-card reveal"><i class="fa-solid fa-taxi pg-icon"></i><h3 class="pg-h3">VTC, taxis & auto-écoles</h3><p>Un habitacle propre et sans odeur, c'est ce que remarquent vos clients en premier. Entretien régulier à jour fixe.</p></div>
@@ -454,7 +458,7 @@ PRO_BODY = '''
                 <ol class="pg-steps">
                     <li class="reveal"><span>1</span><h3>Vous décrivez votre besoin</h3><p>Nombre de véhicules, type, ville et fréquence souhaitée, par message ou par e-mail.</p></li>
                     <li class="reveal stagger-1"><span>2</span><h3>Vous recevez un devis</h3><p>Gratuit et sans engagement, adapté à votre volume et à vos contraintes.</p></li>
-                    <li class="reveal stagger-2"><span>3</span><h3>Nous intervenons sur site</h3><p>Aux jours et horaires convenus, avec tout le matériel. Prise électrique et point d'eau requis.</p></li>
+                    <li class="reveal stagger-2"><span>3</span><h3>Nous intervenons sur site</h3><p>Le samedi, le dimanche ou en soirée, avec tout le matériel. Prise électrique et point d'eau requis.</p></li>
                     <li class="reveal stagger-3"><span>4</span><h3>Vous recevez la facture</h3><p>À chaque passage ou en fin de mois. Paiement par virement.</p></li>
                 </ol>
             </div>
@@ -731,7 +735,7 @@ CONTACT_BODY = '''
                 <div class="pg-prose">
                     <h2 class="pg-h2">Informations pratiques</h2>
                     <p><strong>Zone d'intervention :</strong> Essonne (91) et Seine-et-Marne (77), à domicile ou sur votre lieu de travail.</p>
-                    <p><strong>Horaires :</strong> tous les jours, de 8h à 20h, sur rendez-vous.</p>
+                    <p><strong>Créneaux :</strong> le samedi et le dimanche en journée, et en semaine à partir de 19h. Sur rendez-vous.</p>
                     <p><strong>Sur place :</strong> une prise électrique standard et un point d'eau à proximité du véhicule suffisent. Nous apportons tout le reste.</p>
                     <p><strong>Paiement :</strong> acompte de 40€ par Wero ou virement pour bloquer le créneau, solde après la prestation.</p>
                 </div>
@@ -757,7 +761,7 @@ def build_contact():
     villes = ', '.join('<a href="nettoyage-voiture-domicile-' + v['slug'] + '.html">' + v['nom'] + '</a>' for v in VILLES)
     head = render(HEAD, canonical=url,
                   title='Contact — WhatsApp, SMS, e-mail | Continental Detailing',
-                  description="Contactez Continental Detailing par WhatsApp, SMS, Instagram ou e-mail : nettoyage et detailing auto à domicile en Essonne (91) et Seine-et-Marne (77), 7j/7 de 8h à 20h.",
+                  description="Contactez Continental Detailing par WhatsApp, SMS, Instagram ou e-mail : nettoyage et detailing auto à domicile en Essonne (91) et Seine-et-Marne (77), le week-end et en soirée.",
                   head_extra=schema)
     write('contact.html', head + render(CONTACT_BODY, wa=wa(message),
                                         sms='sms:+33750875964?&body=' + urllib.parse.quote(message), villes=villes) + FOOT)
