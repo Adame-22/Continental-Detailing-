@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Kit visuel Continental Detailing</title>
+<!--
+  Modèles des visuels de profil (Google Business, Instagram).
+  Rendu en images par `node marketing/render.js` : chaque <section id="…">
+  devient marketing/out/<id>.png. Modifier un texte ici, relancer le script.
+-->
+<style>
+@font-face { font-family: Outfit; font-weight: 400; src: url('fonts/outfit-latin-400-normal.woff2'); }
+@font-face { font-family: Outfit; font-weight: 500; src: url('fonts/outfit-latin-500-normal.woff2'); }
+@font-face { font-family: Outfit; font-weight: 600; src: url('fonts/outfit-latin-600-normal.woff2'); }
+@font-face { font-family: Outfit; font-weight: 700; src: url('fonts/outfit-latin-700-normal.woff2'); }
+:root { --ink: #0B0F12; --gold: #D8B878; --gold2: #B8955A; --card: rgba(24,29,34,0.92); }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: #333; font-family: Outfit, sans-serif; -webkit-font-smoothing: antialiased; }
+section { position: relative; overflow: hidden; margin: 20px; }
+
+/* ── Google Business : couverture 16:9, texte au centre pour résister aux recadrages ── */
+.cover { width: 1024px; height: 576px; background: var(--ink); color: #fff; }
+.cover .photo { position: absolute; inset: 0; background: url('../images/hero-bg-hq.webp') center 58% / cover no-repeat; }
+.cover .shade { position: absolute; inset: 0;
+  background: radial-gradient(ellipse 60% 70% at 50% 44%, rgba(11,15,18,0.72) 0%, rgba(11,15,18,0.35) 70%, rgba(11,15,18,0.55) 100%),
+              linear-gradient(to top, rgba(11,15,18,0.85) 0%, rgba(11,15,18,0) 45%); }
+.cover .inner { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding-bottom: 20px; }
+.cover .logo { width: 330px; height: auto; }
+.cover .line { width: 56px; height: 2px; background: var(--gold2); margin: 26px 0 20px; }
+.cover .tag { font-size: 30px; font-weight: 500; letter-spacing: -0.005em; }
+.cover .zone { margin-top: 10px; font-size: 15px; font-weight: 600; letter-spacing: 0.24em; text-transform: uppercase; color: rgba(255,255,255,0.7); }
+
+/* ── Logos carrés (Google affiche un rond : le logo reste dans le rond) ── */
+.logo-sq { width: 720px; height: 720px; display: flex; align-items: center; justify-content: center; }
+.logo-sq img { width: 540px; height: auto; }
+.logo-sq.light { background: #FFFFFF; }
+.logo-sq.dark  { background: var(--ink); }
+
+/* ── Instagram : photo de profil (affichée en tout petit, le logo remplit le rond) ── */
+.pp { width: 1080px; height: 1080px; background: radial-gradient(circle at 50% 42%, #1A2026 0%, #0B0F12 70%); display: flex; align-items: center; justify-content: center; }
+.pp img { width: 880px; height: auto; margin-top: -10px; }
+
+/* ── Instagram : couvertures des stories à la une (Instagram recadre le centre en rond) ── */
+.hl { width: 1080px; height: 1920px; display: flex; align-items: center; justify-content: center;
+      background: radial-gradient(circle at 50% 46%, #1C232A 0%, #0B0F12 32%); }
+.hl svg { width: 500px; height: 500px; fill: none; stroke: var(--gold); stroke-width: 1.25; stroke-linecap: round; stroke-linejoin: round; }
+
+/* ── Instagram : stories. L'interface couvre ~250px en haut et ~300px en bas ── */
+.st { width: 1080px; height: 1920px; background: var(--ink); color: #fff; }
+.st .photo { position: absolute; left: 0; right: 0; top: 0; height: 900px; background: url('../images/hero-bg-hq.webp') center 55% / cover no-repeat; opacity: 0.55; }
+.st .shade { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(11,15,18,0.4) 0, var(--ink) 820px); }
+.st .in { position: absolute; left: 80px; right: 80px; top: 260px; bottom: 300px; display: flex; flex-direction: column; }
+.st .logo { width: 260px; }
+.st .kicker { margin-top: 64px; font-size: 26px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); display: flex; align-items: center; gap: 18px; }
+.st .kicker::before { content: ''; width: 48px; height: 2px; background: currentColor; }
+.st h1 { margin-top: 14px; font-size: 92px; font-weight: 700; line-height: 1; letter-spacing: -0.03em; }
+.st .lead { margin-top: 18px; font-size: 32px; color: rgba(255,255,255,0.7); line-height: 1.35; }
+.st .note { margin-top: 26px; font-size: 26px; color: rgba(255,255,255,0.6); line-height: 1.45; }
+.grid { margin-top: 48px; display: grid; grid-template-columns: 1.45fr 1fr 1fr 1fr; row-gap: 12px; }
+.grid .h { font-size: 22px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.55); text-align: center; padding-bottom: 6px; }
+.grid .h:first-child { text-align: left; }
+.grid .r { display: contents; }
+.grid .c { background: var(--card); padding: 22px 10px; font-size: 38px; font-weight: 600; text-align: center; }
+.grid .c:first-child { text-align: left; padding-left: 26px; font-size: 30px; font-weight: 500; border-radius: 16px 0 0 16px; }
+.grid .c:last-child { border-radius: 0 16px 16px 0; color: var(--gold); }
+.cities { margin-top: 48px; display: flex; flex-wrap: wrap; gap: 14px; }
+.cities span { padding: 16px 26px; border-radius: 999px; background: var(--card); border: 1px solid rgba(255,255,255,0.12); font-size: 30px; font-weight: 500; }
+.depts { margin-top: 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.depts div { background: var(--card); border-radius: 20px; padding: 26px 30px; }
+.depts b { display: block; font-size: 64px; font-weight: 700; color: var(--gold); line-height: 1; }
+.depts small { font-size: 28px; color: rgba(255,255,255,0.8); }
+.ways { margin-top: 56px; display: grid; gap: 18px; }
+.way { display: flex; align-items: center; gap: 30px; background: var(--card); border-radius: 22px; padding: 30px 34px; border: 1px solid rgba(255,255,255,0.1); }
+.way svg { width: 64px; height: 64px; flex-shrink: 0; fill: none; stroke: var(--gold); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.way p { font-size: 26px; color: rgba(255,255,255,0.6); }
+.way strong { display: block; margin-top: 4px; font-size: 38px; font-weight: 600; }
+.pay { margin-top: auto; font-size: 26px; color: rgba(255,255,255,0.6); }
+</style>
+</head>
+<body>
+
+<section class="cover" id="google-couverture" data-scale="1.5">
+  <div class="photo"></div><div class="shade"></div>
+  <div class="inner">
+    <img class="logo" src="../images/logo_continental_white.webp" alt="">
+    <div class="line"></div>
+    <p class="tag">Detailing premium à domicile</p>
+    <p class="zone">Essonne · Seine-et-Marne</p>
+  </div>
+</section>
+<section class="logo-sq light" id="google-logo"><img src="../images/logo_continental.webp" alt=""></section>
+<section class="logo-sq dark" id="google-logo-fond-noir"><img src="../images/logo_continental_white.webp" alt=""></section>
+
+<section class="pp" id="instagram-photo-de-profil"><img src="../images/logo_continental_white.webp" alt=""></section>
+
+<section class="hl" id="instagram-une-tarifs"><svg viewBox="0 0 24 24"><path d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z"/><circle cx="7.5" cy="7.5" r="1.2"/></svg></section>
+<section class="hl" id="instagram-une-avant-apres"><svg viewBox="0 0 24 24"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/><path d="M20 3v4M22 5h-4"/></svg></section>
+<section class="hl" id="instagram-une-avis"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></section>
+<section class="hl" id="instagram-une-offres"><svg viewBox="0 0 24 24"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg></section>
+<section class="hl" id="instagram-une-zone"><svg viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></section>
+<section class="hl" id="instagram-une-contact"><svg viewBox="0 0 24 24"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/><path d="M8 12h.01M12 12h.01M16 12h.01" stroke-width="2.4"/></svg></section>
+
+<!-- Tarifs : identiques au simulateur de services.html -->
+<section class="st" id="instagram-story-tarifs"><div class="photo"></div><div class="shade"></div>
+<div class="in">
+  <img class="logo" src="../images/logo_continental_white.webp" alt="">
+  <p class="kicker">Nos tarifs</p>
+  <h1>Detailing à domicile</h1>
+  <div class="grid">
+    <div class="h">Véhicule</div><div class="h">Ext.</div><div class="h">Int.</div><div class="h">Complet</div>
+    <div class="r"><div class="c">Citadine</div><div class="c">49€</div><div class="c">79€</div><div class="c">119€</div></div>
+    <div class="r"><div class="c">Berline</div><div class="c">59€</div><div class="c">89€</div><div class="c">129€</div></div>
+    <div class="r"><div class="c">SUV</div><div class="c">69€</div><div class="c">99€</div><div class="c">139€</div></div>
+    <div class="r"><div class="c">Monospace 5 pl.</div><div class="c">79€</div><div class="c">109€</div><div class="c">149€</div></div>
+    <div class="r"><div class="c">Monospace 7 pl.</div><div class="c">89€</div><div class="c">119€</div><div class="c">159€</div></div>
+    <div class="r"><div class="c">Prestige / Sport</div><div class="c">89€</div><div class="c">129€</div><div class="c">199€</div></div>
+    <div class="r"><div class="c">Moto</div><div class="c">39€</div><div class="c">69€</div><div class="c">99€</div></div>
+  </div>
+  <p class="note">Utilitaire : sur devis · Options et simulateur de prix sur continentaldetailing.fr</p>
+</div></section>
+
+<section class="st" id="instagram-story-zone"><div class="photo"></div><div class="shade"></div>
+<div class="in">
+  <img class="logo" src="../images/logo_continental_white.webp" alt="">
+  <p class="kicker">Zone d'intervention</p>
+  <h1>On vient chez vous</h1>
+  <p class="lead">Le samedi, le dimanche ou en semaine après 19h, avec tout le matériel.</p>
+  <div class="depts"><div><b>91</b><small>Essonne</small></div><div><b>77</b><small>Seine-et-Marne</small></div></div>
+  <div class="cities">
+    <span>Évry-Courcouronnes</span><span>Melun</span><span>Fontainebleau</span><span>Corbeil-Essonnes</span><span>Massy</span><span>Savigny-le-Temple</span><span>Palaiseau</span><span>Sainte-Geneviève-des-Bois</span><span>Viry-Châtillon</span><span>Athis-Mons</span><span>Yerres</span><span>Draveil</span><span>Ris-Orangis</span><span>Vigneux-sur-Seine</span><span>Brunoy</span>
+  </div>
+  <p class="note">Votre ville n'est pas dans la liste ? Écrivez-nous, on regarde ensemble.</p>
+</div></section>
+
+<section class="st" id="instagram-story-contact"><div class="photo"></div><div class="shade"></div>
+<div class="in">
+  <img class="logo" src="../images/logo_continental_white.webp" alt="">
+  <p class="kicker">Réserver</p>
+  <h1>En 2 minutes</h1>
+  <div class="ways">
+    <div class="way"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg><div><p>Prix et réservation en ligne</p><strong>continentaldetailing.fr</strong></div></div>
+    <div class="way"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg><div><p>WhatsApp ou SMS · réponse rapide</p><strong>07 50 87 59 64</strong></div></div>
+    <div class="way"><svg viewBox="0 0 24 24"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg><div><p>Instagram</p><strong>Écrivez-nous en message privé</strong></div></div>
+  </div>
+  <p class="pay">Acompte de 40€ par Wero ou virement, solde après la prestation.</p>
+</div></section>
+
+</body>
+</html>
