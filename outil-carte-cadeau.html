@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Outil interne — Créer une carte cadeau | Continental Detailing</title>
+    <link rel="icon" type="image/png" sizes="192x192" href="images/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com/">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: Outfit, system-ui, sans-serif; background: #F8F7F4; color: #1A1A1E; -webkit-font-smoothing: antialiased; }
+        .tool { max-width: 980px; margin: 0 auto; padding: 32px 20px 64px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 36px; align-items: start; }
+        h1 { font-size: 1.6rem; font-weight: 700; letter-spacing: -0.02em; }
+        .intro { margin: 8px 0 22px; font-size: 14px; line-height: 1.6; color: #5A5650; }
+        label { display: block; margin-top: 14px; font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #5A5650; }
+        input, textarea { display: block; width: 100%; margin-top: 6px; padding: 12px 14px; border: 1px solid rgba(0,0,0,0.18); border-radius: 10px; background: #fff; font: inherit; font-size: 16px; letter-spacing: 0; text-transform: none; color: #1A1A1E; }
+        input:focus, textarea:focus { outline: 2px solid #1A1A1E; outline-offset: 1px; }
+        .row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        .code-row { display: flex; gap: 8px; align-items: flex-end; }
+        .code-row button { flex-shrink: 0; height: 47px; }
+        button { padding: 13px 20px; border: 0; border-radius: 999px; background: #1A1A1E; color: #fff; font: inherit; font-size: 13px; font-weight: 700; letter-spacing: 0.06em; cursor: pointer; }
+        button.light { background: #fff; color: #1A1A1E; border: 1px solid rgba(0,0,0,0.2); }
+        .actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+        .memo { margin-top: 20px; padding: 16px 18px; border-radius: 12px; background: #FFF7ED; border: 1px solid rgba(194,65,12,0.25); font-size: 13.5px; line-height: 1.6; color: #7C2D12; }
+        .memo strong { color: #7C2D12; }
+        .preview-title { margin-bottom: 12px; font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #5A5650; }
+
+        /* La carte : format paysage, proportions d'une carte bancaire agrandie */
+        .card { position: relative; width: 100%; aspect-ratio: 1.5; padding: 6.5% 7%; border-radius: 22px; overflow: hidden; color: #fff; display: flex; flex-direction: column;
+                background: radial-gradient(circle at 88% 0%, rgba(184,149,90,0.55) 0%, rgba(184,149,90,0) 55%), #0E1418;
+                -webkit-print-color-adjust: exact; print-color-adjust: exact; container-type: inline-size; }
+        .card img { width: 34%; height: auto; }
+        .card .value { position: absolute; top: 6.5cqw; right: 7cqw; font-size: 8cqw; font-weight: 700; letter-spacing: -0.03em; color: #D8B878; line-height: 1; }
+        .card .label { margin-top: auto; font-size: 2.3cqw; font-weight: 600; letter-spacing: 0.26em; text-transform: uppercase; color: #D8B878; }
+        .card .offer { margin-top: 1cqw; font-size: 5.2cqw; font-weight: 600; letter-spacing: -0.015em; line-height: 1.15; }
+        .card .names { margin-top: 1.4cqw; font-size: 2.9cqw; color: rgba(255,255,255,0.82); }
+        .card .msg { margin-top: 1cqw; font-size: 2.6cqw; font-style: italic; color: rgba(255,255,255,0.7); }
+        .card .foot { display: flex; justify-content: space-between; align-items: flex-end; gap: 3cqw; margin-top: 3.2cqw; padding-top: 2.6cqw; border-top: 1px solid rgba(255,255,255,0.18); font-size: 2.25cqw; line-height: 1.5; color: rgba(255,255,255,0.75); }
+        .card .foot b { display: block; font-size: 3.3cqw; font-weight: 700; letter-spacing: 0.12em; color: #fff; font-variant-numeric: tabular-nums; }
+        .card .foot div:last-child { text-align: right; }
+
+        @media (max-width: 800px) { .tool { grid-template-columns: 1fr; } .preview { order: -1; } }
+        @media print {
+            @page { size: A5 landscape; margin: 12mm; }
+            body { background: #fff; }
+            .form, .preview-title { display: none !important; }
+            .tool { display: block; padding: 0; max-width: none; }
+            .card { border-radius: 14px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="tool">
+        <div class="form">
+            <h1>Créer une carte cadeau</h1>
+            <p class="intro">Outil interne. Remplissez la carte quand un client a payé, puis enregistrez-la en PDF pour la lui envoyer.</p>
+
+            <label>Offre<input id="offer" value="Pack Complet · Citadine" maxlength="48"></label>
+            <div class="row">
+                <label>Valeur (€)<input id="value" type="number" inputmode="numeric" min="1" value="119"></label>
+                <label>Date d'achat<input id="date" type="date"></label>
+            </div>
+            <div class="row">
+                <label>Pour<input id="to" maxlength="40" placeholder="Prénom du bénéficiaire"></label>
+                <label>De la part de<input id="from" maxlength="40" placeholder="Prénom de l'acheteur"></label>
+            </div>
+            <label>Petit mot (facultatif)<input id="msg" maxlength="70" placeholder="Joyeux Noël !"></label>
+            <div class="code-row">
+                <label style="flex:1">Code unique<input id="code" maxlength="14" autocomplete="off"></label>
+                <button type="button" class="light" id="newCode">Nouveau code</button>
+            </div>
+
+            <div class="actions">
+                <button type="button" id="print">Enregistrer en PDF / Imprimer</button>
+            </div>
+            <p class="memo"><strong>À faire à chaque carte :</strong> notez le code, la valeur et la date dans votre conversation WhatsApp avec l'acheteur (ou dans vos notes). Le jour de la réservation, vérifiez que le code annoncé correspond bien à une carte que vous avez émise et qu'elle n'a pas déjà servi.</p>
+        </div>
+
+        <div class="preview">
+            <p class="preview-title">Aperçu</p>
+            <div class="card" id="card">
+                <img src="images/logo_continental_white.webp" alt="Continental Detailing">
+                <p class="value" data-out="value"></p>
+                <p class="label">Carte cadeau</p>
+                <p class="offer" data-out="offer"></p>
+                <p class="names" data-out="names"></p>
+                <p class="msg" data-out="msg"></p>
+                <div class="foot">
+                    <div>Code<b data-out="code"></b>Valable jusqu'au <span data-out="until"></span></div>
+                    <div>Pour réserver : envoyez ce code par WhatsApp ou SMS<br>07 50 87 59 64 · continentaldetailing.fr</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        (function () {
+            var $ = function (id) { return document.getElementById(id); };
+            var out = function (name) { return document.querySelector('[data-out="' + name + '"]'); };
+
+            function newCode() {
+                // Sans 0/O ni 1/I pour éviter les erreurs de lecture
+                var chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789', bytes = new Uint8Array(8), code = '';
+                crypto.getRandomValues(bytes);
+                for (var i = 0; i < 8; i++) code += chars[bytes[i] % chars.length];
+                return 'CD-' + code.slice(0, 4) + '-' + code.slice(4);
+            }
+
+            function validUntil(iso) {
+                var p = iso.split('-').map(Number);
+                if (p.length !== 3 || !p[0]) return '';
+                var d = new Date(p[0] + 1, p[1] - 1, p[2]);
+                return d.toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' });
+            }
+
+            function render() {
+                out('offer').textContent = $('offer').value;
+                out('value').textContent = ($('value').value || '') + '€';
+                var to = $('to').value.trim(), from = $('from').value.trim();
+                out('names').textContent = [to && 'Pour ' + to, from && 'De la part de ' + from].filter(Boolean).join(' · ');
+                out('msg').textContent = $('msg').value.trim() ? '« ' + $('msg').value.trim() + ' »' : '';
+                out('code').textContent = $('code').value.toUpperCase();
+                out('until').textContent = validUntil($('date').value);
+                document.title = 'Carte cadeau ' + $('code').value.toUpperCase();
+            }
+
+            var now = new Date();
+            $('date').value = now.getFullYear() + '-' + String(now.getMonth() + 1).padStart(2, '0') + '-' + String(now.getDate()).padStart(2, '0');
+            $('code').value = newCode();
+            ['offer', 'value', 'date', 'to', 'from', 'msg', 'code'].forEach(function (id) { $(id).addEventListener('input', render); });
+            $('newCode').addEventListener('click', function () { $('code').value = newCode(); render(); });
+            $('print').addEventListener('click', function () { window.print(); });
+            render();
+        })();
+    </script>
+</body>
+</html>

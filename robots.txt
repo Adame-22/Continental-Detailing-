@@ -3,5 +3,6 @@ Allow: /
 
 Disallow: /acompte.html
 Disallow: /reglement.html
+Disallow: /outil-carte-cadeau.html
 
 Sitemap: https://continentaldetailing.fr/sitemap.xml

@@ -1167,7 +1167,8 @@ details[open] {
 
 .promo-bar { display: none; }
 
-.promo-on .promo-bar {
+.promo-on .promo-bar,
+.notice-on .promo-bar {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1182,7 +1183,7 @@ details[open] {
     text-align: center;
     text-decoration: none;
     position: relative;
-    z-index: 101;
+    z-index: 99; /* under the full-screen menu (100), so its close button stays reachable */
 }
 
 .promo-bar__tag {
@@ -1199,6 +1200,7 @@ details[open] {
     color: rgba(255, 255, 255, 0.6);
 }
 .promo-bar__days::before { content: '·'; margin-right: 14px; }
+.notice-on .promo-bar__days { display: none; }
 
 .promo-bar__cta {
     font-weight: 700;
@@ -1209,7 +1211,7 @@ details[open] {
 }
 
 @media (max-width: 640px) {
-    .promo-on .promo-bar { font-size: 11px; padding: 9px 12px; }
+    .promo-on .promo-bar, .notice-on .promo-bar { font-size: 11px; padding: 9px 12px; }
     .promo-bar__days { display: none; }
 }
 

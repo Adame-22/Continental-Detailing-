@@ -14,7 +14,7 @@
     <meta name="robots" content="noindex, nofollow">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Paiement Acompte | Continental Detailing</title>
-    <meta name="description" content="Réglez l'acompte de votre prestation Continental Detailing en toute sécurité pour valider votre rendez-vous.">
+    <meta name="description" content="Réglez l'acompte de 40€ par Wero ou virement pour valider votre rendez-vous Continental Detailing.">
     <!-- OpenGraph Social Preview -->
     <meta property="og:title" content="Règlement d'Acompte | Continental Detailing">
     <meta property="og:description" content="Réglez votre acompte de réservation en toute sécurité pour bloquer votre date d'intervention de detailing.">
@@ -52,7 +52,7 @@
         }
     </script>
 </head>
-<body class="bg-bg text-primary font-sans min-h-screen flex flex-col antialiased">
+<body class="bg-bg text-primary font-sans min-h-screen flex flex-col antialiased" x-data="{ copiedItem: null }">
 
     <!-- Navigation Bar -->
     <nav class="nav-main" id="navbar">
@@ -119,24 +119,66 @@
                         </li>
                     </ul>
  
-                    <!-- CTA -->
-                    <a href="#" onclick="alert('Lien de paiement à configurer — Stripe ou SumUp')"
-                       class="flex items-center justify-center gap-3 w-full py-4 text-sm font-bold tracking-[0.08em] uppercase transition-colors rounded-lg bg-primary hover:bg-accent-light text-white">
-                        <i class="fa-solid fa-credit-card"></i>
-                        Régler 40€ par CB
+                    <!-- Paiement : mêmes moyens que le règlement du solde (Wero / virement) -->
+                    <p class="text-[10px] uppercase font-medium tracking-widest mb-3 text-secondary">Réglez 40€ par Wero ou virement instantané</p>
+                        <div class="space-y-3">
+                            <!-- Wero -->
+                            <div class="flex items-center justify-between p-4 gap-4 bg-bg-alt border border-gray-200 transition-colors rounded-lg">
+                                <div>
+                                    <p class="text-[10px] uppercase font-medium tracking-widest mb-1 text-secondary">Numéro Wero (Paylib)</p>
+                                    <p class="font-mono text-sm tracking-widest text-primary">07 50 87 59 64</p>
+                                </div>
+                                <button @click="navigator.clipboard.writeText('0750875964'); copiedItem = 'wero'; setTimeout(() => copiedItem = null, 3000)"
+                                        class="px-4 py-2 text-[10px] font-medium tracking-widest uppercase transition-colors flex-shrink-0 flex items-center gap-2 border rounded-full"
+                                        :class="copiedItem === 'wero' ? 'bg-green-50 text-green-600 border-green-200' : 'bg-bg text-secondary border-gray-200 hover:text-primary hover:border-gray-400'">
+                                    <span x-text="copiedItem === 'wero' ? 'Copié' : 'Copier'"></span>
+                                    <i :class="copiedItem === 'wero' ? 'fa-solid fa-check' : 'fa-regular fa-copy'"></i>
+                                </button>
+                            </div>
+
+                            <!-- IBAN -->
+                            <div class="bg-bg-alt border border-gray-200 rounded-lg">
+                                <div class="flex items-center justify-between p-4 gap-4">
+                                    <div class="overflow-hidden">
+                                        <p class="text-[10px] uppercase font-medium tracking-widest mb-1 text-secondary">IBAN Continental Detailing</p>
+                                        <p class="font-mono text-[11px] sm:text-xs tracking-wider text-primary truncate">FR76 2823 3000 0144 4023 7522 741</p>
+                                    </div>
+                                    <button @click="navigator.clipboard.writeText('FR7628233000014440237522741'); copiedItem = 'iban'; setTimeout(() => copiedItem = null, 3000)"
+                                            class="px-4 py-2 text-[10px] font-medium tracking-widest uppercase transition-colors flex-shrink-0 flex items-center gap-2 border rounded-full"
+                                            :class="copiedItem === 'iban' ? 'bg-green-50 text-green-600 border-green-200' : 'bg-bg text-secondary border-gray-200 hover:text-primary hover:border-gray-400'">
+                                        <span x-text="copiedItem === 'iban' ? 'Copié' : 'Copier'"></span>
+                                        <i :class="copiedItem === 'iban' ? 'fa-solid fa-check' : 'fa-regular fa-copy'"></i>
+                                    </button>
+                                </div>
+                                <div class="h-px bg-gray-200 mx-4"></div>
+                                <!-- BIC -->
+                                <div class="flex items-center justify-between p-4 gap-4">
+                                    <div>
+                                        <p class="text-[10px] uppercase font-medium tracking-widest mb-1 text-secondary">Code BIC / SWIFT</p>
+                                        <p class="font-mono text-sm tracking-widest text-primary">REVOFRP2</p>
+                                    </div>
+                                    <button @click="navigator.clipboard.writeText('REVOFRP2'); copiedItem = 'bic'; setTimeout(() => copiedItem = null, 3000)"
+                                            class="px-4 py-2 text-[10px] font-medium tracking-widest uppercase transition-colors flex-shrink-0 flex items-center gap-2 border rounded-full"
+                                            :class="copiedItem === 'bic' ? 'bg-green-50 text-green-600 border-green-200' : 'bg-bg text-secondary border-gray-200 hover:text-primary hover:border-gray-400'">
+                                        <span x-text="copiedItem === 'bic' ? 'Copié' : 'Copier'"></span>
+                                        <i :class="copiedItem === 'bic' ? 'fa-solid fa-check' : 'fa-regular fa-copy'"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                    <p class="text-xs text-secondary mt-4 leading-relaxed">Indiquez <strong class="text-primary">votre nom + la date du rendez-vous</strong> en motif, puis prévenez-nous : votre créneau est confirmé dès réception.</p>
+                    <a href="https://wa.me/33750875964?text=Bonjour%2C%20je%20viens%20de%20r%C3%A9gler%20l%27acompte%20de%2040%E2%82%AC%20pour%20mon%20rendez-vous%20du%20..." target="_blank" rel="noopener noreferrer"
+                       class="flex items-center justify-center gap-3 w-full py-4 mt-5 text-sm font-bold tracking-[0.08em] uppercase transition-colors rounded-lg bg-primary hover:bg-accent-light text-white">
+                        <i class="fa-brands fa-whatsapp text-base"></i>
+                        J'ai réglé, je préviens
                     </a>
                 </div>
- 
+
                 <!-- Bottom trust bar -->
                 <div class="px-6 py-4 text-center" style="border-top:1px solid var(--border-light);background:var(--bg-alt);">
-                    <div class="flex items-center justify-center gap-5 text-xl mb-2 text-muted">
-                        <i class="fa-brands fa-cc-visa"></i>
-                        <i class="fa-brands fa-cc-mastercard"></i>
-                        <i class="fa-brands fa-cc-amex"></i>
-                        <i class="fa-brands fa-cc-apple-pay"></i>
-                    </div>
                     <p class="text-[10px] leading-relaxed text-muted">
-                        Paiement sécurisé — vos données bancaires ne sont jamais stockées sur ce site.
+                        0 frais · Aucune donnée bancaire n'est saisie ni stockée sur ce site.
                     </p>
                 </div>
             </div>
@@ -167,6 +209,8 @@
                     <a href="index.html" class="footer-link">Accueil</a>
                     <a href="about.html" class="footer-link">Qui sommes-nous</a>
                     <a href="services.html" class="footer-link">Tarifs & Réservation</a>
+                    <a href="carte-cadeau.html" class="footer-link">Carte cadeau</a>
+                    <a href="professionnels.html" class="footer-link">Professionnels</a>
                     <a href="avis.html" class="footer-link">Avis clients</a>
                 </div>
                 <div>

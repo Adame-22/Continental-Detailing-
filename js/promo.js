@@ -4,6 +4,7 @@
  * so the banner and prices are right on first paint. After END the offer
  * switches itself off everywhere (banner, popup, countdowns, discounted
  * prices): no code change needed on November 1st.
+ * Outside an offer, the same bar announces gift cards until Christmas.
  */
 (function () {
     'use strict';
@@ -54,7 +55,24 @@
         remaining: remaining
     };
 
-    if (!active) return;
+    // Hors promotion : bandeau « carte cadeau » pendant la période de Noël.
+    // Il s'éteint tout seul après GIFT_END ; aucun prix n'est modifié.
+    var GIFT_END = new Date('2026-12-25T23:59:59+01:00');
+    if (!active) {
+        var onGiftPage = /carte-cadeau\.html/.test(window.location.pathname);
+        if (Date.now() <= GIFT_END.getTime() && !onGiftPage) {
+            document.documentElement.classList.add('notice-on');
+            document.addEventListener('DOMContentLoaded', function () {
+                document.querySelectorAll('.promo-bar').forEach(function (bar) {
+                    bar.setAttribute('href', '/carte-cadeau.html');
+                    bar.querySelector('[data-promo-label]').textContent = 'Noël';
+                    bar.querySelector('[data-promo-text]').textContent = 'Offrez une carte cadeau : un nettoyage auto premium à domicile';
+                    bar.querySelector('.promo-bar__cta').firstChild.textContent = 'Offrir ';
+                });
+            });
+        }
+        return;
+    }
 
     document.documentElement.classList.add('promo-on');
 

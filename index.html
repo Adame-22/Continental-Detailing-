@@ -144,6 +144,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/pages.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -600,8 +601,27 @@
         </div>
     </section>
 
+    <!-- Carte cadeau -->
+    <section class="gift-home" aria-labelledby="giftHomeTitle">
+        <div class="gift-home__inner reveal">
+            <div>
+                <p class="text-xs font-semibold tracking-[0.2em] uppercase mb-4" style="color:#6B6B6B;"><span data-noel hidden>Idée cadeau de Noël · </span>Carte cadeau</p>
+                <h2 id="giftHomeTitle" class="font-sans text-3xl md:text-5xl font-bold tracking-tight text-primary mb-5">Offrez une voiture comme neuve</h2>
+                <p class="text-sm leading-relaxed text-secondary font-light mb-7" style="max-width:46ch;">Un cadeau utile, qui fait vraiment plaisir : un nettoyage premium réalisé à domicile, chez la personne de votre choix. Carte envoyée par WhatsApp ou e-mail, valable 12 mois.</p>
+                <a href="carte-cadeau.html" class="pg-btn pg-btn--dark">Composer une carte cadeau <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+            <a href="carte-cadeau.html" class="gift-card" aria-hidden="true" tabindex="-1" style="text-decoration:none;">
+                <img src="images/logo_continental_white.webp" alt="" class="gift-card__logo" loading="lazy">
+                <p class="gift-card__label">Carte cadeau</p>
+                <p class="gift-card__offer">Pack Complet · Citadine</p>
+                <p class="gift-card__value">119€</p>
+                <p class="gift-card__names">Pour la personne de votre choix</p>
+            </a>
+        </div>
+    </section>
+
     <!-- Zone d'intervention SEO -->
-    <section class="py-24 max-w-5xl mx-auto px-6">
+    <section id="zone" class="py-24 max-w-5xl mx-auto px-6">
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 items-center text-left">
             <!-- Texte intro -->
             <div class="lg:col-span-1 reveal">
@@ -622,27 +642,27 @@
                 <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 text-sm text-secondary font-light">
                     <div class="flex items-center gap-2">
                         <span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
-                        <span>Évry-Courcouronnes</span>
+                        <a href="nettoyage-voiture-domicile-evry-courcouronnes.html" class="text-primary font-medium underline decoration-gray-300 underline-offset-4 hover:decoration-primary">Évry-Courcouronnes</a>
                     </div>
                     <div class="flex items-center gap-2">
                         <span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
-                        <span>Melun</span>
+                        <a href="nettoyage-voiture-domicile-melun.html" class="text-primary font-medium underline decoration-gray-300 underline-offset-4 hover:decoration-primary">Melun</a>
                     </div>
                     <div class="flex items-center gap-2">
                         <span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
-                        <span>Fontainebleau</span>
+                        <a href="nettoyage-voiture-domicile-fontainebleau.html" class="text-primary font-medium underline decoration-gray-300 underline-offset-4 hover:decoration-primary">Fontainebleau</a>
                     </div>
                     <div class="flex items-center gap-2">
                         <span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
-                        <span>Corbeil-Essonnes</span>
+                        <a href="nettoyage-voiture-domicile-corbeil-essonnes.html" class="text-primary font-medium underline decoration-gray-300 underline-offset-4 hover:decoration-primary">Corbeil-Essonnes</a>
                     </div>
                     <div class="flex items-center gap-2">
                         <span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
-                        <span>Massy</span>
+                        <a href="nettoyage-voiture-domicile-massy.html" class="text-primary font-medium underline decoration-gray-300 underline-offset-4 hover:decoration-primary">Massy</a>
                     </div>
                     <div class="flex items-center gap-2">
                         <span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
-                        <span>Savigny-le-Temple</span>
+                        <a href="nettoyage-voiture-domicile-savigny-le-temple.html" class="text-primary font-medium underline decoration-gray-300 underline-offset-4 hover:decoration-primary">Savigny-le-Temple</a>
                     </div>
                     <div class="flex items-center gap-2">
                         <span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
@@ -776,7 +796,7 @@
         </div>
         <div class="max-w-5xl mx-auto px-6 py-8 flex flex-col md:flex-row justify-between items-center gap-6">
             <div class="text-xs" style="color:#A0A0A0;">
-                © <span class="cd-year">2026</span> Continental Detailing — Tous droits réservés. &nbsp;·&nbsp;<a href="mentions-legales.html" style="color:#A0A0A0; text-decoration:underline;" onmouseover="this.style.color='#FFFFFF'" onmouseout="this.style.color='#A0A0A0'">Mentions légales</a>&nbsp;·&nbsp;<a href="mentions-legales.html#cookies" data-cookie-settings style="color:#A0A0A0; text-decoration:underline;">Cookies</a> &nbsp;·&nbsp;<a href="cgv.html" style="color:#A0A0A0; text-decoration:underline;" onmouseover="this.style.color='#FFFFFF'" onmouseout="this.style.color='#A0A0A0'">CGV</a>
+                © <span class="cd-year">2026</span> Continental Detailing — Tous droits réservés. &nbsp;·&nbsp;<a href="mentions-legales.html" style="color:#A0A0A0; text-decoration:underline;" onmouseover="this.style.color='#FFFFFF'" onmouseout="this.style.color='#A0A0A0'">Mentions légales</a>&nbsp;·&nbsp;<a href="mentions-legales.html#cookies" data-cookie-settings style="color:#A0A0A0; text-decoration:underline;">Cookies</a> &nbsp;·&nbsp;<a href="cgv.html" style="color:#A0A0A0; text-decoration:underline;" onmouseover="this.style.color='#FFFFFF'" onmouseout="this.style.color='#A0A0A0'">CGV</a>&nbsp;·&nbsp;<a href="carte-cadeau.html" style="color:#A0A0A0; text-decoration:underline;">Carte cadeau</a>&nbsp;·&nbsp;<a href="professionnels.html" style="color:#A0A0A0; text-decoration:underline;">Professionnels</a>
             </div>
             <div class="flex gap-6 items-center">
                 <a href="mailto:continental.detailing.idf@gmail.com" class="ui-transition text-lg" style="color:#A0A0A0;" onmouseover="this.style.color='#FFFFFF'" onmouseout="this.style.color='#3F3F46'">
@@ -812,6 +832,14 @@
                     </a>
                     <a href="services.html" class="flex justify-between items-center bg-[#F4F4F4] hover:bg-[#EAEAEA] transition-colors duration-300 rounded-xl px-8 py-6 group decoration-transparent">
                         <span class="text-2xl md:text-3xl font-medium text-primary">Tarifs & Réservation</span>
+                        <i class="fa-solid fa-chevron-right text-sm text-primary opacity-50 group-hover:opacity-100 transition-opacity"></i>
+                    </a>
+                    <a href="carte-cadeau.html" class="flex justify-between items-center bg-[#F4F4F4] hover:bg-[#EAEAEA] transition-colors duration-300 rounded-xl px-8 py-6 group decoration-transparent">
+                        <span class="text-2xl md:text-3xl font-medium text-primary">Carte cadeau</span>
+                        <i class="fa-solid fa-chevron-right text-sm text-primary opacity-50 group-hover:opacity-100 transition-opacity"></i>
+                    </a>
+                    <a href="professionnels.html" class="flex justify-between items-center bg-[#F4F4F4] hover:bg-[#EAEAEA] transition-colors duration-300 rounded-xl px-8 py-6 group decoration-transparent">
+                        <span class="text-2xl md:text-3xl font-medium text-primary">Professionnels</span>
                         <i class="fa-solid fa-chevron-right text-sm text-primary opacity-50 group-hover:opacity-100 transition-opacity"></i>
                     </a>
                     <a href="avis.html" class="flex justify-between items-center bg-[#F4F4F4] hover:bg-[#EAEAEA] transition-colors duration-300 rounded-xl px-8 py-6 group decoration-transparent">
@@ -1028,6 +1056,7 @@
     }
     </script>
 <script>document.querySelectorAll(".cd-year").forEach(e=>e.textContent=new Date().getFullYear());</script>
+<script>(function(){var d=new Date();if(d.getMonth()===10||(d.getMonth()===11&&d.getDate()<=25)){document.querySelectorAll('[data-noel]').forEach(function(e){e.hidden=false;});}})();</script>
 </body>
 
 </html>
