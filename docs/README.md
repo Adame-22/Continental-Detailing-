@@ -5,7 +5,7 @@ prêts à copier et l'état de la prospection. Il n'est pas mis en ligne (voir
 `.vercelignore`). Le suivi des prospects, lui, vit dans Google Drive, dans le
 fichier `CRM_Prospects_Continental_Detailing`.
 
-Dernière mise à jour : 12 novembre 2026.
+Dernière mise à jour : 17 novembre 2026.
 
 ## Le site
 
@@ -41,6 +41,11 @@ Capacité d'un samedi : 2 packs complets, ou 3 à 4 prestations simples.
 - Carte cadeau : valable 12 mois, utilisable en une fois, montants libres de
   50, 80, 100 et 150 €, paiement par Wero ou virement. Conditions dans
   l'article 15 des CGV.
+- Offre senior : une seule offre, le Pass Sénior, −35 % sur toutes les
+  formules pour les 65 ans et plus (lavage extérieur dès 32 €). C'est le tarif
+  imprimé sur le flyer `marketing/flyers/pass-senior.png`. Le premier e-mail
+  à Ris-Orangis annonçait 39 € et 65 € : la mairie a été prévenue le
+  17 novembre que c'est le tarif du flyer qui s'applique.
 - Acompte de 40 € par Wero ou virement (le bouton « carte bancaire » ne
   fonctionnait pas ; il faudrait un lien Stripe ou SumUp pour le remettre).
 - Statistiques : Google Analytics ne se charge qu'après accord (bannière
@@ -64,8 +69,17 @@ Capacité d'un samedi : 2 packs complets, ou 3 à 4 prestations simples.
 - Deux mairies ont répondu favorablement et transmis l'offre senior à leur
   CCAS et à leur service Communication : Ris-Orangis (17 juin) et
   Savigny-le-Temple (8 juillet). Aucune relance n'a suivi.
-- 12 novembre 2026 : relances envoyées à trois prospects de juillet et un
-  premier e-mail à un nouveau garage.
+- 12 novembre 2026 : relances envoyées à trois prospects de juillet, un
+  premier e-mail à un nouveau garage, et relance des deux mairies.
+- 13 novembre 2026 : le cabinet du maire de Savigny-le-Temple a transmis au
+  service concerné, qui doit rappeler. L'adresse de la stagiaire qui avait
+  répondu en juillet n'existe plus : écrire au cabinet du maire seulement.
+- 17 novembre 2026 : la mairie de Ris-Orangis a redemandé le flyer. Pass
+  Sénior renvoyé le jour même, avec un court texte pour leur newsletter.
+
+Suite prévue : demander à Ris-Orangis où et quand le flyer sera diffusé
+(vers le 24 novembre) ; appeler le CCAS de Savigny-le-Temple sans nouvelles
+le 26 novembre.
 
 Règles à tenir :
 
@@ -145,6 +159,17 @@ Description courte :
 > Nettoyage et detailing automobile premium à domicile en Essonne (91) et
 > Seine-et-Marne (77). Intérieur, extérieur ou pack complet, réalisé à la main
 > chez vous, le week-end ou en soirée. Dès 49€.
+
+### Texte pour la newsletter d'une mairie (offre senior)
+
+À envoyer avec le flyer `marketing/flyers/pass-senior.png`. Adapter la
+première phrase à la commune.
+
+> Continental Detailing nettoie la voiture des habitants de 65 ans et plus
+> directement à leur domicile, sans qu'ils aient à se déplacer. Pass Sénior :
+> 35 % de réduction sur toutes les formules, à partir de 32 €. Interventions
+> le samedi et le dimanche, sur rendez-vous au 07 50 87 59 64 (appel ou SMS)
+> ou sur continentaldetailing.fr.
 
 ### E-mail de prospection aux entreprises (brouillon, prix à valider)
 
