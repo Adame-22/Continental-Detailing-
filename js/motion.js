@@ -229,4 +229,64 @@
         lazyVideos.forEach(loadVideo);
     }
 
+    // =========================================
+    // 6. SCROLL PROGRESS — thin bar at the top of the page
+    // =========================================
+    if (!reducedMotion) {
+        const bar = document.createElement('div');
+        bar.className = 'scroll-progress';
+        bar.setAttribute('aria-hidden', 'true');
+        document.body.appendChild(bar);
+        let pTick = false;
+        const paint = () => {
+            const max = document.documentElement.scrollHeight - window.innerHeight;
+            bar.style.transform = 'scaleX(' + (max > 0 ? Math.min(window.scrollY / max, 1) : 0) + ')';
+            pTick = false;
+        };
+        window.addEventListener('scroll', () => {
+            if (!pTick) { requestAnimationFrame(paint); pTick = true; }
+        }, { passive: true });
+        paint();
+    }
+
+    // =========================================
+    // 7. ACTION BAR — price + WhatsApp always one thumb away on mobile.
+    // Skipped on pages that already carry their own bottom bar or a payment step.
+    // =========================================
+    const page = (location.pathname.split('/').pop() || 'index.html').toLowerCase();
+    const noBar = ['services.html', 'services', 'acompte.html', 'reglement.html', 'acompte', 'reglement'];
+    if (noBar.indexOf(page) === -1 && !document.querySelector('.action-bar')) {
+        const ab = document.createElement('div');
+        ab.className = 'action-bar';
+        ab.innerHTML =
+            '<a class="action-bar__price" href="/services.html" data-track="barre_prix">Mon prix <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>' +
+            '<a class="action-bar__wa" href="https://wa.me/33750875964?text=' +
+            encodeURIComponent('Bonjour, je souhaite un renseignement pour le nettoyage de ma voiture 🚗') +
+            '" target="_blank" rel="noopener noreferrer" data-track="barre_whatsapp"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i> WhatsApp</a>';
+        document.body.appendChild(ab);
+
+        ab.addEventListener('click', (e) => {
+            const a = e.target.closest('a[data-track]');
+            if (!a) return;
+            if (window.gtag) window.gtag('event', a.dataset.track);
+            if (window.va) window.va('event', { name: a.dataset.track });
+        });
+
+        const footer = document.querySelector('footer');
+        let abTick = false;
+        const place = () => {
+            const cookie = document.querySelector('.cookie-banner:not([hidden])');
+            const menuOpen = document.body.style.overflow === 'hidden';
+            const nearFooter = footer && footer.getBoundingClientRect().top < window.innerHeight - 40;
+            const on = window.scrollY > window.innerHeight * 0.6 && !cookie && !menuOpen && !nearFooter;
+            ab.classList.toggle('is-on', on);
+            abTick = false;
+        };
+        window.addEventListener('scroll', () => {
+            if (!abTick) { requestAnimationFrame(place); abTick = true; }
+        }, { passive: true });
+        document.addEventListener('click', () => setTimeout(place, 50));
+        place();
+    }
+
 })();
