@@ -86,6 +86,8 @@ le 26 novembre.
 
 Règles à tenir :
 
+- aucun e-mail ne part sans l'accord d'Adame sur le texte et les pièces
+  jointes : montrer le message, attendre son « oui », puis envoyer ;
 - prospection par e-mail réservée aux professionnels et aux collectivités,
   avec une phrase pour ne plus être contacté ;
 - adresses vérifiées plutôt que devinées ;
