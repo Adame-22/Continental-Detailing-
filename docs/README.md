@@ -5,7 +5,7 @@ prêts à copier et l'état de la prospection. Il n'est pas mis en ligne (voir
 `.vercelignore`). Le suivi des prospects, lui, vit dans Google Drive, dans le
 fichier `CRM_Prospects_Continental_Detailing`.
 
-Dernière mise à jour : 18 novembre 2026.
+Dernière mise à jour : 24 novembre 2026.
 
 ## Le site
 
@@ -24,8 +24,15 @@ fichiers `.html` produits. Les tarifs y sont recopiés depuis le simulateur de
 
 Réglages qui s'éteignent tout seuls, dans `js/promo.js` :
 
-- l'Offre Automne (−20 %) s'est arrêtée le 31 octobre 2026 ;
-- le bandeau « Noël : offrez une carte cadeau » s'arrête le 25 décembre 2026.
+- l'Offre de Noël (−20 % sur toutes les prestations, les options et les cartes
+  cadeaux « prestation ») s'arrête le 24 décembre 2026 au soir. Les cartes
+  « montant libre » restent à leur valeur ;
+- le 25 décembre, le bandeau repasse sur « offrez une carte cadeau », puis
+  s'éteint.
+
+Pour lancer une autre offre : changer `LABEL`, `RATE` et `END` en haut de
+`js/promo.js`, puis le titre, le texte et la vidéo du bloc `promo-feature` de
+`index.html`.
 
 ## Disponibilités
 

@@ -561,7 +561,7 @@ GIFT_BODY = '''
                             <button type="button" class="gift-opt gift-opt--big" :class="formule === f.id && 'is-on'" :aria-pressed="formule === f.id" @click="formule = f.id">
                                 <strong x-text="f.nom"></strong>
                                 <small x-text="f.detail"></small>
-                                <b x-text="tarif(f.id) + '€'"></b>
+                                <b><s class="promo-old" x-show="promoOn" x-text="tarifNormal(f.id) + '€'"></s> <span x-text="tarif(f.id) + '€'"></span></b>
                             </button>
                         </template>
                     </div>
@@ -586,7 +586,8 @@ GIFT_BODY = '''
                 <div class="gift-total">
                     <div>
                         <p class="gift-total__label" x-text="libelle"></p>
-                        <p class="gift-total__price" x-text="prix + '€'"></p>
+                        <p class="gift-total__price"><s class="promo-old" x-show="remise" x-text="tarifNormal(formule) + '€'"></s> <span x-text="prix + '€'"></span></p>
+                        <p class="pg-note" x-show="remise" x-text="window.PROMO ? PROMO.label + ' : −' + PROMO.percent + '% sur les cartes « prestation » commandées avant la fin de l’offre' : ''"></p>
                     </div>
                     <div class="gift-total__actions">
                         <a :href="lienWhatsApp" target="_blank" rel="noopener noreferrer" class="pg-btn pg-btn--dark" @click="suivi('whatsapp')"><i class="fa-brands fa-whatsapp"></i> Commander par WhatsApp</a>
@@ -642,7 +643,11 @@ GIFT_BODY = '''
                         ? [{ id: 'ext', nom: 'Essentiel', detail: 'Lavage sécurisé' }, { id: 'int', nom: 'Détails', detail: 'Chaîne, cadre & moteur' }, { id: 'complet', nom: 'Pack Complet', detail: 'Avec protection' }]
                         : [{ id: 'ext', nom: 'Extérieur', detail: 'Décontamination & brillance' }, { id: 'int', nom: 'Intérieur', detail: 'Rénovation haute précision' }, { id: 'complet', nom: 'Pack Complet', detail: 'Intérieur + extérieur' }];
                 },
-                tarif(f) { return this.vehicules.find(v => v.id === this.vehicule)[f]; },
+                promoOn: !!(window.PROMO && window.PROMO.active),
+                tarifNormal(f) { return this.vehicules.find(v => v.id === this.vehicule)[f]; },
+                // Pendant une offre saisonnière, la remise s'applique aux cartes « prestation ».
+                tarif(f) { return window.PROMO ? window.PROMO.apply(this.tarifNormal(f)) : this.tarifNormal(f); },
+                get remise() { return this.promoOn && this.mode === 'formule'; },
                 get prix() { return this.mode === 'formule' ? this.tarif(this.formule) : this.montant; },
                 get libelle() {
                     if (this.mode === 'montant') return 'Carte cadeau de ' + this.montant + '€';
@@ -650,7 +655,7 @@ GIFT_BODY = '''
                     return this.formules.find(f => f.id === this.formule).nom + ' · ' + v;
                 },
                 get message() {
-                    let m = 'Bonjour, je souhaite commander une carte cadeau 🎁\\n\\n' + '• ' + this.libelle + ' : ' + this.prix + '€\\n';
+                    let m = 'Bonjour, je souhaite commander une carte cadeau 🎁\\n\\n' + '• ' + this.libelle + ' : ' + this.prix + '€' + (this.remise ? ' (' + window.PROMO.label + ' −' + window.PROMO.percent + '%, au lieu de ' + this.tarifNormal(this.formule) + '€)' : '') + '\\n';
                     if (this.pour) m += '• Pour : ' + this.pour + '\\n';
                     if (this.de) m += '• De la part de : ' + this.de + '\\n';
                     return m + '\\nMerci de m’indiquer comment régler.';

@@ -1189,7 +1189,7 @@ details[open] {
 .promo-bar__tag {
     padding: 3px 10px;
     border-radius: 9999px;
-    background: #C2410C; /* autumn orange, 5.2:1 with white */
+    background: #B4232A; /* Christmas red, 6.3:1 with white */
     font-size: 10px;
     font-weight: 700;
     letter-spacing: 0.14em;
@@ -1223,7 +1223,7 @@ details[open] {
     margin-right: 2px;
 }
 
-:root { --promo-color: #C2410C; }
+:root { --promo-color: #B4232A; }
 
 /* ── Live countdown boxes ── */
 .cd {

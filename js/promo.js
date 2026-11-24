@@ -3,16 +3,16 @@
  * Single source of truth for the current promotion. Loaded in <head> (sync)
  * so the banner and prices are right on first paint. After END the offer
  * switches itself off everywhere (banner, popup, countdowns, discounted
- * prices): no code change needed on November 1st.
+ * prices): no code change needed on December 25th.
  * Outside an offer, the same bar announces gift cards until Christmas.
  */
 (function () {
     'use strict';
 
-    var LABEL = 'Offre Automne';
+    var LABEL = 'Offre de Noël';
     var RATE  = 0.20;
-    // 31 October 2026, 23:59:59 Paris time (CET, summer time ends 25 Oct)
-    var END   = new Date('2026-10-31T23:59:59+01:00');
+    // 24 December 2026, 23:59:59 Paris time (CET)
+    var END   = new Date('2026-12-24T23:59:59+01:00');
 
     var POPUP_DELAY_MS   = 2500;
     var POPUP_REPEAT_MS  = 24 * 60 * 60 * 1000; // at most once a day per visitor
@@ -123,7 +123,7 @@
                 '</div>' +
                 '<div class="promo-pop__body">' +
                     '<h2 id="promoPopTitle" class="promo-pop__title">Sur toutes nos prestations</h2>' +
-                    '<p class="promo-pop__text">Intérieur, extérieur ou pack complet : préparez votre voiture pour l’hiver, sans bouger de chez vous.</p>' +
+                    '<p class="promo-pop__text">Pour vous ou à offrir en carte cadeau : intérieur, extérieur ou pack complet, réalisé chez vous.</p>' +
                     '<p class="promo-pop__ends">L’offre se termine dans</p>' +
                     '<div class="cd" data-promo-countdown></div>' +
                     '<a class="promo-pop__cta" href="' + (onPricingPage ? '#car-showcase-container' : 'services.html') + '">J’en profite <i class="fa-solid fa-arrow-right"></i></a>' +
