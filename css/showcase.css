@@ -705,9 +705,8 @@
     /* La carte ne dépasse jamais la hauteur visible : la liste des prestations défile dedans */
     .sim-grid .showcase-wrapper {
         --sw: 100%; width: 100%; margin-left: 0; margin-bottom: 0;
-        display: flex; flex-direction: column; max-height: max(420px, calc(100vh - 215px));
+        display: block;
     }
-    .sim-grid .showcase-body { flex: 1; }
     .sim-grid .services-panel, .sim-grid .car-stage { min-height: 0; }
     .sim-grid .showcase-step-header, .sim-grid .panel-step-header { padding: 8px 16px; }
     .sim-grid .formule-pills { padding: 8px 10px; gap: 6px; }
@@ -760,4 +759,26 @@
     }
     .sim-total__cta:hover { background: #F2F0EA; }
     .sim-page { padding-bottom: 2rem !important; }
+}
+
+
+/* Ordinateur : « ce qui est inclus » passe sous la voiture et les formules,
+   sur toute la largeur, en deux colonnes. Plus de zone qui défile dans la carte. */
+@media (min-width: 1100px) {
+    .sim-grid .showcase-body {
+        grid-template-columns: 0.9fr 1fr;
+        grid-template-areas: "car head" "car pills" "list list" "eco eco";
+        grid-template-rows: auto 1fr auto auto;
+    }
+    .sim-grid .services-panel { display: contents; }
+    .sim-grid .car-stage { grid-area: car; }
+    .sim-grid .panel-step-header { grid-area: head; }
+    .sim-grid .formule-pills { grid-area: pills; }
+    .sim-grid .services-list {
+        grid-area: list; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 10px;
+        padding: 10px 12px; overflow: visible; min-height: 0;
+        border-top: 1px solid var(--border); background: var(--bg);
+    }
+    .sim-grid .service-item { padding: 0.45rem 0.8rem; font-size: 0.8rem; }
+    .sim-grid .economy-badge { grid-area: eco; margin: 0 12px 12px; }
 }
