@@ -705,7 +705,7 @@
     /* La carte ne dépasse jamais la hauteur visible : la liste des prestations défile dedans */
     .sim-grid .showcase-wrapper {
         --sw: 100%; width: 100%; margin-left: 0; margin-bottom: 0;
-        display: flex; flex-direction: column; max-height: max(440px, calc(100vh - 318px));
+        display: flex; flex-direction: column; max-height: max(420px, calc(100vh - 215px));
     }
     .sim-grid .showcase-body { flex: 1; }
     .sim-grid .services-panel, .sim-grid .car-stage { min-height: 0; }
@@ -724,4 +724,40 @@
     .sim-side section > .flex { margin-bottom: 10px !important; }
     .sim-side .grid.grid-cols-3 button { padding: 12px 6px !important; gap: 6px; }
     .sim-side .grid.grid-cols-3 i { font-size: 1.1rem; }
+}
+
+
+/* Total dans la colonne de droite : sur ordinateur, plus de barre fixe en bas */
+.sim-total { display: none; }
+@media (min-width: 1100px) {
+    .sim-bar { display: none !important; }
+    .sim-side { position: sticky; top: 12px; }
+    .sim-side section > .flex { margin-bottom: 8px !important; }
+    .sim-side section > .flex span.w-8 { width: 26px; height: 26px; }
+    .sim-side section > .border > button { padding-top: 9px !important; padding-bottom: 9px !important; }
+    .sim-side section > .border p.text-xs, .sim-side section > .flex span.text-xs { display: none; }
+    .sim-side .grid.grid-cols-3 button { padding: 9px 4px !important; }
+    .sim-side .grid.grid-cols-3 i { display: none; }
+
+    .sim-total {
+        display: block; padding: 14px 16px 16px; border-radius: 16px;
+        background: #0E1418; color: #FFFFFF; box-shadow: 0 12px 30px rgba(0, 0, 0, 0.16);
+    }
+    .sim-total__tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
+    .sim-total__promo, .sim-total__eco { font-size: 10px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 3px 9px; border-radius: 9999px; white-space: nowrap; }
+    .sim-total__promo { background: #B4232A; }
+    .sim-total__eco { background: rgba(74, 222, 128, 0.16); color: #86EFAC; }
+    .sim-total__row { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+    .sim-total__label { font-size: 11px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255, 255, 255, 0.6); }
+    .sim-total__price { white-space: nowrap; }
+    .sim-total__price b { font-size: 30px; font-weight: 700; }
+    .sim-total__price .promo-old { color: rgba(255, 255, 255, 0.5); font-size: 15px; margin-right: 4px; }
+    .sim-total__what { font-size: 12px; color: rgba(255, 255, 255, 0.65); margin: 2px 0 12px; }
+    .sim-total__cta {
+        width: 100%; display: flex; align-items: center; justify-content: center; gap: 10px;
+        padding: 13px 16px; border: 0; border-radius: 9999px; cursor: pointer;
+        background: #FFFFFF; color: #0E1418; font-size: 13px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+    }
+    .sim-total__cta:hover { background: #F2F0EA; }
+    .sim-page { padding-bottom: 2rem !important; }
 }

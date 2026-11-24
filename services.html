@@ -485,12 +485,31 @@
                     </button>
                 </div>
             </section>
+
+            <!-- Total et réservation (ordinateur) : remplace la barre fixe du bas, qui masquait le contenu -->
+            <div class="sim-total">
+                <div x-show="!isUtilitaire">
+                    <div class="sim-total__tags">
+                        <span x-show="promoOn" style="display:none;" class="sim-total__promo" x-text="window.PROMO ? PROMO.label + ' −' + PROMO.percent + '%' : ''"></span>
+                        <span x-show="economie > 0" style="display:none;" class="sim-total__eco" x-text="'Pack : −' + economie + '€'"></span>
+                    </div>
+                    <div class="sim-total__row">
+                        <span class="sim-total__label">Votre devis</span>
+                        <span class="sim-total__price"><s x-show="promoOn &amp;&amp; totalPrixNormal > totalPrix" style="display:none" class="promo-old" x-text="totalPrixNormal + '€'"></s> <b x-text="totalPrix + '€'"></b></span>
+                    </div>
+                    <p class="sim-total__what" x-text="nomVehicule + ' \u00b7 ' + nomFormule"></p>
+                </div>
+                <div x-show="isUtilitaire" class="sim-total__row"><span class="sim-total__label">Estimation</span><span class="sim-total__price"><b>Sur devis</b></span></div>
+                <button type="button" @click="showContactModal = true; stepsDone = 4" class="sim-total__cta cta-race">
+                    <span x-text="isUtilitaire ? 'Demander un devis' : 'Réserver'"></span> <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </div>
             </aside>
             </div>
         </div>
 
         <!-- Sticky Summary Bar -->
-        <div class="fixed bottom-0 left-0 right-0 z-50 bg-bg border-t border-gray-200 shadow-[0_-10px_40px_rgba(0,0,0,0.05)]">
+        <div class="sim-bar fixed bottom-0 left-0 right-0 z-50 bg-bg border-t border-gray-200 shadow-[0_-10px_40px_rgba(0,0,0,0.05)]">
             <div class="max-w-4xl mx-auto px-4 py-4">
                 <div class="flex items-center justify-between gap-4">
                     <!-- Résumé sélection -->
