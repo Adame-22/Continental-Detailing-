@@ -1705,3 +1705,54 @@ details[open] {
     .card-hover-lift .mb-8 { margin-bottom: 1.1rem !important; }
     .card-hover-lift h3.text-3xl { font-size: 1.5rem; line-height: 1.2; }
 }
+
+
+/* =========================================
+   TÉLÉPHONE — rails à faire glisser, étapes en frise, détails
+   ========================================= */
+.rail-dots { display: none; }
+@media (max-width: 767px) {
+    /* Le bouton flocon encombrait chaque écran : la neige reste, le bouton part */
+    .snow-toggle { display: none !important; }
+    /* Le trait rouge sous les boutons ressemblait à un défaut d'affichage */
+    .cta-race::before { display: none; }
+
+    /* Rails : les cartes se font glisser au doigt au lieu de s'empiler */
+    .m-rail {
+        display: flex !important; gap: 12px !important; overflow-x: auto; scroll-snap-type: x mandatory;
+        margin: 0 -24px; padding: 6px 24px 14px; scrollbar-width: none; -webkit-overflow-scrolling: touch;
+    }
+    .m-rail::-webkit-scrollbar { display: none; }
+    .m-rail > * { flex: 0 0 84%; scroll-snap-align: center; }
+    .m-rail .reveal, .m-rail .img-reveal, .m-rail .reveal-scale { opacity: 1 !important; transform: none !important; clip-path: none !important; }
+    .m-rail > .p-8 { padding: 1.4rem !important; }
+    .rail-dots { display: flex; justify-content: center; gap: 7px; margin-top: 2px; }
+    .rail-dots i { width: 7px; height: 7px; border-radius: 50%; background: #D9D6CC; transition: width 0.3s ease, background 0.3s ease; }
+    .rail-dots i.on { width: 22px; border-radius: 9999px; background: #1A1A1E; }
+
+    /* Trois repères côte à côte au lieu d'une pile */
+    .m-stats { grid-template-columns: repeat(3, 1fr) !important; }
+    .m-stats > div { flex-direction: column; text-align: center; gap: 8px !important; padding: 16px 6px !important; border-bottom: 0 !important; }
+    .m-stats > div + div { border-left: 1px solid rgba(0, 0, 0, 0.06); }
+    .m-stats .text-sm { font-size: 12px; line-height: 1.25; }
+    .m-stats .text-xs { display: none; }
+
+    /* Étapes en frise verticale */
+    .m-steps { gap: 0 !important; text-align: left; position: relative; }
+    .m-steps > div.reveal { display: grid; grid-template-columns: 52px 1fr; column-gap: 16px; align-items: start; padding-bottom: 26px; position: relative; }
+    .m-steps > div.reveal:not(:last-child)::after { content: ''; position: absolute; left: 25px; top: 52px; bottom: 0; width: 2px; background: #E6E3DA; }
+    .m-steps .step-badge-racing { width: 52px; height: 52px; font-size: 1rem; margin-bottom: 0; grid-row: span 2; border-width: 0; box-shadow: none; }
+    .m-steps h4 { margin: 4px 0 2px; }
+    .m-steps p { margin: 0; }
+}
+@media (max-width: 767px) {
+    /* Titres de section : assez petits pour ne pas laisser un mot seul sur sa ligne */
+    section h2.text-4xl { font-size: 1.95rem; line-height: 1.12; }
+}
+@media (max-width: 767px) {
+    /* Le bandeau du haut annonce déjà l'offre : pas de doublon dans le hero */
+    .hero-offer { display: none !important; }
+    /* Vidéo de l'offre : un bandeau, pas un écran entier */
+    .promo-feature__media { aspect-ratio: 16 / 10 !important; max-height: 230px; }
+    .promo-feature__video { width: 100%; height: 100%; object-fit: cover; }
+}

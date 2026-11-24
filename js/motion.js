@@ -289,4 +289,32 @@
         place();
     }
 
+    // =========================================
+    // 8. RAILS — on phones, cards scroll sideways; dots show the position
+    // =========================================
+    if (window.matchMedia('(max-width: 767px)').matches) {
+        document.querySelectorAll('.m-rail').forEach((rail) => {
+            const cards = Array.from(rail.children);
+            if (cards.length < 2) return;
+            const dots = document.createElement('div');
+            dots.className = 'rail-dots';
+            dots.setAttribute('aria-hidden', 'true');
+            cards.forEach(() => dots.appendChild(document.createElement('i')));
+            rail.insertAdjacentElement('afterend', dots);
+            let t = false;
+            const sync = () => {
+                const mid = rail.scrollLeft + rail.clientWidth / 2;
+                let best = 0, dist = Infinity;
+                cards.forEach((c, k) => {
+                    const d = Math.abs(c.offsetLeft + c.offsetWidth / 2 - mid);
+                    if (d < dist) { dist = d; best = k; }
+                });
+                Array.from(dots.children).forEach((d, k) => d.classList.toggle('on', k === best));
+                t = false;
+            };
+            rail.addEventListener('scroll', () => { if (!t) { requestAnimationFrame(sync); t = true; } }, { passive: true });
+            sync();
+        });
+    }
+
 })();
