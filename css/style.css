@@ -1683,3 +1683,9 @@ details[open] {
 .hero-offer[hidden] { display: none; }
 .hero-offer b { padding: 4px 10px; border-radius: 9999px; background: #B4232A; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; }
 .hero-offer i { font-size: 10px; }
+
+.card-price--dark { color: rgba(255, 255, 255, 0.65); }
+.card-price--dark strong { color: #FFFFFF; }
+.card-price--dark .promo-old { color: rgba(255, 255, 255, 0.5); }
+
+@media (min-width: 1024px) { .f-ord-1 { order: 1; } .f-ord-2 { order: 2; } .f-ord-3 { order: 3; } }
