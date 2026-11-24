@@ -782,3 +782,43 @@
     .sim-grid .service-item { padding: 0.45rem 0.8rem; font-size: 0.8rem; }
     .sim-grid .economy-badge { grid-area: eco; margin: 0 12px 12px; }
 }
+
+
+/* ══════════════════════════════════════════
+   TÉLÉPHONE : le choix du véhicule dès le premier écran
+   ══════════════════════════════════════════ */
+@media (max-width: 767px) {
+    .sim-page { padding-top: 0.75rem !important; }
+    .sim-head { margin-bottom: 12px !important; }
+    .sim-head .section-eyebrow, .sim-head > .flex.justify-center, .sim-head .eco-badge { display: none; }
+    .sim-head .section-title { font-size: 1.6rem; margin-bottom: 10px !important; }
+    .sim-head > .flex.max-w-sm { margin-top: 0 !important; }
+    .sim-head > .flex.max-w-sm button { padding-top: 9px; padding-bottom: 9px; }
+
+    /* Rappel d'offre sur une ligne */
+    .promo-on .sim-page .promo-panel { padding: 8px 12px; margin-bottom: 12px; gap: 6px 10px; flex-wrap: nowrap; border-radius: 12px; }
+    .sim-page .promo-panel__left { gap: 10px; }
+    .sim-page .promo-panel__pct { font-size: 24px; }
+    .sim-page .promo-panel__title { font-size: 12px; line-height: 1.25; margin: 0; }
+    .sim-page .promo-panel__sub, .sim-page .promo-panel__ends { display: none; }
+    .sim-page .promo-panel__right { width: auto; flex-shrink: 0; }
+    .sim-page .promo-panel .cd { gap: 4px; }
+    .sim-page .promo-panel .cd-box { flex: none; min-width: 34px; padding: 3px 4px; }
+    .sim-page .promo-panel .cd-box b { font-size: 13px; }
+    .sim-page .promo-panel .cd-box small { font-size: 7px; }
+    .sim-page .promo-panel .cd-box:last-child { display: none; }
+
+    /* Le total est déjà dans la barre du bas */
+    .sim-page .price-summary { display: none; }
+    .sim-page #car-showcase-container { margin-bottom: 1.25rem; }
+    .sim-page .showcase-wrapper { margin-bottom: 0; }
+    .sim-side section { margin-bottom: 1.5rem !important; }
+    .sim-side section:last-of-type { margin-bottom: 2rem !important; }
+
+    /* Barre du bas : rien ne se chevauche */
+    .sim-bar .max-w-4xl { padding: 10px 14px; }
+    .sim-bar button.bg-primary { padding-left: 22px; padding-right: 22px; }
+}
+/* Le bouton flocon passe au-dessus de la barre de devis */
+@media (max-width: 1099px) { body:has(.sim-bar) .snow-toggle { bottom: 96px; } }
+@media (max-width: 767px) { body:has(.sim-bar) .snow-toggle { display: none; } }

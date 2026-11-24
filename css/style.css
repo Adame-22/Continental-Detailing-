@@ -1689,3 +1689,19 @@ details[open] {
 .card-price--dark .promo-old { color: rgba(255, 255, 255, 0.5); }
 
 @media (min-width: 1024px) { .f-ord-1 { order: 1; } .f-ord-2 { order: 2; } .f-ord-3 { order: 3; } }
+
+/* =========================================
+   TÉLÉPHONE — pages moins longues, même contenu
+   ========================================= */
+@media (max-width: 767px) {
+    section.py-24, section.py-28 { padding-top: 3.25rem !important; padding-bottom: 3.25rem !important; }
+    section .mb-16 { margin-bottom: 2rem !important; }
+    .marquee.mt-16 { margin-top: 2.25rem !important; }
+    /* Cartes de formules : image plus basse, quatre points clés */
+    .card-hover-lift .img-reveal { height: 10.5rem !important; }
+    .card-hover-lift .p-8 { padding: 1.4rem !important; }
+    .card-hover-lift ul.space-y-4 { margin-bottom: 1.4rem !important; }
+    .card-hover-lift ul.space-y-4 > li:nth-child(n+5) { display: none; }
+    .card-hover-lift .mb-8 { margin-bottom: 1.1rem !important; }
+    .card-hover-lift h3.text-3xl { font-size: 1.5rem; line-height: 1.2; }
+}
