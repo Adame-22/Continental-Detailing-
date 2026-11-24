@@ -137,7 +137,7 @@
             formule: new URLSearchParams(window.location.search).get('f') || 'complet',
             stepsDone: 1,
             options: { poils: false, non_videe: false, cire: false },
-            paiement: 'wero', 
+            paiement: 'cb', 
             showGuide: false,
             showContactModal: false,
             showForm: false,
@@ -171,7 +171,7 @@
                 int: 'Formule Détails (Chaîne, cadre & moteur)',
                 complet: 'Pack Complet Moto (avec protection)'
             },
-            nomsPaiement: { especes: 'Espèces', wero: 'Wero', virement: 'Virement' },
+            nomsPaiement: { cb: 'Carte bancaire', especes: 'Espèces', virement: 'Wero ou virement' },
             
             get isUtilitaire() { return this.vehicule === 'util'; },
 
@@ -462,12 +462,12 @@
                     <h2 class="text-xs font-medium uppercase tracking-widest text-primary">Paiement souhaité</h2>
                 </div>
                 <div class="grid grid-cols-3 gap-3">
-                    <button @click="paiement = 'wero'"
-                            :class="paiement === 'wero' ? 'border-2 border-primary bg-[rgba(26,26,30,0.03)] text-primary shadow-md transform scale-[1.02]' : 'border border-gray-200 bg-white text-secondary hover:border-gray-300'"
+                    <button @click="paiement = 'cb'"
+                            :class="paiement === 'cb' ? 'border-2 border-primary bg-[rgba(26,26,30,0.03)] text-primary shadow-md transform scale-[1.02]' : 'border border-gray-200 bg-white text-secondary hover:border-gray-300'"
                             class="relative flex flex-col items-center justify-center gap-3 p-4 sm:p-6 transition-all rounded-xl">
-                        <div x-show="paiement === 'wero'" class="absolute -top-2 -right-2 w-5 h-5 bg-primary text-white rounded-full flex items-center justify-center shadow-sm"><i class="fa-solid fa-check text-[10px]"></i></div>
-                        <i class="fa-solid fa-mobile-screen-button text-2xl mb-1" :class="paiement === 'wero' ? 'text-primary' : 'text-gray-400'"></i>
-                        <span class="text-[10px] sm:text-[11px] font-bold uppercase tracking-widest text-center leading-tight">Wero</span>
+                        <div x-show="paiement === 'cb'" class="absolute -top-2 -right-2 w-5 h-5 bg-primary text-white rounded-full flex items-center justify-center shadow-sm"><i class="fa-solid fa-check text-[10px]"></i></div>
+                        <i class="fa-solid fa-credit-card text-2xl mb-1" :class="paiement === 'cb' ? 'text-primary' : 'text-gray-400'"></i>
+                        <span class="text-[10px] sm:text-[11px] font-bold uppercase tracking-widest text-center leading-tight">Carte bancaire</span>
                     </button>
                     <button @click="paiement = 'especes'"
                             :class="paiement === 'especes' ? 'border-2 border-primary bg-[rgba(26,26,30,0.03)] text-primary shadow-md transform scale-[1.02]' : 'border border-gray-200 bg-white text-secondary hover:border-gray-300'"
@@ -481,7 +481,7 @@
                             class="relative flex flex-col items-center justify-center gap-3 p-4 sm:p-6 transition-all rounded-xl">
                         <div x-show="paiement === 'virement'" class="absolute -top-2 -right-2 w-5 h-5 bg-primary text-white rounded-full flex items-center justify-center shadow-sm"><i class="fa-solid fa-check text-[10px]"></i></div>
                         <i class="fa-solid fa-building-columns text-2xl mb-1" :class="paiement === 'virement' ? 'text-primary' : 'text-gray-400'"></i>
-                        <span class="text-[10px] sm:text-[11px] font-bold uppercase tracking-widest text-center leading-tight">Virement</span>
+                        <span class="text-[10px] sm:text-[11px] font-bold uppercase tracking-widest text-center leading-tight">Wero ou virement</span>
                     </button>
                 </div>
             </section>
