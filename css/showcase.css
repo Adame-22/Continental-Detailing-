@@ -822,3 +822,148 @@
 /* Le bouton flocon passe au-dessus de la barre de devis */
 @media (max-width: 1099px) { body:has(.sim-bar) .snow-toggle { bottom: 96px; } }
 @media (max-width: 767px) { body:has(.sim-bar) .snow-toggle { display: none; } }
+
+
+/* ══════════════════════════════════════════
+   INTERACTIONS COMMUNES — interrupteurs, choix du paiement, prix animé
+   ══════════════════════════════════════════ */
+@keyframes price-pop { 0% { transform: scale(0.82); opacity: 0.4; filter: blur(3px); } 60% { transform: scale(1.08); } 100% { transform: none; opacity: 1; filter: none; } }
+.price-pop { display: inline-block; animation: price-pop 0.42s cubic-bezier(0.22, 1, 0.36, 1); }
+@keyframes car-in { 0% { transform: translateX(46px) scale(0.96); opacity: 0; } 100% { transform: none; opacity: 1; } }
+.car-in { animation: car-in 0.55s cubic-bezier(0.22, 1, 0.36, 1); }
+
+/* Options : la case à cocher devient un interrupteur */
+.sim-side section > .border > button > div:last-child > div {
+    position: relative; width: 44px !important; height: 26px !important; flex-shrink: 0;
+    border: 0 !important; border-radius: 9999px !important; background: #D9D6CC !important;
+    transition: background 0.25s ease;
+}
+.sim-side section > .border > button > div:last-child > div i { display: none !important; }
+.sim-side section > .border > button > div:last-child > div::after {
+    content: ''; position: absolute; top: 3px; left: 3px; width: 20px; height: 20px; border-radius: 50%;
+    background: #FFFFFF; box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+    transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.sim-side section > .border > button > div:last-child > div.bg-primary { background: #0E1418 !important; }
+.sim-side section > .border > button > div:last-child > div.bg-primary::after { transform: translateX(18px); }
+.sim-side section > .border > button { border-left-width: 0 !important; }
+.sim-side section > .border > button:active { background: #F6F5F1; }
+
+/* Paiement : un seul sélecteur à trois positions */
+.sim-side .grid.grid-cols-3 { gap: 4px !important; padding: 4px; border-radius: 16px; background: #ECE9E1; }
+.sim-side .grid.grid-cols-3 button {
+    border: 0 !important; border-radius: 12px !important; background: transparent !important; box-shadow: none !important;
+    transform: none !important; color: #6B6B6B; transition: background 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
+}
+.sim-side .grid.grid-cols-3 button.border-2 { background: #FFFFFF !important; color: #0E1418; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1) !important; }
+.sim-side .grid.grid-cols-3 button > div.absolute { display: none !important; }
+.sim-side .grid.grid-cols-3 button:active { transform: scale(0.96) !important; }
+
+/* ══════════════════════════════════════════
+   TÉLÉPHONE — le simulateur comme un configurateur :
+   la voiture sur une scène sombre, puis les choix en cartes claires
+   ══════════════════════════════════════════ */
+@media (max-width: 767px) {
+    body:has(.sim-page) { background: #F2F0EA; }
+    .sim-page { padding-left: 14px !important; padding-right: 14px !important; }
+
+    .sim-head { text-align: left; }
+    .sim-head .section-title { font-size: 1.85rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 12px !important; }
+    .sim-head > .flex.max-w-sm { max-width: none; border: 0; padding: 4px; border-radius: 14px; background: #E6E3DA; }
+    .sim-head > .flex.max-w-sm button { border-radius: 10px; font-weight: 600; letter-spacing: 0.08em; }
+
+    .promo-on .sim-page .promo-panel { background: #B4232A; border: 0; color: #FFFFFF; border-radius: 14px; padding: 9px 12px; }
+    .sim-page .promo-panel__pct, .sim-page .promo-panel__title { color: #FFFFFF; }
+    .sim-page .promo-panel .cd-box { background: rgba(0, 0, 0, 0.28); }
+
+    /* Carte principale */
+    .sim-page .showcase-wrapper {
+        display: flex; flex-direction: column; border: 0; border-radius: 24px; background: #FFFFFF;
+        box-shadow: 0 14px 40px rgba(14, 20, 24, 0.12);
+    }
+    .sim-page .showcase-body, .sim-page .services-panel { display: contents; }
+
+    /* 1. Scène sombre : titre, voiture, onglets de véhicule */
+    .sim-page .showcase-step-header { order: 1; background: #0E1418; border: 0; padding: 16px 18px 0; }
+    .sim-page .showcase-step-header .step-badge { display: none; }
+    .sim-page .showcase-step-header .step-title { color: rgba(255, 255, 255, 0.62); font-size: 11px; letter-spacing: 0.18em; }
+    .sim-page .showcase-step-header button { background: rgba(255, 255, 255, 0.1) !important; border-color: rgba(255, 255, 255, 0.18) !important; color: #FFFFFF !important; box-shadow: none !important; }
+
+    .sim-page .car-stage {
+        order: 2; border: 0; padding: 8px 12px 6px; min-height: 0;
+        background: radial-gradient(120% 90% at 50% 62%, #26323B 0%, #131B21 48%, #0E1418 100%);
+    }
+    .sim-page .stage-bg, .sim-page .spotlight, .sim-page .platform-ring, .sim-page .particle-canvas { display: none; }
+    .sim-page .car-image-wrap { max-width: 92%; filter: drop-shadow(0 22px 18px rgba(0, 0, 0, 0.55)); }
+    .sim-page .car-reflection { display: none; }
+    .sim-page .car-label-wrap { margin-top: 2px; }
+    .sim-page .car-label-name { color: #FFFFFF; font-size: 1.35rem; font-weight: 700; letter-spacing: 0.02em; text-transform: none; }
+    .sim-page .car-label-sub { color: rgba(255, 255, 255, 0.55); }
+
+    .sim-page .vehicle-nav {
+        order: 3; background: #0E1418; border: 0; padding: 12px 14px 18px; gap: 8px;
+        scroll-snap-type: x proximity; scroll-padding: 0 14px;
+    }
+    .sim-page .veh-tab {
+        flex-direction: row; gap: 8px; min-height: 0; height: 42px; padding: 0 16px; border-radius: 9999px;
+        background: transparent; border: 1px solid rgba(255, 255, 255, 0.2); color: rgba(255, 255, 255, 0.78);
+        font-size: 12px; letter-spacing: 0.04em; box-shadow: none; scroll-snap-align: center;
+    }
+    .sim-page .veh-tab i { font-size: 0.95rem; color: rgba(255, 255, 255, 0.55); }
+    .sim-page .veh-tab .veh-devis { position: static; color: rgba(255, 255, 255, 0.5); font-size: 9px; }
+    .sim-page .veh-tab.active { background: #FFFFFF; border-color: #FFFFFF; color: #0E1418; transform: none; box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35); }
+    .sim-page .veh-tab.active i { color: #0E1418 !important; }
+    .sim-page .veh-tab:active { transform: scale(0.95); }
+
+    /* 2. Formule */
+    .sim-page .panel-step-header { order: 4; background: #FFFFFF; border: 0; padding: 22px 18px 4px; }
+    .sim-page .panel-step-header .step-badge, .sim-side section > .flex > span.w-8 { display: none; }
+    .sim-page .step-title--sm { font-size: 1.2rem; font-weight: 700; letter-spacing: -0.01em; text-transform: none; color: #0E1418; }
+
+    .sim-page .formule-pills { order: 5; background: #FFFFFF; padding: 10px 14px 6px; gap: 10px; }
+    .sim-page .fpill { border: 1.5px solid #E6E3DA; border-radius: 18px; box-shadow: none; transition: background 0.3s ease, border-color 0.3s ease, transform 0.2s ease; }
+    .sim-page .fpill:active { transform: scale(0.98); }
+    .sim-page .fpill-inner { padding: 14px 16px; gap: 14px; }
+    .sim-page .fpill-icon { width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 12px; background: #F2F0EA; font-size: 1rem; color: #0E1418; flex-shrink: 0; }
+    .sim-page .fpill-name { font-size: 1rem; font-weight: 700; text-transform: none; letter-spacing: 0; }
+    .sim-page .fpill-sub { font-size: 0.72rem; text-transform: none; letter-spacing: 0; }
+    .sim-page .fpill-rec { color: #9A7A3F; font-size: 0.62rem; }
+    .sim-page .fpill-price { font-size: 1.2rem; font-weight: 700; }
+    .sim-page .fpill.active { background: #0E1418; border-color: #0E1418; box-shadow: 0 10px 26px rgba(14, 20, 24, 0.28); }
+    .sim-page .fpill.active::after { display: none; }
+    .sim-page .fpill.active .fpill-icon { background: #B4935A; color: #0E1418; }
+    .sim-page .fpill.active .fpill-name, .sim-page .fpill.active .fpill-price { color: #FFFFFF !important; }
+    .sim-page .fpill.active .fpill-sub { color: rgba(255, 255, 255, 0.6); }
+    .sim-page .fpill.active .fpill-rec { color: #D8B878; }
+    .sim-page .fpill.active .fpill-old { color: rgba(255, 255, 255, 0.5); }
+
+    /* Ce qui est inclus : une simple liste cochée */
+    .sim-page .services-list { order: 6; padding: 12px 18px 6px; gap: 0; min-height: 0; background: #FFFFFF; }
+    .sim-page .services-list::before { content: 'Inclus'; font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: #9A988F; margin-bottom: 4px; }
+    .sim-page .service-item { background: none; border: 0; border-radius: 0; padding: 7px 0; font-size: 0.9rem; font-weight: 400; color: #33333A; }
+    .sim-page .service-item + .service-item { border-top: 1px solid #F0EEE7; }
+    .sim-page .service-item i { color: #9A7A3F; font-size: 0.75rem; }
+    .sim-page .economy-badge { order: 7; margin: 6px 14px 16px; border: 0; border-radius: 12px; background: #EEF7F0; color: #15703A; font-size: 12px; letter-spacing: 0.02em; text-transform: none; padding: 10px 12px; }
+
+    /* 3. Options et paiement */
+    .sim-side section > .flex h2 { font-size: 1.2rem; font-weight: 700; letter-spacing: -0.01em; text-transform: none; color: #0E1418; }
+    .sim-side section > .flex span.text-xs { font-size: 13px; }
+    .sim-side section > .flex { margin-bottom: 12px !important; padding: 0 4px; }
+    .sim-side section > .border { border: 0 !important; border-radius: 20px !important; box-shadow: 0 8px 26px rgba(14, 20, 24, 0.07) !important; }
+    .sim-side section > .border > button { padding: 15px 16px !important; }
+    .sim-side section > .border > button p.text-sm { font-size: 0.95rem; color: #0E1418 !important; }
+    .sim-side .grid.grid-cols-3 button { padding: 14px 4px !important; }
+    .sim-side .grid.grid-cols-3 i { font-size: 1.05rem; margin-bottom: 0; }
+
+    /* Barre de devis : sombre, toujours lisible */
+    .sim-bar { background: rgba(14, 20, 24, 0.94) !important; border: 0 !important; -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); border-radius: 22px 22px 0 0; box-shadow: 0 -12px 34px rgba(0, 0, 0, 0.22) !important; }
+    .sim-bar .max-w-4xl { padding: 12px 16px calc(12px + env(safe-area-inset-bottom)); }
+    .sim-bar p.text-secondary, .sim-bar span.text-secondary { color: rgba(255, 255, 255, 0.6) !important; }
+    .sim-bar p.text-2xl { color: #FFFFFF !important; font-weight: 700 !important; font-size: 1.7rem; }
+    .sim-bar .promo-old { color: rgba(255, 255, 255, 0.5); }
+    .sim-bar button.bg-primary { background: #FFFFFF !important; color: #0E1418 !important; box-shadow: none !important; }
+    .sim-bar button.bg-primary:active { transform: scale(0.96); }
+    .sim-bar span[style*="rgba(34,197,94,0.12)"] { background: rgba(74, 222, 128, 0.18) !important; color: #86EFAC !important; }
+    .sim-bar button[style*="rgba(34,197,94,0.08)"] { background: rgba(74, 222, 128, 0.14) !important; color: #86EFAC !important; border-color: rgba(134, 239, 172, 0.4) !important; }
+}
+@media (prefers-reduced-motion: reduce) { .price-pop, .car-in { animation: none; } }

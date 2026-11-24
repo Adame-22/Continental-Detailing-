@@ -22,8 +22,8 @@
     ];
 
     const stdComplet = [
-        '✨ Toutes les prestations de la formule Intérieur',
-        '✨ Toutes les prestations de la formule Extérieur',
+        'Toutes les prestations de la formule Intérieur',
+        'Toutes les prestations de la formule Extérieur',
         'Soin protecteur pour plastiques intérieurs',
         'Cire de finition brillance sur carrosserie'
     ];
@@ -39,7 +39,7 @@
     ];
 
     const motoDetails = [
-        '✨ Toutes les prestations de la formule Essentiel',
+        'Toutes les prestations de la formule Essentiel',
         'Dégraissage et lubrification de la chaîne',
         'Détourage au pinceau : cadre, rayons, radiateur',
         'Nettoyage du bloc moteur et des échappements',
@@ -47,7 +47,7 @@
     ];
 
     const motoComplet = [
-        '✨ Toutes les prestations de la formule Détails',
+        'Toutes les prestations de la formule Détails',
         'Cire de protection hydrophobe sur carénages',
         'Soin nourrissant de la selle (cuir ou synthétique)',
         'Traitement anti-corrosion des parties métalliques',
@@ -385,7 +385,7 @@
         items.forEach((item, i) => {
             const el = document.createElement('div');
             el.className = 'service-item';
-            el.innerHTML = `<i class="fa-solid fa-minus"></i><span>${item}</span>`;
+            el.innerHTML = `<i class="fa-solid fa-check"></i><span>${item}</span>`;
             list.appendChild(el);
             setTimeout(() => el.classList.add('visible'), i * 45);
         });
