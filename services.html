@@ -128,7 +128,7 @@
     </nav>
 
     <!-- Main Content -->
-    <main class="relative z-10 pt-10 px-4 sm:px-4 md:px-6 max-w-4xl mx-auto pb-4"
+    <main class="sim-page relative z-10 pt-10 px-4 sm:px-4 md:px-6 max-w-4xl mx-auto pb-4"
           @showcasecar.window="vehicule = $event.detail.key; if (vehicule === 'moto') options.non_videe = false; stepsDone = Math.max(stepsDone, 1)"
           @showcaseformule.window="formule = $event.detail.f; stepsDone = Math.max(stepsDone, 2)"
           x-data="{ 
@@ -295,7 +295,7 @@
           }">
         
         <!-- Header -->
-        <div class="text-center mb-10">
+        <div class="sim-head text-center mb-10">
             <p class="section-eyebrow">Simulateur &amp; Réservation</p>
             <h1 class="section-title mb-4">Votre Prestation</h1>
 
@@ -370,6 +370,9 @@
                 </div>
             </div>
 
+            <!-- Sur ordinateur : simulateur à gauche, options et paiement à droite (voir css/showcase.css) -->
+            <div class="sim-grid">
+            <div class="sim-main">
             <!-- SHOWCASE — vehicule + formule + services + prix -->
             <div id="car-showcase-container" class="mb-10"></div>
 
@@ -386,6 +389,8 @@
                 </div>
             </div>
 
+            </div>
+            <aside class="sim-side">
             <!-- 02. Options -->
             <section x-show="!isUtilitaire" class="mb-12">
                 <div class="flex items-center gap-4 mb-6">
@@ -480,6 +485,8 @@
                     </button>
                 </div>
             </section>
+            </aside>
+            </div>
         </div>
 
         <!-- Sticky Summary Bar -->
@@ -490,7 +497,7 @@
                     <div x-show="clientType === 'particulier' &amp;&amp; !isUtilitaire" class="min-w-0 flex-1">
                         <div class="flex items-center gap-3 mb-1 flex-wrap">
                             <p class="text-[10px] font-medium uppercase tracking-widest text-secondary">Votre devis</p>
-                            <span x-show="promoOn" style="display:none; background:#C2410C; color:#FFFFFF;"
+                            <span x-show="promoOn" style="display:none; background:#B4232A; color:#FFFFFF;"
                                   class="hidden sm:inline-block text-[10px] font-bold px-2 py-0.5 rounded-full whitespace-nowrap uppercase tracking-wider"
                                   x-text="window.PROMO ? PROMO.label + ' −' + PROMO.percent + '%' : ''"></span>
                             <span x-show="economie > 0" style="display:none; background:rgba(34,197,94,0.12); color:#15803d;"
